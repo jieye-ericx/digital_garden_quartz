@@ -7,11 +7,23 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Checkout submodules
+        run: git submodule update --init --recursive
+
+      - name: config1
+        run: rm -rf content/.obsidian content/cedict_ts.u8 content/Extras/Templates  && mv content/*.md content/Atlas && find content/ -name "*.md" | xargs -I file  mv -f file content &&  mv content/AboutTheGarden.md content/_index.md
+
+      - name: config2
+        run: "ls content/ && grep -lr --null 'title' content/* | xargs -0 sed -i -E -r 's/title: (.*)/title: \"\\1\"/g'"
+
+      - name: config3
+        run: rm -rf content/*.md-E
 
       - name: Build Link Index
         uses: jackyzha0/hugo-obsidian@v2.20
