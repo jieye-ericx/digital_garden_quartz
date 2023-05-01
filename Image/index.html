@@ -1,0 +1,916 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="一、基础知识 1.1 位图 「位图图像（bitmap），亦称为点阵图像或栅格图像，是由称作像素（图片元素）的单个点组成的。」 这些点可以进行不同的排列和染色以构成图样。当放大位图时，可以看见赖以构成整个图像的无数单个方块。扩大位图尺寸的效果是增大单个像素，从而使线条和形状显得参差不齐。
+「用数码相机拍摄的照片、扫描仪扫描的图片以及计算机截屏图等都属于位图。」 位图的特点是可以表现色彩的变化和颜色的细微过渡，产生逼真的效果，缺点是在保存时需要记录每一个像素的位置和颜色值，占用较大的存储空间。常用的位图处理软件有 Photoshop、Painter 和 Windows 系统自带的画图工具等。
+分辨率是位图不可逾越的壁垒，在对位图进行缩放、旋转等操作时，无法生产新的像素，因此会放大原有的像素填补空白，这样会让图片显得不清晰。
+ 图中的小方块被称为像素，这些小方块都有一个明确的位置和被分配的色彩数值，小方格颜色和位置就决定该图像所呈现出来的样子。
+可以将像素视为整个图像中不可分割的单位或者是元素。「不可分割的意思是它不能够再切割成更小单位抑或是元素，它是以一个单一颜色的小格存在。」 每一个点阵图像包含了一定量的像素，这些像素决定图像在屏幕上所呈现的大小。
+1.2 矢量图 所谓矢量图，就是使用直线和曲线来描述的图形，构成这些图形的元素是一些点、线、矩形、多边形、圆和弧线等，**「***它们都是通过数学公式计算获得的，具有编辑后不失真的特点。*」****例如一幅画的矢量图形实际上是由线段形成外框轮廓，由外框的颜色以及外框所封闭的颜色决定画显示出的颜色。
+「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。"><meta property="og:title" content><meta property="og:description" content="一、基础知识 1.1 位图 「位图图像（bitmap），亦称为点阵图像或栅格图像，是由称作像素（图片元素）的单个点组成的。」 这些点可以进行不同的排列和染色以构成图样。当放大位图时，可以看见赖以构成整个图像的无数单个方块。扩大位图尺寸的效果是增大单个像素，从而使线条和形状显得参差不齐。
+「用数码相机拍摄的照片、扫描仪扫描的图片以及计算机截屏图等都属于位图。」 位图的特点是可以表现色彩的变化和颜色的细微过渡，产生逼真的效果，缺点是在保存时需要记录每一个像素的位置和颜色值，占用较大的存储空间。常用的位图处理软件有 Photoshop、Painter 和 Windows 系统自带的画图工具等。
+分辨率是位图不可逾越的壁垒，在对位图进行缩放、旋转等操作时，无法生产新的像素，因此会放大原有的像素填补空白，这样会让图片显得不清晰。
+ 图中的小方块被称为像素，这些小方块都有一个明确的位置和被分配的色彩数值，小方格颜色和位置就决定该图像所呈现出来的样子。
+可以将像素视为整个图像中不可分割的单位或者是元素。「不可分割的意思是它不能够再切割成更小单位抑或是元素，它是以一个单一颜色的小格存在。」 每一个点阵图像包含了一定量的像素，这些像素决定图像在屏幕上所呈现的大小。
+1.2 矢量图 所谓矢量图，就是使用直线和曲线来描述的图形，构成这些图形的元素是一些点、线、矩形、多边形、圆和弧线等，**「***它们都是通过数学公式计算获得的，具有编辑后不失真的特点。*」****例如一幅画的矢量图形实际上是由线段形成外框轮廓，由外框的颜色以及外框所封闭的颜色决定画显示出的颜色。
+「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。"><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/Image/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="一、基础知识 1.1 位图 「位图图像（bitmap），亦称为点阵图像或栅格图像，是由称作像素（图片元素）的单个点组成的。」 这些点可以进行不同的排列和染色以构成图样。当放大位图时，可以看见赖以构成整个图像的无数单个方块。扩大位图尺寸的效果是增大单个像素，从而使线条和形状显得参差不齐。
+「用数码相机拍摄的照片、扫描仪扫描的图片以及计算机截屏图等都属于位图。」 位图的特点是可以表现色彩的变化和颜色的细微过渡，产生逼真的效果，缺点是在保存时需要记录每一个像素的位置和颜色值，占用较大的存储空间。常用的位图处理软件有 Photoshop、Painter 和 Windows 系统自带的画图工具等。
+分辨率是位图不可逾越的壁垒，在对位图进行缩放、旋转等操作时，无法生产新的像素，因此会放大原有的像素填补空白，这样会让图片显得不清晰。
+ 图中的小方块被称为像素，这些小方块都有一个明确的位置和被分配的色彩数值，小方格颜色和位置就决定该图像所呈现出来的样子。
+可以将像素视为整个图像中不可分割的单位或者是元素。「不可分割的意思是它不能够再切割成更小单位抑或是元素，它是以一个单一颜色的小格存在。」 每一个点阵图像包含了一定量的像素，这些像素决定图像在屏幕上所呈现的大小。
+1.2 矢量图 所谓矢量图，就是使用直线和曲线来描述的图形，构成这些图形的元素是一些点、线、矩形、多边形、圆和弧线等，**「***它们都是通过数学公式计算获得的，具有编辑后不失真的特点。*」****例如一幅画的矢量图形实际上是由线段形成外框轮廓，由外框的颜色以及外框所封闭的颜色决定画显示出的颜色。
+「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。"><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Image.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#一基础知识>一、基础知识</a><ol><li><a href=#11-位图>1.1 位图</a></li><li><a href=#12-矢量图>1.2 矢量图</a></li><li><a href=#13-位图的数学表示>1.3 位图的数学表示</a></li></ol></li><li><a href=#二图片处理库>二、图片处理库</a><ol><li><a href=#21-alloyimage-专业图像处理库>2.1 AlloyImage 专业图像处理库</a></li><li><a href=#22-blurify-图片模糊>2.2 blurify 图片模糊</a></li><li><a href=#23-cropperjs-图片裁剪工具>2.3 cropperjs 图片裁剪工具</a></li><li><a href=#24-compressorjs-图像压缩>2.4 compressorjs 图像压缩</a></li><li><a href=#25-fabricjs-轻松使用-html5-canvas-元素>2.5 fabric.js 轻松使用 HTML5 Canvas 元素</a></li><li><a href=#26-resemblejs-图片的分析和比较>2.6 Resemble.js 图片的分析和比较</a></li><li><a href=#27-pica-调整图像大小>2.7 Pica 调整图像大小</a></li><li><a href=#28-tuiimage-editor-全功能图像编辑器>2.8 tui.image-editor 全功能图像编辑器</a></li><li><a href=#29-gifjs--gif-编码器>2.9 gif.js GIF 编码器</a></li><li><a href=#210-sharp-图像转换为尺寸较小>2.10 Sharp 图像转换为尺寸较小</a></li></ol></li><li><a href=#三其他问题>三、其他问题</a><ol><li><a href=#31-如何区分图片的类型>3.1 如何区分图片的类型</a></li><li><a href=#32-如何获取图片的尺寸>3.2 如何获取图片的尺寸</a></li><li><a href=#33-如何预览本地图片>3.3 如何预览本地图片</a></li><li><a href=#34-如何实现图片压缩>3.4 如何实现图片压缩</a></li><li><a href=#35-如何操作位图像素数据>3.5 如何操作位图像素数据</a></li><li><a href=#36-如何实现图片隐写>3.6 如何实现图片隐写</a></li></ol></li></ol></nav></details></aside><a href=#一基础知识><h2 id=一基础知识><span class=hanchor arialabel=Anchor># </span>一、基础知识</h2></a><a href=#11-位图><h3 id=11-位图><span class=hanchor arialabel=Anchor># </span>1.1 位图</h3></a><p><strong>「位图图像（bitmap），亦称为点阵图像或栅格图像，是由称作像素（图片元素）的单个点组成的。」</strong> 这些点可以进行不同的排列和染色以构成图样。当放大位图时，可以看见赖以构成整个图像的无数单个方块。扩大位图尺寸的效果是增大单个像素，从而使线条和形状显得参差不齐。</p><p><strong>「用数码相机拍摄的照片、扫描仪扫描的图片以及计算机截屏图等都属于位图。」</strong> 位图的特点是可以表现色彩的变化和颜色的细微过渡，产生逼真的效果，缺点是在保存时需要记录每一个像素的位置和颜色值，占用较大的存储空间。常用的位图处理软件有 Photoshop、Painter 和 Windows 系统自带的画图工具等。</p><p>分辨率是位图不可逾越的壁垒，在对位图进行缩放、旋转等操作时，无法生产新的像素，因此会放大原有的像素填补空白，这样会让图片显得不清晰。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164033.png width=auto alt=img></p><p>图中的小方块被称为像素，这些小方块都有一个明确的位置和被分配的色彩数值，小方格颜色和位置就决定该图像所呈现出来的样子。</p><p>可以将像素视为整个图像中不可分割的单位或者是元素。<strong>「不可分割的意思是它不能够再切割成更小单位抑或是元素，它是以一个单一颜色的小格存在。」</strong> 每一个点阵图像包含了一定量的像素，这些像素决定图像在屏幕上所呈现的大小。</p><a href=#12-矢量图><h3 id=12-矢量图><span class=hanchor arialabel=Anchor># </span>1.2 矢量图</h3></a><p>所谓矢量图，就是使用直线和曲线来描述的图形，构成这些图形的元素是一些点、线、矩形、多边形、圆和弧线等，**「***<em>它们都是通过数学公式计算获得的，具有编辑后不失真的特点。*</em>」****例如一幅画的矢量图形实际上是由线段形成外框轮廓，由外框的颜色以及外框所封闭的颜色决定画显示出的颜色。</p><p><strong>「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」</strong> 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。</p><p>这里我们以 Web 开发者比较熟悉的 SVG（<strong>「Scalable Vector Graphics —— 可缩放矢量图形」</strong>）为例，来了解一下 SVG 的结构：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164049.jpeg width=auto alt=img></p><p>可缩放矢量图形（英语：Scalable Vector Graphics，SVG）是一种基于可扩展标记语言（XML），用于描述二维矢量图形的图形格式。SVG 由 W3C 制定，是一个开放标准。</p><p>SVG 主要支持以下几种显示对象：</p><ul><li>矢量显示对象，基本矢量显示对象包括矩形、圆、椭圆、多边形、直线、任意曲线等；</li><li>嵌入式外部图像，包括 PNG、JPEG、SVG 等；</li><li>文字对象。</li></ul><p>了解完位图与矢量图的区别，下面我们来介绍一下位图的数学表示。</p><a href=#13-位图的数学表示><h3 id=13-位图的数学表示><span class=hanchor arialabel=Anchor># </span>1.3 位图的数学表示</h3></a><p>位图的像素都分配有特定的位置和颜色值。每个像素的颜色信息由 RGB 组合或者灰度值表示。</p><p>根据位深度，可将位图分为1、4、8、16、24 及 32 位图像等。每个像素使用的信息位数越多，可用的颜色就越多，颜色表现就越逼真，相应的数据量越大。</p><p><strong>「1.3.1 二值图像」</strong></p><p>位深度为 1 的像素位图只有两个可能的值（黑色和白色），所以又称为二值图像。二值图像的像素点只有黑白两种情况，因此每个像素点可以由 0 和 1 来表示。</p><p>比如一张 4 * 4 二值图像：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>1 1 0 1
+</span></span><span class=line><span class=cl>1 1 0 1
+</span></span><span class=line><span class=cl>1 0 0 0
+</span></span><span class=line><span class=cl>1 0 1 0
+</span></span></code></pre></td></tr></table></div></div><p><strong>「1.3.2 RGB 图像」</strong></p><p>RGB 图像由三个颜色通道组成，其中 RGB 代表红、绿、蓝三个通道的颜色。8 位/通道的 RGB 图像中的每个通道有 256 个可能的值，这意味着该图像有 1600 万个以上可能的颜色值。</p><p>有时将带有 8 位/通道（bpc）的 RGB 图像称作 24 位图像（8 位 x 3 通道 = 24 位数据/像素）。通常将使用 24 位 RGB 组合数据位表示的的位图称为真彩色位图。</p><p>RGB 彩色图像可由三种矩阵表示：一种代表像素中红色的强度，一种代表绿色，另一种代表蓝色。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164056.png width=auto alt=img></p><p><strong>「图像处理的本质实际上就是对这些像素矩阵进行计算。」</strong> 其实位图中的图像类型，除了二值图像和 RGB 图像之外，还有灰度图像、索引图像和 YUV 图像。这里我们不做过多介绍，感兴趣的小伙伴，请自行查阅相关资料。</p><a href=#二图片处理库><h2 id=二图片处理库><span class=hanchor arialabel=Anchor># </span>二、图片处理库</h2></a><a href=#21-alloyimage-专业图像处理库><h3 id=21-alloyimage-专业图像处理库><span class=hanchor arialabel=Anchor># </span>2.1 AlloyImage 专业图像处理库</h3></a><blockquote><p>❝</p><p>基于 HTML 5 的专业级图像处理开源引擎。</p><p><a href=https://github.com/AlloyTeam/AlloyImage rel=noopener>https://github.com/AlloyTeam/AlloyImage</a></p><p>❞</p></blockquote><p>AlloyImage 基于 HTML5 技术的专业图像处理库，来自腾讯 AlloyTeam 团队。它拥有以下功能特性：</p><ul><li>基于多图层操作 —— 一个图层的处理不影响其他图层；</li><li>与 PS 对应的 17 种图层混合模式 —— 便于 PS 处理教程的无缝迁移；</li><li>多种基本滤镜处理效果 —— 基本滤镜不断丰富、可扩展；</li><li>基本的图像调节功能 —— 色相、饱和度、对比度、亮度、曲线等；</li><li>简单快捷的 API —— 链式处理、API 简洁易用、传参灵活；</li><li>多种组合效果封装 —— 一句代码轻松实现一种风格；</li><li>接口一致的单、多线程支持 —— 单、多线程切换无需更改一行代码，多线程保持快捷 API 特性。</li></ul><p>对于该库 AlloyTeam 团队建议的使用场景如下：</p><ul><li>桌面软件客户端内嵌网页运行方式 &#187;> 打包 Webkit 内核：用户较大头像上传风格处理、用户相册风格处理（处理时间平均 &lt; 1s）；</li><li>Win8 Metro 应用 &#187;> 用户上传头像，比较小的图片风格处理后上传（Win8 下 IE 10 支持多线程）；</li><li>Mobile APP &#187;> Andriod 平台、iOS 平台小图风格 Web 处理的需求，如 PhoneGap 应用，在线头像上传时的风格处理、Mobile Web 端分享图片时风格处理等。</li></ul><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>// $AI或AlloyImage初始化一个AlloyImage对象
+</span></span><span class=line><span class=cl>var ps = $AI(img, 600).save(&#39;jpg&#39;, 0.6);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// save将合成图片保存成base64格式字符串
+</span></span><span class=line><span class=cl>var string = AlloyImage(img).save(&#39;jpg&#39;, 0.8);
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>// saveFile将合成图片下载到本地
+</span></span><span class=line><span class=cl>img.onclick = function(){
+</span></span><span class=line><span class=cl>  AlloyImage(this).saveFile(&#39;处理后图像.jpg&#39;, 0.8);
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=http://alloyteam.github.io/AlloyImage/ rel=noopener>http://alloyteam.github.io/AlloyImage/</a></p><p>❞</p></blockquote><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164112.jpeg width=auto alt=img></p><a href=#22-blurify-图片模糊><h3 id=22-blurify-图片模糊><span class=hanchor arialabel=Anchor># </span>2.2 blurify 图片模糊</h3></a><blockquote><p>❝</p><p>blurify.js is a tiny(~2kb) library to blurred pictures, support graceful downgrade from <code>css</code> mode to <code>canvas</code> mode.</p><p><a href=https://github.com/JustClear/blurify rel=noopener>https://github.com/JustClear/blurify</a></p><p>❞</p></blockquote><p>blurify.js 是一个用于图片模糊，很小的 JavaScript 库（约 2 kb），并支持从 CSS 模式到 Canvas 模式的优雅降级。该插件支持三种模式：</p><ul><li>css 模式：使用 <code>filter</code> 属性，默认模式；</li><li>canvas 模式：使用 <code>canvas</code> 导出 base64；</li><li>auto 模式：优先使用 css 模式，否则自动切换到 canvas 模式。</li></ul><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>import</span> <span class=nx>blurify</span> <span class=nx>from</span> <span class=s1>&#39;blurify&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>new</span> <span class=nx>blurify</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>images</span><span class=o>:</span> <span class=nb>document</span><span class=p>.</span><span class=nx>querySelectorAll</span><span class=p>(</span><span class=s1>&#39;.blurify&#39;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=nx>blur</span><span class=o>:</span> <span class=mi>6</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>mode</span><span class=o>:</span> <span class=s1>&#39;css&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// or in shorthand
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=nx>blurify</span><span class=p>(</span><span class=mi>6</span><span class=p>,</span> <span class=nb>document</span><span class=p>.</span><span class=nx>querySelectorAll</span><span class=p>(</span><span class=s1>&#39;.blurify&#39;</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=https://justclear.github.io/blurify/ rel=noopener>https://justclear.github.io/blurify/</a></p><p>❞</p></blockquote><p>看到这里是不是有些小伙伴觉得只是模糊处理而已，觉得不过瘾，能不能来点更酷的。嘿嘿，有求必应！阿宝哥立马来个 <strong>「“酷炫叼”」</strong> 的库 —— midori，该库用于为背景图创建动画，使用 three.js 编写并使用 WebGL。本来是想给个演示动图，无奈单个 Gif 文件太大，只能放个体验地址，感兴趣的小伙伴自行体验一下。</p><blockquote><p>❝</p><p>midori 示例地址：https://aeroheim.github.io/midori/</p><p>❞</p></blockquote><a href=#23-cropperjs-图片裁剪工具><h3 id=23-cropperjs-图片裁剪工具><span class=hanchor arialabel=Anchor># </span>2.3 cropperjs 图片裁剪工具</h3></a><blockquote><p>❝</p><p>JavaScript image cropper.</p><p><a href=https://github.com/fengyuanchen/cropperjs rel=noopener>https://github.com/fengyuanchen/cropperjs</a></p><p>❞</p></blockquote><p>Cropper.js 是一款非常强大却又简单的图片裁剪工具，它可以进行非常灵活的配置，支持手机端使用，支持包括 IE9 以上的现代浏览器。它可以用于满足诸如裁剪头像上传、商品图片编辑之类的需求。</p><p>Cropper.js 支持以下特性：</p><ul><li>支持 39 个配置选项；</li><li>支持 27 个方法；</li><li>支持 6 种事件；</li><li>支持 touch（移动端）；</li><li>支持缩放、旋转和翻转；</li><li>支持在画布上裁剪；</li><li>支持在浏览器端通过画布裁剪图像；</li><li>支持处理 Exif 方向信息；</li><li>跨浏览器支持。</li></ul><blockquote><p>❝</p><p>可交换图像文件格式（英语：Exchangeable image file format，官方简称 Exif），是专门为数码相机的照片设定的文件格式，可以记录数码照片的属性信息和拍摄数据。Exif 可以附加于 JPEG、TIFF、RIFF 等文件之中，为其增加有关数码相机拍摄信息的内容和索引图或图像处理软件的版本信息。</p><p>Exif 信息以 0xFFE1 作为开头标记，后两个字节表示 Exif 信息的长度。所以 Exif 信息最大为 64 kB，而内部采用 TIFF 格式。</p><p>❞</p></blockquote><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// import &#39;cropperjs/dist/cropper.css&#39;;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=nx>Cropper</span> <span class=nx>from</span> <span class=s1>&#39;cropperjs&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>image</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;image&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>cropper</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Cropper</span><span class=p>(</span><span class=nx>image</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>aspectRatio</span><span class=o>:</span> <span class=mi>16</span> <span class=o>/</span> <span class=mi>9</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>crop</span><span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>y</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>width</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>height</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>rotate</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>scaleX</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>detail</span><span class=p>.</span><span class=nx>scaleY</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=https://fengyuanchen.github.io/cropperjs/ rel=noopener>https://fengyuanchen.github.io/cropperjs/</a></p><p>❞</p></blockquote><a href=#24-compressorjs-图像压缩><h3 id=24-compressorjs-图像压缩><span class=hanchor arialabel=Anchor># </span>2.4 compressorjs 图像压缩</h3></a><blockquote><p>❝</p><p>JavaScript image compressor.</p><p><a href=https://github.com/fengyuanchen/compressorjs rel=noopener>https://github.com/fengyuanchen/compressorjs</a></p><p>❞</p></blockquote><p>compressorjs 是 JavaScript 图像压缩器。使用浏览器原生的 <code>canvas.toBlob</code> API 进行压缩工作，这意味着它是有损压缩。通常的使用场景是，在浏览器端图片上传之前对其进行预压缩。</p><p>在浏览器端要实现图片压缩，除了使用 <code>canvas.toBlob</code> API 之外，还可以使用 Canvas 提供的另一个 API，即 <code>toDataURL</code> API，它接收 <code>type</code> 和 <code>encoderOptions</code> 两个可选参数。</p><p>其中 <code>type</code> 表示图片格式，默认为 <code>image/png</code>。而 <code>encoderOptions</code> 用于表示图片的质量，在指定图片格式为 <code>image/jpeg</code> 或 <code>image/webp</code> 的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 <code>0.92</code>，其他参数会被忽略。</p><p>相比 <code>canvas.toDataURL</code> API 来说，<code>canvas.toBlob</code> API 是异步的，因此多了个 <code>callback</code> 参数，这个 <code>callback</code> 回调方法默认的第一个参数就是转换好的 <code>blob</code> 文件信息。<code>canvas.toBlob</code> 的签名如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>canvas</span><span class=p>.</span><span class=nx>toBlob</span><span class=p>(</span><span class=nx>callback</span><span class=p>,</span> <span class=nx>mimeType</span><span class=p>,</span> <span class=nx>qualityArgument</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>import</span> <span class=nx>axios</span> <span class=nx>from</span> <span class=s1>&#39;axios&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=nx>Compressor</span> <span class=nx>from</span> <span class=s1>&#39;compressorjs&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// &lt;input type=&#34;file&#34; id=&#34;file&#34; accept=&#34;image/*&#34;&gt;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;file&#39;</span><span class=p>).</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s1>&#39;change&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>file</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>files</span><span class=p>[</span><span class=mi>0</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nx>file</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>new</span> <span class=nx>Compressor</span><span class=p>(</span><span class=nx>file</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>quality</span><span class=o>:</span> <span class=mf>0.6</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>success</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>formData</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>FormData</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>      <span class=c1>// The third parameter is required for server
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>formData</span><span class=p>.</span><span class=nx>append</span><span class=p>(</span><span class=s1>&#39;file&#39;</span><span class=p>,</span> <span class=nx>result</span><span class=p>,</span> <span class=nx>result</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      <span class=c1>// Send the compressed image file to server with XMLHttpRequest.
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>axios</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;/path/to/upload&#39;</span><span class=p>,</span> <span class=nx>formData</span><span class=p>).</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;Upload success&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nx>error</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>err</span><span class=p>.</span><span class=nx>message</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=https://fengyuanchen.github.io/compressorjs/ rel=noopener>https://fengyuanchen.github.io/compressorjs/</a></p><p>❞</p></blockquote><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164142.jpeg width=auto alt=img></p><a href=#25-fabricjs-轻松使用-html5-canvas-元素><h3 id=25-fabricjs-轻松使用-html5-canvas-元素><span class=hanchor arialabel=Anchor># </span>2.5 fabric.js 轻松使用 HTML5 Canvas 元素</h3></a><blockquote><p>❝</p><p>Javascript Canvas Library, SVG-to-Canvas (& canvas-to-SVG) Parser.</p><p><a href=https://github.com/fabricjs/fabric.js rel=noopener>https://github.com/fabricjs/fabric.js</a></p><p>❞</p></blockquote><p>Fabric.js 是一个框架，可让你轻松使用 HTML5 Canvas 元素。它是一个位于 Canvas 元素之上的交互式对象模型，同时也是一个 <strong>「SVG-to-canvas」</strong> 的解析器。</p><p>使用 Fabric.js，你可以在画布上创建和填充对象。所谓的对象，可以是简单的几何形状，比如矩形，圆形，椭圆形，多边形，或更复杂的形状，包含数百或数千个简单路径。然后，你可以使用鼠标缩放，移动和旋转这些对象。并修改它们的属性 —— 颜色，透明度，z-index 等。此外你还可以一起操纵这些对象，即通过简单的鼠标选择将它们分组。</p><p>Fabric.js 支持所有主流的浏览器，具体的兼容情况如下：</p><ul><li>Firefox 2+</li><li>Safari 3+</li><li>Opera 9.64+</li><li>Chrome（所有版本）</li><li>IE10，IE11，Edge</li></ul><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=o>&lt;!</span><span class=nx>DOCTYPE</span> <span class=nx>html</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>html</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>head</span><span class=o>&gt;&lt;</span><span class=err>/head&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>body</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>canvas</span> <span class=nx>id</span><span class=o>=</span><span class=s2>&#34;canvas&#34;</span> <span class=nx>width</span><span class=o>=</span><span class=s2>&#34;300&#34;</span> <span class=nx>height</span><span class=o>=</span><span class=s2>&#34;300&#34;</span><span class=o>&gt;&lt;</span><span class=err>/canvas&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>script</span> <span class=nx>src</span><span class=o>=</span><span class=s2>&#34;lib/fabric.js&#34;</span><span class=o>&gt;&lt;</span><span class=err>/script&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>script</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>canvas</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>fabric</span><span class=p>.</span><span class=nx>Canvas</span><span class=p>(</span><span class=s1>&#39;canvas&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>rect</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>fabric</span><span class=p>.</span><span class=nx>Rect</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>            <span class=nx>top</span> <span class=o>:</span> <span class=mi>100</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>left</span> <span class=o>:</span> <span class=mi>100</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>width</span> <span class=o>:</span> <span class=mi>60</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>height</span> <span class=o>:</span> <span class=mi>70</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>fill</span> <span class=o>:</span> <span class=s1>&#39;red&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nx>canvas</span><span class=p>.</span><span class=nx>add</span><span class=p>(</span><span class=nx>rect</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=err>/script&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=err>/body&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=err>/html&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=http://fabricjs.com/kitchensink rel=noopener>http://fabricjs.com/kitchensink</a></p><p>❞</p></blockquote><a href=#26-resemblejs-图片的分析和比较><h3 id=26-resemblejs-图片的分析和比较><span class=hanchor arialabel=Anchor># </span>2.6 Resemble.js 图片的分析和比较</h3></a><blockquote><p>❝</p><p>Image analysis and comparison</p><p><a href=https://github.com/rsmbl/Resemble.js rel=noopener>https://github.com/rsmbl/Resemble.js</a></p><p>❞</p></blockquote><p>Resemble.js 使用 HTML Canvas 和 JavaScript 来实现图片的分析和比较。兼容大于 8.0 的 Node.js 版本。</p><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 比较两张图片
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>diff</span> <span class=o>=</span> <span class=nx>resemble</span><span class=p>(</span><span class=nx>file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>compareTo</span><span class=p>(</span><span class=nx>file2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>ignoreColors</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>onComplete</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>     <span class=cm>/*
+</span></span></span><span class=line><span class=cl><span class=cm>     {
+</span></span></span><span class=line><span class=cl><span class=cm>        misMatchPercentage : 100, // %
+</span></span></span><span class=line><span class=cl><span class=cm>        isSameDimensions: true, // or false
+</span></span></span><span class=line><span class=cl><span class=cm>        dimensionDifference: { width: 0, height: -1 }, 
+</span></span></span><span class=line><span class=cl><span class=cm>        getImageDataUrl: function(){}
+</span></span></span><span class=line><span class=cl><span class=cm>     }
+</span></span></span><span class=line><span class=cl><span class=cm>    */</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=http://rsmbl.github.io/Resemble.js/ rel=noopener>http://rsmbl.github.io/Resemble.js/</a></p><p>❞</p></blockquote><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164154.jpeg width=auto alt=img></p><a href=#27-pica-调整图像大小><h3 id=27-pica-调整图像大小><span class=hanchor arialabel=Anchor># </span>2.7 Pica 调整图像大小</h3></a><blockquote><p>❝</p><p>Resize image in browser with high quality and high speed</p><p><a href=https://github.com/nodeca/pica rel=noopener>https://github.com/nodeca/pica</a></p><p>❞</p></blockquote><p>Pica 可用于在浏览器中调整图像大小，没有像素化并且相当快。它会自动选择最佳的可用技术：webworkers，webassembly，createImageBitmap，纯 JS。</p><p>借助 Pica，你可以实现以下功能：</p><ul><li>减小大图像的上传大小，节省上传时间；</li><li>在图像处理上节省服务器资源；</li><li>在浏览器中生成缩略图。</li></ul><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>pica</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;pica&#39;</span><span class=p>)();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 调整画布/图片的大小
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>pica</span><span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=nx>from</span><span class=p>,</span> <span class=nx>to</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>unsharpAmount</span><span class=o>:</span> <span class=mi>80</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>unsharpRadius</span><span class=o>:</span> <span class=mf>0.6</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>unsharpThreshold</span><span class=o>:</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>result</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;resize done!&#39;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 调整大小并转换为Blob
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>pica</span><span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=nx>from</span><span class=p>,</span> <span class=nx>to</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>result</span> <span class=p>=&gt;</span> <span class=nx>pica</span><span class=p>.</span><span class=nx>toBlob</span><span class=p>(</span><span class=nx>result</span><span class=p>,</span> <span class=s1>&#39;image/jpeg&#39;</span><span class=p>,</span> <span class=mf>0.90</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>blob</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;resized to canvas &amp; created blob!&#39;</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=http://nodeca.github.io/pica/demo/ rel=noopener>http://nodeca.github.io/pica/demo/</a></p><p>❞
+<img src=https://jieye-ericx.github.io//dataimage/gifbase64iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg width=auto alt=img></p></blockquote><a href=#28-tuiimage-editor-全功能图像编辑器><h3 id=28-tuiimage-editor-全功能图像编辑器><span class=hanchor arialabel=Anchor># </span>2.8 tui.image-editor 全功能图像编辑器</h3></a><blockquote><p>❝</p><p>🍞🎨 Full-featured photo image editor using canvas. It is really easy, and it comes with great filters.</p><p><a href=https://github.com/nhn/tui.image-editor rel=noopener>https://github.com/nhn/tui.image-editor</a></p><p>❞</p></blockquote><p>tui.image-editor 是使用 HTML5 Canvas 的全功能图像编辑器。它易于使用，并提供强大的过滤器。同时它支持对图像进行裁剪、翻转、旋转、绘图、形状、文本、遮罩和图片过滤等操作。</p><p>tui.image-editor 的浏览器兼容情况如下：</p><ul><li>Chrome</li><li>Edge</li><li>Safari</li><li>Firefox</li><li>IE 10+</li></ul><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// Image editor
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>imageEditor</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>tui</span><span class=p>.</span><span class=nx>ImageEditor</span><span class=p>(</span><span class=s2>&#34;#tui-image-editor-container&#34;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>     <span class=nx>includeUI</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>       <span class=nx>loadImage</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>         <span class=nx>path</span><span class=o>:</span> <span class=s2>&#34;img/sampleImage2.png&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>         <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;SampleImage&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=p>},</span>
+</span></span><span class=line><span class=cl>       <span class=nx>theme</span><span class=o>:</span> <span class=nx>blackTheme</span><span class=p>,</span> <span class=c1>// or whiteTheme
+</span></span></span><span class=line><span class=cl><span class=c1></span>         <span class=nx>initMenu</span><span class=o>:</span> <span class=s2>&#34;filter&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>         <span class=nx>menuBarPosition</span><span class=o>:</span> <span class=s2>&#34;bottom&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=p>},</span>
+</span></span><span class=line><span class=cl>       <span class=nx>cssMaxWidth</span><span class=o>:</span> <span class=mi>700</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>cssMaxHeight</span><span class=o>:</span> <span class=mi>500</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>usageStatistics</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>window</span><span class=p>.</span><span class=nx>onresize</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>imageEditor</span><span class=p>.</span><span class=nx>ui</span><span class=p>.</span><span class=nx>resizeEditor</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><p>在线示例</p><blockquote><p>❝</p><p><a href=https://ui.toast.com/tui-image-editor/ rel=noopener>https://ui.toast.com/tui-image-editor/</a></p><p>❞
+<img src=https://jieye-ericx.github.io//dataimage/gifbase64iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg width=auto alt=img></p></blockquote><a href=#29-gifjs--gif-编码器><h3 id=29-gifjs--gif-编码器><span class=hanchor arialabel=Anchor># </span>2.9 gif.js GIF 编码器</h3></a><blockquote><p>❝</p><p>JavaScript GIF encoding library</p><p><a href=https://github.com/jnordberg/gif.js rel=noopener>https://github.com/jnordberg/gif.js</a></p><p>❞</p></blockquote><p>gif.js 是运行在浏览器端的 JavaScript GIF 编码器。它使用类型化数组和 Web Worker 在后台渲染每一帧，速度真的很快。该库可工作在支持：Web Workers，File API 和 Typed Arrays 的浏览器中。</p><p>gif.js 的浏览器兼容情况如下：</p><ul><li>Google Chrome</li><li>Firefox 17</li><li>Safari 6</li><li>Internet Explorer 10</li><li>Mobile Safari iOS 6</li></ul><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>gif</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>GIF</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>workers</span><span class=o>:</span> <span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>quality</span><span class=o>:</span> <span class=mi>10</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// add an image element
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gif</span><span class=p>.</span><span class=nx>addFrame</span><span class=p>(</span><span class=nx>imageElement</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// or a canvas element
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gif</span><span class=p>.</span><span class=nx>addFrame</span><span class=p>(</span><span class=nx>canvasElement</span><span class=p>,</span> <span class=p>{</span><span class=nx>delay</span><span class=o>:</span> <span class=mi>200</span><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// or copy the pixels from a canvas context
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>gif</span><span class=p>.</span><span class=nx>addFrame</span><span class=p>(</span><span class=nx>ctx</span><span class=p>,</span> <span class=p>{</span><span class=nx>copy</span><span class=o>:</span> <span class=kc>true</span><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>gif</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;finished&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>blob</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nb>window</span><span class=p>.</span><span class=nx>open</span><span class=p>(</span><span class=nx>URL</span><span class=p>.</span><span class=nx>createObjectURL</span><span class=p>(</span><span class=nx>blob</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>gif</span><span class=p>.</span><span class=nx>render</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=http://jnordberg.github.io/gif.js/ rel=noopener>http://jnordberg.github.io/gif.js/</a></p><p>❞</p></blockquote><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164208.jpeg width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164210.gif width=auto alt=img></p><a href=#210-sharp-图像转换为尺寸较小><h3 id=210-sharp-图像转换为尺寸较小><span class=hanchor arialabel=Anchor># </span>2.10 Sharp 图像转换为尺寸较小</h3></a><blockquote><p>❝</p><p>High performance Node.js image processing, the fastest module to resize JPEG, PNG, WebP and TIFF images. Uses the libvips library.</p><p><a href=https://github.com/lovell/sharp rel=noopener>https://github.com/lovell/sharp</a></p><p>❞</p></blockquote><p>Sharp 的典型应用场景是将常见格式的大图像转换为尺寸较小，对网络友好的 JPEG，PNG 和 WebP 格式的图像。由于其内部使用 libvips ，使得调整图像大小通常比使用 ImageMagick 和 GraphicsMagick 设置快 4-5 倍 。除了支持调整图像大小之外，Sharp 还支持旋转、提取、合成和伽马校正等功能。</p><p>Sharp 支持读取 JPEG，PNG，WebP，TIFF，GIF 和 SVG 图像。输出图像可以是 JPEG，PNG，WebP 和 TIFF 格式，也可以是未压缩的原始像素数据。</p><p><strong>「使用示例」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 改变图像尺寸
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>sharp</span><span class=p>(</span><span class=nx>inputBuffer</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=mi>320</span><span class=p>,</span> <span class=mi>240</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>toFile</span><span class=p>(</span><span class=s1>&#39;output.webp&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>info</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span> <span class=p>...</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>       
+</span></span><span class=line><span class=cl><span class=c1>// 旋转输入图像并改变图片尺寸                                         
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>sharp</span><span class=p>(</span><span class=s1>&#39;input.jpg&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>rotate</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>toBuffer</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span> <span class=nx>data</span> <span class=p>=&gt;</span> <span class=p>{</span> <span class=p>...</span> <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=k>catch</span><span class=p>(</span> <span class=nx>err</span> <span class=p>=&gt;</span> <span class=p>{</span> <span class=p>...</span> <span class=p>});</span>                                         
+</span></span></code></pre></td></tr></table></div></div><p><strong>「在线示例」</strong></p><blockquote><p>❝</p><p><a href=https://segmentfault.com/a/1190000012903787 rel=noopener>https://segmentfault.com/a/1190000012903787</a></p><p>❞</p></blockquote><p>该示例是来自阿宝哥 18 年写的 “Sharp 牛刀小试之生成专属分享图片” 这篇文章，主要是利用 Sharp 提供的图片合成功能为每个用户生成专属的分享海报，感兴趣的小伙伴可以阅读一下原文哟。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>sharp</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;sharp&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>TextToSVG</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;text-to-svg&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>path</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;path&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 加载字体文件
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>textToSVG</span> <span class=o>=</span> <span class=nx>TextToSVG</span><span class=p>.</span><span class=nx>loadSync</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=s2>&#34;./simhei.ttf&#34;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 创建圆形SVG，用于实现头像裁剪
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>roundedCorners</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Buffer</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>  <span class=s1>&#39;&lt;svg&gt;&lt;circle r=&#34;90&#34; cx=&#34;90&#34; cy=&#34;90&#34;/&gt;&lt;/svg&gt;&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 设置SVG文本元素相关参数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>attributes</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>fill</span><span class=o>:</span> <span class=s2>&#34;white&#34;</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>svgOptions</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>x</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>y</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>fontSize</span><span class=o>:</span> <span class=mi>32</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>anchor</span><span class=o>:</span> <span class=s2>&#34;top&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>attributes</span><span class=o>:</span> <span class=nx>attributes</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cm>/**
+</span></span></span><span class=line><span class=cl><span class=cm> * 使用文本生成SVG
+</span></span></span><span class=line><span class=cl><span class=cm> * @param {*} text 
+</span></span></span><span class=line><span class=cl><span class=cm> * @param {*} options 
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>textToSVGFn</span><span class=p>(</span><span class=nx>text</span><span class=p>,</span> <span class=nx>options</span> <span class=o>=</span> <span class=nx>svgOptions</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>textToSVG</span><span class=p>.</span><span class=nx>getSVG</span><span class=p>(</span><span class=nx>text</span><span class=p>,</span> <span class=nx>options</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cm>/**
+</span></span></span><span class=line><span class=cl><span class=cm> * 图层叠加生成分享图片
+</span></span></span><span class=line><span class=cl><span class=cm> * @param {*} options 
+</span></span></span><span class=line><span class=cl><span class=cm> * 
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=kr>async</span> <span class=kd>function</span> <span class=nx>genShareImage</span><span class=p>(</span><span class=nx>options</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=p>{</span> <span class=nx>backgroudPath</span><span class=p>,</span> <span class=nx>avatarPath</span><span class=p>,</span> <span class=nx>qrcodePath</span><span class=p>,</span> 
+</span></span><span class=line><span class=cl>    <span class=nx>userName</span><span class=p>,</span> <span class=nx>words</span><span class=p>,</span> <span class=nx>likes</span><span class=p>,</span> <span class=nx>outFilePath</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=o>=</span> <span class=nx>options</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 背景图片
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>backgroudBuffer</span> <span class=o>=</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=nx>backgroudPath</span><span class=p>)).</span><span class=nx>toBuffer</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>resolveWithObject</span><span class=o>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>backgroundImageInfo</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>backgroudBuffer</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 头像图片
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>avatarBuffer</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>genCircleAvatar</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=nx>avatarPath</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 二维码图片
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>qrCodeBuffer</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>path</span><span class=p>.</span><span class=nx>join</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=nx>qrcodePath</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=mi>180</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>toBuffer</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>      <span class=nx>resolveWithObject</span><span class=o>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 用户名
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>userNameSVG</span> <span class=o>=</span> <span class=nx>textToSVGFn</span><span class=p>(</span><span class=nx>userName</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 用户数据
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>userDataSVG</span> <span class=o>=</span> <span class=nx>textToSVGFn</span><span class=p>(</span><span class=sb>`写了</span><span class=si>${</span><span class=nx>words</span><span class=si>}</span><span class=sb>个字   收获</span><span class=si>${</span><span class=nx>likes</span><span class=si>}</span><span class=sb>个赞`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>userNameBuffer</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>sharp</span><span class=p>(</span><span class=k>new</span> <span class=nx>Buffer</span><span class=p>(</span><span class=nx>userNameSVG</span><span class=p>)).</span><span class=nx>toBuffer</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>resolveWithObject</span><span class=o>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>userDataBuffer</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>sharp</span><span class=p>(</span><span class=k>new</span> <span class=nx>Buffer</span><span class=p>(</span><span class=nx>userDataSVG</span><span class=p>)).</span><span class=nx>toBuffer</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>resolveWithObject</span><span class=o>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>buffers</span> <span class=o>=</span> <span class=p>[</span><span class=nx>avatarBuffer</span><span class=p>,</span> <span class=nx>qrCodeBuffer</span><span class=p>,</span> <span class=nx>userNameBuffer</span><span class=p>,</span> <span class=nx>userDataBuffer</span><span class=p>];</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 图层叠加参数列表
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>overlayOptions</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span> <span class=nx>top</span><span class=o>:</span> <span class=mi>150</span><span class=p>,</span> <span class=nx>left</span><span class=o>:</span> <span class=mi>230</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span> <span class=nx>top</span><span class=o>:</span> <span class=mi>861</span><span class=p>,</span> <span class=nx>left</span><span class=o>:</span> <span class=mi>227</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>top</span><span class=o>:</span> <span class=mi>365</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>left</span><span class=o>:</span> <span class=p>(</span><span class=nx>backgroundImageInfo</span><span class=p>.</span><span class=nx>info</span><span class=p>.</span><span class=nx>width</span> <span class=o>-</span> <span class=nx>userNameBuffer</span><span class=p>.</span><span class=nx>info</span><span class=p>.</span><span class=nx>width</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>top</span><span class=o>:</span> <span class=mi>435</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>left</span><span class=o>:</span> <span class=p>(</span><span class=nx>backgroundImageInfo</span><span class=p>.</span><span class=nx>info</span><span class=p>.</span><span class=nx>width</span> <span class=o>-</span> <span class=nx>userDataBuffer</span><span class=p>.</span><span class=nx>info</span><span class=p>.</span><span class=nx>width</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>];</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 组合多个图层：图片+文字图层
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=nx>buffers</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>input</span><span class=p>,</span> <span class=nx>overlay</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>input</span><span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>result</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>dir</span><span class=p>(</span><span class=nx>overlay</span><span class=p>.</span><span class=nx>info</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>result</span><span class=p>.</span><span class=nx>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>          <span class=p>.</span><span class=nx>overlayWith</span><span class=p>(</span><span class=nx>overlay</span><span class=p>.</span><span class=nx>data</span><span class=p>,</span> <span class=nx>overlayOptions</span><span class=p>[</span><span class=nx>index</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>          <span class=p>.</span><span class=nx>toBuffer</span><span class=p>({</span> <span class=nx>resolveWithObject</span><span class=o>:</span> <span class=kc>true</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>      <span class=p>});</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span> <span class=nx>backgroudBuffer</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>then</span><span class=p>((</span><span class=nx>data</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>data</span><span class=p>.</span><span class=nx>data</span><span class=p>).</span><span class=nx>toFile</span><span class=p>(</span><span class=nx>outFilePath</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}).</span><span class=k>catch</span><span class=p>(</span><span class=nx>error</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=k>new</span> <span class=nb>Error</span><span class=p>(</span><span class=s1>&#39;Generate Share Image Failed.&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=cm>/**
+</span></span></span><span class=line><span class=cl><span class=cm> * 生成圆形的头像
+</span></span></span><span class=line><span class=cl><span class=cm> * @param {*} avatarPath 头像路径
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>genCircleAvatar</span><span class=p>(</span><span class=nx>avatarPath</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>sharp</span><span class=p>(</span><span class=nx>avatarPath</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>resize</span><span class=p>(</span><span class=mi>180</span><span class=p>,</span> <span class=mi>180</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>overlayWith</span><span class=p>(</span><span class=nx>roundedCorners</span><span class=p>,</span> <span class=p>{</span> <span class=nx>cutout</span><span class=o>:</span> <span class=kc>true</span> <span class=p>})</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>png</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=p>.</span><span class=nx>toBuffer</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>      <span class=nx>resolveWithObject</span><span class=o>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>genShareImage</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#三其他问题><h2 id=三其他问题><span class=hanchor arialabel=Anchor># </span>三、其他问题</h2></a><a href=#31-如何区分图片的类型><h3 id=31-如何区分图片的类型><span class=hanchor arialabel=Anchor># </span>3.1 如何区分图片的类型</h3></a><p><strong>「计算机并不是通过图片的后缀名来区分不同的图片类型，而是通过 “魔数”（Magic Number）来区分。」</strong> 对于某一些类型的文件，起始的几个字节内容都是固定的，跟据这几个字节的内容就可以判断文件的类型。</p><p>常见图片类型对应的魔数如下表所示：</p><table><thead><tr><th style=text-align:left>文件类型</th><th style=text-align:left>文件后缀</th><th style=text-align:left>魔数</th></tr></thead><tbody><tr><td style=text-align:left>JPEG</td><td style=text-align:left>jpg/jpeg</td><td style=text-align:left>0xFFD8FF</td></tr><tr><td style=text-align:left>PNG</td><td style=text-align:left>png</td><td style=text-align:left>0x89504E47</td></tr><tr><td style=text-align:left>GIF</td><td style=text-align:left>gif</td><td style=text-align:left>0x47494638（GIF8）</td></tr><tr><td style=text-align:left>BMP</td><td style=text-align:left>bmp</td><td style=text-align:left>0x424D</td></tr></tbody></table><p>这里我们以阿宝哥的头像（abao.png）为例，验证一下该图片的类型是否正确：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164217.jpeg width=auto alt=img></p><p>在日常开发过程中，如果遇到检测图片类型的场景，我们可以直接利用一些现成的第三方库。比如，你想要判断一张图片是否为 PNG 类型，这时你可以使用 is-png 这个库，它同时支持浏览器和 Node.js，使用示例如下：</p><p><strong>「Node.js」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// npm install read-chunk
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>readChunk</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;read-chunk&#39;</span><span class=p>);</span> 
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>isPng</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;is-png&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>buffer</span> <span class=o>=</span> <span class=nx>readChunk</span><span class=p>.</span><span class=nx>sync</span><span class=p>(</span><span class=s1>&#39;unicorn.png&#39;</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>8</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>isPng</span><span class=p>(</span><span class=nx>buffer</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//=&gt; true
+</span></span></span></code></pre></td></tr></table></div></div><p><strong>「Browser」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=p>(</span><span class=kr>async</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl> <span class=kr>const</span> <span class=nx>response</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>fetch</span><span class=p>(</span><span class=s1>&#39;unicorn.png&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl> <span class=kr>const</span> <span class=nx>buffer</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>response</span><span class=p>.</span><span class=nx>arrayBuffer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> <span class=nx>isPng</span><span class=p>(</span><span class=k>new</span> <span class=nx>Uint8Array</span><span class=p>(</span><span class=nx>buffer</span><span class=p>));</span>
+</span></span><span class=line><span class=cl> <span class=c1>//=&gt; true
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>})();</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#32-如何获取图片的尺寸><h3 id=32-如何获取图片的尺寸><span class=hanchor arialabel=Anchor># </span>3.2 如何获取图片的尺寸</h3></a><p>图片的尺寸、位深度、色彩类型和压缩算法都会存储在文件的二进制数据中，我们继续以阿宝哥的头像（abao.png）为例，来了解一下实际的情况：</p><p><img src=https://jieye-ericx.github.io//dataimage/gifbase64iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg width=auto alt=img></p><blockquote><p>❝</p><p>528（十进制） => 0x0210</p><p>560（十进制）=> 0x0230</p><p>❞</p></blockquote><p>因此如果想要获取图片的尺寸，我们就需要依据不同的图片格式对图片二进制数据进行解析。幸运的是，我们不需要自己做这件事，image-size 这个 Node.js 库已经帮我们实现了获取主流图片类型文件尺寸的功能：</p><p><strong>「同步方式」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>sizeOf</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;image-size&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>dimensions</span> <span class=o>=</span> <span class=nx>sizeOf</span><span class=p>(</span><span class=s1>&#39;images/abao.png&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>dimensions</span><span class=p>.</span><span class=nx>width</span><span class=p>,</span> <span class=nx>dimensions</span><span class=p>.</span><span class=nx>height</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>「异步方式」</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>sizeOf</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;image-size&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>sizeOf</span><span class=p>(</span><span class=s1>&#39;images/abao.png&#39;</span><span class=p>,</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>dimensions</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>dimensions</span><span class=p>.</span><span class=nx>width</span><span class=p>,</span> <span class=nx>dimensions</span><span class=p>.</span><span class=nx>height</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>image-size 这个库功能还是蛮强大的，除了支持 PNG 格式之外，还支持 BMP、GIF、ICO、JPEG、SVG 和 WebP 等格式。</p><a href=#33-如何预览本地图片><h3 id=33-如何预览本地图片><span class=hanchor arialabel=Anchor># </span>3.3 如何预览本地图片</h3></a><p>利用 HTML FileReader API，我们也可以方便的实现图片本地预览功能，具体代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>input</span> <span class=nx>type</span><span class=o>=</span><span class=s2>&#34;file&#34;</span> <span class=nx>accept</span><span class=o>=</span><span class=s2>&#34;image/*&#34;</span> <span class=nx>onchange</span><span class=o>=</span><span class=s2>&#34;loadFile(event)&#34;</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>img</span> <span class=nx>id</span><span class=o>=</span><span class=s2>&#34;output&#34;</span><span class=o>/&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>script</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>loadFile</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>event</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>reader</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>FileReader</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=nx>reader</span><span class=p>.</span><span class=nx>onload</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>output</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>querySelector</span><span class=p>(</span><span class=s1>&#39;output&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nx>output</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=nx>reader</span><span class=p>.</span><span class=nx>result</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=nx>reader</span><span class=p>.</span><span class=nx>readAsDataURL</span><span class=p>(</span><span class=nx>event</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>files</span><span class=p>[</span><span class=mi>0</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=err>/script&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>在完成本地图片预览之后，可以直接把图片对应的 Data URLs 数据提交到服务器。针对这种情形，服务端需要做一些相关处理，才能正常保存上传的图片，这里以 Express 为例，具体处理代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;express&#39;</span><span class=p>)();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>post</span><span class=p>(</span><span class=s1>&#39;/upload&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>imgData</span> <span class=o>=</span> <span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>imgData</span><span class=p>;</span> <span class=c1>// 获取POST请求中的base64图片数据
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kd>let</span> <span class=nx>base64Data</span> <span class=o>=</span> <span class=nx>imgData</span><span class=p>.</span><span class=nx>replace</span><span class=p>(</span><span class=sr>/^data:image\/\w+;base64,/</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>dataBuffer</span> <span class=o>=</span> <span class=nx>Buffer</span><span class=p>.</span><span class=nx>from</span><span class=p>(</span><span class=nx>base64Data</span><span class=p>,</span> <span class=s1>&#39;base64&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fs</span><span class=p>.</span><span class=nx>writeFile</span><span class=p>(</span><span class=s2>&#34;image.png&#34;</span><span class=p>,</span> <span class=nx>dataBuffer</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span><span class=p>(</span><span class=nx>err</span><span class=p>){</span>
+</span></span><span class=line><span class=cl>          <span class=nx>res</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=nx>err</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>res</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=s2>&#34;图片上传成功！&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#34-如何实现图片压缩><h3 id=34-如何实现图片压缩><span class=hanchor arialabel=Anchor># </span>3.4 如何实现图片压缩</h3></a><p>在一些场合中，我们希望在上传本地图片时，先对图片进行一定的压缩，然后再提交到服务器，从而减少传输的数据量。在前端要实现图片压缩，我们可以利用 Canvas 对象提供的 <code>toDataURL()</code> 方法，该方法接收 <code>type</code> 和 <code>encoderOptions</code> 两个可选参数。</p><p>其中 <code>type</code> 表示图片格式，默认为 <code>image/png</code>。而 <code>encoderOptions</code> 用于表示图片的质量，在指定图片格式为 <code>image/jpeg</code> 或 <code>image/webp</code> 的情况下，可以从 0 到 1 的区间内选择图片的质量。如果超出取值范围，将会使用默认值 <code>0.92</code>，其他参数会被忽略。</p><p>下面我们来看一下具体如何实现图片压缩：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>compress</span><span class=p>(</span><span class=nx>base64</span><span class=p>,</span> <span class=nx>quality</span><span class=p>,</span> <span class=nx>mimeType</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>canvas</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s2>&#34;canvas&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>img</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s2>&#34;img&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>img</span><span class=p>.</span><span class=nx>crossOrigin</span> <span class=o>=</span> <span class=s2>&#34;anonymous&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>img</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=nx>base64</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>img</span><span class=p>.</span><span class=nx>onload</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kd>let</span> <span class=nx>targetWidth</span><span class=p>,</span> <span class=nx>targetHeight</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>img</span><span class=p>.</span><span class=nx>width</span> <span class=o>&gt;</span> <span class=nx>MAX_WIDTH</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>targetWidth</span> <span class=o>=</span> <span class=nx>MAX_WIDTH</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=nx>targetHeight</span> <span class=o>=</span> <span class=p>(</span><span class=nx>img</span><span class=p>.</span><span class=nx>height</span> <span class=o>*</span> <span class=nx>MAX_WIDTH</span><span class=p>)</span> <span class=o>/</span> <span class=nx>img</span><span class=p>.</span><span class=nx>width</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>targetWidth</span> <span class=o>=</span> <span class=nx>img</span><span class=p>.</span><span class=nx>width</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=nx>targetHeight</span> <span class=o>=</span> <span class=nx>img</span><span class=p>.</span><span class=nx>height</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=nx>canvas</span><span class=p>.</span><span class=nx>width</span> <span class=o>=</span> <span class=nx>targetWidth</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=nx>canvas</span><span class=p>.</span><span class=nx>height</span> <span class=o>=</span> <span class=nx>targetHeight</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=kd>let</span> <span class=nx>ctx</span> <span class=o>=</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>getContext</span><span class=p>(</span><span class=s2>&#34;2d&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nx>ctx</span><span class=p>.</span><span class=nx>clearRect</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>targetWidth</span><span class=p>,</span> <span class=nx>targetHeight</span><span class=p>);</span> <span class=c1>// 清除画布
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>ctx</span><span class=p>.</span><span class=nx>drawImage</span><span class=p>(</span><span class=nx>img</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>width</span><span class=p>,</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>height</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=kd>let</span> <span class=nx>imageData</span> <span class=o>=</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>toDataURL</span><span class=p>(</span><span class=nx>mimeType</span><span class=p>,</span> <span class=nx>quality</span> <span class=o>/</span> <span class=mi>100</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=nx>resolve</span><span class=p>(</span><span class=nx>imageData</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>对于返回的 Data URL 格式的图片数据，为了进一步减少传输的数据量，我们可以把它转换为 Blob 对象：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>dataUrlToBlob</span><span class=p>(</span><span class=nx>base64</span><span class=p>,</span> <span class=nx>mimeType</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>bytes</span> <span class=o>=</span> <span class=nb>window</span><span class=p>.</span><span class=nx>atob</span><span class=p>(</span><span class=nx>base64</span><span class=p>.</span><span class=nx>split</span><span class=p>(</span><span class=s2>&#34;,&#34;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>ab</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>ArrayBuffer</span><span class=p>(</span><span class=nx>bytes</span><span class=p>.</span><span class=nx>length</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>ia</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Uint8Array</span><span class=p>(</span><span class=nx>ab</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>bytes</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ia</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=nx>bytes</span><span class=p>.</span><span class=nx>charCodeAt</span><span class=p>(</span><span class=nx>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=k>new</span> <span class=nx>Blob</span><span class=p>([</span><span class=nx>ab</span><span class=p>],</span> <span class=p>{</span> <span class=nx>type</span><span class=o>:</span> <span class=nx>mimeType</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>在转换完成后，我们就可以压缩后的图片对应的 Blob 对象封装在 FormData 对象中，然后再通过 AJAX 提交到服务器上：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>uploadFile</span><span class=p>(</span><span class=nx>url</span><span class=p>,</span> <span class=nx>blob</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>formData</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>FormData</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>request</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>XMLHttpRequest</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=nx>formData</span><span class=p>.</span><span class=nx>append</span><span class=p>(</span><span class=s2>&#34;image&#34;</span><span class=p>,</span> <span class=nx>blob</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>request</span><span class=p>.</span><span class=nx>open</span><span class=p>(</span><span class=s2>&#34;POST&#34;</span><span class=p>,</span> <span class=nx>url</span><span class=p>,</span> <span class=kc>true</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>request</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=nx>formData</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#35-如何操作位图像素数据><h3 id=35-如何操作位图像素数据><span class=hanchor arialabel=Anchor># </span>3.5 如何操作位图像素数据</h3></a><p>如果想要操作图片像素数据，我们可以利用 CanvasRenderingContext2D 提供的 <code>getImageData</code> 来获取图片像素数据，其中 getImageData() 返回一个 ImageData 对象，用来描述 canvas 区域隐含的像素数据，这个区域通过矩形表示，起始点为（sx, sy）、宽为 sw、高为 sh。其中 <code>getImageData</code> 方法的语法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>ctx</span><span class=p>.</span><span class=nx>getImageData</span><span class=p>(</span><span class=nx>sx</span><span class=p>,</span> <span class=nx>sy</span><span class=p>,</span> <span class=nx>sw</span><span class=p>,</span> <span class=nx>sh</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>相应的参数说明如下：</p><ul><li>sx：将要被提取的图像数据矩形区域的左上角 x 坐标。</li><li>sy：将要被提取的图像数据矩形区域的左上角 y 坐标。</li><li>sw：将要被提取的图像数据矩形区域的宽度。</li><li>sh：将要被提取的图像数据矩形区域的高度。</li></ul><p>在获取到图片的像素数据之后，我们就可以对获取的像素数据进行处理，比如进行灰度化或反色处理。当完成处理后，若要在页面上显示处理效果，则我们需要利用 CanvasRenderingContext2D 提供的另一个 API —— <code>putImageData</code>。</p><p>该 API 是 Canvas 2D API 将数据从已有的 ImageData 对象绘制到位图的方法。如果提供了一个绘制过的矩形，则只绘制该矩形的像素。此方法不受画布转换矩阵的影响。putImageData 方法的语法如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=k>void</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>putImageData</span><span class=p>(</span><span class=nx>imagedata</span><span class=p>,</span> <span class=nx>dx</span><span class=p>,</span> <span class=nx>dy</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=k>void</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>putImageData</span><span class=p>(</span><span class=nx>imagedata</span><span class=p>,</span> <span class=nx>dx</span><span class=p>,</span> <span class=nx>dy</span><span class=p>,</span> <span class=nx>dirtyX</span><span class=p>,</span> <span class=nx>dirtyY</span><span class=p>,</span> <span class=nx>dirtyWidth</span><span class=p>,</span> <span class=nx>dirtyHeight</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>相应的参数说明如下：</p><ul><li>imageData： <code>ImageData</code> ，包含像素值的数组对象。</li><li>dx：源图像数据在目标画布中的位置偏移量（x 轴方向的偏移量）。</li><li>dy：源图像数据在目标画布中的位置偏移量（y 轴方向的偏移量）。</li><li>dirtyX（可选）：在源图像数据中，矩形区域左上角的位置。默认是整个图像数据的左上角（x 坐标）。</li><li>dirtyY（可选）：在源图像数据中，矩形区域左上角的位置。默认是整个图像数据的左上角（y 坐标）。</li><li>dirtyWidth（可选）：在源图像数据中，矩形区域的宽度。默认是图像数据的宽度。</li><li>dirtyHeight（可选）：在源图像数据中，矩形区域的高度。默认是图像数据的高度。</li></ul><p>介绍完相关的 API，下面我们来举一个实际例子：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;zh-CN&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span> <span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;viewport&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;width=device-width, initial-scale=1.0&#34;</span> <span class=p>/&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>图片反色和灰度化处理<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>body</span> <span class=na>onload</span><span class=o>=</span><span class=s>&#34;loadImage()&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>button</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;invertbtn&#34;</span><span class=p>&gt;</span>反色<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>button</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;grayscalebtn&#34;</span><span class=p>&gt;</span>灰度化<span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>canvas</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;canvas&#34;</span> <span class=na>width</span><span class=o>=</span><span class=s>&#34;800&#34;</span> <span class=na>height</span><span class=o>=</span><span class=s>&#34;600&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>canvas</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=kd>function</span> <span class=nx>loadImage</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>img</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Image</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=nx>img</span><span class=p>.</span><span class=nx>crossOrigin</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=nx>img</span><span class=p>.</span><span class=nx>onload</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>draw</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>};</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 这是阿宝哥的头像哟
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>img</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=s2>&#34;https://avatars3.githubusercontent.com/u/4220799&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      <span class=kd>function</span> <span class=nx>draw</span><span class=p>(</span><span class=nx>img</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>canvas</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s2>&#34;canvas&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>ctx</span> <span class=o>=</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>getContext</span><span class=p>(</span><span class=s2>&#34;2d&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>ctx</span><span class=p>.</span><span class=nx>drawImage</span><span class=p>(</span><span class=nx>img</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>img</span><span class=p>.</span><span class=nx>style</span><span class=p>.</span><span class=nx>display</span> <span class=o>=</span> <span class=s2>&#34;none&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>imageData</span> <span class=o>=</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>getImageData</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>width</span><span class=p>,</span> <span class=nx>canvas</span><span class=p>.</span><span class=nx>height</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>data</span> <span class=o>=</span> <span class=nx>imageData</span><span class=p>.</span><span class=nx>data</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>invert</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>data</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span> <span class=o>+=</span> <span class=mi>4</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nx>data</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=mi>255</span> <span class=o>-</span> <span class=nx>data</span><span class=p>[</span><span class=nx>i</span><span class=p>];</span> <span class=c1>// red
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=mi>255</span> <span class=o>-</span> <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>];</span> <span class=c1>// green
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>2</span><span class=p>]</span> <span class=o>=</span> <span class=mi>255</span> <span class=o>-</span> <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>2</span><span class=p>];</span> <span class=c1>// blue
+</span></span></span><span class=line><span class=cl><span class=c1></span>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>          <span class=nx>ctx</span><span class=p>.</span><span class=nx>putImageData</span><span class=p>(</span><span class=nx>imageData</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>grayscale</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>data</span><span class=p>.</span><span class=nx>length</span><span class=p>;</span> <span class=nx>i</span> <span class=o>+=</span> <span class=mi>4</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=kd>var</span> <span class=nx>avg</span> <span class=o>=</span> <span class=p>(</span><span class=nx>data</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>2</span><span class=p>])</span> <span class=o>/</span> <span class=mi>3</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=nx>data</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=nx>avg</span><span class=p>;</span> <span class=c1>// red
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=nx>avg</span><span class=p>;</span> <span class=c1>// green
+</span></span></span><span class=line><span class=cl><span class=c1></span>            <span class=nx>data</span><span class=p>[</span><span class=nx>i</span> <span class=o>+</span> <span class=mi>2</span><span class=p>]</span> <span class=o>=</span> <span class=nx>avg</span><span class=p>;</span> <span class=c1>// blue
+</span></span></span><span class=line><span class=cl><span class=c1></span>          <span class=p>}</span>
+</span></span><span class=line><span class=cl>          <span class=nx>ctx</span><span class=p>.</span><span class=nx>putImageData</span><span class=p>(</span><span class=nx>imageData</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>invertbtn</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s2>&#34;invertbtn&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>invertbtn</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s2>&#34;click&#34;</span><span class=p>,</span> <span class=nx>invert</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=kd>var</span> <span class=nx>grayscalebtn</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s2>&#34;grayscalebtn&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nx>grayscalebtn</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s2>&#34;click&#34;</span><span class=p>,</span> <span class=nx>grayscale</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>需要注意的在调用 <code>getImageData</code> 方法获取图片像素数据时，你可能会遇到跨域问题，比如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Uncaught DOMException: Failed to execute &#39;getImageData&#39; on &#39;CanvasRenderingContext2D&#39;: The canvas has been tainted by cross-origin data.
+</span></span></code></pre></td></tr></table></div></div><p>对于这个问题，你可以阅读 <strong>「张鑫旭」</strong> 大神 “解决canvas图片getImageData,toDataURL跨域问题” 这一篇文章。</p><a href=#36-如何实现图片隐写><h3 id=36-如何实现图片隐写><span class=hanchor arialabel=Anchor># </span>3.6 如何实现图片隐写</h3></a><p><strong>「隐写术是一门关于信息隐藏的技巧与科学，所谓信息隐藏指的是不让除预期的接收者之外的任何人知晓信息的传递事件或者信息的内容。」</strong> 隐写术的英文叫做 Steganography，来源于特里特米乌斯的一本讲述密码学与隐写术的著作 Steganographia，该书书名源于希腊语，意为 “隐秘书写”。</p><p>下图是阿宝哥采用在线的图片隐写工具，将 <strong>「“全栈修仙之路”」</strong> 这 6 个字隐藏到原始的图片中，然后使用对应的解密工具，解密出隐藏信息的结果：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/common/img/20210410164236.jpeg width=auto alt=img></p><p>（在线图片隐写体验地址：https://c.p2hp.com/yinxietu/）</p><p>目前有多种方案可以实现图片隐写，以下是几种常见的方案：</p><ul><li>附加式的图片隐写；</li><li>基于文件结构的图片隐写；</li><li>基于 LSB 原理的图片隐写；</li><li>基于 DCT 域的 JPG 图片隐写；</li><li>数字水印的隐写；</li><li>图片容差的隐写。</li></ul></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

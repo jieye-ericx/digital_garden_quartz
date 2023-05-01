@@ -1,0 +1,584 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="1 Docker简介 1.1 为什么会有docker？ 一款产品从开发到上线，从操作系统，到运行环境，再到应用配置。作为开发+运维之间的协作我们需要关心很多东西，这也是很多互联网公司都不得不面对的问题，特别是各种版本的迭代之后，不同版本环境的兼容，对运维人员都是考验 Docker之所以发展如此迅速，也是因为它对此给出了一个标准化的解决方案。 环境配置如此麻烦，换一台机器，就要重来一次，费力费时。很多人想到，能不能从根本上解决问题，软件可以带环境安装?也就是说，安装的时候，把原始环境一模一样地复制过来。开发人员利用Docker可以消除协作编码时“在我的机器上可正常工作”的问题。 之前在服务器配置一个应用的运行环境，要安装各种软件，就拿尚硅谷电商项目的环境来说，Java/TomcatMySQL/JDBC驱动包等。安装和配置这些东西有多麻烦就不说了，它还不能跨平台。假如我们是在Windows上安装的这些环境，到了Linux 又得重新装。况且就算不跨操作系统，换另一台同样操作系统的服务器，要移植应用也是非常麻烦的。
+传统上认为，软件编码开发/测试结束后，所产出的成果即是程序或是能够编译执行的二进制字节码等java为例)。而为了让这程序可以顺利执行，开发团队也得准备完整的部署文件，让维运团队得以部署应用程式，开发需要清楚的告诉运维部署团队，用的全部配置文件+所有软件环境。不过，即便如此，仍然常常发生部署失败的状况。Docker镜 像的设计，使得Docker得以打过去「程序即应用」的观念。透过镜像(images)将作业系统核心除外，运作应用程式所需要的系统环境，由下而上打包，达到应用程式跨平台间的无缝接轨运.作。
+1.2 docker理念 Docker是基于Go语言实现的云开源项目。 Docker的主要目标是“Build, Ship[ and Run Any App,Anywhere&#34;，也就是通过对应用组件的封装、分发、部署、运行等生命期的管理，使用户的APP (可以是一个WEB应用或数据库应用等等)及其运行环境能够做到“一次封装，到处运行”。"><meta property="og:title" content><meta property="og:description" content="1 Docker简介 1.1 为什么会有docker？ 一款产品从开发到上线，从操作系统，到运行环境，再到应用配置。作为开发+运维之间的协作我们需要关心很多东西，这也是很多互联网公司都不得不面对的问题，特别是各种版本的迭代之后，不同版本环境的兼容，对运维人员都是考验 Docker之所以发展如此迅速，也是因为它对此给出了一个标准化的解决方案。 环境配置如此麻烦，换一台机器，就要重来一次，费力费时。很多人想到，能不能从根本上解决问题，软件可以带环境安装?也就是说，安装的时候，把原始环境一模一样地复制过来。开发人员利用Docker可以消除协作编码时“在我的机器上可正常工作”的问题。 之前在服务器配置一个应用的运行环境，要安装各种软件，就拿尚硅谷电商项目的环境来说，Java/TomcatMySQL/JDBC驱动包等。安装和配置这些东西有多麻烦就不说了，它还不能跨平台。假如我们是在Windows上安装的这些环境，到了Linux 又得重新装。况且就算不跨操作系统，换另一台同样操作系统的服务器，要移植应用也是非常麻烦的。
+传统上认为，软件编码开发/测试结束后，所产出的成果即是程序或是能够编译执行的二进制字节码等java为例)。而为了让这程序可以顺利执行，开发团队也得准备完整的部署文件，让维运团队得以部署应用程式，开发需要清楚的告诉运维部署团队，用的全部配置文件+所有软件环境。不过，即便如此，仍然常常发生部署失败的状况。Docker镜 像的设计，使得Docker得以打过去「程序即应用」的观念。透过镜像(images)将作业系统核心除外，运作应用程式所需要的系统环境，由下而上打包，达到应用程式跨平台间的无缝接轨运.作。
+1.2 docker理念 Docker是基于Go语言实现的云开源项目。 Docker的主要目标是“Build, Ship[ and Run Any App,Anywhere&#34;，也就是通过对应用组件的封装、分发、部署、运行等生命期的管理，使用户的APP (可以是一个WEB应用或数据库应用等等)及其运行环境能够做到“一次封装，到处运行”。"><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/Docker%E5%9F%BA%E7%A1%80/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="1 Docker简介 1.1 为什么会有docker？ 一款产品从开发到上线，从操作系统，到运行环境，再到应用配置。作为开发+运维之间的协作我们需要关心很多东西，这也是很多互联网公司都不得不面对的问题，特别是各种版本的迭代之后，不同版本环境的兼容，对运维人员都是考验 Docker之所以发展如此迅速，也是因为它对此给出了一个标准化的解决方案。 环境配置如此麻烦，换一台机器，就要重来一次，费力费时。很多人想到，能不能从根本上解决问题，软件可以带环境安装?也就是说，安装的时候，把原始环境一模一样地复制过来。开发人员利用Docker可以消除协作编码时“在我的机器上可正常工作”的问题。 之前在服务器配置一个应用的运行环境，要安装各种软件，就拿尚硅谷电商项目的环境来说，Java/TomcatMySQL/JDBC驱动包等。安装和配置这些东西有多麻烦就不说了，它还不能跨平台。假如我们是在Windows上安装的这些环境，到了Linux 又得重新装。况且就算不跨操作系统，换另一台同样操作系统的服务器，要移植应用也是非常麻烦的。
+传统上认为，软件编码开发/测试结束后，所产出的成果即是程序或是能够编译执行的二进制字节码等java为例)。而为了让这程序可以顺利执行，开发团队也得准备完整的部署文件，让维运团队得以部署应用程式，开发需要清楚的告诉运维部署团队，用的全部配置文件+所有软件环境。不过，即便如此，仍然常常发生部署失败的状况。Docker镜 像的设计，使得Docker得以打过去「程序即应用」的观念。透过镜像(images)将作业系统核心除外，运作应用程式所需要的系统环境，由下而上打包，达到应用程式跨平台间的无缝接轨运.作。
+1.2 docker理念 Docker是基于Go语言实现的云开源项目。 Docker的主要目标是“Build, Ship[ and Run Any App,Anywhere&#34;，也就是通过对应用组件的封装、分发、部署、运行等生命期的管理，使用户的APP (可以是一个WEB应用或数据库应用等等)及其运行环境能够做到“一次封装，到处运行”。"><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Docker%e5%9f%ba%e7%a1%80.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#1-docker简介>1 Docker简介</a><ol><li><a href=#11-为什么会有docker>1.1 为什么会有docker？</a></li><li><a href=#12-docker理念>1.2 docker理念</a></li><li><a href=#13-docker可以做什么>1.3 Docker可以做什么</a></li><li><a href=#14-docker基本结构>1.4 Docker基本结构</a></li></ol></li><li><a href=#2-安装与helloworld>2 安装与Helloworld</a><ol><li><a href=#21-镜像加速>2.1 镜像加速</a></li><li><a href=#22-helloworld>2.2 helloworld</a></li></ol></li><li><a href=#3-docker常用命令>3 Docker常用命令</a><ol><li><a href=#31-帮助类命令>3.1 帮助类命令</a></li><li><a href=#32-镜像命令>3.2 镜像命令</a></li><li><a href=#33-容器命令>3.3 容器命令</a></li></ol></li><li><a href=#4-docker镜像>4 Docker镜像</a><ol><li><a href=#41-unionfs联合文件系统>4.1 UnionFS(联合文件系统)</a></li><li><a href=#42-镜像加载原理>4.2 镜像加载原理</a></li></ol></li><li><a href=#5-docker容器数据卷>5 Docker容器数据卷</a><ol><li><a href=#51-添加数据卷>5.1 添加数据卷</a></li><li><a href=#52-数据卷容器>5.2 数据卷容器</a></li></ol></li><li><a href=#6-dockerfile解析>6 DockerFile解析</a><ol><li><a href=#61-dockerfile简介>6.1 DockerFile简介</a></li><li><a href=#docker执行dockerfile的大致流程>Docker执行Dockerfile的大致流程</a></li><li><a href=#62-dockerfile-语法>6.2 DockerFile 语法</a></li><li><a href=#63-通过dockerfile构建镜像>6.3 通过Dockerfile构建镜像</a></li><li><a href=#64-cmdentrypoint的区别>6.4 CMD/ENTRYPOINT的区别</a></li><li><a href=#65-综合案例>6.5 综合案例</a></li><li><a href=#66-总结>6.6 总结</a></li></ol></li><li><a href=#7-docker常用安装>7 Docker常用安装</a><ol><li><a href=#71-总体步骤>7.1 总体步骤</a></li><li><a href=#72-安装mysql>7.2 安装Mysql</a></li><li><a href=#73-安装redis>7.3 安装Redis</a></li></ol></li><li><a href=#8-发布镜像到云>8 发布镜像到云</a><ol><li><a href=#81-阿里云>8.1 阿里云</a></li><li><a href=#81-生成镜像>8.1 生成镜像</a></li><li><a href=#82-推送到阿里云>8.2 推送到阿里云</a></li></ol></li></ol></nav></details></aside><a href=#1-docker简介><h2 id=1-docker简介><span class=hanchor arialabel=Anchor># </span>1 Docker简介</h2></a><a href=#11-为什么会有docker><h3 id=11-为什么会有docker><span class=hanchor arialabel=Anchor># </span>1.1 为什么会有docker？</h3></a><p>一款产品从开发到上线，从操作系统，到运行环境，再到应用配置。作为开发+运维之间的协作我们需要关心很多东西，这也是很多互联网公司都不得不面对的问题，特别是各种版本的迭代之后，不同版本环境的兼容，对运维人员都是考验
+<strong>Docker</strong>之所以发展如此迅速，也是因为它对此给出了一个标准化的解决方案。
+环境配置如此麻烦，换一台机器，就要重来一次，费力费时。很多人想到，能不能从根本上解决问题，软件可以带环境安装?也就是说，安装的时候，把原始环境一模一样地复制过来。开发人员利用Docker可以消除协作编码时“在我的机器上可正常工作”的问题。
+<img src=https://jieye-ericx.github.io//../../pics/image-20211129163643863.png width=auto alt=image-20211129163643863>
+之前在服务器配置一个应用的运行环境，要安装各种软件，就拿尚硅谷电商项目的环境来说，<strong>Java/TomcatMySQL/JDBC</strong>驱动包等。安装和配置这些东西有多麻烦就不说了，它还不能跨平台。假如我们是在<strong>Windows</strong>上安装的这些环境，到了Linux 又得重新装。况且就算不跨操作系统，换另一台同样操作系统的服务器，要移植应用也是非常麻烦的。</p><p>传统上认为，软件编码开发/测试结束后，所产出的成果即是程序或是能够编译执行的二进制字节码等java为例)。而为了让这程序可以顺利执行，开发团队也得准备完整的部署文件，让维运团队得以部署应用程式，<strong>开发需要清楚的告诉运维部署团队，用的全部配置文件+所有软件环境。不过，即便如此，仍然常常发生部署失败的状况。<strong>Docker镜 像的设计</strong>，使得Docker得以打过去「程序即应用」的观念。透过镜像(images)将作业系统核心除外，运作应用程式所需要的系统环境，由下而上打包，达到应用程式跨平台间的无缝接轨运.作。</strong></p><a href=#12-docker理念><h3 id=12-docker理念><span class=hanchor arialabel=Anchor># </span>1.2 docker理念</h3></a><p>Docker是基于Go语言实现的云开源项目。
+Docker的主要目标是“<strong>Build, Ship[ and Run Any App,Anywhere</strong>"，也就是通过对应用组件的封装、分发、部署、运行等生命期的管理，使用户的APP (可以是一个WEB应用或数据库应用等等)及其运行环境能够做到“<strong>一次封装，到处运行</strong>”。</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211129163840868.png width=auto alt=image-20211129163840868></p><p>Linux容器技术的出现就解决了这样一 一个问题，而Docker就是在它的基础上发展过来的。将应用运行在Docker容器上面，而Docker容器在任何操作系统上都是一-致的，这就实现了跨平台、跨服务器。<strong>只需要一次配置好环境，换到别的机子上就可以一键部署好，大大简化了操作</strong></p><p><strong>总结：Docker解决了运行环境和配置问题的软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术</strong></p><a href=#13-docker可以做什么><h3 id=13-docker可以做什么><span class=hanchor arialabel=Anchor># </span>1.3 Docker可以做什么</h3></a><a href=#131-虚拟机技术><h4 id=131-虚拟机技术><span class=hanchor arialabel=Anchor># </span>1.3.1 虚拟机技术</h4></a><p>虚拟机**(virtual machine)**就是带环境安装的一种解决方案。</p><p>它可以在一种操作系统里面运行另一种作系统，比如在<strong>Windows系统里面运行Linux系统</strong>。应用程序对此毫无感知，因为虚拟机看上去跟真实系统一模一样，而对于底层系统来说，虚拟机就是一个普通文件，不需要了就删掉，对其他部分毫无影响。这类虚拟机完美的运行了另一套系统，能够使应用程序，操作系统和硬件三者之间的逻辑不变。</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211129163953230.png width=auto alt=image-20211129163953230></p><p>但是有一定的缺点：</p><ul><li>资源占用多</li><li>冗余步骤多</li><li>启动慢</li></ul><a href=#132-容器虚拟化技术><h4 id=132-容器虚拟化技术><span class=hanchor arialabel=Anchor># </span>1.3.2 容器虚拟化技术</h4></a><p>由于前面虛拟机存在这些缺点，<strong>Linux</strong> 发展出了另一种虚拟化技术: <strong>Linux 容器</strong>(Linux Containers,缩为LXC)。</p><p><strong>Linux容器不是模拟一个完整的操作系统</strong>，而是对进程进行隔离。有了容器，就可以将软件运行所的所有资源打包到一个隔离的容器中。容器与虚拟机不同，不需要捆绑一整套操作系统，只需要软件工作所需的库资源和设置。系统因此而变得高效轻量并保证部署在任何环境中的软件都能始终如一地运行。</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211129164118311.png width=auto alt=image-20211129164118311></p><p><strong>Docker</strong>和传统虚拟化方式的不同之处:</p><ol><li>传统虚拟机技术是虚拟出一套硬件后，在其上运行一个完整操作系统，在该系统上再运行所需应用进程;</li><li>而容器内的应用进程直接运行于宿主的内核，容器内没有自己的内核，<strong>而且也没有进行硬件虚拟</strong>。因此容器要比传统虚拟机为轻便。</li><li>每个容器之间互相隔离，每个容器有自己的文件系统，容器之间进程不会相互影响，能区分计算资源。</li></ol><a href=#133-开发运维devops><h4 id=133-开发运维devops><span class=hanchor arialabel=Anchor># </span>1.3.3 开发/运维(DevOps)</h4></a><p>一次构建、随处运行。</p><p><strong>更快速的应用交付和部署</strong></p><p>传统的应用开发完成后，需要提供一堆安装程序和配置说明文档，安装部署后需根据配置文档进行繁杂的配置才能正常运行。Docker化
+之后只需要交付少量容器镜像文件，在正式生产环境加载镜像并运行即可，应用安装配置在镜像里已经内置好，大大节省部署配置和测
+试验证时间。</p><p><strong>更便捷的升级和扩缩容</strong></p><p>随着微服务架构和Docker的发展，大量的应用会通过微服务方式架构，应用的开发构建将变成搭乐高积木一样，每个Docker容器将变成-块“积木”，应用的升级将变得非常容易。当现有的容器不足以支撑业务处理时，可通过镜像运行新的容器进行快速扩容，使应用系统的扩容从原先的天级变成分钟级甚至秒级。</p><p><strong>更简单的系统运维</strong></p><p>应用容器化运行后，生产环境运行的应用可与开发、测试环境的应用高度&ndash;致，容器会将应用程序相关的环境和状态完全封装起来，不会因为底层基础架构和操作系统的不一致性给应用带来影响，产生新的BUG。当出现程序异常时，也可以通过测试环境的相同容器进行快速定位和修复。</p><p><strong>更高效的计算资源利用</strong></p><p><strong>Docker是内核级虚拟化</strong>，其不像传统的虚拟化技术一样 需要额外的Hypervisor支持，所以在一台物理机上可以运行很多个容器实例，可大大提升物理服务器的CPU和内存的利用率。</p><a href=#14-docker基本结构><h3 id=14-docker基本结构><span class=hanchor arialabel=Anchor># </span>1.4 Docker基本结构</h3></a><p><img src=https://jieye-ericx.github.io//../../pics/architecture.svg width=auto alt=img></p><a href=#141-镜像image><h4 id=141-镜像image><span class=hanchor arialabel=Anchor># </span>1.4.1 镜像（image）</h4></a><p>镜像(lmage)就是一个只读的模板。镜像可以用来创建Docker容器，一个镜像可以创建很多容器。</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211129165021803.png width=auto alt=image-20211129165021803></p><a href=#142-容器-container><h4 id=142-容器-container><span class=hanchor arialabel=Anchor># </span>1.4.2 容器( container)</h4></a><p>Docker利用容器(Container) 独立运行的一个或一组应用。<strong>容器是用镜像创建的运行实例。</strong>
+它可以被启动、开始、停止、删除。每个容器都是相互隔离的、保证安全的平台。
+<strong>可以把容器看做是一个简易版的Linux环境</strong>(包括root用户权限、进程空间、用户空间和网络空间等)和运行在其中的应用程序。
+容器的定义和镜像几乎一模一样，也是一堆层的统一视角， 唯一区别在于容器的最上面那一层是可读可写的。</p><a href=#143-仓库-repository><h4 id=143-仓库-repository><span class=hanchor arialabel=Anchor># </span>1.4.3 仓库( repository)</h4></a><p>仓库(<strong>Repository</strong>) 是<strong>集中存放镜像</strong>文件的场所。
+仓库(<strong>Repository</strong>)和仓库注册服务器(<strong>Registry</strong>) 是有区别的。仓库注册服务器上往往存放着多个仓库，每个仓库中又包含了多镜像，
+每个镜像有不同的标签(tag) 。</p><p>仓库分为公开仓库(<strong>Public</strong>) 和私有仓库(<strong>Private</strong>) 两种形式。
+<strong>最大的公开仓库是Docker Hub(
+<a href=https://hub.docker.com/ rel=noopener>https://hub.docker.com/</a>)</strong>
+存放了数量庞大的镜像供用户下载。国内的公开仓库包括阿里云、网易云等。</p><a href=#144-总结><h4 id=144-总结><span class=hanchor arialabel=Anchor># </span>1.4.4 总结</h4></a><p>需要正确的理解仓储/镜像/容器这几个概念:
+Docker本身是一个容器运行载体或称之为管理引擎。我们把应用程序和配置依赖打包好形成一-个可交付的运行环境，这个打好的运行环境就似乎image镜像文件。只有通过这个镜像文件才能生成Docker容器。image文件可以看作是容器的模板。Docker根据image文件生成容器的实例。同一个image文件，可以生成多个同时运行的容器实例。
+image文件生成的容器实例，本身也是一一个文件，称为镜像文件。
+一个容器运行一种服务，当我们需要的时候，就可以通过docker客户端创建一-个对应的运行实例，也就是我们的容器至于仓储，就是放了一堆镜像的地方，我们可以把镜像发布到仓储中，需要的时候从仓储中拉下来就可以了。</p><a href=#15-底层原理><h4 id=15-底层原理><span class=hanchor arialabel=Anchor># </span>1.5 底层原理</h4></a><p>Docker是一个Client-Server结构的系统，Docker守 护进程运行在主机上，然后通过Socket连 接从客户端访问，守护进程从客户端接受命令并管理运行在主机上的容器。<strong>容器，是一个运行时环境，就是我们前面说到的集装箱。</strong>
+<img src=https://jieye-ericx.github.io//../../pics/image-20211129171424470.png width=auto alt=image-20211129171424470></p><p><strong>为什么Docker比较比vm快</strong></p><ol><li>docker<strong>有着比虚拟机更少的抽象层。由亍docker不需要</strong>Hypervisor<strong>实现硬件资源虚拟化,运行在docker容器上的程序直接使用的都是实际物理机的硬件资源。因此在CPU、内存利用率上docker将会在效率上有明显优势。</strong></li><li>docker<strong>利用的是宿主机的内核,而不需要</strong>Guest OS。因此,当新建一个 容器时,docker不需要和虚拟机一样 重新加载- - 个操作系统内核仍而避免引寻、加载操作系统内核返个比较费时费资源的过程,当新建&ndash;个虚拟机时,虚拟机软件需要加载GuestOS,返个新建过程是分钟级别的。而docker由于直接利用宿主机的操作系统,则省略了返个过程,因此新建一-个docker容器只需要几秒钟。</li></ol><p><img src=https://jieye-ericx.github.io//../../pics/image-20211129171508504.png width=auto alt=image-20211129171508504></p><a href=#2-安装与helloworld><h2 id=2-安装与helloworld><span class=hanchor arialabel=Anchor># </span>2 安装与Helloworld</h2></a><blockquote><p><strong>CentOS Docker安装</strong>
+Docker支持以下的CentOS版本:
+CentOS 7 (64-bit)
+CentOS 6.5 (64-bit)或更高的版本</p><p><strong>前提条件</strong>
+目前，CentOS 仅发行版本中的内核支持Docker。
+Docker运行在CentOS 7.上，要求系统为64位、系统内核版本为3.10以上。
+Docker运行在CentOS-6.5或更高的版本的CentOS上，要求系统为64位、系<strong>统内核版本为2.6.32-431或者更高版本。</strong></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211129164440659.png width=auto alt=image-20211129164440659></p></blockquote><p>具体安装操作日新月异，参考官网文档、网上博客即可。https://docs.docker.com/engine/install/</p><a href=#21-镜像加速><h3 id=21-镜像加速><span class=hanchor arialabel=Anchor># </span>2.1 镜像加速</h3></a><a href=#阿里云镜像加速><h4 id=阿里云镜像加速><span class=hanchor arialabel=Anchor># </span>阿里云镜像加速</h4></a><p>是什么？https://promotion.aliyun.com/ntms/act/kubernetes.html</p><ol><li><p>注册一个属于自己的阿里云账户( 可复用淘宝账号)</p></li><li><p>获得加速器地址连接</p><p>登录阿里云开发者平台获取加速器地址</p></li><li><p>配置本机Docker运行镜像加速器</p><p>鉴于国内网络问题，后续拉取Docker镜像十分缓慢，我们可以需要配置加速器来解决，
+我使用的是阿里云的本人自己账号的镜像地址(需要自己注册有一个属于你自己的): ht:po/. mirror aliyuncns .com</p></li></ol><ul><li>vim /etc/sysconfig/docker
+将获得的自己账户下的阿里云加速地址配置进
+other_ args-="&ndash;registry-mirror=https://你自己的账号加速信息.mirror .aliyuncs.com</li></ul><p><img src=https://jieye-ericx.github.io//../../pics/Snipaste_2020-10-02_20-19-10.png width=auto alt></p><p>重新启动 Docker 后台服务：service docker restart</p><p>Linux系统下配置完加速器需要检查是否生效</p><p>此外还有网易云加速等。。</p><a href=#22-helloworld><h3 id=22-helloworld><span class=hanchor arialabel=Anchor># </span>2.2 helloworld</h3></a><p>启动Docker后台容器(测试运行 hello-world )</p><p><code>docker run hello-world</code></p><a href=#3-docker常用命令><h2 id=3-docker常用命令><span class=hanchor arialabel=Anchor># </span>3 Docker常用命令</h2></a><a href=#31-帮助类命令><h3 id=31-帮助类命令><span class=hanchor arialabel=Anchor># </span>3.1 帮助类命令</h3></a><ul><li>查看配置信息 <code>docker info</code></li><li>帮助 <code>docker --help</code></li></ul><a href=#32-镜像命令><h3 id=32-镜像命令><span class=hanchor arialabel=Anchor># </span>3.2 镜像命令</h3></a><a href=#1列出所有images><h4 id=1列出所有images><span class=hanchor arialabel=Anchor># </span>1.列出所有images</h4></a><p><code>docker images</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-a 列出本地所有的镜像<span class=o>(</span>含中间映射层<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-q 只显示镜像ID<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>--digests 显示镜像的摘要信息<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>--no-trunc 显示完整的镜像信息<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><img src=../../pics/image-20211129192629426.png alt=image-20211129192629426 style=zoom:75%>
+<a href=#2搜索image><h4 id=2搜索image><span class=hanchor arialabel=Anchor># </span>2.搜索image</h4></a><p><code>docker search [OPTIONS] 镜像名字</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-f, --filter filter   Filter output based on conditions provided<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --format string   Pretty-print search using a Go template<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --limit int       列出收藏数不小于指定值的镜像 <span class=o>(</span>default 25<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --no-trunc        Don<span class=err>&#39;</span>t truncate output<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#3下载image><h4 id=3下载image><span class=hanchor arialabel=Anchor># </span>3.下载image</h4></a><p><code>docker pull [OPTIONS] NAME[:TAG|@DIGEST]</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-a, --all-tags                Download all tagged images in the repository<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --disable-content-trust   Skip image verification <span class=o>(</span>default <span class=nb>true</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --platform string         Set platform <span class=k>if</span> server is multi-platform capable<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-q, --quiet                   Suppress verbose output<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><blockquote><p>默认为 NAME:latest</p></blockquote><a href=#4删除image><h4 id=4删除image><span class=hanchor arialabel=Anchor># </span>4.删除image</h4></a><p><code>docker rmi [OPTIONS] IMAGE [IMAGE...]</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-f, --force      Force removal of the image<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --no-prune   Do not delete untagged parents<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><p>删除单个 docker rm -f 镜像ID</p><p>删除多个 docker rm -f 镜像名1:TAG 镜像名2:TAG</p><p>删除多个 docker rmi -f ${docker images -qa}</p><a href=#5提交image><h4 id=5提交image><span class=hanchor arialabel=Anchor># </span>5.提交image</h4></a><p><code>docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]</code></p><p>e.g.<code>docker commit -m="提交的描述信息" -a="作者" 容器ID 要创建的目标镜像名:[标签名]</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-a, --author string    Author <span class=o>(</span>e.g., <span class=s2>&#34;John Hannibal Smith &lt;hannibal@a-team.com&gt;&#34;</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-c, --change list      Apply Dockerfile instruction to the created image<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-m, --message string   Commit message<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-p, --pause            Pause container during commit <span class=o>(</span>default <span class=nb>true</span><span class=o>)</span><span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><blockquote><ol><li><p>故意删除上一步镜像生产tomcat容器的文档</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211130140543011.png width=auto alt=image-20211130140543011></p></li><li><p>也即当前的tomcat运行实例是一个没有文档内容的容器，以他为模板commit一个没有doc的tomcat新镜像 atguigu/tomcat02</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211130140601407.png width=auto alt=image-20211130140601407></p></li></ol></blockquote><a href=#33-容器命令><h3 id=33-容器命令><span class=hanchor arialabel=Anchor># </span>3.3 容器命令</h3></a><blockquote><p>有镜像才能创建容器，这是根本前提(下载一个Centos镜像演示)</p><p><code>docker pull centos</code></p></blockquote><a href=#1新建并启动容器><h4 id=1新建并启动容器><span class=hanchor arialabel=Anchor># </span>1.新建并启动容器</h4></a><p><code>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</code></p><p>e.g.<code>docker run -it -p 8888:8080 tomcat</code></p><blockquote><p>8888为外主机端口</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl><span class=c># !</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-d, --detach                         Run container in background and print container ID<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>		--name string                    Assign a name to the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-i, --interactive                    Keep STDIN open even <span class=k>if</span> not attached<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-t, --tty                            Allocate a pseudo-TTY<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-p, --publish list                   Publish a container<span class=err>&#39;</span>s port<span class=o>(</span>s<span class=o>)</span> to the host<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>	<span class=c1>#指定端口映射，有以下四种格式</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>	<span class=c1>#ip:hostPort:containerPort</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>	<span class=c1>#ip::containerPort</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>	<span class=c1>#hostPort:containerPort</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>	<span class=c1>#containerPort</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-P, --publish-all                    Publish all exposed ports to random ports 随机端口映射<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>      <span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --add-host list                  Add a custom host-to-IP mapping <span class=o>(</span>host:ip<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-a, --attach list                    Attach to STDIN, STDOUT or STDERR<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --blkio-weight uint16            Block IO <span class=o>(</span>relative weight<span class=o>)</span>, between <span class=m>10</span> and 1000, or <span class=m>0</span> to<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     disable <span class=o>(</span>default 0<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --blkio-weight-device list       Block IO weight <span class=o>(</span>relative device weight<span class=o>)</span> <span class=o>(</span>default <span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cap-add list                   Add Linux capabilities<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cap-drop list                  Drop Linux capabilities<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cgroup-parent string           Optional parent cgroup <span class=k>for</span> the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cgroupns string                Cgroup namespace to use <span class=o>(</span>host<span class=p>|</span>private<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     <span class=s1>&#39;host&#39;</span>:    Run the container in the Docker host<span class=err>&#39;</span>s cgroup<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     namespace<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     <span class=s1>&#39;private&#39;</span>: Run the container in its own private cgroup<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     namespace<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     <span class=s1>&#39;&#39;</span>:        Use the cgroup namespace as configured by the<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                                default-cgroupns-mode option on the daemon <span class=o>(</span>default<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cidfile string                 Write the container ID to the file<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpu-period int                 Limit CPU CFS <span class=o>(</span>Completely Fair Scheduler<span class=o>)</span> period<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpu-quota int                  Limit CPU CFS <span class=o>(</span>Completely Fair Scheduler<span class=o>)</span> quota<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpu-rt-period int              Limit CPU real-time period in microseconds<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpu-rt-runtime int             Limit CPU real-time runtime in microseconds<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-c, --cpu-shares int                 CPU shares <span class=o>(</span>relative weight<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpus decimal                   Number of CPUs<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpuset-cpus string             CPUs in which to allow execution <span class=o>(</span>0-3, 0,1<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --cpuset-mems string             MEMs in which to allow execution <span class=o>(</span>0-3, 0,1<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --detach-keys string             Override the key sequence <span class=k>for</span> detaching a container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --device list                    Add a host device to the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --device-cgroup-rule list        Add a rule to the cgroup allowed devices list<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --device-read-bps list           Limit <span class=nb>read</span> rate <span class=o>(</span>bytes per second<span class=o>)</span> from a device <span class=o>(</span>default <span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --device-read-iops list          Limit <span class=nb>read</span> rate <span class=o>(</span>IO per second<span class=o>)</span> from a device <span class=o>(</span>default <span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --device-write-bps list          Limit write rate <span class=o>(</span>bytes per second<span class=o>)</span> to a device <span class=o>(</span>default <span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --device-write-iops list         Limit write rate <span class=o>(</span>IO per second<span class=o>)</span> to a device <span class=o>(</span>default <span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --disable-content-trust          Skip image verification <span class=o>(</span>default <span class=nb>true</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --dns list                       Set custom DNS servers<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --dns-option list                Set DNS options<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --dns-search list                Set custom DNS search domains<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --domainname string              Container NIS domain name<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --entrypoint string              Overwrite the default ENTRYPOINT of the image<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-e, --env list                       Set environment variables<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --env-file list                  Read in a file of environment variables<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --expose list                    Expose a port or a range of ports<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --gpus gpu-request               GPU devices to add to the container <span class=o>(</span><span class=s1>&#39;all&#39;</span> to pass all GPUs<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --group-add list                 Add additional groups to join<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --health-cmd string              Command to run to check health<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --health-interval duration       Time between running the check <span class=o>(</span>ms<span class=p>|</span>s<span class=p>|</span>m<span class=p>|</span>h<span class=o>)</span> <span class=o>(</span>default 0s<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --health-retries int             Consecutive failures needed to report unhealthy<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --health-start-period duration   Start period <span class=k>for</span> the container to initialize before starting<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     health-retries countdown <span class=o>(</span>ms<span class=p>|</span>s<span class=p>|</span>m<span class=p>|</span>h<span class=o>)</span> <span class=o>(</span>default 0s<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --health-timeout duration        Maximum <span class=nb>time</span> to allow one check to run <span class=o>(</span>ms<span class=p>|</span>s<span class=p>|</span>m<span class=p>|</span>h<span class=o>)</span> <span class=o>(</span>default 0s<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --help                           Print usage<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-h, --hostname string                Container host name<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --init                           Run an init inside the container that forwards signals and reaps processes<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --ip string                      IPv4 address <span class=o>(</span>e.g., 172.30.100.104<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --ip6 string                     IPv6 address <span class=o>(</span>e.g., 2001:db8::33<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --ipc string                     IPC mode to use<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --isolation string               Container isolation technology<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --kernel-memory bytes            Kernel memory limit<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-l, --label list                     Set meta data on a container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --label-file list                Read in a line delimited file of labels<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --link list                      Add link to another container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --link-local-ip list             Container IPv4/IPv6 link-local addresses<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --log-driver string              Logging driver <span class=k>for</span> the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --log-opt list                   Log driver options<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --mac-address string             Container MAC address <span class=o>(</span>e.g., 92:d0:c6:0a:29:33<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-m, --memory bytes                   Memory limit<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --memory-reservation bytes       Memory soft limit<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --memory-swap bytes              Swap limit equal to memory plus swap: <span class=s1>&#39;-1&#39;</span> to enable<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     unlimited swap<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --memory-swappiness int          Tune container memory swappiness <span class=o>(</span><span class=m>0</span> to 100<span class=o>)</span> <span class=o>(</span>default -1<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --mount mount                    Attach a filesystem mount to the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --network network                Connect a container to a network<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --network-alias list             Add network-scoped <span class=nb>alias</span> <span class=k>for</span> the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --no-healthcheck                 Disable any container-specified HEALTHCHECK<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --oom-kill-disable               Disable OOM Killer<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --oom-score-adj int              Tune host<span class=err>&#39;</span>s OOM preferences <span class=o>(</span>-1000 to 1000<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --pid string                     PID namespace to use<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --pids-limit int                 Tune container pids limit <span class=o>(</span><span class=nb>set</span> -1 <span class=k>for</span> unlimited<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --platform string                Set platform <span class=k>if</span> server is multi-platform capable<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --privileged                     Give extended privileges to this container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --pull string                    Pull image before running <span class=o>(</span><span class=s2>&#34;always&#34;</span><span class=p>|</span><span class=s2>&#34;missing&#34;</span><span class=p>|</span><span class=s2>&#34;never&#34;</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                                     <span class=o>(</span>default <span class=s2>&#34;missing&#34;</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --read-only                      Mount the container<span class=err>&#39;</span>s root filesystem as <span class=nb>read</span> only<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --restart string                 Restart policy to apply when a container exits <span class=o>(</span>default <span class=s2>&#34;no&#34;</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --rm                             Automatically remove the container when it exits<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --runtime string                 Runtime to use <span class=k>for</span> this container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --security-opt list              Security Options<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --shm-size bytes                 Size of /dev/shm<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --sig-proxy                      Proxy received signals to the process <span class=o>(</span>default <span class=nb>true</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --stop-signal string             Signal to stop a container <span class=o>(</span>default <span class=s2>&#34;SIGTERM&#34;</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --stop-timeout int               Timeout <span class=o>(</span>in seconds<span class=o>)</span> to stop a container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --storage-opt list               Storage driver options <span class=k>for</span> the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --sysctl map                     Sysctl options <span class=o>(</span>default map<span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --tmpfs list                     Mount a tmpfs directory<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --ulimit <span class=nb>ulimit</span>                  Ulimit options <span class=o>(</span>default <span class=o>[])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-u, --user string                    Username or UID <span class=o>(</span>format: &lt;name<span class=p>|</span>uid&gt;<span class=o>[</span>:&lt;group<span class=p>|</span>gid&gt;<span class=o>])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --userns string                  User namespace to use<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --uts string                     UTS namespace to use<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-v, --volume list                    Bind mount a volume<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --volume-driver string           Optional volume driver <span class=k>for</span> the container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --volumes-from list              Mount volumes from the specified container<span class=o>(</span>s<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-w, --workdir string                 Working directory inside the container<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#2列出当前的容器><h4 id=2列出当前的容器><span class=hanchor arialabel=Anchor># </span>2.列出当前的容器</h4></a><p><code>docker ps [OPTIONS]</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>-a, --all             列出当前所有正在运行的容器+历史上运行过的
+</span></span><span class=line><span class=cl>-f, --filter filter   Filter output based on conditions provided
+</span></span><span class=line><span class=cl>    --format string   Pretty-print containers using a Go template
+</span></span><span class=line><span class=cl>-n, --last int        显示最近n个创建的容器 <span class=o>(</span>includes all states<span class=o>)</span> <span class=o>(</span>default -1<span class=o>)</span>
+</span></span><span class=line><span class=cl>-l, --latest          显示最近创建的容器 <span class=o>(</span>includes all states<span class=o>)</span>
+</span></span><span class=line><span class=cl>    --no-trunc        不截断输出
+</span></span><span class=line><span class=cl>-q, --quiet           静默模式，只显示容器编号IDs
+</span></span><span class=line><span class=cl>-s, --size            Display total file sizes
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>使用镜像centos:latest以后台模式启动一个容器
+docker run -d centos</p><p>问题:然后docker ps -a进行查看,<strong>会发现容器已经退出</strong>
+很重要的要说明的一点: <strong>Docker容器后台运行,就必须有一个前台进程.</strong>
+容器运行的命令如果不是那些<strong>一直挂起的命令</strong> (比如运行top，tail) ，就是会自动退出的。
+这个是<strong>docker</strong>的机制问题,比如你的web容器，我们以<strong>nginx</strong>为例，正常情况下,我们配置启动服务只需要启动响应的<strong>service</strong>即可。例如
+service nginx start
+但是,这样做,<strong>nginx</strong>为后台进程模式运行,就导致<strong>docker</strong>前台没有运行的应用,这样的容器后台启动后，会立即自杀因为他觉得他没事可做了.所以，最佳的解决方案是将你要运行的程序以前台进程的形式运行</p></blockquote><a href=#3退出容器><h4 id=3退出容器><span class=hanchor arialabel=Anchor># </span>3.退出容器</h4></a><p><code>exit</code> 容器停止退出</p><p><code>ctrl+P+Q</code> 容器不停止退出</p><a href=#4启动容器><h4 id=4启动容器><span class=hanchor arialabel=Anchor># </span>4.启动容器</h4></a><p><code>docker start 容器ID或容器签名</code></p><a href=#5重启容器><h4 id=5重启容器><span class=hanchor arialabel=Anchor># </span>5.重启容器</h4></a><p><code>docker restart 容器ID或容器签名</code></p><a href=#6停止与强制停止容器><h4 id=6停止与强制停止容器><span class=hanchor arialabel=Anchor># </span>6.停止与强制停止容器</h4></a><p><code>docker stop 容器ID或容器签名</code></p><p><code>docker kill 容器ID或容器签名</code></p><a href=#7删除已停止的容器><h4 id=7删除已停止的容器><span class=hanchor arialabel=Anchor># </span>7.删除已停止的容器</h4></a><p><code>docker rm 容器ID -f</code></p><blockquote><p>一次性删除多个容器</p><p>docker rm -f $(docker ps -a -q)</p><p>docker ps -a -q | xargs docker rm</p></blockquote><a href=#8查看容器日志><h4 id=8查看容器日志><span class=hanchor arialabel=Anchor># </span>8.查看容器日志</h4></a><p><code>docker logs -f -t --tail 容器ID</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>    --details        Show extra details provided to logs<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-f, --follow         Follow log output 跟随最新的日志打印<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --since string   Show logs since timestamp <span class=o>(</span>e.g. 2013-01-02T13:23:37Z<span class=o>)</span> or relative <span class=o>(</span>e.g.<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                     42m <span class=k>for</span> <span class=m>42</span> minutes<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-n, --tail string    数字显示最后多少条 <span class=o>(</span>default <span class=s2>&#34;all&#34;</span><span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-t, --timestamps     是加入时间戳<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --until string   Show logs before a timestamp <span class=o>(</span>e.g. 2013-01-02T13:23:37Z<span class=o>)</span> or relative<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>                       <span class=o>(</span>e.g. 42m <span class=k>for</span> <span class=m>42</span> minutes<span class=o>)</span><span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#9查看容器内进程><h4 id=9查看容器内进程><span class=hanchor arialabel=Anchor># </span>9.查看容器内进程</h4></a><p><code>docker top CONTAINER [ps OPTIONS]</code></p><a href=#10查看容器内部细节><h4 id=10查看容器内部细节><span class=hanchor arialabel=Anchor># </span>10.查看容器内部细节</h4></a><p><code>docker inspect 容器ID</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-f, --format string   Format the output using the given Go template<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-s, --size            Display total file sizes <span class=k>if</span> the <span class=nb>type</span> is container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --type string     Return JSON <span class=k>for</span> specified type<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#11进入正在运行的容器并以命令行交互><h4 id=11进入正在运行的容器并以命令行交互><span class=hanchor arialabel=Anchor># </span>11.进入正在运行的容器并以命令行交互</h4></a><p><code>docker exec [OPTIONS] CONTAINER COMMAND [ARG...]</code></p><p>e.g.<code>docker exec -it 容器ID bashShell</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-d, --detach               Detached mode: run <span class=nb>command</span> in the background<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --detach-keys string   Override the key sequence <span class=k>for</span> detaching a container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-e, --env list             Set environment variables<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --env-file list        Read in a file of environment variables<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-i, --interactive          Keep STDIN open even <span class=k>if</span> not attached<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>    --privileged           Give extended privileges to the command<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-t, --tty                  Allocate a pseudo-TTY<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-u, --user string          Username or UID <span class=o>(</span>format: &lt;name<span class=p>|</span>uid&gt;<span class=o>[</span>:&lt;group<span class=p>|</span>gid&gt;<span class=o>])</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-w, --workdir string       Working directory inside the container<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><p><code>docker attach [OPTIONS] CONTAINER</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>--detach-keys string   Override the key sequence <span class=k>for</span> detaching a container<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>--no-stdin             Do not attach STDIN<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>--sig-proxy            Proxy all received signals to the process <span class=o>(</span>default <span class=nb>true</span><span class=o>)</span><span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><p>attach 直接进入容器启动命令的终端，不会启动新的进程</p><p>exec 是在容器中打开新的终端，并且可以启动新的进程</p><a href=#12从容器内拷贝文件><h4 id=12从容器内拷贝文件><span class=hanchor arialabel=Anchor># </span>12.从容器内拷贝文件</h4></a><p><code>docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-</code></p><p><code>docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH</code></p><p>e.g.<code>docker cp 容器ID:容器内路径 目的主机路径</code></p><blockquote><p>Use &lsquo;-&rsquo; as the source to read a tar archive from stdin and extract it to a directory destination in a container.</p><p>Use &lsquo;-&rsquo; as the destination to stream a tar archive of a container source to stdout.</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl>-a, --archive       Archive mode <span class=o>(</span>copy all uid/gid information<span class=o>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span>-L, --follow-link   Always follow symbol link in SRC_PATH<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><p><img src=https://jieye-ericx.github.io//../../pics/image-20211130134642659.png width=auto alt=image-20211130134642659></p><a href=#小总结><h4 id=小总结><span class=hanchor arialabel=Anchor># </span>小总结</h4></a><p><img src=https://jieye-ericx.github.io//../../pics/image-20211130134709798.png width=auto alt=image-20211130134709798></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211130134714298-8251237.png width=auto alt=image-20211130134714298></p><a href=#4-docker镜像><h2 id=4-docker镜像><span class=hanchor arialabel=Anchor># </span>4 Docker镜像</h2></a><p>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的有内容，包括代码、运行时、库、环境变量和配置文件。</p><a href=#41-unionfs联合文件系统><h3 id=41-unionfs联合文件系统><span class=hanchor arialabel=Anchor># </span>4.1 UnionFS(联合文件系统)</h3></a><p>UnionFS (联合文件系统) : Union文件系统(UnionFS)是一一种分层、轻量级并且高性能的文件系统，它支持对文件系统的修作为一 次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系统下(unite several directories into a singlevirtualfilesystem)。Union文件系统是Docker镜像的基础。镜像可以通过分层来进行继承，基于基础镜像(没有父镜像)可以制作各种具.体的应用镜像。</p><p>特性:一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录。</p><a href=#42-镜像加载原理><h3 id=42-镜像加载原理><span class=hanchor arialabel=Anchor># </span>4.2 镜像加载原理</h3></a><p><strong>docker</strong>的镜像实际上由一层一层的文件系统组成，这种层级的文件系统<strong>UnionFS。</strong></p><p><strong>botfs(boot file system)<strong>主要包含</strong>bootloader</strong>和<strong>kernel</strong>, <strong>bootloader</strong>主 要是引导加载<strong>kernel</strong>, <strong>Linux</strong>刚启动时会加载bootfs文件系统，在<strong>Docker</strong>镜像的最底层是<strong>bootfs</strong>。这一-层与我们典型的<strong>Linux/Unix</strong>系统是一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权己由bootfs转交给内核，此时系统也会卸载bootfs。</p><p><strong>rootfs (root file system)，<strong>在</strong>bootfs</strong>之 上。 包含的就是典型Linux系统中的**/dev, /proc, /bin, /etc<strong>等标准目录和文件。<strong>rootfs</strong>就是各种不同的操作系统发行版，比如</strong>Ubuntu**，<strong>Centos</strong>等等。</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211130135141474.png width=auto alt=image-20211130135141474></p><blockquote><p>平时我们安装的虚拟机的Centos都是好几个G ，为什么docker这里才要200m?</p><p>对于一个精简的<strong>OS, rootfs</strong>可 以很小，只需要包括最基本的命令、工具和程序库就可以了，因为底层直接用<strong>Host</strong>的<strong>kernel</strong>,自只需要提供rootfs就行了。由此可见对于不同的<strong>linux</strong>发行版, <strong>bootfs</strong>基本是一致的, <strong>rootfs</strong>会有差别，因此不同的发行版可以公用<strong>bootfs</strong>。</p></blockquote><p><strong>分层的镜像</strong></p><img src=../../pics/image-20211130135409596.png alt=image-20211130135409596 style=zoom:50%><p>Docker镜像都是只读的，当容器启动时，一个新的可写层被加载到<strong>镜像的顶部</strong>，这一层通常被称为<strong>容器层</strong>，容器层之下都叫<strong>镜像层</strong>。</p><a href=#5-docker容器数据卷><h2 id=5-docker容器数据卷><span class=hanchor arialabel=Anchor># </span>5 Docker容器数据卷</h2></a><p>docker将运用与运行的环境打包形成容器运行，运行可以伴随着容器，但是我们对数据的要求希望是持久化的.但是docker容器产生的数据，如果不通过<code>docker commit</code>生成新的镜像，使得数据做为镜像的一部分保存下来，那么当容器删除后，数据自然也就没有了。</p><p>为了能保存数据在docker中我们使用卷:卷就是目录或文件，存在于一个或多个容器中，由<strong>docker</strong>挂载到容器，但不属于联合文件系统，因此能够绕过Union FileSystem提供一些用于持续存储或共享数据的特性:卷的设计目的就是数据的持久化，完全独立于容器的生存周期，因此Docker不会在容器删除时删除其挂载的数据卷。</p><p>特点:</p><ol><li>数据卷可在容器之间共享或重用数据</li><li>卷中的更改可以直接生效</li><li>数据卷中的更改不会包含在镜像的更新中</li><li>数据卷的生命周期一直持续到没有容器使用它为止</li></ol><a href=#51-添加数据卷><h3 id=51-添加数据卷><span class=hanchor arialabel=Anchor># </span>5.1 添加数据卷</h3></a><a href=#511-容器内添加><h4 id=511-容器内添加><span class=hanchor arialabel=Anchor># </span>5.1.1 容器内添加</h4></a><a href=#直接命令添加><h5 id=直接命令添加><span class=hanchor arialabel=Anchor># </span>直接命令添加</h5></a><p><code>docker run -it -v /宿主机绝对路径目录:/容器内目录 镜像名</code></p><p>e.g. <code>docker run -it -v /docttt:/doct centos</code></p><blockquote><p>执行后centos中会新建doct目录，宿主机会有docttt目录，但本人使用mac，发现/根目录下并没有相关目录，换到个人文件夹后则出现</p></blockquote><p>若带权限：</p><p><code>docker run -it -v /宿主机绝对路径目录:/容器内目录:ro 镜像名</code></p><p><em>查看数据卷是否挂载成功</em></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211201144342675.png width=auto alt=image-20211201144342675></p><p><em>容器和宿主机之间数据共享</em></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211201144404872.png width=auto alt=image-20211201144404872></p><p><em>容器停止退出后，主机修改后的数据是否同步</em></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211201144418165.png width=auto alt=image-20211201144418165></p><a href=#dockerfile添加><h5 id=dockerfile添加><span class=hanchor arialabel=Anchor># </span>DockerFile添加</h5></a><p>在dockerfile中使用VOLUME指令来给镜像添加一个或多个数据卷：</p><p><code>VOLUME["/dataVolumeContainer","dataVolumeContainer2","/dataVolumeContainer3"]</code></p><blockquote><p>因为出于可移植和分享的考虑，用-v 主机目录:容器目录这种方法不能够直接在Dockerfile中实现。
+由于宿主机目录是依赖于特定宿主机的，并不能够保证在所有的宿主机上都存在这样的特定目录。</p></blockquote><p>在dockerfile中编写：</p><p><img src=https://jieye-ericx.github.io//../../pics/Snipaste_2020-10-03_15-35-37.png width=auto alt></p><p>build后生成镜像：</p><p><img src=https://jieye-ericx.github.io//../../pics/Snipaste_2020-10-03_15-36-01.png width=auto alt></p><p>获得一个新镜像zzyy/centos,run容器</p><p><img src=https://jieye-ericx.github.io//../../pics/Snipaste_2020-10-03_15-36-31.png width=auto alt></p><p>通过上述步骤，容器内的卷目录地址已经知道，对应的主机目录在哪(因为上面没有指定宿主机的目录，所以这里是随机生成的)</p><p><img src=https://jieye-ericx.github.io//../../pics/Snipaste_2020-10-03_15-37-05.png width=auto alt></p><p><strong>主机对应默认地址</strong></p><p><img src=https://jieye-ericx.github.io//../../pics/Snipaste_2020-10-03_15-37-22.png width=auto alt></p><blockquote><p>Docker挂载主机目录Docker访问出现cannot open directory . Permission denied
+解决办法:在挂载目录后多加一个&ndash;privileged=true参数即可</p></blockquote><a href=#52-数据卷容器><h3 id=52-数据卷容器><span class=hanchor arialabel=Anchor># </span>5.2 数据卷容器</h3></a><p>命名(&ndash;name)的容器挂载数据卷，其它容器通过挂载这个(父容器)实现数据共享，挂载数据卷的容器，称之为数据卷容器.</p><blockquote><p>个人理解为用一个镜像生成多个容器，这多个容器他们拥有各自的文件系统，但是在文件系统中都挂上了同一块卷，相当于一个U盘同时插在多个容器上。</p></blockquote><p><strong>例子：</strong></p><ol><li><p>以上一步新建的zzyy/centos为模板并运行3个容器 doc1/doc2/doc3。</p><blockquote><p>根据dockerfile的设定，他们已经具有容器卷/dataVolumeContainer1 /dataVolumeContainer2。</p></blockquote><p>先启动一个父容器doc1，并在dataVolumeContainer2新建测试文件doc1_add.txt</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202211735820.png width=auto alt=image-20211202211735820></p></li><li><p>doc2/doc3 继承doc1（<code>--volumes -from</code>),分别在dataVolumeContainer2各自新增内容</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202211906613.png width=auto alt=image-20211202211906613></p></li><li><p>回到doc1可以看到02/03各自添加的都能共享了</p></li><li><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202211956741.png width=auto alt=image-20211202211956741></p></li><li><p>检查删除doc1、 doc2修改后doc3是否可以访问</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202212022779-8451223.png width=auto alt=image-20211202212022779></p></li><li><p>检查删除doc02后doc3是否访问</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202212042241.png width=auto alt=image-20211202212042241></p></li><li><p>进一步生成doc4，然后删除doc03</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202212101899.png width=auto alt=image-20211202212101899></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202212116830.png width=auto alt=image-20211202212116830></p><p><strong>结论：容器之间配置信息的传递，数据卷的生命周期一直持续到没有容器使用它为止</strong></p></li></ol><a href=#6-dockerfile解析><h2 id=6-dockerfile解析><span class=hanchor arialabel=Anchor># </span>6 DockerFile解析</h2></a><a href=#61-dockerfile简介><h3 id=61-dockerfile简介><span class=hanchor arialabel=Anchor># </span>6.1 DockerFile简介</h3></a><p>Dockerfile是用来构建Docker镜像的构建文件，由一系列命令和参数构成的脚本。</p><p>构建步骤主要为：1.编写Dockerfile文件 2.docker build 3.docker run</p><p>以Centos为例：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl><span class=k>FROM</span><span class=s> scratch</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ADD</span> centos-7-x86_64-docker.tar.xz /<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>LABEL</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.label-schema.schema-version<span class=o>=</span><span class=s2>&#34;1.0&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.label-schema.name<span class=o>=</span><span class=s2>&#34;CentOS Base Image&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.label-schema.vendor<span class=o>=</span><span class=s2>&#34;CentOS&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.label-schema.license<span class=o>=</span><span class=s2>&#34;GPLv2&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.label-schema.build-date<span class=o>=</span><span class=s2>&#34;20201113&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.opencontainers.image.title<span class=o>=</span><span class=s2>&#34;CentOS Base Image&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.opencontainers.image.vendor<span class=o>=</span><span class=s2>&#34;CentOS&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.opencontainers.image.licenses<span class=o>=</span><span class=s2>&#34;GPL-2.0-only&#34;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>    org.opencontainers.image.created<span class=o>=</span><span class=s2>&#34;2020-11-13 00:00:00+00:00&#34;</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>CMD</span> <span class=p>[</span><span class=s2>&#34;/bin/bash&#34;</span><span class=p>]</span><span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><a href=#docker执行dockerfile的大致流程><h3 id=docker执行dockerfile的大致流程><span class=hanchor arialabel=Anchor># </span>Docker执行Dockerfile的大致流程</h3></a><ol><li>docker 从基础镜像运行一个容器</li><li>执行一-条指令并对容器作出修改</li><li>执行类似docker commit的操作提交一个新的镜像层</li><li>docker再基于刚提交的镜像运行一一个新容器</li><li>执行dockerfile中的 下一条指令直到所有指令都执行完成</li></ol><p>从应用软件的角度来看，Dockerfile、Docker镜像与Docker容器分别代表软件的三个不同阶段，Dockerfile是软件的原材料,Docker镜像是软件的交付品,Docker容器则可以认为是包括软件的整个运行环境。Dockerfile面向开发，Docker镜像成为交付标准，Docker容器则涉及部署与运维，三者缺一不可，合力充当Docker体系的基石。</p><img src=../../pics/image-20211202213317693.png alt=image-20211202213317693 style=zoom:75%><ol><li><p>Dockerfile，需要定义一个Dockerfile，Dockerfile定 义了进程需要的一切东西。Dockerfile涉 及的内容包括执行代码或者是文件、环境变量、依赖包、运行时环境、动态链接库、操作系统的发行版、服务进程和内核进程(当应用进程需要和系统服务和内核进程打交道，这时需要考虑如何设计namespace的权限控制)等等;</p></li><li><p>Docker镜像，在用Dockerfile定义一文件之后，docker build时会产生- -个Docker镜像，当运行Docker镜像时，会真正开始提供服务;</p></li><li><p>Docker容器，容器是直接提供服务的。</p></li></ol><a href=#62-dockerfile-语法><h3 id=62-dockerfile-语法><span class=hanchor arialabel=Anchor># </span>6.2 DockerFile 语法</h3></a><ol><li>每条保留字指令都必须为大写字母且后面要跟随至少一个参数.</li><li>指令按照从上到下顺序执行.</li><li><code>#</code>表示注释.</li><li>每条指令都会创建一个新的镜像层，并对镜像进行提交.</li></ol><p><strong>保留字：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl><span class=k>FROM</span><span class=s> 基础镜像，当前新镜像是基于哪个镜像的</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>MAINTAINER</span><span class=s> 镜像维护者的姓名和邮箱地址</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> 容器构建时需要运行的命令<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>EXPOSE</span><span class=s> 当前容器对外暴露出的端口</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>WORKDIR</span><span class=s> 指定在创建容器后，终端默认登陆的进来工作目录，一个落脚点</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> 用来在构建镜像过程中设置环境变量<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ADD</span> 将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>COPY</span> 类似ADD，拷贝文件和目录到镜像中。将从构建上下文目录中 &lt;源路径&gt; 的文件/目录复制到新的一层的镜像内的 &lt;目标路径&gt; 位置 COPY src dest / COPY <span class=o>[</span><span class=s2>&#34;src&#34;</span>, <span class=s2>&#34;dest&#34;</span><span class=o>]</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>VOLUME</span><span class=s> 容器数据卷，用于数据保存和持久化工作</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>CMD</span> 指定一个容器启动时要运行的命令,Dockerfile 中可以有多个 CMD 指令，但只有最后一个生效，CMD 会被 docker run 之后的参数替换<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENTRYPOINT</span> 指定一个容器启动时要运行的命令,ENTRYPOINT 的目的和 CMD 一样，都是在指定容器启动程序及参数,但与CMD不同的是在docker run后追加<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ONBUILD</span> 当构建一个被继承的Dockerfile时运行命令，父镜像在被子继承后父镜像的onbuild被触发<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202214734383.png width=auto alt=image-20211202214734383></p><a href=#63-通过dockerfile构建镜像><h3 id=63-通过dockerfile构建镜像><span class=hanchor arialabel=Anchor># </span>6.3 通过Dockerfile构建镜像</h3></a><a href=#631-base-镜像scratch><h4 id=631-base-镜像scratch><span class=hanchor arialabel=Anchor># </span>6.3.1 Base 镜像(scratch)</h4></a><p>Docker Hub中 99%的镜像都是通过在base镜像中安装和配置需要的软件构建出来的。</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211202215030615.png width=auto alt=image-20211202215030615></p><a href=#632-自定义镜像mycentos><h4 id=632-自定义镜像mycentos><span class=hanchor arialabel=Anchor># </span>6.3.2 自定义镜像mycentos</h4></a><p>已知官方镜像的三个特点：</p><img src=../../pics/image-20211202215125533.png alt=image-20211202215125533 style=zoom:50%><p>自定义mycentos目的使我们自己的镜像具备如下:</p><ol><li>登陆后的默认路径</li><li>vim编辑器</li><li>查看网络配置ifconfig支持</li></ol><p><strong>操作步骤</strong></p><ol><li><p>准备Dockerfile文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl><span class=k>FROM</span><span class=s> centos</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>MAINTAINER</span><span class=s> rax&lt;rax@126.com&gt;</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c># 设置环境变量</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> MYPATH /usr/local<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>WORKDIR</span><span class=s> $MYPATH </span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> yum -y install vim<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> yum -y install net-tools<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>EXPOSE</span><span class=s> 80</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>CMD</span> <span class=nb>echo</span> <span class=nv>$MYPATH</span><span class=err>
+</span></span></span></code></pre></td></tr></table></div></div></li><li><p>构建</p><p><code>docker build -t 新镜像名字:TAG .</code>（注意后面有个点，表示当前路径）</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204132129842.png width=auto alt=image-20211204132129842></p></li><li><p>运行</p><p><code>docker run -it 新镜像名字:TAG</code></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204132230129.png width=auto alt=image-20211204132230129></p></li><li><p>列出镜像的变更历史</p><p><code>docker history 镜像名</code></p></li></ol><a href=#64-cmdentrypoint的区别><h3 id=64-cmdentrypoint的区别><span class=hanchor arialabel=Anchor># </span>6.4 CMD/ENTRYPOINT的区别</h3></a><p>两者都是指定一个容器启动时要运行的命令.</p><a href=#641-cmd><h4 id=641-cmd><span class=hanchor arialabel=Anchor># </span>6.4.1 CMD</h4></a><p>Dockerfile中可以有多个CMD指令，但只有最后一个生效，CMD会被<code>docker run</code>之后的参数替换,如<code>docker run -it -p 8080:8080 tomcat ls -l</code>.</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204132947048.png width=auto alt=image-20211204132947048></p><p>可以发现tomcat并没有启动，但是在dockerfile中设置了：</p><img src=../../pics/image-20211204133106376.png alt=image-20211204133106376 style=zoom:50%>
+<a href=#642-entrypoint><h4 id=642-entrypoint><span class=hanchor arialabel=Anchor># </span>6.4.2 ENTRYPOINT</h4></a><p><code>docker run</code>之后的参数会被当做参数传递给 ENTRYPOINT 之后形成新的命令组合.</p><p><strong>案例</strong></p><p>制作可以查询IP信息的容器,首先做一个CMD版本用于比较:</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204133715951.png width=auto alt=image-20211204133715951></p><blockquote><p>curl的命令解释</p><p><strong>curl</strong>命令可以用来执行下载、发送各种<strong>HTTP</strong>请求，指定<strong>HTTP</strong>头部等操作。</p><p>如果系统没有<strong>curl</strong>可以使用<strong>yum install curl</strong>安装，也可以下载安装。
+<strong>curl是将下载文件输出到stdout</strong>
+使用命令: curl http://www .baidu.com
+执行后，www.baidu.com的html就会显示在屏幕上了</p><p>这是最简单的使用方法。用这个命令获得了htp://curl.haxx.se指向的页面，同样，如果这里的URL指向的是一个文件或者一幅图都可以直接下载到本地。如果下载的是HTML文档，那么缺省的将只显示文件头部，即HTML文档的header。要全部显示，请加参数-i</p></blockquote><p>若加上参数<code>-i</code>,如下：</p><img src=../../pics/image-20211204134648910.png alt=image-20211204134648910 style=zoom:50%><p>可以看到可执行文件找不到的报错，**executable file not found。**之前说过，**跟在镜像名后面的是command,运行时会替换CMD的默认值。**因此这里的<code>-i</code>替换了原来的CMD，而不是添加在原来的<code>curl -s htp://ip.cn</code>后面。而<code>-i</code>根本不是命令，所以自然找不到。
+那么如果希望加入<code>-i</code>这参数，我们就必须重新完整的输入这个命令:</p><p><code>docker run myip curl -s http://ip.cn -i</code></p><p>而使用<strong>ENTRYPOINT</strong>时，则可以实现：</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204134558115.png width=auto alt=image-20211204134558115></p><a href=#65-综合案例><h3 id=65-综合案例><span class=hanchor arialabel=Anchor># </span>6.5 综合案例</h3></a><a href=#651-自定义tomcat><h4 id=651-自定义tomcat><span class=hanchor arialabel=Anchor># </span>6.5.1 自定义Tomcat</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /zzyy/mydockerfile/tomcat9
+</span></span><span class=line><span class=cl>touch c.txt
+</span></span><span class=line><span class=cl><span class=c1># 将jdk和tomcat安装的压缩包拷贝进上一步目录</span>
+</span></span></code></pre></td></tr></table></div></div><p>在当前目录下新建Dockerfile文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-dockerfile data-lang=dockerfile><span class=line><span class=cl><span class=k>FROM</span><span class=s> centos</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>MAINTAINER</span><span class=s> zzyy&lt;xxx@126.com&gt;</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#把宿主机当前上下文的c .txt拷贝到容器/usr/local/路径下</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>COPY</span> c.txt /usr/local/cincontainer.txt<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#把java与tomcat添加到容器中</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ADD</span> jdk-8u171-linux x64.tar.gz /usr/local/ <span class=c1>#解压缩拷贝</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ADD</span> apache-tomcat-9.0.8.tar.gz /usr/local/<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#安装vim编辑器</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>RUN</span> yum -y install vim<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#设置工 作访问时候的WORKDIR路径， 登录落脚点</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> MYPATH /usr/local<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>WORKDIR</span><span class=s> $MYPATH</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#配:置java与tomcat环境变量</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> JAVA_ HOME /usr/local/jdk1.8.0_171<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> CLASSPATH <span class=nv>$JAVA_</span> HOME/lib/dt.jar:<span class=nv>$JAVA_</span> HOME/lib/tools.jar<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> CATALINA_ HOME /usr/local/apache-tomcat-9.0.8<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> CATALINA_ BASE /usr/ocal/apache-tomcat-9.0.8<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>ENV</span> PATH <span class=nv>$PATH</span>:<span class=nv>$JAVA_</span> HOME/bin:<span class=nv>$CATALINA_</span> HOME/ib:<span class=nv>$CATALINA_</span> HOME/bin<span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#容器运行时监听的端口</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>EXPOSE</span><span class=s> 8080</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>#启动时运行tomcat</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c># ENTRYPOINT [&#34;/usrl/local/apache-tomcat-9.0.8/bin/startup.sh&#34; ]</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c># CMD [&#34;/usr/local/apache-tomcat-9.0.8/bin/catalina.sh&#34;,&#34;run&#34;]</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>CMD</span> /usr/local/apache-tomcat-9.0.8/bin/startup.sh <span class=o>&amp;&amp;</span> tail -F /usr/local/apache-tomcat-9.0.8/in/logs/catalina.out<span class=err>
+</span></span></span></code></pre></td></tr></table></div></div><p>构建：</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204135937106.png width=auto alt=image-20211204135937106></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204140106215.png width=auto alt=image-20211204140106215></p><p>运行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker run -d -p 9080:8080 -name myt9 <span class=c1>#容器的名字</span>
+</span></span><span class=line><span class=cl>-v /zyuse/mydockerfiletomcat9/test:/usrlocal/apache-tomcat9.0.8/webapps/test <span class=c1>#添加容器卷</span>
+</span></span><span class=line><span class=cl>-v /zzyyuse/mydockerfile/tomcat9/tomcat9logs/:/usrlocal/apache-tomcat-9.0.8/logs -privileged<span class=o>=</span><span class=nb>true</span> zzyytomcat9
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204140414539.png width=auto alt=image-20211204140414539></p><blockquote><p>Docker挂载主机目录Docker访问出现cannot open directory : Permission denied解决办法:在挂载目录后多加一个-privileged=true参数即可</p></blockquote><p>验证:</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204140905503.png width=auto alt=image-20211204140905503></p><p>部署外部网页：</p><p>在宿主机的映射对应目录中放入文件：</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204141003758.png width=auto alt=image-20211204141003758></p><p>在浏览器中，访问对应域名下<code>/test/a.jsp</code>即可。</p><a href=#66-总结><h3 id=66-总结><span class=hanchor arialabel=Anchor># </span>6.6 总结</h3></a><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204141111986.png width=auto alt=image-20211204141111986></p><a href=#7-docker常用安装><h2 id=7-docker常用安装><span class=hanchor arialabel=Anchor># </span>7 Docker常用安装</h2></a><a href=#71-总体步骤><h3 id=71-总体步骤><span class=hanchor arialabel=Anchor># </span>7.1 总体步骤</h3></a><p>搜索镜像->拉取镜像->查看镜像->启动镜像->停止容器->移除容器</p><a href=#72-安装mysql><h3 id=72-安装mysql><span class=hanchor arialabel=Anchor># </span>7.2 安装Mysql</h3></a><ol><li><p>docker hub 上查找mysql镜像</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204141309048.png width=auto alt=image-20211204141309048></p></li><li><p>从docker hub(阿里云加速器)拉取mysql镜像到本地标签为5.6</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204141338583.png width=auto alt=image-20211204141338583></p></li><li><p>使用mysql5.6镜像创建容器(也叫运行镜像)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker run -p 12345:3306 --name mysql
+</span></span><span class=line><span class=cl>-v /ggcc/mysql/conf:/etc/mysql/conf.d
+</span></span><span class=line><span class=cl>-v /ggcc/mysql/logs:/logs
+</span></span><span class=line><span class=cl>-v /ggcc/mysql/data:/var/lib/mysql
+</span></span><span class=line><span class=cl>-e <span class=nv>MYSQL_ROOT_PASSWORD</span><span class=o>=</span><span class=m>123456</span> -d mysql:5.6
+</span></span><span class=line><span class=cl>----------------------------------------------
+</span></span><span class=line><span class=cl>命令说明:
+</span></span><span class=line><span class=cl>-p 12345:3306:将主机的12345端口映射到docker容器的3306端口。
+</span></span><span class=line><span class=cl>-name mysq:运行服务名字
+</span></span><span class=line><span class=cl>-V /ggcc/mysql/conf:/etc/mysql/conf.d :将主机/zzyyuse/mysq<span class=p>|</span>录下的conf/my.cnf挂载到容器的/etc/mysql/conf.d
+</span></span><span class=line><span class=cl>-v /ggcc/mysqlogs/logs: 将主机/zzyyuse/mysq<span class=p>|</span>目 录下的logs 目录挂载到容器的/logs。
+</span></span><span class=line><span class=cl>-V /ggcc/mysqldata:/var/lib/mysql :将主机lzzyyuse/mysql目录下的data目录挂载到容器的/var/lib/mysql .
+</span></span><span class=line><span class=cl>-e MYSQL_ ROOT_ <span class=nv>PASSWORD</span><span class=o>=</span>123456: 初始化root用户的密码。.
+</span></span><span class=line><span class=cl>-d mysql:5.6:后台程序运行mysql5.6
+</span></span><span class=line><span class=cl>----------------------------------------------
+</span></span><span class=line><span class=cl>docker <span class=nb>exec</span> -it Mysql运行成功后的容器ID /bin/bash
+</span></span><span class=line><span class=cl>----------------------------------------------
+</span></span><span class=line><span class=cl>数据备份小测试
+</span></span><span class=line><span class=cl>docker <span class=nb>exec</span> mysql服务容器ID sh -c <span class=s1>&#39;exec mysqldump --all-databases -uroot -p&#34;123456&#34;&#39;</span> &gt;/ggcc/all-database.sql
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204141851277.png width=auto alt=image-20211204141851277></p></li><li><p>数据备份测试：</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204141940982.png width=auto alt=image-20211204141940982></p></li></ol><a href=#73-安装redis><h3 id=73-安装redis><span class=hanchor arialabel=Anchor># </span>7.3 安装Redis</h3></a><ol><li><p>从docker hub上(阿里云加速器)拉取redis镜像到本地标签为：3.2</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142111662.png width=auto alt=image-20211204142111662></p></li><li><p>使用redis3.2镜像创建容器(也叫运行镜像)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>docker run -p 6379:6379 -v /ggcc/myredis/data:/data -v /ggcc/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf -d redis redis-server /usr/local/etc/redis/redis.conf --appendonly yes
+</span></span></code></pre></td></tr></table></div></div></li><li><p>在主机/ggcc/myredis/conf/redis.conf目录上新建redis.conf文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vim /ggcc/myredis/conf/redis.conf/redis.conf
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>...
+</span></span></code></pre></td></tr></table></div></div></li><li><p>测试 redis-cli连接</p><p><code>docker exec -it 运行着redis服务容器的ID redis-cli</code></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142358105.png width=auto alt=image-20211204142358105></p></li><li><p>测试持久化文件生成</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142411901.png width=auto alt=image-20211204142411901></p></li></ol><a href=#8-发布镜像到云><h2 id=8-发布镜像到云><span class=hanchor arialabel=Anchor># </span>8 发布镜像到云</h2></a><a href=#81-阿里云><h3 id=81-阿里云><span class=hanchor arialabel=Anchor># </span>8.1 阿里云</h3></a><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142453916.png width=auto alt=image-20211204142453916></p><a href=#81-生成镜像><h3 id=81-生成镜像><span class=hanchor arialabel=Anchor># </span>8.1 生成镜像</h3></a><ol><li><p>前面的Dockerfile</p></li><li><p>从容器中创建一个新的镜像</p><p><code>docker commit [OPTIONS] 容器ID [REPOSITORY[:TAG]]</code></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142611069.png width=auto alt=image-20211204142611069></p></li></ol><a href=#82-推送到阿里云><h3 id=82-推送到阿里云><span class=hanchor arialabel=Anchor># </span>8.2 推送到阿里云</h3></a><ol><li><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142725727.png width=auto alt=image-20211204142725727></p></li><li><p>阿里云开发者平台</p><p><a href=https://promotion.aliyun.com/ntms/act/kubernetes.html rel=noopener>https://promotion.aliyun.com/ntms/act/kubernetes.html</a></p><p>创建镜像仓库</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142747218.png width=auto alt=image-20211204142747218></p></li><li><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo docker login --username<span class=o>=</span>white3e registry.cn-shenzhen.aliyuncs.com
+</span></span><span class=line><span class=cl>sudo docker tag <span class=o>[</span>ImageId<span class=o>]</span> registry.cn-shenzhen.aliyuncs.com/ggccqq/mycentos:<span class=o>[</span>镜像版本号<span class=o>]</span>
+</span></span><span class=line><span class=cl>sudo docker push registry.cn-shenzhen.aliyuncs.com/ggccqq/mycentos:<span class=o>[</span>镜像版本号<span class=o>]</span>
+</span></span><span class=line><span class=cl>其中<span class=o>[</span>ImageId<span class=o>][</span>镜像版本<span class=o>]</span>自己填写
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142828359.png width=auto alt=image-20211204142828359></p></li><li><p>公有云可以查询得到</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142858198.png width=auto alt=image-20211204142858198></p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142901490.png width=auto alt=image-20211204142901490></p></li><li><p>将阿里云上的镜像下载到本地</p><p><img src=https://jieye-ericx.github.io//../../pics/image-20211204142923943.png width=auto alt=image-20211204142923943></p></li></ol></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

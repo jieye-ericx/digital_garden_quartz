@@ -1,0 +1,227 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="1 MySQL的数据目录 1 MySQL8的主要目录结构  数据库文件目录  1 2 3 4 5 6 7  mysql> show variables like 'datadir'; +---------------+-----------------+ | Variable_name | Value | +---------------+-----------------+ | datadir | /var/lib/mysql/ | +---------------+-----------------+ 1 row in set (0."><meta property="og:title" content><meta property="og:description" content="1 MySQL的数据目录 1 MySQL8的主要目录结构  数据库文件目录  1 2 3 4 5 6 7  mysql> show variables like 'datadir'; +---------------+-----------------+ | Variable_name | Value | +---------------+-----------------+ | datadir | /var/lib/mysql/ | +---------------+-----------------+ 1 row in set (0."><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/1-MySQL%E7%9A%84%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="1 MySQL的数据目录 1 MySQL8的主要目录结构  数据库文件目录  1 2 3 4 5 6 7  mysql> show variables like 'datadir'; +---------------+-----------------+ | Variable_name | Value | +---------------+-----------------+ | datadir | /var/lib/mysql/ | +---------------+-----------------+ 1 row in set (0."><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/1%20MySQL%e7%9a%84%e6%95%b0%e6%8d%ae%e7%9b%ae%e5%bd%95.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#1-mysql8的主要目录结构>1 MySQL8的主要目录结构</a></li><li><a href=#2-数据库和文件系统的关系>2 数据库和文件系统的关系</a><ol><li><a href=#21-查看默认数据库>2.1 查看默认数据库</a></li><li><a href=#22-数据库在文件系统中的表示>2.2 数据库在文件系统中的表示</a></li><li><a href=#23-表在文件系统中的表示>2.3 表在文件系统中的表示</a></li><li><a href=#24-小结>2.4 小结</a></li></ol></li></ol></nav></details></aside><a href=#1-mysql的数据目录><h1 id=1-mysql的数据目录><span class=hanchor arialabel=Anchor># </span>1 MySQL的数据目录</h1></a><a href=#1-mysql8的主要目录结构><h2 id=1-mysql8的主要目录结构><span class=hanchor arialabel=Anchor># </span>1 MySQL8的主要目录结构</h2></a><ol><li>数据库文件目录</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mysql&gt; show variables like <span class=s1>&#39;datadir&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>+---------------+-----------------+
+</span></span><span class=line><span class=cl><span class=p>|</span> Variable_name <span class=p>|</span> Value           <span class=p>|</span>
+</span></span><span class=line><span class=cl>+---------------+-----------------+
+</span></span><span class=line><span class=cl><span class=p>|</span> datadir       <span class=p>|</span> /var/lib/mysql/ <span class=p>|</span>
+</span></span><span class=line><span class=cl>+---------------+-----------------+
+</span></span><span class=line><span class=cl><span class=m>1</span> row in <span class=nb>set</span> <span class=o>(</span>0.04 sec<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>从结果中可以看出，在我的计算机上MySQL的数据目录就是 /var/lib/mysql/ 。</p><ol start=2><li><p>相关命令目录</p><p>相关命令目录：<code>/usr/bin</code>（mysqladmin、mysqlbinlog、mysqldump等命令）和<code>/usr/sbin</code>。</p></li><li><p>配置文件目录</p><p>配置文件目录：<code>/usr/share/mysql-8.0</code>（命令及配置文件），<code>/etc/mysql（如my.cnf）</code></p></li></ol><a href=#2-数据库和文件系统的关系><h2 id=2-数据库和文件系统的关系><span class=hanchor arialabel=Anchor># </span>2 数据库和文件系统的关系</h2></a><a href=#21-查看默认数据库><h3 id=21-查看默认数据库><span class=hanchor arialabel=Anchor># </span>2.1 查看默认数据库</h3></a><p>查看一下在我的计算机上当前有哪些数据库：<code>mysql> SHOW DATABASES;</code>
+可以看到有4个数据库是属于MySQL自带的系统数据库:</p><ol><li><p>mysql
+MySQL 系统自带的核心数据库，它存储了MySQL的用户账户和权限信息，一些存储过程、事件的定义信息，一些运行过程中产生的日志信息，一些帮助信息以及时区信息等。</p></li><li><p>information_schema
+MySQL 系统自带的数据库，这个数据库保存着MySQL服务器 维护的所有其他数据库的信息 ，比如有哪些表、哪些视图、哪些触发器、哪些列、哪些索引。这些信息并不是真实的用户数据，而是一些描述性信息，有时候也称之为元数据 。在系统数据库 information_schema 中提供了一些以innodb_sys 开头的表，用于表示内部系统表。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mysql&gt; SHOW TABLES LIKE <span class=s1>&#39;innodb_sys%&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>+--------------------------------------------+
+</span></span><span class=line><span class=cl><span class=p>|</span> Tables_in_information_schema <span class=o>(</span>innodb_sys%<span class=o>)</span> <span class=p>|</span>
+</span></span><span class=line><span class=cl>+--------------------------------------------+
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_DATAFILES                       <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_VIRTUAL                         <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_INDEXES                         <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_TABLES                          <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_FIELDS                          <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_TABLESPACES                     <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_FOREIGN_COLS                    <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_COLUMNS                         <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_FOREIGN                         <span class=p>|</span>
+</span></span><span class=line><span class=cl><span class=p>|</span> INNODB_SYS_TABLESTATS                      <span class=p>|</span>
+</span></span><span class=line><span class=cl>+--------------------------------------------+
+</span></span><span class=line><span class=cl><span class=m>10</span> rows in <span class=nb>set</span> <span class=o>(</span>0.00 sec<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div></li><li><p>performance_schema
+MySQL 系统自带的数据库，这个数据库里主要保存MySQL服务器运行过程中的一些状态信息，可以用来监控 MySQL 服务的各类性能指标 。包括统计最近执行了哪些语句，在执行过程的每个阶段都花费了多长时间，内存的使用情况等信息。</p></li><li><p>sys
+MySQL 系统自带的数据库，这个数据库主要是通过 视图 的形式把 information_schema 和performance_schema 结合起来，帮助系统管理员和开发人员监控 MySQL 的技术性能。</p></li></ol><a href=#22-数据库在文件系统中的表示><h3 id=22-数据库在文件系统中的表示><span class=hanchor arialabel=Anchor># </span>2.2 数据库在文件系统中的表示</h3></a><p>看一下我的计算机上的数据目录下的内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@atguigu01 mysql<span class=o>]</span><span class=c1># cd /var/lib/mysql</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@atguigu01 mysql<span class=o>]</span><span class=c1># ll</span>
+</span></span><span class=line><span class=cl>总用量 <span class=m>189980</span>
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql       <span class=m>56</span> 7月  <span class=m>28</span> 00:27 auto.cnf
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 7月  <span class=m>28</span> 00:27 binlog.000001
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>820</span> 7月  <span class=m>28</span> 01:00 binlog.000002
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 7月  <span class=m>29</span> 14:08 binlog.000003
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>582</span> 7月  <span class=m>29</span> 16:47 binlog.000004
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 7月  <span class=m>29</span> 16:51 binlog.000005
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 7月  <span class=m>29</span> 16:56 binlog.000006
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 7月  <span class=m>29</span> 17:37 binlog.000007
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql    <span class=m>24555</span> 7月  <span class=m>30</span> 00:28 binlog.000008
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 8月   <span class=m>1</span> 11:57 binlog.000009
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>156</span> 8月   <span class=m>1</span> 23:21 binlog.000010
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>156</span> 8月   <span class=m>2</span> 09:25 binlog.000011
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql     <span class=m>1469</span> 8月   <span class=m>4</span> 01:40 binlog.000012
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>156</span> 8月   <span class=m>6</span> 00:24 binlog.000013
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>179</span> 8月   <span class=m>6</span> 08:43 binlog.000014
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>156</span> 8月   <span class=m>6</span> 10:56 binlog.000015
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql      <span class=m>240</span> 8月   <span class=m>6</span> 10:56 binlog.index
+</span></span><span class=line><span class=cl>-rw-------. <span class=m>1</span> mysql mysql     <span class=m>1676</span> 7月  <span class=m>28</span> 00:27 ca-key.pem
+</span></span><span class=line><span class=cl>-rw-r--r--. <span class=m>1</span> mysql mysql     <span class=m>1112</span> 7月  <span class=m>28</span> 00:27 ca.pem
+</span></span><span class=line><span class=cl>-rw-r--r--. <span class=m>1</span> mysql mysql     <span class=m>1112</span> 7月  <span class=m>28</span> 00:27 client-cert.pem
+</span></span><span class=line><span class=cl>-rw-------. <span class=m>1</span> mysql mysql     <span class=m>1676</span> 7月  <span class=m>28</span> 00:27 client-key.pem
+</span></span><span class=line><span class=cl>drwxr-x---. <span class=m>2</span> mysql mysql     <span class=m>4096</span> 7月  <span class=m>29</span> 16:34 dbtest
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>196608</span> 8月   <span class=m>6</span> 10:58 <span class=c1>#ib_16384_0.dblwr</span>
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql  <span class=m>8585216</span> 7月  <span class=m>28</span> 00:27 <span class=c1>#ib_16384_1.dblwr</span>
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql     <span class=m>3486</span> 8月   <span class=m>6</span> 08:43 ib_buffer_pool
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>12582912</span> 8月   <span class=m>6</span> 10:56 ibdata1
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>50331648</span> 8月   <span class=m>6</span> 10:58 ib_logfile0
+</span></span></code></pre></td></tr></table></div></div><p>这个数据目录下的文件和子目录比较多，除了 information_schema 这个系统数据库外，<strong>其他的数据库在数据目录下都有对应的子目录</strong>。</p><p>以 temp 数据库为例，在MySQL5.7 中打开：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@atguigu02 mysql<span class=o>]</span><span class=c1># cd ./temp</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@atguigu02 temp<span class=o>]</span><span class=c1># ll</span>
+</span></span><span class=line><span class=cl>总用量 <span class=m>1144</span>
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8658</span> 8月  <span class=m>18</span> 11:32 countries.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>114688</span> 8月  <span class=m>18</span> 11:32 countries.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql     <span class=m>61</span> 8月  <span class=m>18</span> 11:32 db.opt
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8716</span> 8月  <span class=m>18</span> 11:32 departments.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>147456</span> 8月  <span class=m>18</span> 11:32 departments.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>3017</span> 8月  <span class=m>18</span> 11:32 emp_details_view.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8982</span> 8月  <span class=m>18</span> 11:32 employees.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>180224</span> 8月  <span class=m>18</span> 11:32 employees.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8660</span> 8月  <span class=m>18</span> 11:32 job_grades.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql  <span class=m>98304</span> 8月  <span class=m>18</span> 11:32 job_grades.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8736</span> 8月  <span class=m>18</span> 11:32 job_history.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>147456</span> 8月  <span class=m>18</span> 11:32 job_history.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8688</span> 8月  <span class=m>18</span> 11:32 jobs.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>114688</span> 8月  <span class=m>18</span> 11:32 jobs.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8790</span> 8月  <span class=m>18</span> 11:32 locations.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>131072</span> 8月  <span class=m>18</span> 11:32 locations.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql   <span class=m>8614</span> 8月  <span class=m>18</span> 11:32 regions.frm
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>114688</span> 8月  <span class=m>18</span> 11:32 regions.ibd
+</span></span></code></pre></td></tr></table></div></div><p>在MySQL8.0中打开：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@atguigu01 mysql<span class=o>]</span><span class=c1># cd ./temp</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@atguigu01 temp<span class=o>]</span><span class=c1># ll</span>
+</span></span><span class=line><span class=cl>总用量 <span class=m>1080</span>
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>131072</span> 7月  <span class=m>29</span> 23:10 countries.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>163840</span> 7月  <span class=m>29</span> 23:10 departments.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>196608</span> 7月  <span class=m>29</span> 23:10 employees.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>114688</span> 7月  <span class=m>29</span> 23:10 job_grades.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>163840</span> 7月  <span class=m>29</span> 23:10 job_history.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>131072</span> 7月  <span class=m>29</span> 23:10 jobs.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>147456</span> 7月  <span class=m>29</span> 23:10 locations.ibd
+</span></span><span class=line><span class=cl>-rw-r-----. <span class=m>1</span> mysql mysql <span class=m>131072</span> 7月  <span class=m>29</span> 23:10 regions.ib
+</span></span></code></pre></td></tr></table></div></div><a href=#23-表在文件系统中的表示><h3 id=23-表在文件系统中的表示><span class=hanchor arialabel=Anchor># </span>2.3 表在文件系统中的表示</h3></a><a href=#231-innodb存储引擎模式><h4 id=231-innodb存储引擎模式><span class=hanchor arialabel=Anchor># </span>2.3.1 InnoDB存储引擎模式</h4></a><ol><li><p>表结构</p><p>为了保存表结构， InnoDB 在 数据目录 下对应的数据库子目录下创建了一个专门用于 描述表结构的文件 ，文件名是这样：</p><p><code>表名.frm</code></p><p>比方说我们在 atguigu 数据库下创建一个名为 test 的表：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mysql&gt; USE atguigu<span class=p>;</span>
+</span></span><span class=line><span class=cl>Database changed
+</span></span><span class=line><span class=cl>mysql&gt; CREATE TABLE <span class=nb>test</span> <span class=o>(</span>
+</span></span><span class=line><span class=cl>    -&gt;     c1 INT
+</span></span><span class=line><span class=cl>    -&gt; <span class=o>)</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>Query OK, <span class=m>0</span> rows affected <span class=o>(</span>0.03 sec<span class=o>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>那在数据库 atguigu 对应的子目录下就会创建一个名为 <code>test.frm</code> 的用于描述表结构的文件。<code>.frm</code>的格式在不同的平台上都是相同的。这个后缀名为``.frm`是以 二进制格式 存储的，我们直接打开是乱码的。</p></li><li><p>表中数据和索引</p><ol><li><p>系统表空间（system tablespace）</p><p>默认情况下，InnoDB会在数据目录下创建一个名为<code>ibdata1</code>大小为 12M 的文件，这个文件就是对应的<strong>系统表空间</strong>在文件系统上的表示。怎么才12M？注意这个文件是<strong>自扩展文件</strong>，当不够用的时候它会自己增加文件大小。</p><p>当然，如果你想让系统表空间对应文件系统上多个实际文件，或者仅仅觉得原来的 ibdata1 这个文件名难听，那可以在MySQL启动时配置对应的文件路径以及它们的大小，比如我们这样修改一下my.cnf 配置文件：
+<code>innodb_data_file_path=data1:512M;data2:512M:autoextend</code></p></li></ol></li></ol><a href=#232-myisam存储引擎模式><h4 id=232-myisam存储引擎模式><span class=hanchor arialabel=Anchor># </span>2.3.2 MyISAM存储引擎模式</h4></a><ol><li><p>表结构
+在存储表结构方面， MyISAM 和 InnoDB 一样，也是在 数据目录 下对应的数据库子目录下创建了一个专门用于描述表结构的文件：</p><p><code>xx.frm</code></p></li><li><p>表中数据和索引
+在MyISAM中的索引全部都是二级索引 ，<strong>该存储引擎的数据和索引是分开存放的</strong>。所以在文件系统中也是使用不同的文件来存储数据文件和索引文件，同时表数据都存放在对应的数据库子目录下。假如 test
+表使用MyISAM存储引擎的话，那么在它所在数据库对应的 atguigu 目录下会为 test 表创建这三个文
+件：<code>表名.ibd test.frm test.ibd</code></p><p>举例：创建一个 MyISAM 表，使用 ENGINE 选项显式指定引擎。因为 InnoDB 是默认引擎。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>CREATE TABLE <span class=sb>`</span>student_myisam<span class=sb>`</span> <span class=o>(</span>
+</span></span><span class=line><span class=cl>  <span class=sb>`</span>id<span class=sb>`</span> bigint NOT NULL AUTO_INCREMENT,
+</span></span><span class=line><span class=cl>  <span class=sb>`</span>name<span class=sb>`</span> varchar<span class=o>(</span>64<span class=o>)</span> DEFAULT NULL,
+</span></span><span class=line><span class=cl>  <span class=sb>`</span>age<span class=sb>`</span> int DEFAULT NULL,
+</span></span><span class=line><span class=cl>  <span class=sb>`</span>sex<span class=sb>`</span> varchar<span class=o>(</span>2<span class=o>)</span> DEFAULT NULL,
+</span></span><span class=line><span class=cl>  PRIMARY KEY <span class=o>(</span><span class=sb>`</span>id<span class=sb>`</span><span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=o>)</span><span class=nv>ENGINE</span><span class=o>=</span>MYISAM <span class=nv>AUTO_INCREMENT</span><span class=o>=</span><span class=m>0</span> DEFAULT <span class=nv>CHARSET</span><span class=o>=</span>utf8mb3<span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div></li></ol><a href=#24-小结><h3 id=24-小结><span class=hanchor arialabel=Anchor># </span>2.4 小结</h3></a><p>举例： 数据库a ， 表b 。</p><ol><li><p>如果表b采用 <code>InnoDB</code> ，``data\a`中会产生1个或者2个文件：</p><ul><li>b.frm ：描述表结构文件，字段长度等</li><li>如果采用 系统表空间 模式的，数据信息和索引信息都存储在 ibdata1 中</li><li>如果采用 独立表空间 存储模式，data\a中还会产生 b.ibd 文件（存储数据信息和索引信息）
+此外：</li></ul><ol><li>MySQL5.7 中会在data/a的目录下生成 db.opt 文件用于保存数据库的相关配置。比如：字符集、比较规则。而MySQL8.0不再提供db.opt文件。</li><li>MySQL8.0中不再单独提供b.frm，而是合并在b.ibd文件中。</li></ol></li><li><p>如果表b采用 MyISAM ，data\a中会产生3个文件：</p></li></ol><ul><li><p>MySQL5.7 中： b.frm ：描述表结构文件，字段长度等。</p><p>MySQL8.0 中 b.xxx.sdi ：描述表结构文件，字段长度等</p></li><li><p>b.MYD (MYData)：数据信息文件，存储数据信息(如果采用独立表存储模式)</p></li><li><p>b.MYI (MYIndex)：存放索引信息文件</p></li></ul></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

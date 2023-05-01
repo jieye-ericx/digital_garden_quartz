@@ -1,0 +1,598 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="1 介绍 自动驾驶被业界视为人工智能发展的下一个风口。
+随着深度强化学习（DRL）的兴起，将相关技术应用于自动驾驶领域，以消除人为导致的交通事故、减少城市停车空间等，成为业界关注的焦点。然而，自动驾驶领域的研究更多的是侧重于感知和预测，与此相对应，在各大学术会议上举办的自动驾驶评测大赛（如CVPR WAD挑战赛、CARLA 自动驾驶挑战赛等）几乎都是以自动驾驶视觉为核心，而不是规划和决策。
+另一方面，自动驾驶以及云计算、大数据的发展也推动了智慧交通这一更大领域的发展。阿里巴巴、腾讯、京东、华为、滴滴等公司均从交通切入智慧城市，大力推广“城市大脑”的概念，而未来的自动驾驶也将与智慧交通更紧密结合。可以预见，随着自动驾驶的发展和普及，未来的智慧交通系统中将以自动驾驶车辆为主，这正是目前的自动驾驶人类驾驶数据训练和学习的模型无法有效处理的。只有引入多车交互博弈的方式，才能更大程度地激发驾驶策略的进化。 SMARTS作为首个支持MARL的自动驾驶仿真平台，将提供Simulator Core（快速且灵活地创建RL模拟环境）、Algorithm Library（集成主流的强化学习算法）、Multi-Agent Trainer（支持大多数多智能体训练范式）、Policy Zoo（支持对社会车辆的实例化）和 Scenario Studio（支持灵活的场景设置），方便参赛者在比赛过程中实现对车辆动力学行为的真实建模，并利用丰富的交通场景进行研究和应用。
+Track 1: 单智能体赛道 赛道1是单智能体赛道，聚焦单智能体多车道巡航，参赛者需要训练模型控制一辆车完成复杂城市道路和车流下的智能驾驶。场景中包含直行道、路口、匝道、环岛等。车辆需要遵循预设的路线，在保证安全的前提下，尽可能快的从起点出发达到终点。
+ Track 2：多智能体赛道 多智能体赛道，聚焦多车协同驾驶。参赛者提交的模型需要控制多辆车完成不同任务下的协同驾驶，包括匝道、路口、环岛等。车辆需要在保证安全的前提下，尽快达到各自的目标位置。"><meta property="og:title" content><meta property="og:description" content="1 介绍 自动驾驶被业界视为人工智能发展的下一个风口。
+随着深度强化学习（DRL）的兴起，将相关技术应用于自动驾驶领域，以消除人为导致的交通事故、减少城市停车空间等，成为业界关注的焦点。然而，自动驾驶领域的研究更多的是侧重于感知和预测，与此相对应，在各大学术会议上举办的自动驾驶评测大赛（如CVPR WAD挑战赛、CARLA 自动驾驶挑战赛等）几乎都是以自动驾驶视觉为核心，而不是规划和决策。
+另一方面，自动驾驶以及云计算、大数据的发展也推动了智慧交通这一更大领域的发展。阿里巴巴、腾讯、京东、华为、滴滴等公司均从交通切入智慧城市，大力推广“城市大脑”的概念，而未来的自动驾驶也将与智慧交通更紧密结合。可以预见，随着自动驾驶的发展和普及，未来的智慧交通系统中将以自动驾驶车辆为主，这正是目前的自动驾驶人类驾驶数据训练和学习的模型无法有效处理的。只有引入多车交互博弈的方式，才能更大程度地激发驾驶策略的进化。 SMARTS作为首个支持MARL的自动驾驶仿真平台，将提供Simulator Core（快速且灵活地创建RL模拟环境）、Algorithm Library（集成主流的强化学习算法）、Multi-Agent Trainer（支持大多数多智能体训练范式）、Policy Zoo（支持对社会车辆的实例化）和 Scenario Studio（支持灵活的场景设置），方便参赛者在比赛过程中实现对车辆动力学行为的真实建模，并利用丰富的交通场景进行研究和应用。
+Track 1: 单智能体赛道 赛道1是单智能体赛道，聚焦单智能体多车道巡航，参赛者需要训练模型控制一辆车完成复杂城市道路和车流下的智能驾驶。场景中包含直行道、路口、匝道、环岛等。车辆需要遵循预设的路线，在保证安全的前提下，尽可能快的从起点出发达到终点。
+ Track 2：多智能体赛道 多智能体赛道，聚焦多车协同驾驶。参赛者提交的模型需要控制多辆车完成不同任务下的协同驾驶，包括匝道、路口、环岛等。车辆需要在保证安全的前提下，尽快达到各自的目标位置。"><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/SMARTS/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="1 介绍 自动驾驶被业界视为人工智能发展的下一个风口。
+随着深度强化学习（DRL）的兴起，将相关技术应用于自动驾驶领域，以消除人为导致的交通事故、减少城市停车空间等，成为业界关注的焦点。然而，自动驾驶领域的研究更多的是侧重于感知和预测，与此相对应，在各大学术会议上举办的自动驾驶评测大赛（如CVPR WAD挑战赛、CARLA 自动驾驶挑战赛等）几乎都是以自动驾驶视觉为核心，而不是规划和决策。
+另一方面，自动驾驶以及云计算、大数据的发展也推动了智慧交通这一更大领域的发展。阿里巴巴、腾讯、京东、华为、滴滴等公司均从交通切入智慧城市，大力推广“城市大脑”的概念，而未来的自动驾驶也将与智慧交通更紧密结合。可以预见，随着自动驾驶的发展和普及，未来的智慧交通系统中将以自动驾驶车辆为主，这正是目前的自动驾驶人类驾驶数据训练和学习的模型无法有效处理的。只有引入多车交互博弈的方式，才能更大程度地激发驾驶策略的进化。 SMARTS作为首个支持MARL的自动驾驶仿真平台，将提供Simulator Core（快速且灵活地创建RL模拟环境）、Algorithm Library（集成主流的强化学习算法）、Multi-Agent Trainer（支持大多数多智能体训练范式）、Policy Zoo（支持对社会车辆的实例化）和 Scenario Studio（支持灵活的场景设置），方便参赛者在比赛过程中实现对车辆动力学行为的真实建模，并利用丰富的交通场景进行研究和应用。
+Track 1: 单智能体赛道 赛道1是单智能体赛道，聚焦单智能体多车道巡航，参赛者需要训练模型控制一辆车完成复杂城市道路和车流下的智能驾驶。场景中包含直行道、路口、匝道、环岛等。车辆需要遵循预设的路线，在保证安全的前提下，尽可能快的从起点出发达到终点。
+ Track 2：多智能体赛道 多智能体赛道，聚焦多车协同驾驶。参赛者提交的模型需要控制多辆车完成不同任务下的协同驾驶，包括匝道、路口、环岛等。车辆需要在保证安全的前提下，尽快达到各自的目标位置。"><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/SMARTS.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#track-1-单智能体赛道>Track 1: 单智能体赛道</a></li><li><a href=#track-2多智能体赛道>Track 2：多智能体赛道</a></li></ol><ol><li><a href=#可能遇到的问题>可能遇到的问题：</a></li></ol><ol><li><a href=#示例>示例</a></li><li><a href=#visualizing-observations>Visualizing Observations</a></li><li><a href=#baseline>Baseline</a><ol><li><a href=#目录内容>目录内容</a></li><li><a href=#dqn相关记录>DQN相关记录</a></li></ol></li></ol><ol><li><a href=#状态空间>状态空间</a></li><li><a href=#动作空间>动作空间</a></li><li><a href=#与gym集成>与GYM集成</a></li><li><a href=#主要类构成>主要类构成</a><ol><li><a href=#agentinterface>AgentInterface</a></li><li><a href=#agent>Agent</a></li><li><a href=#agentspec>AgentSpec</a></li><li><a href=#整合agentagentspecagentinterface>整合Agent,AgentSpec,AgentInterface</a></li></ol></li></ol><ol><li><a href=#scenario>Scenario</a></li></ol></nav></details></aside><a href=#1-介绍><h1 id=1-介绍><span class=hanchor arialabel=Anchor># </span>1 介绍</h1></a><p>自动驾驶被业界视为人工智能发展的下一个风口。</p><p>随着深度强化学习（DRL）的兴起，将相关技术应用于自动驾驶领域，以消除人为导致的交通事故、减少城市停车空间等，成为业界关注的焦点。然而，自动驾驶领域的研究更多的是侧重于感知和预测，与此相对应，在各大学术会议上举办的自动驾驶评测大赛（如CVPR WAD挑战赛、CARLA 自动驾驶挑战赛等）几乎都是以自动驾驶视觉为核心，而不是规划和决策。</p><p>另一方面，自动驾驶以及云计算、大数据的发展也推动了智慧交通这一更大领域的发展。阿里巴巴、腾讯、京东、华为、滴滴等公司均从交通切入智慧城市，大力推广“城市大脑”的概念，而未来的自动驾驶也将与智慧交通更紧密结合。可以预见，随着自动驾驶的发展和普及，未来的智慧交通系统中将以自动驾驶车辆为主，这正是目前的自动驾驶人类驾驶数据训练和学习的模型无法有效处理的。只有引入多车交互博弈的方式，才能更大程度地激发驾驶策略的进化。
+<img src=https://jieye-ericx.github.io//../../../pics/upload-1606094201398-1-6426680-6426718.gif width=auto alt=upload-1606094201398-1></p><p>SMARTS作为首个支持MARL的自动驾驶仿真平台，将提供Simulator Core（快速且灵活地创建RL模拟环境）、Algorithm Library（集成主流的强化学习算法）、Multi-Agent Trainer（支持大多数多智能体训练范式）、Policy Zoo（支持对社会车辆的实例化）和 Scenario Studio（支持灵活的场景设置），方便参赛者在比赛过程中实现对车辆动力学行为的真实建模，并利用丰富的交通场景进行研究和应用。</p><a href=#track-1-单智能体赛道><h2 id=track-1-单智能体赛道><span class=hanchor arialabel=Anchor># </span>Track 1: 单智能体赛道</h2></a><p>赛道1是单智能体赛道，聚焦单智能体多车道巡航，参赛者需要训练模型控制一辆车完成复杂城市道路和车流下的智能驾驶。场景中包含直行道、路口、匝道、环岛等。车辆需要遵循预设的路线，在保证安全的前提下，尽可能快的从起点出发达到终点。</p><p><img src=https://jieye-ericx.github.io//../../../pics/upload-1606093320023-1.jpg width=auto alt=upload-1606093320023-1></p><a href=#track-2多智能体赛道><h2 id=track-2多智能体赛道><span class=hanchor arialabel=Anchor># </span>Track 2：多智能体赛道</h2></a><p>多智能体赛道，聚焦多车协同驾驶。参赛者提交的模型需要控制多辆车完成不同任务下的协同驾驶，包括匝道、路口、环岛等。车辆需要在保证安全的前提下，尽快达到各自的目标位置。</p><p><img src=https://jieye-ericx.github.io//../../../pics/image-20211109110029179.png width=auto alt=image-20211109110029179></p><p>竞赛平台codalab将对参赛选手提交的驾驶模型进行自动评估。为减少评估误差，每个场景将以不同的随机种子运行多次。评估指标会综合考虑驾驶的安全性、行驶速度和行驶距离等。</p><a href=#2-安装><h1 id=2-安装><span class=hanchor arialabel=Anchor># </span>2 安装</h1></a><p>github地址：https://github.com/huawei-noah/SMARTS</p><p>华为SMART有多个子readme，同时还有个文档：https://smarts.readthedocs.io/en/latest/setup.html，readme和文档中同一部分的具体操作也有一定出入，同时网上资料甚少，故配置起来有些麻烦。</p><blockquote><p>根据官方在
+<a href=https://github.com/huawei-noah/SMARTS/issues/1130 rel=noopener>issue</a>中的回复，目前仅支持在MAC和LINUX上部署，同时经过实测，在M1 MAC上貌似无法运行。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git clone https://github.com/huawei-noah/SMARTS.git
+</span></span><span class=line><span class=cl><span class=nb>cd</span> &lt;path/to/SMARTS&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># For Mac OS X users, ensure XQuartz is pre-installed.</span>
+</span></span><span class=line><span class=cl><span class=c1># Install the system requirements. You may use the `-y` option to enable automatic assumption of &#34;yes&#34; to all prompts to avoid timeout from waiting for user input. </span>
+</span></span><span class=line><span class=cl>bash utils/setup/install_deps.sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Setup virtual environment. Presently at least Python 3.7 and higher is officially supported.</span>
+</span></span><span class=line><span class=cl>python3.7 -m venv .venv
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Enter virtual environment to install dependencies.</span>
+</span></span><span class=line><span class=cl><span class=nb>source</span> .venv/bin/activate
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Upgrade pip.</span>
+</span></span><span class=line><span class=cl>pip install --upgrade pip
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#重要！</span>
+</span></span><span class=line><span class=cl>pip install --no-cache-dir -r requirements.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Install smarts with extras as needed. Extras include the following: </span>
+</span></span><span class=line><span class=cl><span class=c1># `camera-obs` - needed for rendering camera sensor observations, and for testing.</span>
+</span></span><span class=line><span class=cl><span class=c1># `test` - needed for testing.</span>
+</span></span><span class=line><span class=cl><span class=c1># `train` - needed for RL training and testing.</span>
+</span></span><span class=line><span class=cl>pip install -e <span class=s1>&#39;.[camera-obs,test,train]&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Run sanity-test and verify they are passing.</span>
+</span></span><span class=line><span class=cl><span class=c1># If tests fail, check &#39;./sanity_test_result.xml&#39; for test report. </span>
+</span></span><span class=line><span class=cl><span class=c1>#sanity-test 应当得到全部通过的结果</span>
+</span></span><span class=line><span class=cl>make sanity-test
+</span></span></code></pre></td></tr></table></div></div><a href=#可能遇到的问题><h2 id=可能遇到的问题><span class=hanchor arialabel=Anchor># </span>可能遇到的问题：</h2></a><ol><li><p>Ubantu make sanity-test 容易出错</p><ol><li><p><img src=https://jieye-ericx.github.io//../../../pics/image-20211116204940410.png width=auto alt=image-20211116204940410></p><p>运行<code>pip install --no-cache-dir -r requirements.txt</code></p><p><img src=https://jieye-ericx.github.io//../../../pics/image-20211116205104510.png width=auto alt=image-20211116205104510></p></li><li><p><img src=https://jieye-ericx.github.io//../../../pics/image-20211208140636998.png width=auto alt=image-20211208140636998></p><p>test_smarts_doesnt_leak_tasks_after_reset 出错：</p><p><a href=https://github.com/huawei-noah/SMARTS/issues/1025 rel=noopener>https://github.com/huawei-noah/SMARTS/issues/1025</a></p><blockquote><p>在我这里是由于使用ssh去连接服务器，没有显示器的缘故,加上-X参数即可</p></blockquote></li></ol></li><li><p>Error! Vehicle &lsquo;car-flow-random-route-bd9c66b3&ndash;6818727485454789403&ndash;2-0.0&rsquo; is not known.</p></li></ol><a href=#3-运行><h1 id=3-运行><span class=hanchor arialabel=Anchor># </span>3 运行</h1></a><p><code>scl COMMAND SUBCOMMAND [OPTIONS] [ARGS]...</code></p><p>COMMAND:</p><ol><li><code>envision</code><ul><li>SUBCOMMAND:<ol><li><code>start</code>: Start envision server</li></ol></li></ul></li><li><code>scenario</code><ul><li>SUBCOMMAND:<ol><li><code>build-all</code>: Generate all scenarios under the given directories</li><li><code>build</code>: Generate a single scenario</li><li><code>clean</code>: Clean generated artifacts</li></ol></li></ul></li><li><code>zoo</code><ul><li>SUBCOMMAND:<ol><li>build: Build a policy, to submit to the agent zoo.</li><li>install: Attempt to install the specified agents from the given paths/url.</li><li>manager: Start the manager process which instantiates workers.</li></ol></li></ul></li><li><code>run</code><ul><li>No subcommands 详情如下</li></ul></li></ol><a href=#示例><h2 id=示例><span class=hanchor arialabel=Anchor># </span>示例</h2></a><p>以运行example中的单agent为例：</p><ol><li><p>构建环境:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 构建单个scenario</span>
+</span></span><span class=line><span class=cl>scl scenario build --clean scenarios/loop
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Build all scenarios under given directories</span>
+</span></span><span class=line><span class=cl>scl scenario build-all ./scenarios ./eval_scenarios
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Clean generated scenario artifacts</span>
+</span></span><span class=line><span class=cl>scl scenario clean scenarios/loop
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>Start envision and serve scenario assets out of ./scenarios 开启可视化页面查看scenarios</p><p>scl envision start &ndash;scenarios ./scenarios</p></blockquote></li><li><p>运行实验：</p></li></ol><p><strong><code>scl run --envision &lt;examples/script_path> &lt;scenarios/path></code></strong></p><blockquote><p>如<code>scl run --envision examples/single_agent.py scenarios/loop</code></p><p>进程开始后，在<code> http://localhost:8081/</code>中会打开可视化窗口。</p></blockquote><ul><li><p>&ndash;envision 开启可视化窗口，文档在
+<a href=https://github.com/huawei-noah/SMARTS/blob/master/envision/README.md rel=noopener>./envision/README.md</a></p></li><li><p>examples下存放示例脚本，scenarios下存放不同的环境。</p></li></ul><a href=#visualizing-observations><h2 id=visualizing-observations><span class=hanchor arialabel=Anchor># </span>Visualizing Observations</h2></a><p>Use the
+<a href=https://github.com/facebookresearch/visdom rel=noopener>Visdom</a> integration to easily visualize the observations.</p><p>Firstly, start the Visdom server in a terminal.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>visdom
+</span></span><span class=line><span class=cl># Open the printed URL in a browser.
+</span></span></code></pre></td></tr></table></div></div><p>Secondly, in a separate terminal, run SMARTS simulation. Enable Visdom in the environment by setting <code>visdom=True</code>. For example:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>env</span> <span class=o>=</span> <span class=n>gym</span><span class=o>.</span><span class=n>make</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;smarts.env:hiway-v0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>scenarios</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;scenarios/loop&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent_specs</span><span class=o>=</span><span class=n>agent_specs</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>visdom</span><span class=o>=</span><span class=n>Tru</span>
+</span></span><span class=line><span class=cl>  <span class=n>e</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>Below is a sample visualization of an agent&rsquo;s camera sensor observations.</p><p><img src=https://jieye-ericx.github.io//../../../pics/visdom.gif width=auto alt=visdom.gif></p><blockquote><p>(Left) Drivable area grid map. (Center) Occupancy grid map. (Right) Top-down RGB image.</p></blockquote><a href=#baseline><h2 id=baseline><span class=hanchor arialabel=Anchor># </span>Baseline</h2></a><a href=#目录内容><h3 id=目录内容><span class=hanchor arialabel=Anchor># </span>目录内容</h3></a><ul><li><code>agents</code>: YAML files and some RLlib-based policy implementations</li><li><code>metrics</code>: Class definition of metrics (default by a basic Metric class)</li><li>networks: Custom network implementations<ul><li><code>communicate.py</code>: Used for Networked agent learning</li></ul></li><li>scenarios: Contains three types of scenarios tested in the paper</li><li>wrappers: Environment wrappers</li><li>evaluate.py: The evaluation program</li><li>run.py: Executes multi-agent training</li></ul><blockquote><p>由于还在开发版本，故有些文件包引用路径/名称有问题</p></blockquote><a href=#dqn相关记录><h3 id=dqn相关记录><span class=hanchor arialabel=Anchor># </span>DQN相关记录</h3></a><p>python3.7 run.py scenarios/two_ways/bid -f marl_benchmark/agents/dqn/baseline-lane-control.yaml</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>agent</span>
+</span></span><span class=line><span class=cl>	<span class=n>interface</span><span class=p>:</span> <span class=n>AgentInterface</span><span class=p>(</span><span class=n>debug</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>event_configuration</span><span class=o>=</span><span class=n>EventConfiguration</span><span class=p>(</span><span class=n>not_moving_time</span><span class=o>=</span><span class=mi>60</span><span class=p>,</span> <span class=n>not_moving_distance</span><span class=o>=</span><span class=mi>1</span><span class=p>),</span> <span class=n>done_criteria</span><span class=o>=</span><span class=n>DoneCriteria</span><span class=p>(</span><span class=n>collision</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>off_road</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>off_route</span><span class=o>=</span><span class=kc>True</span><span class=p>,</span> <span class=n>on_shoulder</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>wrong_way</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>not_moving</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>agents_alive</span><span class=o>=</span><span class=kc>None</span><span class=p>),</span> <span class=n>max_episode_steps</span><span class=o>=</span><span class=mi>1000</span><span class=p>,</span> <span class=n>neighborhood_vehicles</span><span class=o>=</span><span class=n>NeighborhoodVehicles</span><span class=p>(</span><span class=n>radius</span><span class=o>=</span><span class=mi>50</span><span class=p>),</span> <span class=n>waypoints</span><span class=o>=</span><span class=n>Waypoints</span><span class=p>(</span><span class=n>lookahead</span><span class=o>=</span><span class=mi>50</span><span class=p>),</span> <span class=n>road_waypoints</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>drivable_area_grid_map</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>ogm</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>rgb</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>lidar</span><span class=o>=</span><span class=kc>False</span><span class=p>,</span> <span class=n>action</span><span class=o>=&lt;</span><span class=n>ActionSpaceType</span><span class=o>.</span><span class=n>Lane</span><span class=p>:</span> <span class=mi>1</span><span class=o>&gt;</span><span class=p>,</span> <span class=n>vehicle_type</span><span class=o>=</span><span class=s1>&#39;sedan&#39;</span><span class=p>,</span> <span class=n>accelerometer</span><span class=o>=</span><span class=n>Accelerometer</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=n>interface</span>
+</span></span><span class=line><span class=cl>	<span class=n>max_episode_steps</span><span class=p>:</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl>	<span class=n>neighborhood_vehicles</span><span class=p>:</span> <span class=n>NeighborhoodVehicles</span><span class=p>(</span><span class=n>radius</span><span class=o>=</span><span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>waypoints</span><span class=p>:</span> <span class=n>Waypoints</span><span class=p>(</span><span class=n>lookahead</span><span class=o>=</span><span class=mi>50</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=n>action</span><span class=p>:</span> <span class=n>ActionSpaceType</span><span class=o>.</span><span class=n>Lane</span>
+</span></span><span class=line><span class=cl><span class=n>policy</span><span class=p>:</span><span class=o>...</span>
+</span></span><span class=line><span class=cl>	<span class=n>checkpoint_freq</span><span class=p>:</span> <span class=mi>4</span>
+</span></span><span class=line><span class=cl>	<span class=n>checkpoint_at_end</span><span class=p>:</span> <span class=kc>True</span>
+</span></span><span class=line><span class=cl>	<span class=n>max_failures</span><span class=p>:</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl>	<span class=n>resume</span><span class=p>:</span> <span class=kc>False</span>
+</span></span><span class=line><span class=cl>	<span class=n>export_formats</span><span class=p>:</span> <span class=p>[</span><span class=s1>&#39;model&#39;</span><span class=p>,</span> <span class=s1>&#39;checkpoint&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>	<span class=n>stop</span>
+</span></span><span class=line><span class=cl>		<span class=n>time_total_s</span><span class=p>:</span> <span class=mi>14400</span>
+</span></span><span class=line><span class=cl>	<span class=n>config</span>
+</span></span><span class=line><span class=cl>		<span class=n>log_level</span><span class=p>:</span> <span class=n>ERROR</span>
+</span></span><span class=line><span class=cl>		<span class=n>num_workers</span><span class=p>:</span> <span class=mi>60</span>
+</span></span><span class=line><span class=cl>		<span class=n>num_gpus</span><span class=p>:</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>		<span class=n>horizon</span><span class=p>:</span> <span class=mi>1000</span>
+</span></span><span class=line><span class=cl>		<span class=n>env</span><span class=p>:</span> <span class=o>&lt;</span><span class=k>class</span> <span class=err>&#39;</span><span class=nc>baselines</span><span class=o>.</span><span class=n>marl_benchmark</span><span class=o>.</span><span class=n>wrappers</span><span class=o>.</span><span class=n>rllib</span><span class=o>.</span><span class=n>frame_stack</span><span class=o>.</span><span class=n>FrameStack</span><span class=s1>&#39;&gt;</span>
+</span></span><span class=line><span class=cl><span class=n>checkpoint</span><span class=p>:</span> <span class=o>./</span><span class=n>log</span><span class=o>/</span><span class=n>results</span><span class=o>/</span><span class=n>run</span><span class=o>/</span><span class=mi>4</span><span class=n>lane</span><span class=o>-</span><span class=mi>4</span><span class=o>/</span><span class=n>DQN_FrameStack_0_2021</span><span class=o>-</span><span class=mi>01</span><span class=o>-</span><span class=mi>25_16</span><span class=o>-</span><span class=mi>59</span><span class=o>-</span><span class=mi>276</span><span class=n>f728x1g</span><span class=o>/</span><span class=n>checkpoint_4</span><span class=o>/</span><span class=n>checkpoint</span><span class=o>-</span><span class=mi>4</span>
+</span></span><span class=line><span class=cl><span class=n>env_config</span>
+</span></span><span class=line><span class=cl>	<span class=n>custom_config</span>
+</span></span><span class=line><span class=cl>		<span class=n>name</span><span class=p>:</span> <span class=n>FrameStack</span>
+</span></span><span class=line><span class=cl>		<span class=n>num_stack</span><span class=p>:</span> <span class=mi>3</span>
+</span></span><span class=line><span class=cl>		<span class=n>reward_adapter</span><span class=p>:</span> <span class=o>&lt;</span><span class=n>function</span> <span class=n>FrameStack</span><span class=o>.</span><span class=n>get_reward_adapter</span><span class=o>.&lt;</span><span class=nb>locals</span><span class=o>&gt;.</span><span class=n>func</span> <span class=n>at</span> <span class=mh>0x7f38daef8ef0</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>		<span class=n>observation_adapter</span><span class=p>:</span> <span class=o>&lt;</span><span class=n>function</span> <span class=n>FrameStack</span><span class=o>.</span><span class=n>get_observation_adapter</span><span class=o>.&lt;</span><span class=nb>locals</span><span class=o>&gt;.</span><span class=n>func</span> <span class=n>at</span> <span class=mh>0x7f38daef8e60</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>		<span class=n>action_adapter</span><span class=p>:</span> <span class=o>&lt;</span><span class=n>function</span> <span class=n>ActionAdapter</span><span class=o>.</span><span class=n>discrete_action_adapter</span> <span class=n>at</span> <span class=mh>0x7f38dea1e8c0</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>		<span class=n>info_adapter</span><span class=p>:</span> <span class=kc>None</span>
+</span></span><span class=line><span class=cl>		<span class=n>observation_space</span><span class=p>:</span>
+</span></span></code></pre></td></tr></table></div></div><p>输出结果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>Memory</span> <span class=n>usage</span> <span class=n>on</span> <span class=n>this</span> <span class=n>node</span><span class=p>:</span> <span class=mf>102.4</span><span class=o>/</span><span class=mf>125.9</span> <span class=n>GiB</span>
+</span></span><span class=line><span class=cl><span class=n>Using</span> <span class=n>FIFO</span> <span class=n>scheduling</span> <span class=n>algorithm</span><span class=o>.</span>
+</span></span><span class=line><span class=cl><span class=n>Resources</span> <span class=n>requested</span><span class=p>:</span> <span class=mi>0</span><span class=o>/</span><span class=mi>64</span> <span class=n>CPUs</span><span class=p>,</span> <span class=mi>0</span><span class=o>/</span><span class=mi>0</span> <span class=n>GPUs</span><span class=p>,</span> <span class=mf>0.0</span><span class=o>/</span><span class=mf>23.44</span> <span class=n>GiB</span> <span class=n>heap</span><span class=p>,</span> <span class=mf>0.0</span><span class=o>/</span><span class=mf>8.06</span> <span class=n>GiB</span> <span class=n>objects</span>
+</span></span><span class=line><span class=cl><span class=n>Result</span> <span class=n>logdir</span><span class=p>:</span> <span class=o>/</span><span class=n>home</span><span class=o>/</span><span class=n>LiKuiHao</span><span class=o>/</span><span class=n>pycharm</span><span class=o>/</span><span class=n>bl</span><span class=o>/</span><span class=n>baselines</span><span class=o>/</span><span class=n>marl_benchmark</span><span class=o>/</span><span class=n>log</span><span class=o>/</span><span class=n>results</span><span class=o>/</span><span class=n>run</span><span class=o>/</span><span class=n>bid</span><span class=o>-</span><span class=mi>4</span>
+</span></span><span class=line><span class=cl><span class=n>Number</span> <span class=n>of</span> <span class=n>trials</span><span class=p>:</span> <span class=mi>1</span><span class=o>/</span><span class=mi>1</span> <span class=p>(</span><span class=mi>1</span> <span class=n>TERMINATED</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>+----------------------------+------------+-------+--------+------------------+--------+----------+----------------------+----------------------+--------------------+</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=n>Trial</span> <span class=n>name</span>                 <span class=o>|</span> <span class=n>status</span>     <span class=o>|</span> <span class=n>loc</span>   <span class=o>|</span>   <span class=nb>iter</span> <span class=o>|</span>   <span class=n>total</span> <span class=n>time</span> <span class=p>(</span><span class=n>s</span><span class=p>)</span> <span class=o>|</span>     <span class=n>ts</span> <span class=o>|</span>   <span class=n>reward</span> <span class=o>|</span>   <span class=n>episode_reward_max</span> <span class=o>|</span>   <span class=n>episode_reward_min</span> <span class=o>|</span>   <span class=n>episode_len_mean</span> <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>|----------------------------+------------+-------+--------+------------------+--------+----------+----------------------+----------------------+--------------------|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=n>DQN_FrameStack_58ac2_00000</span> <span class=o>|</span> <span class=n>TERMINATED</span> <span class=o>|</span>       <span class=o>|</span>    <span class=mi>478</span> <span class=o>|</span>          <span class=mf>14435.1</span> <span class=o>|</span> <span class=mi>478000</span> <span class=o>|</span>  <span class=mf>243.758</span> <span class=o>|</span>              <span class=mf>505.288</span> <span class=o>|</span>             <span class=o>-</span><span class=mf>46.7317</span> <span class=o>|</span>             <span class=mf>552.54</span> <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>+----------------------------+------------+-------+--------+------------------+--------+----------+----------------------+----------------------+--------------------+</span>
+</span></span><span class=line><span class=cl><span class=n>Number</span> <span class=n>of</span> <span class=n>errored</span> <span class=n>trials</span><span class=p>:</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=o>+----------------------------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=n>Trial</span> <span class=n>name</span>                 <span class=o>|</span>   <span class=c1># failures | error file                                                                                                                          |</span>
+</span></span><span class=line><span class=cl><span class=o>|----------------------------+--------------+-------------------------------------------------------------------------------------------------------------------------------------|</span>
+</span></span><span class=line><span class=cl><span class=o>|</span> <span class=n>DQN_FrameStack_58ac2_00000</span> <span class=o>|</span>            <span class=mi>1</span> <span class=o>|</span> <span class=o>/</span><span class=n>home</span><span class=o>/</span><span class=n>LiKuiHao</span><span class=o>/</span><span class=n>pycharm</span><span class=o>/</span><span class=n>bl</span><span class=o>/</span><span class=n>baselines</span><span class=o>/</span><span class=n>marl_benchmark</span><span class=o>/</span><span class=n>log</span><span class=o>/</span><span class=n>results</span><span class=o>/</span><span class=n>run</span><span class=o>/</span><span class=n>bid</span><span class=o>-</span><span class=mi>4</span><span class=o>/</span><span class=n>DQN_FrameStack_58ac2_00000_0_2022</span><span class=o>-</span><span class=mi>05</span><span class=o>-</span><span class=mi>26_03</span><span class=o>-</span><span class=mi>03</span><span class=o>-</span><span class=mi>21</span><span class=o>/</span><span class=n>error</span><span class=o>.</span><span class=n>txt</span> <span class=o>|</span>
+</span></span><span class=line><span class=cl><span class=o>+----------------------------+--------------+-------------------------------------------------------------------------------------------------------------------------------------+</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=mi>2022</span><span class=o>-</span><span class=mi>05</span><span class=o>-</span><span class=mi>26</span> <span class=mi>07</span><span class=p>:</span><span class=mi>07</span><span class=p>:</span><span class=mi>24</span><span class=p>,</span><span class=mi>157</span>	<span class=n>INFO</span> <span class=n>tune</span><span class=o>.</span><span class=n>py</span><span class=p>:</span><span class=mi>439</span> <span class=o>--</span> <span class=n>Total</span> <span class=n>run</span> <span class=n>time</span><span class=p>:</span> <span class=mf>14643.49</span> <span class=n>seconds</span> <span class=p>(</span><span class=mf>14641.98</span> <span class=n>seconds</span> <span class=k>for</span> <span class=n>the</span> <span class=n>tuning</span> <span class=n>loop</span><span class=p>)</span><span class=o>.</span>
+</span></span><span class=line><span class=cl>   <span class=n>episode_reward_max</span>  <span class=n>episode_reward_min</span>  <span class=n>episode_reward_mean</span>  <span class=o>...</span>  <span class=n>config</span><span class=o>/</span><span class=n>num_gpus</span>  <span class=n>config</span><span class=o>/</span><span class=n>num_workers</span>                                             <span class=n>logdir</span>
+</span></span><span class=line><span class=cl><span class=mi>0</span>          <span class=mf>505.287509</span>           <span class=o>-</span><span class=mf>46.73168</span>           <span class=mf>243.757988</span>  <span class=o>...</span>                <span class=mi>0</span>                   <span class=mi>1</span>  <span class=o>/</span><span class=n>home</span><span class=o>/</span><span class=n>LiKuiHao</span><span class=o>/</span><span class=n>pycharm</span><span class=o>/</span><span class=n>bl</span><span class=o>/</span><span class=n>baselines</span><span class=o>/</span><span class=n>marl_bench</span><span class=o>...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=mi>1</span> <span class=n>rows</span> <span class=n>x</span> <span class=mi>58</span> <span class=n>columns</span><span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#4-实验><h1 id=4-实验><span class=hanchor arialabel=Anchor># </span>4 实验</h1></a><a href=#状态空间><h2 id=状态空间><span class=hanchor arialabel=Anchor># </span>状态空间</h2></a><ul><li><p>single-agent</p><p>重点选取如下状态空间</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>ego_vehicle_state</span><span class=o>=</span><span class=n>EgoVehicleObservation</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=nb>id</span><span class=o>=</span><span class=s1>&#39;SingleAgent-815ef6d1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>position</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>162.34613786</span><span class=p>,</span>  <span class=o>-</span><span class=mf>3.2</span>       <span class=p>,</span>   <span class=mf>0.</span>        <span class=p>]),</span>
+</span></span><span class=line><span class=cl>    <span class=n>bounding_box</span><span class=o>=</span><span class=n>Dimensions</span><span class=p>(</span><span class=n>length</span><span class=o>=</span><span class=mf>3.68</span><span class=p>,</span> <span class=n>width</span><span class=o>=</span><span class=mf>1.47</span><span class=p>,</span> <span class=n>height</span><span class=o>=</span><span class=mf>1.0</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>heading</span><span class=o>=</span><span class=n>Heading</span><span class=p>(</span><span class=o>-</span><span class=mf>1.5707963267948966</span><span class=p>),</span><span class=c1># vehicle heading in radians</span>
+</span></span><span class=line><span class=cl>    <span class=n>speed</span><span class=o>=</span><span class=mf>5.0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>steering</span><span class=o>=-</span><span class=mf>0.0</span><span class=p>,</span><span class=c1># angle of front wheels in radians</span>
+</span></span><span class=line><span class=cl>    <span class=n>yaw_rate</span><span class=o>=</span><span class=mf>4.71238898038469</span><span class=p>,</span><span class=c1># rotational speed in radian per second</span>
+</span></span><span class=line><span class=cl>    <span class=n>road_id</span><span class=o>=</span><span class=s1>&#39;east&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>lane_id</span><span class=o>=</span><span class=s1>&#39;east_0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>lane_index</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>mission</span><span class=o>=</span><span class=n>Mission</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=n>start</span><span class=o>=</span><span class=n>Start</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>position</span><span class=o>=</span><span class=n>Point</span><span class=p>(</span><span class=n>x</span><span class=o>=</span><span class=mf>164.18613785575434</span><span class=p>,</span> <span class=n>y</span><span class=o>=-</span><span class=mf>3.2</span><span class=p>,</span> <span class=n>z</span><span class=o>=</span><span class=mi>0</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=n>heading</span><span class=o>=</span><span class=n>Heading</span><span class=p>(</span><span class=o>-</span><span class=mf>1.5707963267948966</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>            <span class=n>from_front_bumper</span><span class=o>=</span><span class=kc>True</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=n>goal</span><span class=o>=</span><span class=n>EndlessGoal</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>route_vias</span><span class=o>=</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>start_time</span><span class=o>=</span><span class=mf>0.1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>entry_tactic</span><span class=o>=</span><span class=n>TrapEntryTactic</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>wait_to_hijack_limit_s</span><span class=o>=</span><span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>zone</span><span class=o>=</span><span class=kc>None</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=n>exclusion_prefixes</span><span class=o>=</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>            <span class=n>default_entry_speed</span><span class=o>=</span><span class=kc>None</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>        <span class=n>via</span><span class=o>=</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>        <span class=n>vehicle_spec</span><span class=o>=</span><span class=kc>None</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>linear_velocity</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>5.000000e+00</span><span class=p>,</span> <span class=mf>3.061617e-16</span><span class=p>,</span> <span class=mf>0.000000e+00</span><span class=p>]),</span>
+</span></span><span class=line><span class=cl>    <span class=n>angular_velocity</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>]),</span>
+</span></span><span class=line><span class=cl>    <span class=n>linear_acceleration</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>]),</span>
+</span></span><span class=line><span class=cl>    <span class=n>angular_acceleration</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>]),</span>
+</span></span><span class=line><span class=cl>    <span class=n>linear_jerk</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>]),</span>
+</span></span><span class=line><span class=cl>    <span class=n>angular_jerk</span><span class=o>=</span><span class=n>array</span><span class=p>([</span><span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>,</span> <span class=mf>0.</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=p>),</span>
+</span></span></code></pre></td></tr></table></div></div></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># To make car follow the waypoints</span>
+</span></span><span class=line><span class=cl><span class=c1># 1 distance from lane center 自己距离最近的车道中心点距离</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;distance_from_center&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl><span class=c1># 2 relative heading angle from 10 waypoints in 50 forehead waypoints表示车前50个waypoints中选取10个,计算他们的朝向与自己朝向的差</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;heading_errors&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1.0</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1.0</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>10</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl><span class=c1># Car attributes</span>
+</span></span><span class=line><span class=cl><span class=c1># 3 ego speed当前速度</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;speed&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl><span class=c1># 4 ego steering方向盘状态</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;steering&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># To make car learn to slow down, overtake or dodge</span>
+</span></span><span class=line><span class=cl><span class=c1># 5 distance to the closest car in each lane前方车道信息分别计算该车道最近车辆离自己的距离以及发生碰撞所需的时间，共10个量，如果小于5条车道，对应2个指标分别取0</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;lane_dist&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>5</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl><span class=c1># 6 time to collide to the closest car in each lane</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;lane_ttc&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>5</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 7 ego lane closest social vehicle relative speed 离自己最近车辆的相对速度</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;closest_lane_nv_rel_speed&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 交叉路口信息</span>
+</span></span><span class=line><span class=cl><span class=c1># 8 time to collide to the closest car in possible intersection direction 在可能的交叉口方向上与最近的汽车相撞的时间</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;intersection_ttc&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl><span class=c1># 9 distance to the closest car in possible intersection direction 在可能的交叉路口方向上到最近的汽车的距离</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;intersection_distance&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl><span class=c1># 10 intersection closest social vehicle relative speed 路口最近的社会车辆相对速度</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;closest_its_nv_rel_speed&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>1</span><span class=p>,)),</span>
+</span></span><span class=line><span class=cl><span class=c1># 11 intersection closest social vehicle relative position in vehicle heading coordinate 路口最近的社交车辆在车辆航向坐标中的相对位置</span>
+</span></span><span class=line><span class=cl><span class=s2>&#34;closest_its_nv_rel_pos&#34;</span><span class=p>:</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span><span class=n>low</span><span class=o>=-</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>high</span><span class=o>=</span><span class=mf>1e10</span><span class=p>,</span> <span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=mi>2</span><span class=p>,)),</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#动作空间><h2 id=动作空间><span class=hanchor arialabel=Anchor># </span>动作空间</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>ACTION_SPACE</span> <span class=o>=</span> <span class=n>gym</span><span class=o>.</span><span class=n>spaces</span><span class=o>.</span><span class=n>Box</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>low</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([</span><span class=mf>0.0</span><span class=p>,</span> <span class=mf>0.0</span><span class=p>,</span> <span class=o>-</span><span class=mf>1.0</span><span class=p>]),</span> <span class=n>high</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([</span><span class=mf>1.0</span><span class=p>,</span> <span class=mf>1.0</span><span class=p>,</span> <span class=mf>1.0</span><span class=p>]),</span> <span class=n>dtype</span><span class=o>=</span><span class=n>np</span><span class=o>.</span><span class=n>float32</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>原始的连续动作空间有三个量，包含有油门[0, 1]，刹车[0, 1]，方向盘[-1, 1]</p><p>还有别的动作空间供使用，具体可以看安装包里的文档</p><a href=#与gym集成><h2 id=与gym集成><span class=hanchor arialabel=Anchor># </span>与GYM集成</h2></a><p>在
+<a href=https://github.com/huawei-noah/SMARTS/blob/master/examples rel=noopener>examples/</a>目录下，SMARTS提供了一些开箱即用的agent，以其中的<strong>single_agent.py</strong>为例，</p><a href=#主要类构成><h2 id=主要类构成><span class=hanchor arialabel=Anchor># </span>主要类构成</h2></a><p>代理是根据它期望从环境中获得的接口和代理生成的响应来定义的。为了帮助环境和代理之间的交互，我们还引入了适配器。</p><p>主要介绍以下三部分:</p><ol><li><a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent_interface.html#smarts.core.agent_interface.AgentInterface rel=noopener><code>smarts.core.agent_interface.AgentInterface</code></a>:控制SMARTS与agent之间的接口。</li><li><a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent.html#smarts.core.agent.Agent rel=noopener><code>smarts.core.agent.Agent</code></a>:这是agent的大脑，实现由<code>smarts.core.agent.Agent</code>所定义的接口，以给予agent行为。</li><li><strong>Adapters</strong>:适配器在SMARTS和代理之间架起了沟通的桥梁。对代理的输入和输出进行预处理有时很有用，在简单示例中不需要适配器，但要进行更深入的处理，请参阅
+<a href=https://smarts.readthedocs.io/en/latest/sim/adapters.html#adapters rel=noopener>Adapters</a>。</li></ol><a href=#agentinterface><h3 id=agentinterface><span class=hanchor arialabel=Anchor># </span>AgentInterface</h3></a><p><a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent_interface.html#smarts.core.agent_interface.AgentInterface rel=noopener><code>smarts.core.agent_interface.AgentInterface</code></a></p><p>AgentInterface中定义了代理中车辆的<strong>传感器、动作空间</strong>等参数，一些常规车辆的配置已经在
+<a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent_interface.html#smarts.core.agent_interface.AgentType rel=noopener><code>smarts.core.agent_interface.AgentType</code></a> 中被定义，可以像下面这样被实例化：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.agent_interface</span> <span class=kn>import</span> <span class=n>AgentInterface</span><span class=p>,</span> <span class=n>AgentType</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>AgentInterface</span><span class=o>.</span><span class=n>from_type</span><span class=p>(</span><span class=n>AgentType</span><span class=o>.</span><span class=n>Tracker</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>AgentType.Tracker预设提供
+<a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent_interface.html#smarts.core.agent_interface.Waypoints rel=noopener><code>smarts.core.agent_interface.Waypoints</code></a> ，and the trajectory following action space ActionSpaceType.Trajectory, see
+<a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.controllers.html#smarts.core.controllers.ActionSpaceType rel=noopener><code>smarts.core.controllers.ActionSpaceType</code></a> for more available action spaces.</p><img src=../../pics/image-20211208144535947.png alt=image-20211208144535947 style=zoom:33%>
+<img src=../../pics/image-20211208144553780.png alt=image-20211208144553780 style=zoom:33%>
+<a href=#agent><h3 id=agent><span class=hanchor arialabel=Anchor># </span>Agent</h3></a><p><a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent.html#smarts.core.agent.Agent rel=noopener><code>smarts.core.agent.Agent</code></a></p><p>接下来，我们需要定义代理的行为。也就是说，我们希望将上面配置的传感器的观测结果映射到我们选择的动作空间。</p><p>通过实现
+<a href=https://smarts.readthedocs.io/en/latest/api/ rel=noopener><code>smarts.core.agent.Agent</code></a>接口实现:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.bezier_motion_planner</span> <span class=kn>import</span> <span class=n>BezierMotionPlanner</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.agent</span> <span class=kn>import</span> <span class=n>Agent</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ExampleAgent</span><span class=p>(</span><span class=n>Agent</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>target_speed</span> <span class=o>=</span> <span class=mi>10</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>motion_planner</span> <span class=o>=</span> <span class=n>BezierMotionPlanner</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>target_speed</span> <span class=o>=</span> <span class=n>target_speed</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>act</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>obs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>ego</span> <span class=o>=</span> <span class=n>obs</span><span class=o>.</span><span class=n>ego_vehicle_state</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_pose</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([</span><span class=o>*</span><span class=n>ego</span><span class=o>.</span><span class=n>position</span><span class=p>[:</span><span class=mi>2</span><span class=p>],</span> <span class=n>ego</span><span class=o>.</span><span class=n>heading</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># lookahead (at most) 10 waypoints</span>
+</span></span><span class=line><span class=cl>        <span class=n>target_wp</span> <span class=o>=</span> <span class=n>obs</span><span class=o>.</span><span class=n>waypoint_paths</span><span class=p>[</span><span class=mi>0</span><span class=p>][:</span><span class=mi>10</span><span class=p>][</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>dist_to_wp</span> <span class=o>=</span> <span class=n>target_wp</span><span class=o>.</span><span class=n>dist_to</span><span class=p>(</span><span class=n>obs</span><span class=o>.</span><span class=n>ego_vehicle_state</span><span class=o>.</span><span class=n>position</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>target_time</span> <span class=o>=</span> <span class=n>dist_to_wp</span> <span class=o>/</span> <span class=bp>self</span><span class=o>.</span><span class=n>target_speed</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># Here we&#39;ve computed the pose we want to hold given our target</span>
+</span></span><span class=line><span class=cl>        <span class=c1># speed and the distance to the target waypoint.</span>
+</span></span><span class=line><span class=cl>        <span class=n>target_pose_at_t</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=p>[</span><span class=o>*</span><span class=n>target_wp</span><span class=o>.</span><span class=n>pos</span><span class=p>,</span> <span class=n>target_wp</span><span class=o>.</span><span class=n>heading</span><span class=p>,</span> <span class=n>target_time</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># The generated motion planner trajectory is compatible</span>
+</span></span><span class=line><span class=cl>        <span class=c1># with the `ActionSpaceType.Trajectory`</span>
+</span></span><span class=line><span class=cl>        <span class=n>traj</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>motion_planner</span><span class=o>.</span><span class=n>trajectory</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>current_pose</span><span class=p>,</span> <span class=n>target_pose_at_t</span><span class=p>,</span> <span class=n>n</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span> <span class=n>dt</span><span class=o>=</span><span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>traj</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>这里使用<code>BezierMotionPlanner</code>实现一个简单的车道跟踪代理。<code>ExampleAgent.act()</code>的<code>obs</code>参数将包含上述<code>AgentInterface</code>中指定的观察值，并且<code>act</code>方法的返回值也应与所选的<code>ActionSpaceType</code>匹配。（当引入适配器时，此约束将被放松。）</p></blockquote><a href=#agentspec><h3 id=agentspec><span class=hanchor arialabel=Anchor># </span>AgentSpec</h3></a><p><a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent.html#smarts.core.agent.AgentSpec rel=noopener><code>smarts.core.agent.AgentSpec</code></a></p><p>Agent和interface在
+<a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent.html#smarts.core.agent.AgentSpec rel=noopener><code>smarts.core.agent.AgentSpec</code></a>被组合:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>agent_spec</span> <span class=o>=</span> <span class=n>AgentSpec</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>interface</span><span class=o>=</span><span class=n>AgentInterface</span><span class=o>.</span><span class=n>from_type</span><span class=p>(</span><span class=n>AgentType</span><span class=o>.</span><span class=n>Tracker</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># params are passed to the agent_builder when we build the agent</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent_params</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;target_speed&#34;</span><span class=p>:</span> <span class=mi>5</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent_builder</span><span class=o>=</span><span class=n>ExampleAgent</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><a href=https://smarts.readthedocs.io/en/latest/api/smarts.core.agent.html#smarts.core.agent.AgentSpec rel=noopener><code>smarts.core.agent.AgentSpec</code></a> 充当一个容器来存储构建代理所需的信息，这可以在进程之间安全地分发此规范，以帮助实现并行性，一旦将其放置在正确的位置，我们就可以使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>agent</span> <span class=o>=</span> <span class=n>agent_spec</span><span class=o>.</span><span class=n>build_agent</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#整合agentagentspecagentinterface><h3 id=整合agentagentspecagentinterface><span class=hanchor arialabel=Anchor># </span>整合Agent,AgentSpec,AgentInterface</h3></a><p>与scenarios/loop环境运行：</p><p><code>scl run --envision -p 9999 examples/quickstart.py scenarios/loop</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>gym</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.agent</span> <span class=kn>import</span> <span class=n>AgentSpec</span><span class=p>,</span> <span class=n>Agent</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.agent_interface</span> <span class=kn>import</span> <span class=n>AgentInterface</span><span class=p>,</span> <span class=n>AgentType</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.bezier_motion_planner</span> <span class=kn>import</span> <span class=n>BezierMotionPlanner</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>smarts.core.utils.episodes</span> <span class=kn>import</span> <span class=n>episodes</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>ExampleAgent</span><span class=p>(</span><span class=n>Agent</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>target_speed</span> <span class=o>=</span> <span class=mi>10</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>motion_planner</span> <span class=o>=</span> <span class=n>BezierMotionPlanner</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>target_speed</span> <span class=o>=</span> <span class=n>target_speed</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>act</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>obs</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>ego</span> <span class=o>=</span> <span class=n>obs</span><span class=o>.</span><span class=n>ego_vehicle_state</span>
+</span></span><span class=line><span class=cl>        <span class=n>current_pose</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([</span><span class=o>*</span><span class=n>ego</span><span class=o>.</span><span class=n>position</span><span class=p>[:</span><span class=mi>2</span><span class=p>],</span> <span class=n>ego</span><span class=o>.</span><span class=n>heading</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># lookahead (at most) 10 waypoints</span>
+</span></span><span class=line><span class=cl>        <span class=n>target_wp</span> <span class=o>=</span> <span class=n>obs</span><span class=o>.</span><span class=n>waypoint_paths</span><span class=p>[</span><span class=mi>0</span><span class=p>][:</span><span class=mi>10</span><span class=p>][</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>dist_to_wp</span> <span class=o>=</span> <span class=n>target_wp</span><span class=o>.</span><span class=n>dist_to</span><span class=p>(</span><span class=n>obs</span><span class=o>.</span><span class=n>ego_vehicle_state</span><span class=o>.</span><span class=n>position</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>target_time</span> <span class=o>=</span> <span class=n>dist_to_wp</span> <span class=o>/</span> <span class=bp>self</span><span class=o>.</span><span class=n>target_speed</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># Here we&#39;ve computed the pose we want to hold given our target</span>
+</span></span><span class=line><span class=cl>        <span class=c1># speed and the distance to the target waypoint.</span>
+</span></span><span class=line><span class=cl>        <span class=n>target_pose_at_t</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=p>[</span><span class=o>*</span><span class=n>target_wp</span><span class=o>.</span><span class=n>pos</span><span class=p>,</span> <span class=n>target_wp</span><span class=o>.</span><span class=n>heading</span><span class=p>,</span> <span class=n>target_time</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># The generated motion planner trajectory is compatible</span>
+</span></span><span class=line><span class=cl>        <span class=c1># with the `ActionSpaceType.Trajectory`</span>
+</span></span><span class=line><span class=cl>        <span class=n>traj</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>motion_planner</span><span class=o>.</span><span class=n>trajectory</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=n>current_pose</span><span class=p>,</span> <span class=n>target_pose_at_t</span><span class=p>,</span> <span class=n>n</span><span class=o>=</span><span class=mi>10</span><span class=p>,</span> <span class=n>dt</span><span class=o>=</span><span class=mf>0.5</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>traj</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>AGENT_ID</span> <span class=o>=</span> <span class=s2>&#34;Agent-007&#34;</span>
+</span></span><span class=line><span class=cl><span class=n>agent_spec</span> <span class=o>=</span> <span class=n>AgentSpec</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>interface</span><span class=o>=</span><span class=n>AgentInterface</span><span class=o>.</span><span class=n>from_type</span><span class=p>(</span><span class=n>AgentType</span><span class=o>.</span><span class=n>Tracker</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent_params</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;target_speed&#34;</span><span class=p>:</span> <span class=mi>5</span><span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent_builder</span><span class=o>=</span><span class=n>ExampleAgent</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>env</span> <span class=o>=</span> <span class=n>gym</span><span class=o>.</span><span class=n>make</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;smarts.env:hiway-v0&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>scenarios</span><span class=o>=</span><span class=p>[</span><span class=s2>&#34;scenarios/loop&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent_specs</span><span class=o>=</span><span class=p>{</span><span class=n>AGENT_ID</span><span class=p>:</span> <span class=n>agent_spec</span><span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=n>episode</span> <span class=ow>in</span> <span class=n>episodes</span><span class=p>(</span><span class=n>n</span><span class=o>=</span><span class=mi>100</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>agent</span> <span class=o>=</span> <span class=n>agent_spec</span><span class=o>.</span><span class=n>build_agent</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>observations</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>reset</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>episode</span><span class=o>.</span><span class=n>record_scenario</span><span class=p>(</span><span class=n>env</span><span class=o>.</span><span class=n>scenario_log</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>dones</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&#34;__all__&#34;</span><span class=p>:</span> <span class=kc>False</span><span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>while</span> <span class=ow>not</span> <span class=n>dones</span><span class=p>[</span><span class=s2>&#34;__all__&#34;</span><span class=p>]:</span>
+</span></span><span class=line><span class=cl>        <span class=n>agent_obs</span> <span class=o>=</span> <span class=n>observations</span><span class=p>[</span><span class=n>AGENT_ID</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>action</span> <span class=o>=</span> <span class=n>agent</span><span class=o>.</span><span class=n>act</span><span class=p>(</span><span class=n>agent_obs</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>observations</span><span class=p>,</span> <span class=n>rewards</span><span class=p>,</span> <span class=n>dones</span><span class=p>,</span> <span class=n>infos</span> <span class=o>=</span> <span class=n>env</span><span class=o>.</span><span class=n>step</span><span class=p>({</span><span class=n>AGENT_ID</span><span class=p>:</span> <span class=n>action</span><span class=p>})</span>
+</span></span><span class=line><span class=cl>        <span class=n>episode</span><span class=o>.</span><span class=n>record_step</span><span class=p>(</span><span class=n>observations</span><span class=p>,</span> <span class=n>rewards</span><span class=p>,</span> <span class=n>dones</span><span class=p>,</span> <span class=n>infos</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>env</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><p>这一scenario总体上是确定的。这意味着，假设所有代理采取完全相同的行动，整个scenario将确定性地回放，但每一episode将有不同的行为。</p><a href=#5-知识点><h1 id=5-知识点><span class=hanchor arialabel=Anchor># </span>5 知识点</h1></a><a href=#scenario><h2 id=scenario><span class=hanchor arialabel=Anchor># </span>Scenario</h2></a><img src=../../pics/image-20220409145226354.png alt=image-20220409145226354 style=zoom:50%><p>smarts中的scenarios如上图</p><p><a href=https://www.i4k.xyz/article/m0_37592209/105455124 rel=noopener>https://www.i4k.xyz/article/m0_37592209/105455124</a></p><p>在参考论文的说明下，</p><blockquote><p>A scenario describes the temporal development between several scenes in a sequence of scenes. Every scenario starts with an initial scene. Actions&events as well as goals&values may be specified to characterize this temporal development in a scenario. Other than a scene, a scenario spans a certain amount of time</p></blockquote><p>Scenario是连续Scenes的短暂发展。 每一个Scenario都由一个初始的Scene开始。 在这短暂的序列Scene中,车辆的驾驶行为以及运动目标可能是具体的. 相比于Scene, Scenario是一个确定的时间片段。</p><p>作者用下图很清晰的描述了测试用例，Scene和Scenario之间的关系:</p><img src=../../pics/image-20220409151611133.png alt=image-20220409151611133 style=zoom:50%><p><strong>典型Scenario实现</strong></p><p>很清晰的，Scenario可以看作是一部动作小短片一样，由车辆的驾驶行为和活动将一系列的Scene链接起来，下图为Scenario的一个例子：</p><img src=../../pics/image-20220409150303525.png alt=image-20220409150303525 style=zoom:50%>
+<a href=#6-抽象训练记录><h1 id=6-抽象训练记录><span class=hanchor arialabel=Anchor># </span>6 抽象训练记录</h1></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 启动可视化后台 运行后访问http://219.228.60.69:8081/#/</span>
+</span></span><span class=line><span class=cl>scl envision start -s ./scenarios -p <span class=m>8081</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 运行benchmark实验</span>
+</span></span><span class=line><span class=cl>1. Two-Way traffic
+</span></span><span class=line><span class=cl>python run.py scenarios/two_ways/bid -f marl_benchmark/agents/dqn/baseline-lane-control.yaml
+</span></span><span class=line><span class=cl>python run.py scenarios/two_ways/bid -f marl_benchmark/agents/ppo/baseline-lane-control.yaml
+</span></span><span class=line><span class=cl>2. Unprotected Intersection
+</span></span><span class=line><span class=cl>python run.py scenarios/intersections/4lane -f marl_benchmark/agents/dqn/baseline-lane-control.yaml
+</span></span><span class=line><span class=cl>python run.py scenarios/intersections/4lane -f marl_benchmark/agents/ppo/baseline-lane-control.yaml
+</span></span><span class=line><span class=cl>3. Double Merge
+</span></span><span class=line><span class=cl>python run.py scenarios/double_merge/cross -f marl_benchmark/agents/dqn/baseline-lane-control.yaml
+</span></span><span class=line><span class=cl>python run.py scenarios/double_merge/cross -f marl_benchmark/agents/ppo/baseline-lane-control.yaml
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

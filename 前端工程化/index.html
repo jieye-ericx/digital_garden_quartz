@@ -1,0 +1,252 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="前端工程本质上是软件工程的一种。软件工程化关注的是性能、稳定性、可用性、可维护性等方面，注重基本的开发效率、运行效率的同时，思考维护效率。一切以这些为目标的工作都是&#34;前端工程化&#34;。工程化是一种思想而不是某种技术。
+模块化 简单来说，模块化就是将一个大文件拆分成相互依赖的小文件，再进行统一的拼装和加载。（方便了多人协作）。
+分而治之是软件工程中的重要思想，是复杂系统开发和维护的基石，这点放在前端开发中同样适用。模块化是目前前端最流行的分治手段。
+模块化开发的最大价值应该是分治！ 不管你将来是否要复用某段代码，你都有充分的理由将其分治为一个模块。
+JS模块化方案 AMD/CommonJS/UMD/ES6 Module等等。
+CommonJS的核心思想是把一个文件当做一个模块，要在哪里使用这个模块，就在哪里require这个模块，然后require方法开始加载这个模块并且执行其中的代码，最后会返回你指定的export对象。
+1 2 3 4 5 6 7 8  module.export = function() { hello: function() { alert(&#34;你好&#34;); } } var a = require('."><meta property="og:title" content><meta property="og:description" content="前端工程本质上是软件工程的一种。软件工程化关注的是性能、稳定性、可用性、可维护性等方面，注重基本的开发效率、运行效率的同时，思考维护效率。一切以这些为目标的工作都是&#34;前端工程化&#34;。工程化是一种思想而不是某种技术。
+模块化 简单来说，模块化就是将一个大文件拆分成相互依赖的小文件，再进行统一的拼装和加载。（方便了多人协作）。
+分而治之是软件工程中的重要思想，是复杂系统开发和维护的基石，这点放在前端开发中同样适用。模块化是目前前端最流行的分治手段。
+模块化开发的最大价值应该是分治！ 不管你将来是否要复用某段代码，你都有充分的理由将其分治为一个模块。
+JS模块化方案 AMD/CommonJS/UMD/ES6 Module等等。
+CommonJS的核心思想是把一个文件当做一个模块，要在哪里使用这个模块，就在哪里require这个模块，然后require方法开始加载这个模块并且执行其中的代码，最后会返回你指定的export对象。
+1 2 3 4 5 6 7 8  module.export = function() { hello: function() { alert(&#34;你好&#34;); } } var a = require('."><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="前端工程本质上是软件工程的一种。软件工程化关注的是性能、稳定性、可用性、可维护性等方面，注重基本的开发效率、运行效率的同时，思考维护效率。一切以这些为目标的工作都是&#34;前端工程化&#34;。工程化是一种思想而不是某种技术。
+模块化 简单来说，模块化就是将一个大文件拆分成相互依赖的小文件，再进行统一的拼装和加载。（方便了多人协作）。
+分而治之是软件工程中的重要思想，是复杂系统开发和维护的基石，这点放在前端开发中同样适用。模块化是目前前端最流行的分治手段。
+模块化开发的最大价值应该是分治！ 不管你将来是否要复用某段代码，你都有充分的理由将其分治为一个模块。
+JS模块化方案 AMD/CommonJS/UMD/ES6 Module等等。
+CommonJS的核心思想是把一个文件当做一个模块，要在哪里使用这个模块，就在哪里require这个模块，然后require方法开始加载这个模块并且执行其中的代码，最后会返回你指定的export对象。
+1 2 3 4 5 6 7 8  module.export = function() { hello: function() { alert(&#34;你好&#34;); } } var a = require('."><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/%e5%89%8d%e7%ab%af%e5%b7%a5%e7%a8%8b%e5%8c%96.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#模块化>模块化</a><ol><li><a href=#js模块化方案>JS模块化方案</a></li><li><a href=#css模块化方案>CSS模块化方案</a></li></ol></li><li><a href=#组件化>组件化</a></li><li><a href=#智能加载静态资源性能优化>“智能”加载静态资源（性能优化）</a></li><li><a href=#规范化>规范化</a></li><li><a href=#自动化>自动化</a></li><li><a href=#zoo基建范例>ZOO基建范例</a><ol><li><a href=#1-规范文档docs>1. 规范&文档（Docs）</a></li><li><a href=#2-本地工程化环境cli>2. 本地工程化环境（CLI）</a></li><li><a href=#3-可视化工程系统gui>3. 可视化工程系统（GUI）</a></li><li><a href=#5-模板开发与管理>5. 模板开发与管理</a></li><li><a href=#6-项目创建与管理>6. 项目创建与管理</a></li><li><a href=#7-前端基础资产>7. 前端基础资产</a></li><li><a href=#8-cicd-自动化构建部署>8. CI/CD 自动化构建部署</a></li><li><a href=#9-可视化搭建系统>9. 可视化搭建系统</a></li><li><a href=#10-数据埋点与分析>10. 数据埋点与分析</a></li><li><a href=#11-页面性能自动化分析>11. 页面性能自动化分析</a></li><li><a href=#12-2019-基建里程碑>12. 2019 基建里程碑</a></li></ol></li><li><a href=#基建之外>基建之外</a><ol><li><a href=#1-凡是建设必有数据>1. 凡是建设，必有数据</a></li><li><a href=#2-从场景出发找方案>2. 从场景出发找方案</a></li><li><a href=#3-不设限拓展能力边界>3. 不设限，拓展能力边界</a></li><li><a href=#4-业务的阶段匹配性>4. 业务的阶段匹配性</a></li><li><a href=#5-技术的价值在于解决业务问题>5. 技术的价值，在于解决业务问题</a></li></ol></li></ol></nav></details></aside><p>前端工程本质上是软件工程的一种。软件工程化关注的是性能、稳定性、可用性、可维护性等方面，注重基本的开发效率、运行效率的同时，思考维护效率。一切以这些为目标的工作都是"前端工程化"。工程化是一种思想而不是某种技术。</p><a href=#模块化><h2 id=模块化><span class=hanchor arialabel=Anchor># </span>模块化</h2></a><p>简单来说，模块化就是将一个大文件拆分成相互依赖的小文件，再进行统一的拼装和加载。（方便了多人协作）。</p><p>分而治之是软件工程中的重要思想，是复杂系统开发和维护的基石，这点放在前端开发中同样适用。模块化是目前前端最流行的分治手段。</p><p>模块化开发的最大价值应该是分治！
+不管你将来是否要复用某段代码，你都有充分的理由将其分治为一个模块。</p><a href=#js模块化方案><h3 id=js模块化方案><span class=hanchor arialabel=Anchor># </span>JS模块化方案</h3></a><p>AMD/CommonJS/UMD/ES6 Module等等。</p><p>CommonJS的核心思想是把一个文件当做一个模块，要在哪里使用这个模块，就在哪里require这个模块，然后require方法开始加载这个模块并且执行其中的代码，最后会返回你指定的export对象。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=kr>export</span> <span class=o>=</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>hello</span><span class=o>:</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>alert</span><span class=p>(</span><span class=s2>&#34;你好&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>a</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./xxx/a.js&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>a</span><span class=p>.</span><span class=nx>hello</span><span class=p>();</span> <span class=c1>// ==&gt; 弹窗“你好”
+</span></span></span></code></pre></td></tr></table></div></div><p>CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作，不能非阻塞的并行加载多个模块。</p><p>AMD（异步模块定义，Asynchronous Module Definition），特点是可以实现异步加载模块，等所有模块都加载并且解释执行完成后，才会执行接下来的代码。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 通过AMD载入模块
+</span></span></span><span class=line><span class=cl><span class=c1>// define(
+</span></span></span><span class=line><span class=cl><span class=c1>//     module_id /*可选*/, 
+</span></span></span><span class=line><span class=cl><span class=c1>//     [dependencies] 可选, 
+</span></span></span><span class=line><span class=cl><span class=c1>//     definition function /*回调 用来初始化模块或对象的函数*/
+</span></span></span><span class=line><span class=cl><span class=c1>// );
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>define</span><span class=p>([</span><span class=s1>&#39;myModule&#39;</span><span class=p>,</span> <span class=s1>&#39;myOtherModule&#39;</span><span class=p>],</span> <span class=kd>function</span><span class=p>(</span><span class=nx>myModule</span><span class=p>,</span> <span class=nx>myOtherModule</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>myModule</span><span class=p>.</span><span class=nx>hello</span><span class=p>());</span>
+</span></span><span class=line><span class=cl>    <span class=c1>//会先并行加载所有的模块a b 并执行其中模块的代码后，在执行逐步执行下面的 console
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;a&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;a required&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>require</span><span class=p>(</span><span class=s2>&#34;b&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;b required&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;all modules have been required&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>在一些同时需要AMD和CommonJS功能的项目中，你需要使用另一种规范：Universal Module Definition（通用模块定义规范）。UMD创造了一种同时使用两种规范的方法，并且也支持全局变量定义。所以UMD的模块可以同时在客户端和服务端使用。</p><p>幸运的是在JS的最新规范ECMAScript 6 (ES6)中，引入了模块功能。
+ES6 的模块功能汲取了CommonJS 和 AMD 的优点，拥有简洁的语法并支持异步加载，并且还有其他诸多更好的支持（例如导入是实时只读的。（CommonJS 只是相当于把导出的代码复制过来））。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// CommonJS代码
+</span></span></span><span class=line><span class=cl><span class=c1>// lib/counter.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>counter</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>increment</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>counter</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>decrement</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>counter</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>counter</span><span class=o>:</span> <span class=nx>counter</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>increment</span><span class=o>:</span> <span class=nx>increment</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>decrement</span><span class=o>:</span> <span class=nx>decrement</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=c1>// src/main.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>counter</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../../lib/counter&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>counter</span><span class=p>.</span><span class=nx>increment</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>counter</span><span class=p>.</span><span class=nx>counter</span><span class=p>);</span> <span class=c1>// 1
+</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 使用 es6 modules 通过 import 语句导入
+</span></span></span><span class=line><span class=cl><span class=c1>// lib/counter.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>export</span> <span class=kd>let</span> <span class=nx>counter</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kd>function</span> <span class=nx>increment</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>counter</span><span class=o>++</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kd>function</span> <span class=nx>decrement</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>counter</span><span class=o>--</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// src/main.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=o>*</span> <span class=nx>as</span> <span class=nx>counter</span> <span class=nx>from</span> <span class=s1>&#39;../../counter&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>counter</span><span class=p>.</span><span class=nx>counter</span><span class=p>);</span> <span class=c1>// 1
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>counter</span><span class=p>.</span><span class=nx>increment</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>counter</span><span class=p>.</span><span class=nx>counter</span><span class=p>);</span> <span class=c1>// 2
+</span></span></span></code></pre></td></tr></table></div></div><a href=#css模块化方案><h3 id=css模块化方案><span class=hanchor arialabel=Anchor># </span>CSS模块化方案</h3></a><p>在less、sass、stylus等预处理器的import/mixin特性支持下实现、css modules。</p><p>虽然SASS、LESS、Stylus等预处理器实现了CSS的文件拆分，但没有解决CSS模块化的一个重要问题：选择器的全局污染问题;</p><p>CSS in JS是彻底抛弃CSS，使用JS或JSON来写样式。这种方法很激进，不能利用现有的CSS技术，而且处理伪类等问题比较困难；</p><p>CSS Modules 原理：使用JS 来管理样式模块，它能够最大化地结合CSS生态和JS模块化能力，通过在每个 class 名后带一个独一无二 hash 值，这样就不有存在全局命名冲突的问题了。</p><p>webpack 自带的 css-loader 组件，自带了 CSS Modules，通过简单的配置即可使用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>test</span><span class=o>:</span> <span class=sr>/\.css$/</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>loader</span><span class=o>:</span> <span class=s2>&#34;css?modules&amp;localIdentName=[name]__[local]--[hash:base64:5]&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#组件化><h2 id=组件化><span class=hanchor arialabel=Anchor># </span>组件化</h2></a><p>前端作为一种GUI软件，光有JS/CSS的模块化还不够，对于UI组件的分治也有着同样迫切的需求。分治的确是非常重要的工程优化手段。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171810.png width=auto alt=前端组件化开发></p><blockquote><p>页面上的每个 独立的 可视/可交互区域视为一个组件；
+<mark>每个组件对应一个工程目录</mark>，组件所需的各种资源都在这个目录下就近维护；
+由于组件具有独立性，因此组件与组件之间可以 自由组合；
+页面只不过是组件的容器，负责组合组件形成功能完整的界面；
+当不需要某个组件，或者想要替换组件时，可以整个目录删除/替换。</p></blockquote><p>由于系统功能被分治到独立的模块或组件中，粒度比较精细，组织形式松散，开发者之间不会产生开发时序的依赖，大幅提升并行的开发效率，理论上允许随时加入新成员认领组件开发或维护工作，也更容易支持多个团队共同维护一个大型站点的开发。</p><a href=#智能加载静态资源性能优化><h2 id=智能加载静态资源性能优化><span class=hanchor arialabel=Anchor># </span>“智能”加载静态资源（性能优化）</h2></a><p>模块化/组件化开发之后，我们最终要解决的，就是模块/组件加载的技术问题。然而前端与客户端GUI软件有一个很大的不同：前端是一种远程部署，运行时增量下载的GUI软件。</p><p>如果用户第一次访问页面就强制其加载全站静态资源再展示，相信会有很多用户因为失去耐心而流失。根据“增量”的原则，我们应该精心规划每个页面的资源加载策略，使得用户无论访问哪个页面都能按需加载页面所需资源，没访问过的无需加载，访问过的可以缓存复用，最终带来流畅的应用体验。</p><p>这正是Web应用“免安装”的魅力所在。</p><p>由“增量”原则引申出的前端优化技巧几乎成为了性能优化的核心。</p><blockquote><p>有加载相关的按需加载、延迟加载、预加载、请求合并等策略；
+有缓存相关的浏览器缓存利用，缓存更新、缓存共享、非覆盖式发布等方案；</p></blockquote><p>还有复杂的BigRender、BigPipe、Quickling、PageCache等技术。
+这些优化方案无不围绕着如何将增量原则做到极致而展开。</p><ul><li>一种静态网页资源管理和优化技术。
+静态资源管理系统 = 资源表 + 资源加载框架</li></ul><p>资源表是一份数据文件（比如JSON），是项目中所有静态资源（主要是JS和CSS）的构建信息记录，通过构建工具扫描项目源码生成，是一种k-v结构的数据，以每个资源的id为key，记录了资源的类别、部署路径、依赖关系、打包合并等内容。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;res&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;widget/a/a.css&#34;</span> <span class=p>:</span> <span class=s2>&#34;/widget/a/a_1688c82.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;widget/a/a.js&#34;</span>  <span class=p>:</span> <span class=s2>&#34;/widget/a/a_ac3123s.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;widget/b/b.css&#34;</span> <span class=p>:</span> <span class=s2>&#34;/widget/b/b_52923ed.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;widget/b/b.js&#34;</span>  <span class=p>:</span> <span class=s2>&#34;/widget/b/b_a5cd123.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;widget/c/c.css&#34;</span> <span class=p>:</span> <span class=s2>&#34;/widget/c/c_03cab13.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;widget/c/c.js&#34;</span>  <span class=p>:</span> <span class=s2>&#34;/widget/c/c_bf0ae3f.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;jquery.js&#34;</span>      <span class=p>:</span> <span class=s2>&#34;/jquery_9151577.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;bootstrap.css&#34;</span>  <span class=p>:</span> <span class=s2>&#34;/bootstrap_f5ba12d.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;bootstrap.js&#34;</span>   <span class=p>:</span> <span class=s2>&#34;/bootstrap_a0b3ef9.js&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;pkg&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;p0&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;url&#34;</span> <span class=p>:</span> <span class=s2>&#34;/pkg/lib_cef213d.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;has&#34;</span> <span class=p>:</span> <span class=p>[</span> <span class=s2>&#34;jquery.js&#34;</span><span class=p>,</span> <span class=s2>&#34;bootstrap.js&#34;</span> <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;p1&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;url&#34;</span> <span class=p>:</span> <span class=s2>&#34;/pkg/lib_afec33f.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;has&#34;</span> <span class=p>:</span> <span class=p>[</span> <span class=s2>&#34;bootstrap.css&#34;</span> <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;p2&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;url&#34;</span> <span class=p>:</span> <span class=s2>&#34;/pkg/widgets_22feac1.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;has&#34;</span> <span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;widget/a/a.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;widget/b/b.js&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;widget/c/c.js&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>},</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;p3&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;url&#34;</span> <span class=p>:</span> <span class=s2>&#34;/pkg/widgets_af23ce5.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&#34;has&#34;</span> <span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;widget/a/a.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;widget/b/b.css&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;widget/c/c.css&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>在查表的时候，如果一个静态资源有pkg字段(用来记录web应用中一个页面加载过的静态资源，当下个页面用到这个资源就无需加载了，有效利用缓存)，那么就去加载pkg字段所指向的打包文件，否则加载资源本身。</p><a href=#规范化><h2 id=规范化><span class=hanchor arialabel=Anchor># </span>规范化</h2></a><p>规范化其实是工程化中很重要的一个部分，项目初期规范制定的好坏会直接影响到后期的开发质量。</p><ul><li>目录结构的制定</li><li>编码规范</li><li>前后端接口规范</li><li>文档规范</li><li>组件管理</li><li>Git分支管理</li><li>Commit描述规范</li><li>定期CodeReview</li><li>视觉图标规范</li></ul><img src=Engineering.assets/upload_9525e99d8347c7183040a707b6310229.png alt=img style=zoom:150%><p>如上图所示，一个基本的研发流程闭环，一般是需求导入 - 需求拆解 - 技术方案制定 - 本地编码 - 联调 - 自测优化 - 提测修复 Bug - 打包 - 部署 - 数据收集&分析复盘 - 迭代优化 —— 即新一轮的需求导入。</p><p>在这个基础的闭环中，每一个节点都有其进一步的内部环节，每一个环节相连，组成了一个研发周期。这个周期顺，研发流程就顺。这个周期中每一个环节的<strong>阻塞点越少，研发效率就越高</strong>。最初期的基建，就是从这些耽误研发时间的阻塞点入手，按照普遍性 + 高频的优先级标准，挨个突破。</p><p><strong>提效、体验、稳定性</strong>，是基建要解决的最重要的目标，通用的公式是 <strong>标准化 + 规范化 + 工具化 + 自动化</strong>，能力完备后可以进一步提升到平台化 + 产品化。在方向方面，从下面的 8 个主要方向进行归类和建设，供大家参考：</p><ul><li>开发规范：这一部分沉淀的是团队的标准化共识，标准化是团队有效协作的必备前提。</li><li>研发流程：标准化流程直接影响上下游的协作分工和效率，优秀的流程能带来更专业的协作。</li><li>基础资产：在我们团队，资产体系包括了工具链、团队标准 DSL、物料库（组件、区块、模板等）。</li><li>工程管理：面向应用全生命周期的低成本管控，从应用的创建到本地环境配置到低代码搭建到打包部署。</li><li>性能体验：自动化工具化的方式发现页面性能瓶颈，提供优化建议。</li><li>安全防控：三方包依赖安全、代码合规性检查、安全风险检测等防控机制。</li><li>统计监控：埋点方案、数据采集、数据分析、线上异常监控等。</li><li>质量保障：自测 CheckList、单测、UI 自动化测试、链路自动化测试等。</li></ul><a href=#自动化><h2 id=自动化><span class=hanchor arialabel=Anchor># </span>自动化</h2></a><p>任何简单机械的重复劳动都应该让机器去完成。</p><ul><li>图标合并</li><li>持续集成</li><li>自动化构建</li><li>自动化部署</li><li>自动化测试</li></ul><a href=#zoo基建范例><h2 id=zoo基建范例><span class=hanchor arialabel=Anchor># </span>ZOO基建范例</h2></a><a href=#1-规范文档docs><h3 id=1-规范文档docs><span class=hanchor arialabel=Anchor># </span>1. 规范&文档（Docs）</h3></a><p>规范是最应该先行的，始皇帝初统六国即“书同文车同轨”，规范意味着标准，是团队的共识，是沟通协作的基础。而文档，是最容易被忽略的事情之一，除了明面上重要的技术文档、业务稳定之外，还包括了行间的有效注释。想想，有多少时间是花在琢磨别人的代码逻辑，或刚接手某个业务得问多少人才能搞明白你面前那几个仓库是怎么回事，又有多少故障是因为不清楚前任留下的坑在哪里不小心踩雷。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171811.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171812.jpg width=auto alt=img></p><p>对于规范的制定，需要强调的一点，是规范的产出应是团队内大部分同学的共识，应该是集体审美。规范一旦确定就应该严格执行，要能形成团队行为的<strong>一致性</strong>。对于文档，为了写而写的文档是垃圾，不如不写。文档的重点在<strong>说人话</strong>，在于<strong>有效性</strong>，在于直观、省事、不饶。想想一个 UI 组件库的文档，先给你看可交互的 Demo 再提供 API 信息，和直接开头就罗列一大堆的 API 文字介绍，哪种对阅读者的感受更好、心理成本更低？</p><a href=#2-本地工程化环境cli><h3 id=2-本地工程化环境cli><span class=hanchor arialabel=Anchor># </span>2. 本地工程化环境（CLI）</h3></a><p>本地开发环境，相信是任何一个团队都会做的标配，省事的可能直接拥抱框架选型对应的全家桶，如 Vue 全家桶，或者用 Webpack 撸一个脚手架。能力多一些的会再为脚手架提供一些插件服务，如 Lint 或者 Mock。从简单的一个本地脚手架，到复杂的一个工程化套件系统，其目的都是为了本地开发流程的去人肉化、自动化。</p><p>我们团队的本地开发环境基建，是一个工程化套件环境，核心理念就是尽量 “一步搞定所有事”，把本地环境的配置和使用尽量变的傻瓜化无脑化。比如本地初始化一个应用的环境，从 CLI 命令行的操作出发的话（实际上政采云前端团队现在已完全 GUI 化），一个 <code>zoo init</code> 命令就能搞定全部的本地环境搭建，这个全部是指在终端执行回车后，从仓库本地目录的生成到 npm 依赖的自动化安装到脚手架插件的初始化再到唤起一个浏览器窗口，都是自动化执行的。是的，连 <code>npm install</code> 和 <code>dev</code> 什么的都不用执行，能省一步操作就省一步，楚王好细腰，少就是性感。下图是 CLI 本地工程套件的架构图：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171813.png width=auto alt=img></p><a href=#3-可视化工程系统gui><h3 id=3-可视化工程系统gui><span class=hanchor arialabel=Anchor># </span>3. 可视化工程系统（GUI）</h3></a><p>其实目前团队的日常研发，已经基本上脱离了 CLI 操作，统一到了团队自研的桌面客户端 “敦煌” 平台。基于客户端的能力，能将分散的工程能力进行聚合，并形成链路的串联能力，结合 GUI 的直观和简便操作，进一步的省事。通过桌面客户端，可以将日常的前端研发链路上的操作都聚合进来，从组件开发到模板开发再到应用开发；从唤起编辑器到启动调试环境、进行包更新到打包部署发布。同时桌面端系统还能和其他的研发系统进行打通，形成更多的能力。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171814.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171815.png width=auto alt=img></p><p>###4. 组件开发与管理</p><p>一般情况下，前端团队都会完善自己的组件库体系，有些情况下一些 UI 组件库可能采用社区开源的优秀三方库，如 antd，但多多少少还会有自己的业务组件库需要封装。工具的价值在于<strong>抹平</strong>差异，将基础标准一致化。对于组件开发，前面所述的 CLI 工具链是这里的底层依赖，同理还有后面介绍的模板开发与使用，以及应用的开发。通过工具进行组件的开发和管理，可以较好的实现诸如组件命名标准化、版本标准化、查找便利性、开发流程简化等，还能实现组件的应用场景统计和版本覆盖率等涉及到组件在接入场景更新成本相关的必要统计。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171816.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171817.png width=auto alt=img></p><a href=#5-模板开发与管理><h3 id=5-模板开发与管理><span class=hanchor arialabel=Anchor># </span>5. 模板开发与管理</h3></a><p>同飞冰类似，我们也沉淀了一套类似的模板化能力，便于中后台业务场景的快速开发。因为中后台的业务场景相对固化，诸如表单、列表等居多，基于模板的方式可以省掉很大一部分制作 Demo 和实现交互的成本。模板的前提是 UI 组件库的完备，和标准的中后台交互、视觉设计，基于此沉淀标准化的业务模板库，根据场景选择合适的模板，配置下页面信息和路径后，就可以一键安装到本地并自动化配置好路由，安装好依赖。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171818.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171819.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171820.png width=auto alt=img></p><a href=#6-项目创建与管理><h3 id=6-项目创建与管理><span class=hanchor arialabel=Anchor># </span>6. 项目创建与管理</h3></a><p>项目的创建与管理，从一开始我们的目标就是 “去耦合，单人可全流程 Hold” —— 意思是在项目的创建、本地环境的搭建（也包括了环境的升级）、分支管理、构建、部署等环节，前端同学可以完全一人搞定。不需要因为权限的问题找人帮忙建仓库；不需要因为组件、区块、模板、应用（SPA/MPA）、选型（React/Vue）导致本地开发环境的标准不一致进而每次都得学新的；不需要头疼不同业务的版本流程不一致导致还得问这问那；不需要还得人肉的去配置打包脚本；不需要每次部署都得找人（或者是运维）帮忙&mldr; 总之，我们希望借助工具抹平日常中太多的不对称，将开发者的专注力重新尽量拉回简单纯粹的编码中。即使是一个对 Git、命令行、应用管理流程不太明白的校园新人，在桌面端可视化工程的系统辅助下，也能很愉快的开始编码。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171821.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171822.png width=auto alt=img></p><a href=#7-前端基础资产><h3 id=7-前端基础资产><span class=hanchor arialabel=Anchor># </span>7. 前端基础资产</h3></a><p>前面我们提到了前端团队的规范（标准化）、工具链（CLI）、基于工具链之上的可视化辅助客户端（GUI），提到了组件（模块）、模板、应用。对工具的抽象和业务的可复用抽象，是一个团队的基础资产。简化到 Webpack 撸一个脚手架 + 一套开源三方 UI 组件库，剩下的拼装式生产全靠人肉；复杂些诸如阿里系正在突破的 UI2Code 、编辑器等能力，将标准、流程更自动化，进一步的去人肉。基础资产这部分，我们团队目前业务阶段下的建设分层如下：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171823.png width=auto alt=img></p><a href=#8-cicd-自动化构建部署><h3 id=8-cicd-自动化构建部署><span class=hanchor arialabel=Anchor># </span>8. CI/CD 自动化构建部署</h3></a><p>前端具备自己的构建部署系统，便于专业化方面更好的流程控制。政采云前端团队在 2019 年下半年建设了自己的构建部署系统，实现了云打包、云检测和自动化部署（打通对接运维的部署系统）。新的独立系统在设计之初，重点就是希望能实现一种 Flow 的流式机制，以便实现代码的合规性静态检测能力。这部分在系统中最终实现了一套插件化机制，可以按需配置不同的检测项，如某检测项检测不通过，最终会阻塞发布流程，这些检测项有诸如：</p><ul><li>*Lint 检测</li><li>兼容性 API 检测</li><li>HTTPS 检测</li><li>包检测（黑名单、包版本）</li><li>合法性检测（域、链接）</li><li>404 检测</li><li>基础的 UI 检测（如是否缺少吊顶）</li><li>&mldr;</li></ul><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171824.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171825.jpg width=auto alt=img></p><a href=#9-可视化搭建系统><h3 id=9-可视化搭建系统><span class=hanchor arialabel=Anchor># </span>9. 可视化搭建系统</h3></a><p>可视化搭建系统是进一步高效利用组件的上层建筑。页面是由组件（业务模块）组成，搭建系统将组件的拼装由本地人肉操作，产品化到系统中可视化拼图，将页面搭建、数据配置、构建部署、数据埋点等等产品化，赋能给产品、运营等协作方。前端产出组件，运营搭建页面，既能节省前端的人效，也能让运营能力前置拓展，在营销场景中进一步释放运营的业务能力，实现共赢。</p><p>关乎可视化搭建系统的更多，可以查看我们团队之前输出的这篇文章：《
+<a href=https://mp.weixin.qq.com/s/tPcIXCCQkdSXr_gTi8KT6A rel=noopener>前端工程实践之可视化搭建系统</a>》</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171826.png width=auto alt=img></p><p>系统架构图：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171827.png width=auto alt=img></p><p>部署流程图：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171828.png width=auto alt=img></p><a href=#10-数据埋点与分析><h3 id=10-数据埋点与分析><span class=hanchor arialabel=Anchor># </span>10. 数据埋点与分析</h3></a><p>在很多公司，数据埋点与分析往往是 BI 部门的事情。在政采云，因为公司前期 BI 能力相对不足，前端团队首先发起并推动了面向业务的 Web 数据埋点收集和数据分析、可视化相关的全系统建设。前后实现了埋点规范、埋点 SDK、数据收集及分析、PV/UV、链路分析、转化分析、用户画像、可视化热图、坑位粒度数据透出等数据化能力。</p><p>更多数据埋点与分析相关，可以查看我们团队之前输出的这篇文章：《
+<a href=https://mp.weixin.qq.com/s/SnAVuXis1fOtc7VFBN4ckQ rel=noopener>前端工程实践之数据埋点分析系统</a>》</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171829.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171830.png width=auto alt=img></p><a href=#11-页面性能自动化分析><h3 id=11-页面性能自动化分析><span class=hanchor arialabel=Anchor># </span>11. 页面性能自动化分析</h3></a><p>页面性能，90% 在前端。尤其是像我们公司现阶段 toB 为主的业务，不同于我的老东家（淘宝、蘑菇街）早已移动端占绝对主导，我们依然是 PC 场景占大头，在页面性能方面问题还是比较突出。过去 1 年时间内，给大家可参考的路径是，我们首先发起了图体积优化，针对占据页面体积大头、请求数大头的图片首先发起优化策略，采用规范+工具的方式帮助业务快速实现图体积的优化，相关沉淀可见早先团队的这篇《
+<a href=https://mp.weixin.qq.com/s/euvdMHkYUXHmgkV9D334NQ rel=noopener>为你重新系统梳理下， Web 体验优化中和图有关的那些事</a>》。后来，我们逐步基于 Node 能力将梳理出的影响页面性能的点，实现了自动化检测能力，并依据不同的业务场景区分设计检测模型，再后来做了定时任务来实现性能的连贯性分析及数据走势能力，再之后又增加了业务性能数据大盘和每周的红黑榜。关于页面性能自动化分析系统的更多细节，可阅读我们团队早前的文章 《
+<a href=https://mp.weixin.qq.com/s/tfC7SAJ2r2UclFUj4vE-tQ rel=noopener>自动化 Web 性能分析之 Puppeteer 爬虫实践</a>》、《
+<a href=https://mp.weixin.qq.com/s/2CHA5ewWz_SIlBrdEuVv7w rel=noopener>自动化 Web 性能优化分析方案</a>》。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171831.png width=auto alt=img></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171832.png width=auto alt=img></p><a href=#12-2019-基建里程碑><h3 id=12-2019-基建里程碑><span class=hanchor arialabel=Anchor># </span>12. 2019 基建里程碑</h3></a><p>上面介绍的一部分政采云前端团队的技术基础建设，基本上都是在 2019 年一年内逐步建设落地并取得结果的。下图是在上一年周期中的建设里程碑，能看出对应的建设周期和节奏。在我这个团队，没有单独设立独立的前端架构组，前端下的团队都是业务团队，我们同学从业务支撑中沉淀问题，针对问题进行思考和聚敛，从业务问题出发针对性的推进对应的建设。</p><p>对于研发同学来说，<strong>身价取决于解决问题的能力</strong>，取决于面对不同的业务问题是否具备解决问题的方案。我们团队很庆幸的点在于，业务处于快速发展期，问题很多，既有的沉淀很少，我们很幸运的可以在帮业务解决问题、跟随业务快速发展的过程中，几乎是从零开始做这些建设。这是很可贵、很难得的一段经历，因为大部分的公司要么是体量还没到需要做这些的地步，要么是早就做完了轮不到，无法全程看到整个体系的发展。<strong>公司要为员工创造环境，但员工的成长最终是靠自己</strong>。所以同学们都认可用业余的时间参与建设、甚至是主导某个方向，对自身的成长是个宝贵的机会。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171833.png width=auto alt=img></p><a href=#基建之外><h2 id=基建之外><span class=hanchor arialabel=Anchor># </span>基建之外</h2></a><a href=#1-凡是建设必有数据><h3 id=1-凡是建设必有数据><span class=hanchor arialabel=Anchor># </span>1. 凡是建设，必有数据</h3></a><p>凡是建设，必须要有对应的数据收集和分析，数据说明基建带来的改变，说明投入产出比。数据指标的设计，需要在某专项建设的前期即设计好并进行采集，并在整个推动周期和落地后持续收集，这样可以得到一个相对完整的变化曲线，用以作证工作的成效。数据不见得一定是完全精准的，但数据一定要能<strong>说明趋势</strong>，<strong>直观化，反馈准确</strong>。</p><a href=#2-从场景出发找方案><h3 id=2-从场景出发找方案><span class=hanchor arialabel=Anchor># </span>2. 从场景出发找方案</h3></a><p>对于人力方面，任何情况下人力都是缺失的。但很多时候我们的建设推不下去，往往不是因为人力的问题，而是<strong>没想清楚</strong>。《庄子·列寇传》有一则寓言，“朱评漫学屠龙于支离益，单千金之家，三年技成而无所用其巧”。 讲的是一个人散尽家资学习屠龙之技，学成却发现世界上本没有龙。对于研发同学，同样会存在从方案出发找场景的问题，如想学习 Node 不知道如何学习，照着书中的例子学，最后发现都忘了效果很不好。没有一个作家是看小说看成的，也没有一个语言学家是看字典看成的，同理技术专家也不会是通过看技术书籍养成的。在实践中学习，从来都是最快的方式。有价值的事从来都是从业务本身的问题出发。问题就是机会，问题就是长萝卜的坑。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171834.png width=auto alt=img></p><a href=#3-不设限拓展能力边界><h3 id=3-不设限拓展能力边界><span class=hanchor arialabel=Anchor># </span>3. 不设限，拓展能力边界</h3></a><p>前端在研发体系中话语权偏低的现状，从前端这个职能出现那一刻就存在了。不排除个别研发团队，因其业务模式的原因，对前端的依赖较深，前端的话语权相对偏高。绝大部分的研发团队中，前端的工作，在其他研发眼中，往往是 “技术含量低”、“很薄的一层” 等情况。这个现状的背后，看看下图就知道了：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171835.jpeg width=auto alt=img></p><p>横、纵，2 个维度。右边的 “纵”，参考网络应用系统的分层体系，前端的传统工作范畴，都是集中在 “用户界面层”，很少能往下深入，深入到网关 ~ 基础设施层。后端则不同。从这个角度看，前端确实很 “薄”。现在良性的一面是，Node 能力为前端提供了向下渗透的服务端能力。一些团队也基于 Node 横向扩展自身的工程化能力，和向业务纵深去拓展前端的系统化能力。</p><p>我们再看左边的 “横”。只有很少的前端团队，能较完善的去建设和发展技术体系。对于有了较完善体系的前端团队而言，其技术体系也更多是局限于前端自身的职能范畴，没能较好的互动渗透到业务侧，更多是在自嗨，业务的感知力是很弱的。将技术带来的工程收益，转变为业务收益；将部门内的技术影响，转变为业务影响；将技术场景，升级到业务场景；将团队的基础能力，变为业务能力。<strong>跳出前端，围绕并深入业务</strong>，这是每一个正在推动团队体系建设的同学要更多想想的事。</p><a href=#4-业务的阶段匹配性><h3 id=4-业务的阶段匹配性><span class=hanchor arialabel=Anchor># </span>4. 业务的阶段匹配性</h3></a><p>基建的内容，是和业务阶段相匹配的。不同团队服务的业务阶段不同，基建的内容和广深度也会不同。高下之分不在于多寡，而在于对业务的理解和支持程度。<strong>如果你只需要一根针，千万不要去磨铁棒</strong>。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171836.png width=auto alt=img></p><a href=#5-技术的价值在于解决业务问题><h3 id=5-技术的价值在于解决业务问题><span class=hanchor arialabel=Anchor># </span>5. 技术的价值，在于解决业务问题</h3></a><p>技术的价值，在于解决业务问题；人的身价，在于解决问题的能力。但解决问题，技术基建绝不是银弹，甚至在我来看，都不是排在前三位的。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/engineering/20210410171837.png width=auto alt=img></p></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

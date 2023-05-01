@@ -1,0 +1,580 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="同源的定义 同源策略是一个重要的安全策略，它用于限制一个 origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+ Origin
+Web内容的源由用于访问它的 URL 的方案(协议)，主机(域名)和端口定义。只有当方案，主机和端口都匹配时，两个对象具有相同的起源。
+ 同源的例子
+   http://example.com/app1/index.html http://example.com/app2/index.html same origin because same scheme (http) and host (example."><meta property="og:title" content><meta property="og:description" content="同源的定义 同源策略是一个重要的安全策略，它用于限制一个 origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+ Origin
+Web内容的源由用于访问它的 URL 的方案(协议)，主机(域名)和端口定义。只有当方案，主机和端口都匹配时，两个对象具有相同的起源。
+ 同源的例子
+   http://example.com/app1/index.html http://example.com/app2/index.html same origin because same scheme (http) and host (example."><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="同源的定义 同源策略是一个重要的安全策略，它用于限制一个 origin的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。
+ Origin
+Web内容的源由用于访问它的 URL 的方案(协议)，主机(域名)和端口定义。只有当方案，主机和端口都匹配时，两个对象具有相同的起源。
+ 同源的例子
+   http://example.com/app1/index.html http://example.com/app2/index.html same origin because same scheme (http) and host (example."><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/%e5%90%8c%e6%ba%90%e7%ad%96%e7%95%a5.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#同源的定义>同源的定义</a></li><li><a href=#源的更改>源的更改</a></li><li><a href=#导致跨域的操作>导致跨域的操作</a></li><li><a href=#跨域api>跨域API</a></li><li><a href=#跨域数据存储>跨域数据存储</a></li><li><a href=#解决跨域>解决跨域</a><ol><li><a href=#jsonp>JSONP</a></li><li><a href=#空iframe加form><strong>空iframe加form</strong></a></li><li><a href=#cors-推荐><strong>CORS</strong> (推荐)</a></li><li><a href=#代理-nginx><strong>代理</strong> (Nginx)</a></li></ol></li><li><a href=#同源策略限制下dom查询的正确打开方式>同源策略限制下Dom查询的正确打开方式</a></li><li><a href=#https的页面发送不了http请求>HTTPS的页面发送不了HTTP请求</a></li></ol></nav></details></aside><a href=#同源的定义><h2 id=同源的定义><span class=hanchor arialabel=Anchor># </span>同源的定义</h2></a><p><strong>同源策略</strong>是一个重要的安全策略，它用于限制一个
+<a href=https://developer.mozilla.org/en-US/docs/Glossary/Origin rel=noopener>origin</a>的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。</p><blockquote><p><strong>Origin</strong></p><p>Web内容的源由用于访问它的
+<a href=https://developer.mozilla.org/en-US/docs/Glossary/URL rel=noopener>URL</a> 的方案(协议)，主机(域名)和端口定义。只有当方案，主机和端口都匹配时，两个对象具有相同的起源。</p><p><a href=https://developer.mozilla.org/zh-CN/docs/Glossary/Origin#%e5%90%8c%e6%ba%90%e7%9a%84%e4%be%8b%e5%ad%90 rel=noopener>同源的例子</a></p><table><thead><tr><th><code>http://example.com/app1/index.html</code> <code>http://example.com/app2/index.html</code></th><th>same origin because same scheme (<code>http</code>) and host (<code>example.com</code>)</th></tr></thead><tbody><tr><td><code>http://Example.com:80</code> <code>http://example.com</code></td><td>same origin because a server delivers HTTP content through port 80 by default</td></tr></tbody></table><p><a href=https://developer.mozilla.org/zh-CN/docs/Glossary/Origin#%e4%b8%8d%e5%90%8c%e6%ba%90%e7%9a%84%e4%be%8b%e5%ad%90 rel=noopener>不同源的例子</a></p><table><thead><tr><th><code>http://example.com/app1</code> <code>https://example.com/app2</code></th><th>different schemes</th></tr></thead><tbody><tr><td><code>http://example.com</code> <code>http://www.example.com</code> <code>http://myapp.example.com</code></td><td>different hosts</td></tr><tr><td><code>http://example.com</code> <code>http://example.com:8080</code></td><td>different ports</td></tr></tbody></table></blockquote><p>如果两个 URL 的
+<a href=https://developer.mozilla.org/en-US/docs/Glossary/Protocol rel=noopener>protocol</a>、
+<a href=https://developer.mozilla.org/en-US/docs/Glossary/Port rel=noopener>port</a> (如果有指定的话)和
+<a href=https://developer.mozilla.org/en-US/docs/Glossary/Host rel=noopener>host</a> 都相同的话，则这两个 URL 是<em>同源</em>。这个方案也被称为“协议/主机/端口元组”，或者直接是 “元组”。（“元组” 是指一组项目构成的整体，双重/三重/四重/五重/等的通用形式）。</p><p>在页面中通过 <code>about:blank</code> 或 <code>javascript:</code> URL 执行的脚本会继承打开该 URL 的文档的源，因为这些类型的 URLs 没有包含源服务器的相关信息。</p><a href=#源的更改><h2 id=源的更改><span class=hanchor arialabel=Anchor># </span>源的更改</h2></a><p>满足某些限制条件的情况下，页面是可以修改它的源。脚本可以将
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/Document/domain rel=noopener><code>document.domain</code></a> 的值设置为其<strong>当前域</strong>或其<strong>当前域的父域</strong>。如果将其设置为其当前域的父域，则这个较短的父域将用于后续源检查。</p><blockquote><p>例如：假设
+<a href=http://store.company.com/dir/other.html rel=noopener>http://store.company.com/dir/other.html</a> 文档中的一个脚本执行以下语句：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nb>document</span><span class=p>.</span><span class=nx>domain</span> <span class=o>=</span> <span class=s2>&#34;company.com&#34;</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>这条语句执行之后，页面将会成功地通过与 <code>http://company.com/dir/page.html</code> 的同源检测（假设<code>http://company.com/dir/page.html</code> 将其 <code>document.domain</code> 设置为“<code>company.com</code>”，以表明它希望允许这样做 - 更多有关信息，请参阅
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/Document/domain rel=noopener><code>document.domain</code></a> ）。然而，<code>company.com</code> 不能设置 <code>document.domain</code> 为 <code>othercompany.com</code>，因为它不是 <code>company.com</code> 的父域。</p><p>端口号是由浏览器另行检查的。任何对<code>document.domain</code>的赋值操作，包括 <code>document.domain = document.domain</code> 都会导致端口号被重写为 <code>null</code> 。因此 <code>company.com:8080</code> <strong>不能</strong>仅通过设置 <code>document.domain = "company.com"</code> 来与<code>company.com</code> 通信。必须在他们双方中都进行赋值，以确保端口号都为 <code>null</code> 。</p><p>注意：使用 <code>document.domain</code> 来允许子域安全访问其父域时，您需要在父域和子域中设置 document.domain 为相同的值。这是必要的，即使这样做只是将父域设置回其原始值。不这样做可能会导致权限错误。</p></blockquote><a href=#导致跨域的操作><h2 id=导致跨域的操作><span class=hanchor arialabel=Anchor># </span>导致跨域的操作</h2></a><p>同源策略控制不同源之间的交互，例如在使用
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest rel=noopener><code>XMLHttpRequest</code></a> 或<code>&lt;img></code>标签时则会受到同源策略的约束。这些交互通常分为三类：</p><ul><li>跨域<strong>写操作</strong>（Cross-origin writes）<em>一般是被允许的</em>。例如链接（links），重定向以及表单提交。特定少数的HTTP请求需要添加
+<a href=https://developer.mozilla.org/zh-CN/docs/HTTP/Access_control_CORS#Preflighted_requests rel=noopener>preflight</a>。</li><li>跨域<strong>资源嵌入</strong>（Cross-origin embedding）一般是被允许（后面会举例说明）。</li><li>跨域<strong>读操作</strong>（Cross-origin reads）<em>一般是不被允许的</em>，但常可以通过内嵌资源来巧妙的进行读取访问。例如，你可以读取嵌入图片的高度和宽度，调用内嵌脚本的方法，或
+<a href=https://grepular.com/Abusing_HTTP_Status_Codes_to_Expose_Private_Information rel=noopener>availability of an embedded resource</a>.</li></ul><p>以下是可能嵌入跨源的资源的一些示例：</p><ul><li><code>&lt;script src="...">&lt;/script></code> 标签嵌入跨域脚本。语法错误信息只能被同源脚本中捕捉到。</li><li><code>&lt;link rel="stylesheet" href="..."></code> 标签嵌入CSS。由于CSS的
+<a href=http://scarybeastsecurity.blogspot.dk/2009/12/generic-cross-browser-cross-domain.html rel=noopener>松散的语法规则</a>，CSS的跨域需要一个设置正确的 HTTP 头部 <code>Content-Type</code> 。不同浏览器有不同的限制：
+<a href="http://msdn.microsoft.com/zh-CN/library/ie/gg622939%28v=vs.85%29.aspx" rel=noopener>IE</a>,
+<a href=http://www.mozilla.org/security/announce/2010/mfsa2010-46.html rel=noopener>Firefox</a>,
+<a href="http://code.google.com/p/chromium/issues/detail?id=9877" rel=noopener>Chrome</a>,
+<a href=http://support.apple.com/kb/HT4070 rel=noopener>Safari</a> (跳至CVE-2010-0051)部分 和
+<a href=http://www.opera.com/support/kb/view/943/ rel=noopener>Opera</a>。</li><li>通过
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img rel=noopener><code>&lt;img></code></a> 展示的图片。支持的图片格式包括PNG,JPEG,GIF,BMP,SVG,&mldr;</li><li>通过
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video rel=noopener><code>&lt;video></code></a> 和
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio rel=noopener><code>&lt;audio></code></a> 播放的多媒体资源。</li><li>通过 <code>&lt;object></code>、
+<a href=https://developer.mozilla.org/zh-CN/docs/HTML/Element/embed rel=noopener><code>&lt;embed></code></a> 和 <code>&lt;applet></code> 嵌入的插件。</li><li>通过 <code>@font-face</code> 引入的字体。一些浏览器允许跨域字体（ cross-origin fonts），一些需要同源字体（same-origin fonts）。</li><li>通过 <code>&lt;iframe></code> 载入的任何资源。站点可以使用
+<a href=https://developer.mozilla.org/zh-CN/docs/HTTP/X-Frame-Options rel=noopener>X-Frame-Options</a> 消息头来阻止这种形式的跨域交互。</li></ul><a href=#跨域api><h2 id=跨域api><span class=hanchor arialabel=Anchor># </span>跨域API</h2></a><p>JavaScript 的 API 中，如 <code>iframe.contentWindow</code>、
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/Window/parent rel=noopener><code>window.parent</code></a>、
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open rel=noopener><code>window.open</code></a> 和
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/Window/opener rel=noopener><code>window.opener</code></a> 允许文档间直接相互引用。当两个文档的源不同时，这些引用方式将对
+<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/browsers.html#security-window rel=noopener>Window</a> 和
+<a href=http://www.whatwg.org/specs/web-apps/current-work/multipage/history.html#security-location rel=noopener>Location</a>对象的访问添加限制，如下两节所述。</p><p>为了能让不同源中文档进行交流，可以使用
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage rel=noopener><code>window.postMessage</code></a>。</p><a href=#跨域数据存储><h2 id=跨域数据存储><span class=hanchor arialabel=Anchor># </span>跨域数据存储</h2></a><p>访问存储在浏览器中的数据，如
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/Guide/API/DOM/Storage rel=noopener>localStorage</a> 和
+<a href=https://developer.mozilla.org/zh-CN/docs/IndexedDB rel=noopener>IndexedDB</a>，是以源进行分割。每个源都拥有自己单独的存储空间，一个源中的 JavaScript 脚本不能对属于其它源的数据进行读写操作。</p><p><a href=https://developer.mozilla.org/en-US/docs/Glossary/Cookie rel=noopener>Cookies</a> 使用不同的源定义方式。一个页面可以为本域和其父域设置 cookie，只要是父域不是公共后缀（public suffix）即可。Firefox 和 Chrome 使用
+<a href=http://publicsuffix.org/ rel=noopener>Public Suffix List</a> 检测一个域是否是公共后缀（public suffix）。Internet Explorer 使用其内部的方法来检测域是否是公共后缀。不管使用哪个协议（HTTP/HTTPS）或端口号，浏览器都允许给定的域以及其任何子域名(sub-domains) 访问 cookie。当你设置 cookie 时，你可以使用 <code>Domain</code>、<code>Path</code>、<code>Secure</code>、和 <code>HttpOnly</code> 标记来限定其可访问性。当你读取 cookie 时，你无法知道它是在哪里被设置的。 即使您只使用安全的 https 连接，您看到的任何 cookie 都有可能是使用不安全的连接进行设置的。</p><a href=#解决跨域><h2 id=解决跨域><span class=hanchor arialabel=Anchor># </span>解决跨域</h2></a><a href=#jsonp><h3 id=jsonp><span class=hanchor arialabel=Anchor># </span>JSONP</h3></a><p>在HTML标签里，一些标签比如script、img这样的获取资源的标签是没有跨域限制的，利用这一点，我们可以这样干：</p><p>后端写个小接口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 处理成功失败返回格式的工具
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=p>{</span><span class=nx>successBody</span><span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../utli&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>CrossDomain</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=kr>async</span> <span class=nx>jsonp</span> <span class=p>(</span><span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 前端传过来的参数
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>query</span> <span class=o>=</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>request</span><span class=p>.</span><span class=nx>query</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 设置一个cookies
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>cookies</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;tokenId&#39;</span><span class=p>,</span> <span class=s1>&#39;1&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// query.cb是前后端约定的方法名字，其实就是后端返回一个直接执行的方法给前端，由于前端是用script标签发起的请求，所以返回了这个方法后相当于立马执行，并且把要返回的数据放在方法的参数里。
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>body</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>query</span><span class=p>.</span><span class=nx>cb</span><span class=si>}</span><span class=sb>(</span><span class=si>${</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>successBody</span><span class=p>({</span><span class=nx>msg</span><span class=o>:</span> <span class=nx>query</span><span class=p>.</span><span class=nx>msg</span><span class=si>}</span><span class=sb>, &#39;success&#39;))})`</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>CrossDomain</span>
+</span></span></code></pre></td></tr></table></div></div><p>简单版前端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=o>&lt;!</span><span class=nx>DOCTYPE</span> <span class=nx>html</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=nx>html</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=nx>head</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>meta</span> <span class=nx>charset</span><span class=o>=</span><span class=s2>&#34;utf-8&#34;</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=err>/head&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=nx>body</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>script</span> <span class=nx>type</span><span class=o>=</span><span class=s1>&#39;text/javascript&#39;</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>      <span class=c1>// 后端返回直接执行的方法，相当于执行这个方法，由于后端把返回的数据放在方法的参数里，所以这里能拿到res。
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nb>window</span><span class=p>.</span><span class=nx>jsonpCb</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>res</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=err>/script&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=o>&lt;</span><span class=nx>script</span> <span class=nx>src</span><span class=o>=</span><span class=s1>&#39;http://localhost:9871/api/jsonp?msg=helloJsonp&amp;cb=jsonpCb&#39;</span> <span class=nx>type</span><span class=o>=</span><span class=s1>&#39;text/javascript&#39;</span><span class=o>&gt;&lt;</span><span class=err>/script&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=o>&lt;</span><span class=err>/body&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=err>/html&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>简单封装一下前端这个套路</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=cm>/**
+</span></span></span><span class=line><span class=cl><span class=cm> * JSONP请求工具
+</span></span></span><span class=line><span class=cl><span class=cm> * @param url 请求的地址
+</span></span></span><span class=line><span class=cl><span class=cm> * @param data 请求的参数
+</span></span></span><span class=line><span class=cl><span class=cm> * @returns {Promise&lt;any&gt;}
+</span></span></span><span class=line><span class=cl><span class=cm> */</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>request</span> <span class=o>=</span> <span class=p>({</span><span class=nx>url</span><span class=p>,</span> <span class=nx>data</span><span class=p>})</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>((</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 处理传参成xx=yy&amp;aa=bb的形式
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>handleData</span> <span class=o>=</span> <span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>keys</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>keys</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>keysLen</span> <span class=o>=</span> <span class=nx>keys</span><span class=p>.</span><span class=nx>length</span>
+</span></span><span class=line><span class=cl>      <span class=k>return</span> <span class=nx>keys</span><span class=p>.</span><span class=nx>reduce</span><span class=p>((</span><span class=nx>pre</span><span class=p>,</span> <span class=nx>cur</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kr>const</span> <span class=nx>value</span> <span class=o>=</span> <span class=nx>data</span><span class=p>[</span><span class=nx>cur</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=kr>const</span> <span class=nx>flag</span> <span class=o>=</span> <span class=nx>index</span> <span class=o>!==</span> <span class=nx>keysLen</span> <span class=o>-</span> <span class=mi>1</span> <span class=o>?</span> <span class=s1>&#39;&amp;&#39;</span> <span class=o>:</span> <span class=s1>&#39;&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=sb>`</span><span class=si>${</span><span class=nx>pre</span><span class=si>}${</span><span class=nx>cur</span><span class=si>}</span><span class=sb>=</span><span class=si>${</span><span class=nx>value</span><span class=si>}${</span><span class=nx>flag</span><span class=si>}</span><span class=sb>`</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span> <span class=s1>&#39;&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 动态创建script标签
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>script</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;script&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 接口返回的数据获取
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nb>window</span><span class=p>.</span><span class=nx>jsonpCb</span> <span class=o>=</span> <span class=p>(</span><span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>removeChild</span><span class=p>(</span><span class=nx>script</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=k>delete</span> <span class=nb>window</span><span class=p>.</span><span class=nx>jsonpCb</span>
+</span></span><span class=line><span class=cl>      <span class=nx>resolve</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>script</span><span class=p>.</span><span class=nx>src</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>url</span><span class=si>}</span><span class=sb>?</span><span class=si>${</span><span class=nx>handleData</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span><span class=si>}</span><span class=sb>&amp;cb=jsonpCb`</span>
+</span></span><span class=line><span class=cl>    <span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>script</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>// 使用方式
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>request</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>url</span><span class=o>:</span> <span class=s1>&#39;http://localhost:9871/api/jsonp&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>data</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 传参
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>msg</span><span class=o>:</span> <span class=s1>&#39;helloJsonp&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}).</span><span class=nx>then</span><span class=p>(</span><span class=nx>res</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=mf>2.</span><span class=nx>空iframe加for</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#空iframe加form><h3 id=空iframe加form><span class=hanchor arialabel=Anchor># </span><strong>空iframe加form</strong></h3></a><p>JSONP只能发GET请求，因为本质上script加载资源就是GET，那么如果要发POST请求怎么办呢？</p><p>后端写个小接口</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 处理成功失败返回格式的工具
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=p>{</span><span class=nx>successBody</span><span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../utli&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>CrossDomain</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=kr>async</span> <span class=nx>iframePost</span> <span class=p>(</span><span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>postData</span> <span class=o>=</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>request</span><span class=p>.</span><span class=nx>body</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>postData</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>body</span> <span class=o>=</span> <span class=nx>successBody</span><span class=p>({</span><span class=nx>postData</span><span class=o>:</span> <span class=nx>postData</span><span class=p>},</span> <span class=s1>&#39;success&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>CrossDomain</span>
+</span></span></code></pre></td></tr></table></div></div><p>前端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>requestPost</span> <span class=o>=</span> <span class=p>({</span><span class=nx>url</span><span class=p>,</span> <span class=nx>data</span><span class=p>})</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 首先创建一个用来发送数据的iframe.
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kr>const</span> <span class=nx>iframe</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;iframe&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=nx>iframe</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=s1>&#39;iframePost&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>iframe</span><span class=p>.</span><span class=nx>style</span><span class=p>.</span><span class=nx>display</span> <span class=o>=</span> <span class=s1>&#39;none&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>iframe</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>form</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;form&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>node</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>createElement</span><span class=p>(</span><span class=s1>&#39;input&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 注册iframe的load事件处理程序,如果你需要在响应返回时执行一些操作的话.
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>iframe</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s1>&#39;load&#39;</span><span class=p>,</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;post success&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>form</span><span class=p>.</span><span class=nx>action</span> <span class=o>=</span> <span class=nx>url</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 在指定的iframe中执行form
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>form</span><span class=p>.</span><span class=nx>target</span> <span class=o>=</span> <span class=nx>iframe</span><span class=p>.</span><span class=nx>name</span>
+</span></span><span class=line><span class=cl>  <span class=nx>form</span><span class=p>.</span><span class=nx>method</span> <span class=o>=</span> <span class=s1>&#39;post&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>name</span> <span class=k>in</span> <span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>node</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=nx>name</span>
+</span></span><span class=line><span class=cl>    <span class=nx>node</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=nx>data</span><span class=p>[</span><span class=nx>name</span><span class=p>].</span><span class=nx>toString</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=nx>form</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>node</span><span class=p>.</span><span class=nx>cloneNode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 表单元素需要添加到主文档中.
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>form</span><span class=p>.</span><span class=nx>style</span><span class=p>.</span><span class=nx>display</span> <span class=o>=</span> <span class=s1>&#39;none&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>appendChild</span><span class=p>(</span><span class=nx>form</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=nx>form</span><span class=p>.</span><span class=nx>submit</span><span class=p>()</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#cors-推荐><h3 id=cors-推荐><span class=hanchor arialabel=Anchor># </span><strong>CORS</strong> (推荐)</h3></a><p>CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）
+<a href=http://www.ruanyifeng.com/blog/2016/04/cors.html rel=noopener>跨域资源共享 CORS 详解</a>。看名字就知道这是处理跨域问题的标准做法。CORS有两种请求，简单请求和非简单请求。</p><blockquote><p>这里引用上面链接阮一峰老师的文章说明一下简单请求和非简单请求。
+浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。</p></blockquote><p>只要同时满足以下两大条件，就属于简单请求。
+（1) 请求方法是以下三种方法之一：</p><ul><li>HEAD</li><li>GET</li><li>POST</li></ul><p>（2）HTTP的头信息不超出以下几种字段：</p><ul><li>Accept</li><li>Accept-Language</li><li>Content-Language</li><li>Last-Event-ID</li><li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li></ul><p>1.简单请求
+后端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 处理成功失败返回格式的工具
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=p>{</span><span class=nx>successBody</span><span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../utli&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>CrossDomain</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=kr>async</span> <span class=nx>cors</span> <span class=p>(</span><span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>query</span> <span class=o>=</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>request</span><span class=p>.</span><span class=nx>query</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// *时cookie不会在http请求中带上
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;Access-Control-Allow-Origin&#39;</span><span class=p>,</span> <span class=s1>&#39;*&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>cookies</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;tokenId&#39;</span><span class=p>,</span> <span class=s1>&#39;2&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>body</span> <span class=o>=</span> <span class=nx>successBody</span><span class=p>({</span><span class=nx>msg</span><span class=o>:</span> <span class=nx>query</span><span class=p>.</span><span class=nx>msg</span><span class=p>},</span> <span class=s1>&#39;success&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>CrossDomain</span>
+</span></span></code></pre></td></tr></table></div></div><p>前端什么也不用干，就是正常发请求就可以，如果需要带cookie的话，前后端都要设置一下，下面那个非简单请求例子会看到。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>fetch</span><span class=p>(</span><span class=sb>`http://localhost:9871/api/cors?msg=helloCors`</span><span class=p>).</span><span class=nx>then</span><span class=p>(</span><span class=nx>res</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></td></tr></table></div></div><p>2.非简单请求
+非简单请求会发出一次预检测请求，返回码是204，预检测通过才会真正发出请求，这才返回200。这里通过前端发请求的时候增加一个额外的headers来触发非简单请求。
+<img src=https://jieye-ericx.github.io//Origin.assets/bVbdz9K.png width=auto alt=clipboard.png></p><p>后端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 处理成功失败返回格式的工具
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=p>{</span><span class=nx>successBody</span><span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../utli&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>CrossDomain</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>static</span> <span class=kr>async</span> <span class=nx>cors</span> <span class=p>(</span><span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>query</span> <span class=o>=</span> <span class=nx>ctx</span><span class=p>.</span><span class=nx>request</span><span class=p>.</span><span class=nx>query</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 如果需要http请求中带上cookie，需要前后端都设置credentials，且后端设置指定的origin
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;Access-Control-Allow-Origin&#39;</span><span class=p>,</span> <span class=s1>&#39;http://localhost:9099&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;Access-Control-Allow-Credentials&#39;</span><span class=p>,</span> <span class=kc>true</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为&#34;预检&#34;请求（preflight）
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// 这种情况下除了设置origin，还需要设置Access-Control-Request-Method以及Access-Control-Request-Headers
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;Access-Control-Request-Method&#39;</span><span class=p>,</span> <span class=s1>&#39;PUT,POST,GET,DELETE,OPTIONS&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;Access-Control-Allow-Headers&#39;</span><span class=p>,</span> <span class=s1>&#39;Origin, X-Requested-With, Content-Type, Accept, t&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>cookies</span><span class=p>.</span><span class=nx>set</span><span class=p>(</span><span class=s1>&#39;tokenId&#39;</span><span class=p>,</span> <span class=s1>&#39;2&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nx>ctx</span><span class=p>.</span><span class=nx>body</span> <span class=o>=</span> <span class=nx>successBody</span><span class=p>({</span><span class=nx>msg</span><span class=o>:</span> <span class=nx>query</span><span class=p>.</span><span class=nx>msg</span><span class=p>},</span> <span class=s1>&#39;success&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>CrossDomain</span>
+</span></span></code></pre></td></tr></table></div></div><p>一个接口就要写这么多代码，如果想所有接口都统一处理，有什么更优雅的方式呢？见下面的koa2-cors。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>path</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;path&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>Koa</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;koa&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>koaStatic</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;koa-static&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>bodyParser</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;koa-bodyparser&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>router</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./router&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>cors</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;koa2-cors&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>app</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Koa</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>port</span> <span class=o>=</span> <span class=mi>9871</span>
+</span></span><span class=line><span class=cl><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>bodyParser</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=c1>// 处理静态资源 这里是前端build好之后的目录
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>koaStatic</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>  <span class=nx>path</span><span class=p>.</span><span class=nx>resolve</span><span class=p>(</span><span class=nx>__dirname</span><span class=p>,</span> <span class=s1>&#39;../dist&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=c1>// 处理cors
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>cors</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>origin</span><span class=o>:</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>ctx</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=s1>&#39;http://localhost:9099&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>credentials</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>allowMethods</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;GET&#39;</span><span class=p>,</span> <span class=s1>&#39;POST&#39;</span><span class=p>,</span> <span class=s1>&#39;DELETE&#39;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl>  <span class=nx>allowHeaders</span><span class=o>:</span> <span class=p>[</span><span class=s1>&#39;t&#39;</span><span class=p>,</span> <span class=s1>&#39;Content-Type&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=p>}))</span>
+</span></span><span class=line><span class=cl><span class=c1>// 路由
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>use</span><span class=p>(</span><span class=nx>router</span><span class=p>.</span><span class=nx>routes</span><span class=p>()).</span><span class=nx>use</span><span class=p>(</span><span class=nx>router</span><span class=p>.</span><span class=nx>allowedMethods</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=c1>// 监听端口
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>app</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>9871</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`[demo] start-quick is starting at port </span><span class=si>${</span><span class=nx>port</span><span class=si>}</span><span class=sb>`</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>前端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>fetch</span><span class=p>(</span><span class=sb>`http://localhost:9871/api/cors?msg=helloCors`</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 需要带上cookie
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>credentials</span><span class=o>:</span> <span class=s1>&#39;include&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 这里添加额外的headers来触发非简单请求
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>headers</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;t&#39;</span><span class=o>:</span> <span class=s1>&#39;extra headers&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}).</span><span class=nx>then</span><span class=p>(</span><span class=nx>res</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>res</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#代理-nginx><h3 id=代理-nginx><span class=hanchor arialabel=Anchor># </span><strong>代理</strong> (Nginx)</h3></a><p>想一下，如果我们请求的时候还是用前端的域名，然后有个东西帮我们把这个请求转发到真正的后端域名上，不就避免跨域了吗？这时候，Nginx出场了。
+Nginx配置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=k>server{</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 监听9099端口
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=s>listen</span> <span class=mi>9099</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 域名是localhost
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>server_name</span> <span class=s>localhost</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#凡是localhost:9099/api这个样子的，都转发到真正的服务端地址http://localhost:9871 
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>location</span> <span class=s>^~</span> <span class=s>/api</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kn>proxy_pass</span> <span class=s>http://localhost:9871</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>    
+</span></span><span class=line><span class=cl><span class=k>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>前端就不用干什么事情了，除了写接口，也没后端什么事情了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 请求的时候直接用回前端这边的域名http://localhost:9099，这就不会跨域，然后Nginx监听到凡是localhost:9099/api这个样子的，都转发到真正的服务端地址http://localhost:9871 
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>fetch</span><span class=p>(</span><span class=s1>&#39;http://localhost:9099/api/iframePost&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>method</span><span class=o>:</span> <span class=s1>&#39;POST&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>headers</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;Accept&#39;</span><span class=o>:</span> <span class=s1>&#39;application/json&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=s1>&#39;Content-Type&#39;</span><span class=o>:</span> <span class=s1>&#39;application/json&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>body</span><span class=o>:</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>    <span class=nx>msg</span><span class=o>:</span> <span class=s1>&#39;helloIframePost&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></td></tr></table></div></div><p>Nginx转发的方式似乎很方便！但这种使用也是看场景的，如果后端接口是一个公共的API，比如一些公共服务获取天气什么的，前端调用的时候总不能让运维去配置一下Nginx，如果兼容性没问题（IE 10或者以上），CROS才是更通用的做法吧。</p><a href=#同源策略限制下dom查询的正确打开方式><h2 id=同源策略限制下dom查询的正确打开方式><span class=hanchor arialabel=Anchor># </span>同源策略限制下Dom查询的正确打开方式</h2></a><p><strong>1.postMessage</strong>
+<code>window.postMessage()</code> 是HTML5的一个接口，专注实现不同窗口不同页面的跨域通讯。
+为了演示方便，我们将hosts改一下：127.0.0.1 crossDomain.com，现在访问域名crossDomain.com就等于访问127.0.0.1。</p><p>这里是
+<a href=http://localhost/ rel=noopener>http://localhost</a>:9099/#/crossDomain，发消息方</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-vue data-lang=vue><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>template</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>button</span> <span class=nt>@click</span><span class=s>=&#34;postMessage&#34;</span><span class=p>&gt;</span><span class=na>给http</span><span class=o>:</span><span class=err>//</span><span class=na>crossDomain.com</span><span class=o>:</span><span class=na>9099发消息</span><span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>iframe</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;crossDomainIframe&#34;</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;http://crossdomain.com:9099&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>iframe</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>template</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=k>default</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>mounted</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>window</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=c1>// 这里一定要对来源做校验
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=k>if</span> <span class=p>(</span><span class=nx>e</span><span class=p>.</span><span class=nx>origin</span> <span class=o>===</span> <span class=s1>&#39;http://crossdomain.com:9099&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 来自http://crossdomain.com:9099的结果回复
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>e</span><span class=p>.</span><span class=nx>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>methods</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 向http://crossdomain.com:9099发消息
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>postMessage</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kr>const</span> <span class=nx>iframe</span> <span class=o>=</span> <span class=nb>window</span><span class=p>.</span><span class=nx>frames</span><span class=p>[</span><span class=s1>&#39;crossDomainIframe&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>      <span class=nx>iframe</span><span class=p>.</span><span class=nx>postMessage</span><span class=p>(</span><span class=s1>&#39;我是[http://localhost:9099], 麻烦你查一下你那边有没有id为app的Dom&#39;</span><span class=p>,</span> <span class=s1>&#39;http://crossdomain.com:9099&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>这里是
+<a href=http://crossdomain.com/ rel=noopener>http://crossdomain.com</a>:9099，接收消息方</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>&lt;template&gt;
+</span></span><span class=line><span class=cl>  &lt;div&gt;
+</span></span><span class=line><span class=cl>    我是http://crossdomain.com:9099
+</span></span><span class=line><span class=cl>  &lt;/div&gt;
+</span></span><span class=line><span class=cl>&lt;/template&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>&lt;script&gt;
+</span></span><span class=line><span class=cl>export default {
+</span></span><span class=line><span class=cl>  mounted () {
+</span></span><span class=line><span class=cl>    window.addEventListener(&#39;message&#39;, (e) =&gt; {
+</span></span><span class=line><span class=cl>      // 这里一定要对来源做校验
+</span></span><span class=line><span class=cl>      if (e.origin === &#39;http://localhost:9099&#39;) {
+</span></span><span class=line><span class=cl>        // http://localhost:9099发来的信息
+</span></span><span class=line><span class=cl>        console.log(e.data)
+</span></span><span class=line><span class=cl>        // e.source可以是回信的对象，其实就是http://localhost:9099窗口对象(window)的引用
+</span></span><span class=line><span class=cl>        // e.origin可以作为targetOrigin
+</span></span><span class=line><span class=cl>        e.source.postMessage(`我是[http://crossdomain.com:9099]，我知道了兄弟，这就是你想知道的结果：${document.getElementById(&#39;app&#39;) ? &#39;有id为app的Dom&#39; : &#39;没有id为app的Dom&#39;}`, e.origin);
+</span></span><span class=line><span class=cl>      }
+</span></span><span class=line><span class=cl>    })
+</span></span><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>&lt;/script&gt;
+</span></span></code></pre></td></tr></table></div></div><p>结果可以看到：</p><p><img src=https://jieye-ericx.github.io//Origin.assets/bVbdBwQ.png width=auto alt=clipboard.png></p><p><strong>2.document.domain</strong>
+这种方式只适合主域名相同，但子域名不同的iframe跨域。
+比如主域名是
+<a href=http://crossdomain.com/ rel=noopener>http://crossdomain.com</a>:9099，子域名是
+<a href=http://child.crossdomain.com/ rel=noopener>http://child.crossdomain.com</a>:9099，这种情况下给两个页面指定一下document.domain即document.domain = crossdomain.com就可以访问各自的window对象了。</p><p><strong>3.canvas操作图片的跨域问题</strong>
+这个应该是一个比较冷门的跨域问题，张大神已经写过了我就不再班门弄斧了
+<a href=https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/ rel=noopener>解决canvas图片getImageData,toDataURL跨域问题</a></p><a href=#https的页面发送不了http请求><h2 id=https的页面发送不了http请求><span class=hanchor arialabel=Anchor># </span>HTTPS的页面发送不了HTTP请求</h2></a><p>有些人说是跨域问题，真的是这样吗？</p><blockquote><p>同源策略：1. 协议相同 2. 域名相同 3.端口相同</p></blockquote><p>尽管HTTPS访问HTTP确实不符合同源策略中的协议相同，但是在现代浏览器里，即使是域名相同的请求，也是会出现以下报错，而不是跨域报错。</p><p><img src=https://jieye-ericx.github.io//../../../pics/image-20210430001209252.png width=auto alt=image-20210430001209252>这也很好理解，毕竟混合内容的安全策略是在浏览器端判定的，而是否能跨域要看服务器返回的Response头，请求都被浏览器block掉了，也就不存在是否跨域的问题。</p><p>那什么是混合内容？</p><blockquote><p><strong>混合内容：初始 HTML 内容通过安全的 HTTPS 连接加载，但其他资源（例如，图像、视频、样式表、脚本）则通过不安全的 HTTP 连接加载[1]。因为页面通过 HTTPS 加载的初始请求是安全的，但是又加载了不安全的HTTP内容，因此称之为混合内容。</strong></p></blockquote><p>因为HTTPS的S本身就是Secure的意思，现代浏览器最初会针对此类型的内容显示警告，以向用户表明此页面包含不安全的资源。但是即使显示警告，页面也已经加载，用户的安全仍然受到了威胁。所以没过多久，Chrome和Firefox就直接阻断掉了这类的请求。</p><p>这就是HTTPS页面为什么发送不了HTTP的原因。</p><p><strong>突破方式</strong></p><p>尽管现在主流浏览器都已经block掉了HTTPS页面上的HTTP请求，但是我们还是可以通过被动混合内容来发送get请求。</p><blockquote><p>被动混合内容:指的是不与页面其余部分进行交互的内容，包括图像、视频和音频内容，以及无法与页面其余部分进行交互的其他资源。</p><p><strong>主动混合内容: 指的是能与页面交互的内容，包括浏览器可下载和执行的脚本、样式表、iframe、flash 资源及其他代码。</strong>[1]</p></blockquote><p>因为攻击者可以通过不安全的HTTP内容来攻击安全的HTTPS页面，所以这类请求被严格阻断掉了————这也是为什么我们的Fetch请求被干掉了。所以我们<strong>可以在迫不得已的情况下，用img.src的方式来发送请求。当然，请求方法只能是get。</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sendHttpRequest: () =&gt; {
+</span></span><span class=line><span class=cl>    const img = new Image();
+</span></span><span class=line><span class=cl>    img.src = &#39;http://xxx.com//你的请求&#39;
+</span></span><span class=line><span class=cl>} 
+</span></span></code></pre></td></tr></table></div></div><p>这时候，浏览器只会在控制台报warning，而不会block我们的请求。</p><p><strong>出于HTTPS的安全策略，浏览器会阻断HTTPS上的非安全请求（HTTP）请求，但是我们可以使用被动混合内容的方式来跨越这个安全策略。</strong></p></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

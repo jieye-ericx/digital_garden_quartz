@@ -1,0 +1,256 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="CSS3 优势：
+ 使用CSS3技术来控制页面元素CSS属性的变化 不需要js也能写 由浏览器执行，更加流畅 减少代码量  应用场景：
+ 网页特效 用户交互 抽奖动画 网页小游戏  transition transition CSS 属性是 transition-property， transition-duration， transition-timing-function 和 transition-delay 的一个 简写属性。"><meta property="og:title" content><meta property="og:description" content="CSS3 优势：
+ 使用CSS3技术来控制页面元素CSS属性的变化 不需要js也能写 由浏览器执行，更加流畅 减少代码量  应用场景：
+ 网页特效 用户交互 抽奖动画 网页小游戏  transition transition CSS 属性是 transition-property， transition-duration， transition-timing-function 和 transition-delay 的一个 简写属性。"><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/CSS3-no/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="CSS3 优势：
+ 使用CSS3技术来控制页面元素CSS属性的变化 不需要js也能写 由浏览器执行，更加流畅 减少代码量  应用场景：
+ 网页特效 用户交互 抽奖动画 网页小游戏  transition transition CSS 属性是 transition-property， transition-duration， transition-timing-function 和 transition-delay 的一个 简写属性。"><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/CSS3%20no.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#transition>transition</a><ol><li><a href=#transition-timing-function>transition-timing-function</a></li></ol></li><li><a href=#transform>transform</a><ol><li><a href=#transform-2d>transform 2D</a></li><li><a href=#transform-3d>transform 3D</a></li></ol></li><li><a href=#animation>Animation</a><ol><li><a href=#具体属性>具体属性</a></li><li><a href=#旋转木马案例>旋转木马案例</a></li></ol></li></ol></nav></details></aside><a href=#css3><h1 id=css3><span class=hanchor arialabel=Anchor># </span>CSS3</h1></a><p><strong>优势：</strong></p><ul><li>使用CSS3技术来控制页面元素CSS属性的变化</li><li>不需要js也能写</li><li>由浏览器执行，更加流畅</li><li>减少代码量</li></ul><p><strong>应用场景：</strong></p><ul><li>网页特效</li><li>用户交互</li><li>抽奖动画</li><li>网页小游戏</li></ul><a href=#transition><h2 id=transition><span class=hanchor arialabel=Anchor># </span>transition</h2></a><p><strong><code>transition</code></strong>
+<a href=https://developer.mozilla.org/en/CSS rel=noopener>CSS</a> 属性是
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-property rel=noopener><code>transition-property</code></a>，
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-duration rel=noopener><code>transition-duration</code></a>，
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-timing-function rel=noopener><code>transition-timing-function</code></a> 和
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition-delay rel=noopener><code>transition-delay</code></a> 的一个
+<a href=https://developer.mozilla.org/en-US/docs/Web/CSS/Shorthand_properties rel=noopener>简写属性</a>。</p><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172017.png width=auto alt=image-20200213184433362></p><p>过渡可以为一个元素在不同状态之间切换的时候定义不同的过渡效果。比如在不同的伪元素之间切换，像是
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/:hover rel=noopener><code>:hover</code></a>，
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/CSS/:active rel=noopener><code>:active</code></a> 或者通过 JavaScript 实现的状态变化。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/* Apply to 1 property */</span>
+</span></span><span class=line><span class=cl><span class=c>/* property name | duration */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>margin-right</span> <span class=nt>4s</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* property name | duration | delay */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>margin-right</span> <span class=nt>4s</span> <span class=nt>1s</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* property name | duration | timing function */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>margin-right</span> <span class=nt>4s</span> <span class=nt>ease-in-out</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* property name | duration | timing function | delay */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>margin-right</span> <span class=nt>4s</span> <span class=nt>ease-in-out</span> <span class=nt>1s</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* Apply to 2 properties */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>margin-right</span> <span class=nt>4s</span><span class=o>,</span> <span class=nt>color</span> <span class=nt>1s</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* Apply to all changed properties */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>all</span> <span class=nt>0</span><span class=p>.</span><span class=nc>5s</span> <span class=nt>ease-out</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* Global values */</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>inherit</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>initial</span><span class=o>;</span>
+</span></span><span class=line><span class=cl><span class=nt>transition</span><span class=o>:</span> <span class=nt>unset</span><span class=o>;</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li><a href=#transition-timing-function><h3 id=transition-timing-function><span class=hanchor arialabel=Anchor># </span>transition-timing-function</h3></a><p>transition的状态变化速度（又称timing function），默认不是匀速的，而是逐渐放慢，这叫做ease。除了ease以外，其他模式还包括</p><ol><li>linear：匀速</li><li>ease-in：加速</li><li>ease-out：减速</li><li>cubic-bezier函数：自定义速度模式</li></ol><p>最后那个cubic-bezier，可以使用
+<a href=http://cubic-bezier.com/ rel=noopener>工具网站</a>来定制。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=nt>img</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>transition</span><span class=p>:</span> <span class=mi>1</span><span class=kt>s</span> <span class=k>height</span> <span class=nb>cubic-bezier</span><span class=p>(</span><span class=mf>.83</span><span class=p>,</span><span class=mf>.97</span><span class=p>,</span><span class=mf>.05</span><span class=p>,</span><span class=mf>1.44</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div></li></ul><p>transition的优点在于简单易用，但是它有几个很大的局限。</p><ul><li>transition需要事件触发，所以没法在网页加载时自动发生。</li><li>transition是一次性的，不能重复发生，除非一再触发。</li><li>transition只能定义开始状态和结束状态，不能定义中间状态，也就是说只有两个状态。</li><li>一条transition规则，只能定义一个属性的变化，不能涉及多个属性。</li></ul><a href=#transform><h2 id=transform><span class=hanchor arialabel=Anchor># </span>transform</h2></a><p>转换<code>transform</code>是CSS3中具有颠覆性的特征之一，可以实现元素的位移、旋转、缩放等效果。</p><p>移动：translate</p><p>旋转：rotate</p><p>缩放：scale</p><a href=#transform-2d><h3 id=transform-2d><span class=hanchor arialabel=Anchor># </span>transform 2D</h3></a><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172018.png width=auto alt=image-20200213201443181></p><p><strong>transform-origin</strong>:</p><p>转换中心点</p><p><code>transform-origin: x y;</code></p><ul><li>注意后面的参数 x 和 y 用空格隔开</li><li><strong>x y 默认转换的中心点是元素的中心点 (50% 50%)</strong></li><li>还可以给x y 设置 像素 或者 方位名词 （top bottom left right center）</li></ul><p><strong>translate：</strong></p><p><code>transform: translate(x,y);</code> 或者分开写</p><p><code>transform: translateX(n);</code></p><p><code>transform: translateY(n);</code></p><ul><li><p>定义 2D 转换中的移动，沿着 X 和 Y 轴移动元素</p></li><li><p><strong>translate最大的优点：不会影响到其他元素的位置</strong></p></li><li><p>translate中的<strong>百分比单位是相对于自身元素</strong>的 translate:(50%,50%);</p></li><li><p>对行内标签没有效果</p></li></ul><p><strong>rotate</strong>：</p><p><code>transform:rotate(度数)</code></p><ul><li>rotate里面跟度数， 单位是 deg 比如 rotate(45deg)</li><li>角度为正时，顺时针，负时，为逆时针</li><li>默认旋转的中心点是元素的中心点</li></ul><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172019.png width=auto alt=image-20200213201803232></p><p><strong>scale</strong>：</p><p><code>transform:scale(x,y);</code></p><ul><li>注意其中的x和y用逗号分隔</li><li>transform:scale(1,1) ：宽和高都放大一倍，相对于没有放大</li><li>transform:scale(2,2) ：宽和高都放大了2倍</li><li>transform:scale(2) ：只写一个参数，第二个参数则和第一个参数一样，相当于 scale(2,2)</li><li>transform:scale(0.5,0.5)：缩小</li><li><strong>sacle缩放最大的优势：可以设置转换中心点缩放，默认以中心点缩放的，而且不影响其他盒子</strong></li></ul><p><strong>注意：</strong></p><ol><li>同时使用多个转换，其格式为：<code>transform: translate() rotate() scale() ...</code>等，</li><li><strong>其顺序会影转换的效果（先旋转会改变坐标轴方向）</strong></li><li>当我们同时有位移和其他属性的时候，记得要将位移放到最前</li></ol><a href=#transform-3d><h3 id=transform-3d><span class=hanchor arialabel=Anchor># </span>transform 3D</h3></a><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172020.png width=auto alt=image-20200213202206022></p><p><strong>translate3d</strong>:</p><p>3D移动在2D移动的基础上多加了一个可以移动的方向，就是z轴方向。</p><ul><li><code>translform:translateX(100px)</code>：仅仅是在x轴上移</li><li><code>translform:translateY(100px)</code>：仅仅是在Y轴上移动</li><li><code>translform:translateZ(100px)</code>：仅仅是在Z轴上移动（注意：translateZ一般用px单位）</li><li><code>transform:translate3d(x,y,z)</code>：其中 x、y、z 分别指要移动的轴的方向的距离</li></ul><p>因为z轴是垂直屏幕，由里指向外面，所以默认是看不到元素在z轴的方向上移动。</p><p><strong>perspective</strong>:</p><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172021.png width=auto alt=image-20200213202357620></p><p><code>translform:translateZ(100px)</code>：仅仅是在Z轴上移动。有了透视，就能看到translateZ 引起的变化了</p><p><strong>rotate3d</strong>:</p><p>3D旋转指可以让元素在三维平面内沿着 x轴，y轴，z轴或者自定义轴进行旋转。</p><ul><li><code>transform:rotateX(45deg)</code>：沿着x轴正方向旋转 45度</li><li><code>transform:rotateY(45deg)</code> ：沿着y轴正方向旋转 45deg</li><li><code>transform:rotateZ(45deg)</code> ：沿着Z轴正方向旋转 45deg</li><li><code>transform:rotate3d(x,y,z,deg)</code>： 沿着自定义轴旋转 deg为角度（了解即可）xyz是表示旋转轴的矢量，是标示你是否希望沿着该轴旋转，最后一个标示旋转的角度。<code>transform:rotate3d(1,1,0,45deg)</code> 就是沿着对角线旋转 45deg</li></ul><p><strong>transfrom-style</strong>:</p><p>控制子元素是否开启三维立体环境。</p><ul><li><p><code>transform-style: flat;</code> 子元素不开启3d立体空间 默认的</p></li><li><p><code>ltransform-style: preserve-3d;</code> 子元素开启立体空间</p></li></ul><p>代码写给父级，但是影响的是子盒子。这个属性很重要，后面必用。</p><a href=#animation><h2 id=animation><span class=hanchor arialabel=Anchor># </span>Animation</h2></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/*一个周期持续的时间，以及动画效果的名称
+</span></span></span><span class=line><span class=cl><span class=c>当鼠标悬停在div元素上时，会产生名为‘动画名称’的动画效果，持续时间为1秒。为此，我们还需要用keyframes关键字，定义‘动画名称’效果。
+</span></span></span><span class=line><span class=cl><span class=c>*/</span>
+</span></span><span class=line><span class=cl><span class=nt>div</span><span class=p>:</span><span class=nd>hover</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>animation</span><span class=p>:</span> <span class=mi>1</span><span class=kt>s</span> <span class=err>动画名称</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>@</span><span class=k>keyframes</span> <span class=nt>动画名称</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>   <span class=nt>0</span><span class=o>%</span> <span class=p>{</span> <span class=k>background</span><span class=p>:</span> <span class=mh>#c00</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nt>50</span><span class=o>%</span> <span class=p>{</span> <span class=k>background</span><span class=p>:</span> <span class=kc>orange</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nt>100</span><span class=o>%</span> <span class=p>{</span> <span class=k>background</span><span class=p>:</span> <span class=kc>yellowgreen</span><span class=p>;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><ul><li>0% 是动画的开始，100% 是动画的完成。这样的规则就是动画序列。</li><li>在 @keyframes 中规定某项 CSS 样式，就能创建由当前样式逐渐改为新样式的动画效果。</li><li>动画是使元素从一种样式逐渐变化为另一种样式的效果。您可以改变任意多的样式任意多的次数。</li><li>请用百分比来规定变化发生的时间，或用关键词 &ldquo;from&rdquo; 和 &ldquo;to&rdquo;，等同于 0% 和 100%。</li></ul><a href=#具体属性><h3 id=具体属性><span class=hanchor arialabel=Anchor># </span>具体属性</h3></a><p><code>animation：动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画起始或者结束的状态;</code></p><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172022.png width=auto alt=image-20200213203101735></p><blockquote><p>简写属性里面不包含 animation-play-state
+暂停动画：animation-play-state: puased; 经常和鼠标经过等其他配合使用
+想要动画走回来 ，而不是直接跳回来：<code>animation-direction:alternate;</code>
+盒子动画结束后，停在结束位置： <code>animation-fill-mode:forwards;</code></p></blockquote><ul><li>animation-timing-function：规定动画的速度曲线，默认是“ease”</li></ul><p><img src=https://jieye-ericx.github.io//../../../pics/20210410172023.png width=auto alt=image-20200213203243443></p><a href=#旋转木马案例><h3 id=旋转木马案例><span class=hanchor arialabel=Anchor># </span>旋转木马案例</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;en&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;UTF-8&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;viewport&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;width=device-width, initial-scale=1.0&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>meta</span> <span class=na>http-equiv</span><span class=o>=</span><span class=s>&#34;X-UA-Compatible&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;ie=edge&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>Document<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>body</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>perspective</span><span class=p>:</span> <span class=mi>1000</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>position</span><span class=p>:</span> <span class=kc>relative</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>height</span><span class=p>:</span> <span class=mi>200</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>width</span><span class=p>:</span> <span class=mi>300</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>margin</span><span class=p>:</span> <span class=mi>200</span><span class=kt>px</span> <span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform-style</span><span class=p>:</span> <span class=kc>preserve-3d</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>animation</span><span class=p>:</span> <span class=n>rota</span> <span class=mf>0.5</span><span class=kt>s</span> <span class=kc>linear</span> <span class=kc>infinite</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span><span class=p>:</span><span class=nd>hover</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>animation-play-state</span><span class=p>:</span> <span class=kc>paused</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=p>@</span><span class=k>keyframes</span>  <span class=nt>rota</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>0</span><span class=o>%</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>transform</span><span class=p>:</span><span class=nb>rotateY</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=nt>100</span><span class=o>%</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>transform</span><span class=p>:</span> <span class=nb>rotateY</span><span class=p>(</span><span class=mi>360</span><span class=kt>deg</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>position</span><span class=p>:</span> <span class=kc>absolute</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>top</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>left</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>width</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>height</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=k>background</span><span class=p>:</span> <span class=nb>url</span><span class=p>(</span><span class=s1>&#39;http://pic0.iqiyipic.com/common/lego/20200209/ccc614312b7048f19408192c91a8ecf9.jpg&#39;</span><span class=p>)</span> <span class=kc>no-repeat</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>:</span><span class=nd>nth-child</span><span class=o>(</span><span class=nt>1</span><span class=o>)</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform</span><span class=p>:</span> <span class=nb>translateZ</span><span class=p>(</span><span class=mi>300</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>:</span><span class=nd>nth-child</span><span class=o>(</span><span class=nt>2</span><span class=o>)</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform</span><span class=p>:</span> <span class=nb>rotateY</span><span class=p>(</span><span class=mi>60</span><span class=kt>deg</span><span class=p>)</span> <span class=nb>translateZ</span><span class=p>(</span><span class=mi>300</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>:</span><span class=nd>nth-child</span><span class=o>(</span><span class=nt>3</span><span class=o>)</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform</span><span class=p>:</span> <span class=nb>rotateY</span><span class=p>(</span><span class=mi>120</span><span class=kt>deg</span><span class=p>)</span> <span class=nb>translateZ</span><span class=p>(</span><span class=mi>300</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>:</span><span class=nd>nth-child</span><span class=o>(</span><span class=nt>4</span><span class=o>)</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform</span><span class=p>:</span> <span class=nb>rotateY</span><span class=p>(</span><span class=mi>180</span><span class=kt>deg</span><span class=p>)</span> <span class=nb>translateZ</span><span class=p>(</span><span class=mi>300</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>:</span><span class=nd>nth-child</span><span class=o>(</span><span class=nt>5</span><span class=o>)</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform</span><span class=p>:</span> <span class=nb>rotateY</span><span class=p>(</span><span class=mi>240</span><span class=kt>deg</span><span class=p>)</span> <span class=nb>translateZ</span><span class=p>(</span><span class=mi>300</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>section</span> <span class=nt>div</span><span class=p>:</span><span class=nd>nth-child</span><span class=o>(</span><span class=nt>6</span><span class=o>)</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=k>transform</span><span class=p>:</span> <span class=nb>rotateY</span><span class=p>(</span><span class=mi>300</span><span class=kt>deg</span><span class=p>)</span> <span class=nb>translateZ</span><span class=p>(</span><span class=mi>300</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>section</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>div</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>section</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

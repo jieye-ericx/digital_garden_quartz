@@ -1,0 +1,324 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="单元测试 首先声明一点，长期以来，前端开发的单元测试并不是在前端的开发过程中所必须的，也不是每个前端开发工程师所注意和重视的，甚至扩大到软件开发过程中单元测试这一环也不是在章程上有书面规定所要求的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有其必要。
+1.前端单元测试是什么 首先我们要明确测试是什么：
+ ​ 为检测特定的目标是否符合标准而采用专用的工具或者方法进行验证，并最终得出特定的结果。
+ ​ 对于前端开发过程来说，这里的特定目标就是指我们写的代码，而工具就是我们需要用到的测试框架(库)、测试用例等。检测处的结果就是展示测试是否通过或者给出测试报告，这样才能方便问题的排查和后期的修正。
+​ 基于测试“是什么”的说法，为便于刚从事前端开发的同行的进阶理解，那我们就列出单元测试它“不是什么”：
+ 需要访问数据库的测试不是单元测试
+需要访问网络的测试不是单元测试
+需要访问文件系统的测试不是单元测试
+&mdash; 修改代码的艺术
+ 对于单元测试“不是什么”的引用解释，至此点到为止。鉴于篇幅限制，对于引用内容，我想前端开发的同行们看到后会初步有一个属于自己的理解。"><meta property="og:title" content><meta property="og:description" content="单元测试 首先声明一点，长期以来，前端开发的单元测试并不是在前端的开发过程中所必须的，也不是每个前端开发工程师所注意和重视的，甚至扩大到软件开发过程中单元测试这一环也不是在章程上有书面规定所要求的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有其必要。
+1.前端单元测试是什么 首先我们要明确测试是什么：
+ ​ 为检测特定的目标是否符合标准而采用专用的工具或者方法进行验证，并最终得出特定的结果。
+ ​ 对于前端开发过程来说，这里的特定目标就是指我们写的代码，而工具就是我们需要用到的测试框架(库)、测试用例等。检测处的结果就是展示测试是否通过或者给出测试报告，这样才能方便问题的排查和后期的修正。
+​ 基于测试“是什么”的说法，为便于刚从事前端开发的同行的进阶理解，那我们就列出单元测试它“不是什么”：
+ 需要访问数据库的测试不是单元测试
+需要访问网络的测试不是单元测试
+需要访问文件系统的测试不是单元测试
+&mdash; 修改代码的艺术
+ 对于单元测试“不是什么”的引用解释，至此点到为止。鉴于篇幅限制，对于引用内容，我想前端开发的同行们看到后会初步有一个属于自己的理解。"><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/web-test/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="单元测试 首先声明一点，长期以来，前端开发的单元测试并不是在前端的开发过程中所必须的，也不是每个前端开发工程师所注意和重视的，甚至扩大到软件开发过程中单元测试这一环也不是在章程上有书面规定所要求的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有其必要。
+1.前端单元测试是什么 首先我们要明确测试是什么：
+ ​ 为检测特定的目标是否符合标准而采用专用的工具或者方法进行验证，并最终得出特定的结果。
+ ​ 对于前端开发过程来说，这里的特定目标就是指我们写的代码，而工具就是我们需要用到的测试框架(库)、测试用例等。检测处的结果就是展示测试是否通过或者给出测试报告，这样才能方便问题的排查和后期的修正。
+​ 基于测试“是什么”的说法，为便于刚从事前端开发的同行的进阶理解，那我们就列出单元测试它“不是什么”：
+ 需要访问数据库的测试不是单元测试
+需要访问网络的测试不是单元测试
+需要访问文件系统的测试不是单元测试
+&mdash; 修改代码的艺术
+ 对于单元测试“不是什么”的引用解释，至此点到为止。鉴于篇幅限制，对于引用内容，我想前端开发的同行们看到后会初步有一个属于自己的理解。"><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/web-test.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#单元测试>单元测试</a><ol><li><a href=#1前端单元测试是什么>1.前端单元测试是什么</a></li><li><a href=#2单元测试的意义以及为什么需要单元测试>2.单元测试的意义以及为什么需要单元测试</a></li><li><a href=#3如何写单元测试用例>3.如何写单元测试用例</a></li><li><a href=#tddtest-driven-development><strong>TDD（Test-driven development）</strong>：</a></li><li><a href=#bddbehavior-driven-development>BDD(Behavior-driven development)：</a></li><li><a href=#4mochakarmatravisci的前端测试工作流>4.Mocha/Karma+Travis.CI的前端测试工作流</a></li><li><a href=#node-assert>node assert</a></li><li><a href=#mocha><strong>Mocha</strong></a></li><li><a href=#karma>Karma</a></li><li><a href=#travisci集成自动化测试>Travis.CI集成自动化测试</a></li><li><a href=#总结>总结</a></li></ol></li><li><a href=#ab-测试>A/B 测试</a><ol><li><a href=#基本概念>基本概念</a></li><li><a href=#实践方法>实践方法</a></li><li><a href=#应用例子>应用例子</a></li></ol></li></ol></nav></details></aside><a href=#单元测试><h2 id=单元测试><span class=hanchor arialabel=Anchor># </span>单元测试</h2></a><p>首先声明一点，长期以来，前端开发的单元测试并不是在前端的开发过程中所必须的，也不是每个前端开发工程师所注意和重视的，甚至扩大到软件开发过程中单元测试这一环也不是在章程上有书面规定所要求的。但是随着每个工程的复杂化、代码的高复用性要求和前端代码模块之间的高内聚低耦合的需求，前端工程中的单元测试流程就显得很有其必要。</p><a href=#1前端单元测试是什么><h3 id=1前端单元测试是什么><span class=hanchor arialabel=Anchor># </span>1.前端单元测试是什么</h3></a><p>首先我们要明确测试是什么：</p><blockquote><p>​ 为检测特定的目标是否符合标准而采用专用的工具或者方法进行验证，并最终得出特定的结果。</p></blockquote><p>​ 对于前端开发过程来说，这里的特定目标就是指我们写的代码，而工具就是我们需要用到的测试框架(库)、测试用例等。检测处的结果就是展示测试是否通过或者给出测试报告，这样才能方便问题的排查和后期的修正。</p><p>​ 基于测试“是什么”的说法，为便于刚从事前端开发的同行的进阶理解，那我们就列出单元测试它“不是什么”：</p><blockquote><p>需要访问数据库的测试不是单元测试</p><p>需要访问网络的测试不是单元测试</p><p>需要访问文件系统的测试不是单元测试</p><p>&mdash; 修改代码的艺术</p></blockquote><p>对于单元测试“不是什么”的引用解释，至此点到为止。鉴于篇幅限制，对于引用内容，我想前端开发的同行们看到后会初步有一个属于自己的理解。</p><a href=#2单元测试的意义以及为什么需要单元测试><h3 id=2单元测试的意义以及为什么需要单元测试><span class=hanchor arialabel=Anchor># </span>2.单元测试的意义以及为什么需要单元测试</h3></a><p><strong>2.1 单元测试的意义</strong></p><p>对于现在的前端工程，一个标准完整的项目，测试是非常有必要的。很多时候我们只是完成了项目而忽略了项目测试的部分，测试的意义主要在于下面几点：</p><ol><li>TDD（测试驱动开发） 被证明是有效的软件编写原则，它能覆盖更多的功能接口。</li><li>快速反馈你的功能输出，验证你的想法。</li><li>保证代码重构的安全性，没有一成不变的代码，测试用例能给你多变的代码结构一个定心丸。</li><li>易于测试的代码，说明是一个好的设计。做单元测试之前，肯定要实例化一个东西，假如这个东西有很多依赖的话，这个测试构7. 造过程将会非常耗时，会影响你的测试效率，怎么办呢？要依赖分离，一个类尽量保证功能单一，比如视图与功能分离，这样的话，你的代码也便于维护和理解。</li></ol><p><strong>2.2 为什么需要单元测试</strong></p><ol><li>首先是一个前端单元测试的根本性原由：JavaScript 是动态语言，缺少类型检查，编译期间无法定位到错误; JavaScript 宿主的兼容性问题。比如 DOM 操作在不同浏览器上的表现。</li><li>正确性：测试可以验证代码的正确性，在上线前做到心里有底。</li><li>自动化：当然手工也可以测试，通过console可以打印出内部信息，但是这是一次性的事情，下次测试还需要从头来过，效率不能得到保证。通过编写测试用例，可以做到一次编写，多次运行。</li><li>解释性：测试用例用于测试接口、模块的重要性，那么在测试用例中就会涉及如何使用这些API。其他开发人员如果要使用这些API，那阅读测试用例是一种很好地途径，有时比文档说明更清晰。</li><li>驱动开发，指导设计：代码被测试的前提是代码本身的可测试性，那么要保证代码的可测试性，就需要在开发中注意API的设计，TDD将测试前移就是起到这么一个作用。</li><li>保证重构：互联网行业产品迭代速度很快，迭代后必然存在代码重构的过程，那怎么才能保证重构后代码的质量呢？有测试用例做后盾，就可以大胆的进行重构。</li></ol><a href=#3如何写单元测试用例><h3 id=3如何写单元测试用例><span class=hanchor arialabel=Anchor># </span>3.如何写单元测试用例</h3></a><p><strong>3.1</strong> 原则</p><ul><li>测试代码时，只考虑测试，不考虑内部实现</li><li>数据尽量模拟现实，越靠近现实越好</li><li>充分考虑数据的边界条件</li><li>对重点、复杂、核心代码，重点测试</li><li>利用AOP(beforeEach、afterEach),减少测试代码数量，避免无用功能</li><li>测试、功能开发相结合，有利于设计和代码重构</li></ul><p><strong>3.2</strong> 两个常用的单元测试方法论</p><p>在单元测试中，常用的方法论有两个：TDD（测试驱动开发）&BDD（行为驱动开发）</p><p>对于之前没听说过前端测试这两个模式的同行可以
+<a href=https://www.cnblogs.com/Leo_wl/p/4780678.html rel=noopener>*<strong>在此了解一下*</strong></a>，篇幅限制此处不再敖述。</p><p><strong>3.3</strong> 相信你看完之后也有一个自己对TDD和BDD的个人观点，在此我先谈谈我对TDD和BDD的 理解：</p><a href=#tddtest-driven-development><h3 id=tddtest-driven-development><span class=hanchor arialabel=Anchor># </span><strong>TDD（Test-driven development）</strong>：</h3></a><p>其基本思路是通过测试来推动整个开发的进行。</p><ul><li><strong>单元测试的首要目的不是为了能够编写出大覆盖率的全部通过的测试代码，而是需要从使用者(调用者)的角度出发，尝试函数逻辑的各种可能性，进而辅助性增强代码质量</strong></li><li>测试是手段而不是目的。测试的主要目的不是证明代码正确，而是帮助发现错误，包括低级的错误</li><li>测试要快。快速运行、快速编写</li><li>测试代码保持简洁</li><li>不会忽略失败的测试。一旦团队开始接受1个测试的构建失败，那么他们渐渐地适应2、3、4或者更多的失败。在这种情况下，测试集就不再起作用</li></ul><p><strong>需要注意的是</strong>：</p><ul><li>一定不能误解了TDD的核心目的！</li><li>测试不是为了覆盖率和正确率</li><li>而是作为实例，告诉开发人员要编写什么代码</li><li>红灯（代码还不完善，测试挂）-> 绿灯（编写代码，测试通过）-> 重构（优化代码并保证测试通过）</li></ul><p><strong>TDD的过程是</strong>：</p><ol><li>需求分析，思考实现。考虑如何“使用”产品代码，是一个实例方法还是一个类方法，是从构造函数传参还是从方法调用传参，方法的命名，返回值等。这时其实就是在做设计，而且设计以代码来体现。此时测试为红</li><li>实现代码让测试为”绿灯“</li><li>重构，然后重复测试</li><li>最终符合所有要求即：<ul><li>每个概念都被清晰的表达</li><li>代码中无自我重复</li><li>没有多余的东西</li><li>通过测试</li></ul></li></ol><a href=#bddbehavior-driven-development><h3 id=bddbehavior-driven-development><span class=hanchor arialabel=Anchor># </span>BDD(Behavior-driven development)：</h3></a><p>行为驱动开发（BDD），重点是通过与利益相关者（简单说就是客户）的讨论，取得对预期的软件行为的认识，其<strong>重点在于沟通</strong></p><p><strong>BDD过程是：</strong></p><ol><li>从业务的角度定义具体的，以及可衡量的目标</li><li>找到一种可以达到设定目标的、对业务最重要的那些功能的方法</li><li>然后像故事一样描述出一个个具体可执行的行为。其描述方法基于一些通用词汇，这些词汇具有准确无误的表达能力和一致的含义。例如，<code>expect</code>, <code>should</code>, <code>assert</code></li><li>寻找合适语言及方法，对行为进行实现</li><li>测试人员检验产品运行结果是否符合预期行为。最大程度的交付出符合用户期望的产品，避免表达不一致带来的问题</li></ol><a href=#4mochakarmatravisci的前端测试工作流><h3 id=4mochakarmatravisci的前端测试工作流><span class=hanchor arialabel=Anchor># </span>4.Mocha/Karma+Travis.CI的前端测试工作流</h3></a><p>以上内容从什么是单元测试谈到单元测试的方法论。那么怎样用常用框架进行单元测试？单元测试的工具环境是什么？单元测试的实际示例是怎样的？</p><p><strong>首先应该简单介绍一下Mocha、Karma和Travis.CI</strong></p><p>**Mocha：**mocha 是一个功能丰富的前端测试框架。所谓"测试框架"，就是运行测试的工具。通过它，可以为JavaScript应用添加测试，从而保证代码的质量。mocha 既可以基于 Node.js 环境运行 也可以在浏览器环境运行。欲了解更多可去
+<a href=https://mochajs.org/ rel=noopener><strong>官方网站</strong></a>进行学习。其官方介绍为：</p><blockquote><p>Mocha is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
+<a href=https://github.com/mochajs/mocha rel=noopener><strong>Hosted on GitHub.</strong></a></p></blockquote><p>**Karma：**一个基于Node.js的JavaScript测试执行过程管理工具（Test Runner）。该工具可用于测试所有主流Web浏览器，也可集成到CI（Continuous integration）工具，也可和其他代码编辑器一起使用。这个测试工具的一个强大特性就是，它可以监控文件的变化，然后自行执行，通过console.log显示测试结果。Karma的一个强大特性就是，它可以监控一套文件的变换，并立即开始测试已保存的文件，用户无需离开文本编辑器。测试结果通常显示在命令行中，而非代码编辑器。这也就让 Karma 基本可以和任何 JS 编辑器一起使用。</p><p><strong>Travis.CI:</strong> 提供的是持续集成服务（Continuous Integration，简称 CI）。它绑定 Github 上面的项目，只要有新的代码，就会自动抓取。然后，提供一个运行环境，执行测试，完成构建，还能部署到服务器。</p><p>持续集成指的是只要代码有变更，就自动运行构建和测试，反馈运行结果。确保符合预期以后，再将新代码"集成"到主干。</p><p>持续集成的好处在于，每次代码的小幅变更，就能看到运行结果，从而不断累积小的变更，而不是在开发周期结束时，一下子合并一大块代码。</p><p>对于Travis.CI，建议移步到
+<a href=http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html rel=noopener><strong>阮大大</strong></a>和
+<a href=https://www.liaoxuefeng.com/article/0014631488240837e3633d3d180476cb684ba7c10fda6f6000 rel=noopener><strong>廖大大</strong></a>的个人网站上学习，两位老师讲的要比我在这儿写的更清晰。</p><p><strong>断言库</strong></p><p>基本工具框架介绍完毕后，相信稍微了解点测试的同行都知道，做单元测试是需要写测试脚本的，那么测试脚本就需要用到断言库。”断言“，个人理解即为”用彼代码断定测试此代码的正确性，检验并暴露此代码的错误。“那么对于前端单元测试来说，有以下常用断言库：</p><p>看一段代码示例：</p><p>expect(add(1, 1)).to.be.equal(2);</p><p>这是一句断言代码。</p><p>所谓"断言"，就是判断源码的实际执行结果与预期结果是否一致，如果不一致就抛出一个错误。上面这句断言的意思是，调用 add(1, 1)，结果应该等于 2。所有的测试用例（it 块）都应该含有一句或多句的断言。它是编写测试用例的关键。断言功能由断言库来实现，Mocha 本身不带断言库，所以必须先引入断言库。</p><p>引入断言库代码示例：</p><p>var expect = require(&lsquo;chai&rsquo;).expect;</p><p>断言库有很多种，Mocha 并不限制使用哪一种，它允许你使用你想要的任何断言库。上面代码引入的断言库是 chai，并且指定使用它的 expect 断言风格。下面这些常见的断言库:</p><ul><li><a href=http://nodejs.cn/api/assert.html rel=noopener><strong>assert</strong></a> 这个是 Node.js 中的断言模块。</li><li><a href=https://github.com/shouldjs/should.js rel=noopener><strong>should.js</strong></a></li><li><a href=https://github.com/Automattic/expect.js rel=noopener><strong>expect.js</strong></a></li><li><a href=http://www.chaijs.com/ rel=noopener><strong>chai.js</strong></a></li></ul><a href=#node-assert><h3 id=node-assert><span class=hanchor arialabel=Anchor># </span>node assert</h3></a><ul><li>assert(value[, message])</li><li>assert.ok(value[, message])</li><li>assert.equal(actual, expect[, message])</li><li>assert.notEqual(actual, expected[, message])</li><li>assert.strictEqual(actual, expect[, message])</li><li>assert.notStrictEqual(actial, expected[, message])</li><li>assert.deepEqual(actual, expect[, message])</li><li>assert.notDeepEqual(actual, expected[, message])</li><li>assert.deepStrictEqual(actual, expect[, message])</li><li>assert.notDeepStrictEqual(actual, expected[, message])</li><li>assert.throws(block[, error][, message])</li><li>assert.doesNotThrow(block[, error][, message])</li></ul><a href=#assertvalue-message><h4 id=assertvalue-message><span class=hanchor arialabel=Anchor># </span>assert(value[, message])</h4></a><p>断言 value 的值是否为true，这里的等于判断使用的是 <mark>而不是 </mark>=。message 是断言描述，为可选参数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>const assert = require(&#39;assert&#39;);
+</span></span><span class=line><span class=cl>assert(true);
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#assertokvalue-message><h4 id=assertokvalue-message><span class=hanchor arialabel=Anchor># </span>assert.ok(value[, message])</h4></a><p>使用方法同 <code>assert(value[, message])</code>。</p><a href=#assertequalactual-expect-message><h4 id=assertequalactual-expect-message><span class=hanchor arialabel=Anchor># </span>assert.equal(actual, expect[, message])</h4></a><p>预期 actual 与 expect值相等。equal用于比较的 actual 和 expect 是基础类型(string, number, boolearn, null, undefined)的数据。其中的比较使用的是 <mark>而不是 </mark>=。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>it(&#39;assert.equal&#39;, () =&gt; {
+</span></span><span class=line><span class=cl>  assert.equal(null, false, &#39;null compare with false&#39;);  // 报错
+</span></span><span class=line><span class=cl>  assert.equal(null, true, &#39;null compare with true&#39;);  // 报错
+</span></span><span class=line><span class=cl>  assert.equal(undefined, false, &#39;undefined compare with false&#39;); // 报错
+</span></span><span class=line><span class=cl>  assert.equal(undefined, true, &#39;undefined compare with true&#39;); // 报错
+</span></span><span class=line><span class=cl>  assert.equal(&#39;&#39;, false, &#39;&#34;&#34; compare with false&#39;);  // 正常
+</span></span><span class=line><span class=cl>})
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#notequalactual-expected-message><h4 id=notequalactual-expected-message><span class=hanchor arialabel=Anchor># </span>notEqual(actual, expected[, message])</h4></a><p>用法同 <code>assert.equal(actual, expect[, message])</code> 只是对预期结果取反（即不等于）。</p><a href=#assertstrictequalactual-expect-message><h4 id=assertstrictequalactual-expect-message><span class=hanchor arialabel=Anchor># </span>assert.strictEqual(actual, expect[, message])</h4></a><p>用法同 <code>assert.equal(actual, expect[, message])</code> 但是内部比较是使用的是 =<mark> 而不是 </mark>。</p><a href=#assertnotstrictequalactial-expected-message><h4 id=assertnotstrictequalactial-expected-message><span class=hanchor arialabel=Anchor># </span>assert.notStrictEqual(actial, expected[, message])</h4></a><p>用法同 <code>assert.strictEqual(actual, expect[, message])</code> 只是对预期结果取反（即不严格等于）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>it(&#39;assert.strictEqual&#39;, () =&gt; {
+</span></span><span class=line><span class=cl>  assert.strictEqual(&#39;&#39;, false); // 报错
+</span></span><span class=line><span class=cl>})
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#assertdeepequalactual-expect-message><h4 id=assertdeepequalactual-expect-message><span class=hanchor arialabel=Anchor># </span>assert.deepEqual(actual, expect[, message])</h4></a><p>deepEqual 方法用于比较两个对象。比较的过程是比较两个对象的 key 和 value 值是否相同, 比较时用的是 <mark>而不是 </mark>=。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>it(&#39;assert.deepEqual&#39;, () =&gt; {
+</span></span><span class=line><span class=cl>  const a = { v: &#39;value&#39; };
+</span></span><span class=line><span class=cl>  const b = { v: &#39;value&#39; };
+</span></span><span class=line><span class=cl>  assert.deepEqual(a, b);
+</span></span><span class=line><span class=cl>})
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#assertnotdeepequalactual-expected-message><h4 id=assertnotdeepequalactual-expected-message><span class=hanchor arialabel=Anchor># </span>assert.notDeepEqual(actual, expected[, message])</h4></a><p>用法同 <code>assert.deepEqual(actual, expect[, message])</code> 只是对预期结果取反（即不严格深等于）。</p><a href=#assertdeepstrictequalactual-expect-message><h4 id=assertdeepstrictequalactual-expect-message><span class=hanchor arialabel=Anchor># </span>assert.deepStrictEqual(actual, expect[, message])</h4></a><p>用法同 <code>assert.deepEqual(actual, expect[, message])</code> 但是内部比较是使用的是 =<mark> 而不是 </mark>。</p><a href=#assertnotdeepstrictequalactual-expected-message><h4 id=assertnotdeepstrictequalactual-expected-message><span class=hanchor arialabel=Anchor># </span>assert.notDeepStrictEqual(actual, expected[, message])</h4></a><p>用法同 <code>assert.deepStrictEqual(actual, expect[, message])</code> 只是对结果取反（即不严格深等于）。</p><a href=#assertthrowsblock-error-message><h4 id=assertthrowsblock-error-message><span class=hanchor arialabel=Anchor># </span>assert.throws(block[, error][, message])</h4></a><p>错误断言与捕获, 断言指定代码块运行一定会报错或抛出错误。若代码运行未出现错误则会断言失败，断言异常。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>it(&#39;throws&#39;, () =&gt; {
+</span></span><span class=line><span class=cl>  var fun = function() {
+</span></span><span class=line><span class=cl>    xxx
+</span></span><span class=line><span class=cl>  };
+</span></span><span class=line><span class=cl>  assert.throws(fun, &#39;fun error&#39;);
+</span></span><span class=line><span class=cl>})
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#assertdoesnotthrowblock-error-message><h4 id=assertdoesnotthrowblock-error-message><span class=hanchor arialabel=Anchor># </span>assert.doesNotThrow(block[, error][, message])</h4></a><p>错误断言与捕获, 用法同 throws 类似，只是和 throws 预期结果相反。断言指定代码块运行一定不会报错或抛出错误。若代码运行出现错误则会断言失败，断言异常。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>it(&#39;throws&#39;, () =&gt; {
+</span></span><span class=line><span class=cl>  var fun = function() {
+</span></span><span class=line><span class=cl>    xxx
+</span></span><span class=line><span class=cl>  };
+</span></span><span class=line><span class=cl>  assert.doesNotThrow(fun, &#39;fun error&#39;);
+</span></span><span class=line><span class=cl>})
+</span></span></code></pre></td></tr></table></div></div><a href=#mocha><h3 id=mocha><span class=hanchor arialabel=Anchor># </span><strong>Mocha</strong></h3></a><ul><li>安装mocha</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>npm install mocha -g
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><p>当然也可以在不在全局安装，只安局部安装在项目中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>npm install mocha --save
+</span></span></code></pre></td></tr></table></div></div><ul><li>创建一个测试文件 <code>test.js</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>assert</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;assert&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>describe</span><span class=p>(</span><span class=s1>&#39;Array&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>describe</span><span class=p>(</span><span class=s1>&#39;#indexOf()&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>it</span><span class=p>(</span><span class=s1>&#39;should return -1 when the value is not present&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>assert</span><span class=p>.</span><span class=nx>equal</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>].</span><span class=nx>indexOf</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></td></tr></table></div></div><p>这段文件和简单就是测试 <code>Array</code> 的一个 <code>indexOf()</code> 方法。这里我是用的断言库是 Node 所提供的
+<a href=https://nodejs.org/api/assert.html rel=noopener><code>Assert</code></a> 模块里的API。这里断言 -1 等于 数组 <code>[1, 2, 3]</code> 执行 <code>indexOf(-1)</code>后返回的值，如果测试通过则不会报错，如果有误就会报出错误。</p><p>下面我们使用全局安装的 <code>mocha</code> 来运行一下这个文件 <code>mocha test.js</code>。
+下面是返回结果</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/webtest/20210410161204.png width=auto alt=img></p><p>基础测试用例实例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>assert</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;assert&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>describe</span><span class=p>(</span><span class=s1>&#39;测试套件描述&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>it</span><span class=p>(</span><span class=s1>&#39;测试用例描述: 1 + 2 = 3&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 测试代码
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>result</span> <span class=o>=</span> <span class=mi>1</span> <span class=o>+</span> <span class=mi>2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 测试断言
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>assert</span><span class=p>.</span><span class=nx>equal</span><span class=p>(</span><span class=nx>result</span><span class=p>,</span> <span class=mi>3</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>复制代码</span>
+</span></span></code></pre></td></tr></table></div></div><p>Mocha 测试用例主要包含下面几部分:</p><ol><li>describe 定义的测试套件(test suite)</li><li>it 定义的测试用例(test case)</li><li>测试代码</li><li>断言部分</li></ol><p>说明：每个测试文件中可以有多个测试套件和测试用例。mocha不仅可以在node环境运行, 也可以在浏览器环境运行；在node中运行也可以通过<code>npm i mocha -g</code>全局安装mocha然后以命令行的方式运行测试用例也是可行的。</p><p><strong>这里略微详细介绍下测试脚本写法</strong></p><p>Mocha 的作用是运行测试脚本，首先必须学会写测试脚本。所谓"测试脚本"，就是用来测试源码的脚本。下面是一个加法模块 add.js 的代码。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// add.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span> <span class=nx>add</span><span class=p>(</span><span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>x</span> <span class=o>+</span> <span class=nx>y</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=nx>add</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>要测试这个加法模块是否正确，就要写测试脚本。通常，测试脚本与所要测试的源码脚本同名，但是后缀名为.test.js（表示测试）或者.spec.js（表示规格）。比如，add.js 的测试脚本名字就是 add.test.js。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// add.test.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>var</span> <span class=nx>add</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./add.js&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>expect</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;chai&#39;</span><span class=p>).</span><span class=nx>expect</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>describe</span><span class=p>(</span><span class=s1>&#39;加法函数的测试&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>it</span><span class=p>(</span><span class=s1>&#39;1 加 1 应该等于 2&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>expect</span><span class=p>(</span><span class=nx>add</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>1</span><span class=p>)).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>equal</span><span class=p>(</span><span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>上面这段代码，就是测试脚本，它可以独立执行。测试脚本里面应该包括一个或多个 describe 块，每个 describe 块应该包括一个或多个 it 块。</p><p>describe 块称为"测试套件"（test suite），表示一组相关的测试。它是一个函数，第一个参数是测试套件的名称（&ldquo;加法函数的测试&rdquo;），第二个参数是一个实际执行的函数。</p><p>it 块称为"测试用例"（test case），表示一个单独的测试，是测试的最小单位。它也是一个函数，第一个参数是测试用例的名称（&ldquo;1 加 1 应该等于 2&rdquo;），第二个参数是一个实际执行的函数。</p><p><strong>expect 断言的优点是很接近自然语言，下面是一些例子。</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 相等或不相等
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>expect</span><span class=p>(</span><span class=mi>4</span> <span class=o>+</span> <span class=mi>5</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>equal</span><span class=p>(</span><span class=mi>9</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>(</span><span class=mi>4</span> <span class=o>+</span> <span class=mi>5</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>not</span><span class=p>.</span><span class=nx>equal</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>(</span><span class=nx>foo</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>deep</span><span class=p>.</span><span class=nx>equal</span><span class=p>({</span> <span class=nx>bar</span><span class=o>:</span> <span class=s1>&#39;baz&#39;</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 布尔值为true
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>expect</span><span class=p>(</span><span class=s1>&#39;everthing&#39;</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>ok</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>(</span><span class=kc>false</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>not</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>ok</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// typeof
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>expect</span><span class=p>(</span><span class=s1>&#39;test&#39;</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>a</span><span class=p>(</span><span class=s1>&#39;string&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>({</span> <span class=nx>foo</span><span class=o>:</span> <span class=s1>&#39;bar&#39;</span> <span class=p>}).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>an</span><span class=p>(</span><span class=s1>&#39;object&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>(</span><span class=nx>foo</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>an</span><span class=p>.</span><span class=k>instanceof</span><span class=p>(</span><span class=nx>Foo</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// include
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>expect</span><span class=p>([</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]).</span><span class=nx>to</span><span class=p>.</span><span class=nx>include</span><span class=p>(</span><span class=mi>2</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>(</span><span class=s1>&#39;foobar&#39;</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>contain</span><span class=p>(</span><span class=s1>&#39;foo&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>({</span> <span class=nx>foo</span><span class=o>:</span> <span class=s1>&#39;bar&#39;</span><span class=p>,</span> <span class=nx>hello</span><span class=o>:</span> <span class=s1>&#39;universe&#39;</span> <span class=p>}).</span><span class=nx>to</span><span class=p>.</span><span class=nx>include</span><span class=p>.</span><span class=nx>keys</span><span class=p>(</span><span class=s1>&#39;foo&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// empty
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>expect</span><span class=p>([]).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>empty</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>empty</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>expect</span><span class=p>({}).</span><span class=nx>to</span><span class=p>.</span><span class=nx>be</span><span class=p>.</span><span class=nx>empty</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// match
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>expect</span><span class=p>(</span><span class=s1>&#39;foobar&#39;</span><span class=p>).</span><span class=nx>to</span><span class=p>.</span><span class=nx>match</span><span class=p>(</span><span class=sr>/^foo/</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>基本上，expect 断言的写法都是一样的。头部是 expect 方法，尾部是断言方法，比如 equal、a/an、ok、match 等。两者之间使用 to 或 to.be 连接。如果 expect 断言不成立，就会抛出一个错误。事实上，只要不抛出错误，测试用例就算通过。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>it(&#39;1 加 1 应该等于 2&#39;, function() {});
+</span></span></code></pre></td></tr></table></div></div><p>上面的这个测试用例，内部没有任何代码，由于没有抛出了错误，所以还是会通过。</p><a href=#karma><h3 id=karma><span class=hanchor arialabel=Anchor># </span>Karma</h3></a><p>基于 karma 测试常用的一些模块</p><a href=#模块安装><h4 id=模块安装><span class=hanchor arialabel=Anchor># </span>模块安装</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># 基础测试库
+</span></span><span class=line><span class=cl>npm install karma-cli -g
+</span></span><span class=line><span class=cl>npm install karma mocha karma-mocha --save-dev
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 断言库
+</span></span><span class=line><span class=cl>npm install should --save-dev
+</span></span><span class=line><span class=cl>npm install karma-chai --save-dev
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl># 浏览器相关
+</span></span><span class=line><span class=cl>npm install karma-firefox-launcher --save-dev
+</span></span><span class=line><span class=cl>npm install karma-chrome-launcher --save-dev
+</span></span></code></pre></td></tr></table></div></div><a href=#配置><h4 id=配置><span class=hanchor arialabel=Anchor># </span>配置</h4></a><p>这里的配置主要关注的是<code>karma.conf.js</code>的相关配置。如果要使用 karma 和 mocha 最好通过<code>npm install karma-cli -g</code>全局安装<code>karma-cli</code>。
+<a href=http://karma-runner.github.io/2.0/config/configuration-file.html rel=noopener><strong>具体配置配置说明</strong></a></p><p>需要注意的两个字段:</p><ul><li>singleRun: 如果值为 true, 则在浏览器运行完测试后会自动退出关闭浏览器窗口。singleRun的值我们可以更具运行环境来动态赋值, 可以启动命令中添加<code>NODE_ENV</code>变量。</li><li>browsers: 浏览器配置(可以配置多个浏览器); 如果浏览器无法启动需要进行相关浏览器的配置。设置自启动浏览器时候如果浏览器启动失败可能需要设置为<code>--no-sandbox</code>模式。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>  &#34;browsers&#34;: [&#34;Chrome&#34;, &#34;ChromeHeadless&#34;, &#34;ChromeHeadlessNoSandbox&#34;],
+</span></span><span class=line><span class=cl>  &#34;customLaunchers&#34;: {
+</span></span><span class=line><span class=cl>    &#34;ChromeHeadlessNoSandbox&#34;: {
+</span></span><span class=line><span class=cl>      &#34;base&#34;: &#34;ChromeHeadless&#34;,
+</span></span><span class=line><span class=cl>      &#34;flags&#34;: [&#34;--no-sandbox&#34;]
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><p>或者</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>  &#34;browsers&#34;: [&#34;Chrome_travis_ci&#34;],
+</span></span><span class=line><span class=cl>  &#34;customLaunchers&#34;: {
+</span></span><span class=line><span class=cl>    &#34;Chrome_travis_ci&#34;: {
+</span></span><span class=line><span class=cl>      &#34;base&#34;: &#34;Chrome&#34;,
+</span></span><span class=line><span class=cl>      &#34;flags&#34;: [&#34;--no-sandbox&#34;]
+</span></span><span class=line><span class=cl>    }
+</span></span><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>}复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#travisci集成自动化测试><h3 id=travisci集成自动化测试><span class=hanchor arialabel=Anchor># </span>Travis.CI集成自动化测试</h3></a><p><a href=http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html rel=noopener>阮一峰</a></p><p>在github创建并完成一个可以待测试的项目。这里的完成是指需要完成基本的项目功能，和测试用例代码。</p><p>配置travis-ci能识别读取的配置文件，这样travis-ci接入的时候才能够知道测试时的一些配置。</p><p>github 和 travis-ci 是个站点，换句话说就是两个东西如果能打通呢。需要用户登录 travis-ci 并授权访问到你的 github 项目并进行相关的项目设置。</p><p>接入完成后就可以根据自己的需要来运行写好的测试代码，也可以设置定期任务去跑测试。</p><a href=#项目创建完善项目功能和测试代码><h4 id=项目创建完善项目功能和测试代码><span class=hanchor arialabel=Anchor># </span>项目创建、完善项目功能和测试代码。</h4></a><ul><li>项目需求： 实现一个求和方法</li><li>测试: 通过 <code>mocha</code> 来测试完成的求和方法。</li></ul><p>下面是项目结构，项目创建完成后通过 <code>npm i mocha -D</code> 安装 <code>mocha</code> 模块。然后在本地运行 <code>npm test</code> 看是否能够测试通过。如果能够测试通过则说明我们的可以继续下一步了。</p><p><img src=https://jieye-ericx.github.io//Web%E6%B5%8B%E8%AF%95.assets/1-20200706204633514.png width=auto alt=img></p><a href=#创建-travis-ci-测试配置文件><h4 id=创建-travis-ci-测试配置文件><span class=hanchor arialabel=Anchor># </span>创建 travis-ci 测试配置文件</h4></a><p>创建
+<a href=https://www.travis-ci.org/ rel=noopener>travis-ci </a>配置文件 <code>.travis.yml</code>, 文件内容。更多关于配置文件的说明在travis官网可查询</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>language: node_js
+</span></span><span class=line><span class=cl>node_js:
+</span></span><span class=line><span class=cl>  - &#34;node&#34;
+</span></span><span class=line><span class=cl>  - &#34;8.9.4&#34;
+</span></span></code></pre></td></tr></table></div></div><p>至此基本完成了项目开发和测试代码编写的过程，下一步就可以接入
+<a href=https://www.travis-ci.org/ rel=noopener>travis-ci </a>测试了。</p><a href=#接入-travis-ci><h4 id=接入-travis-ci><span class=hanchor arialabel=Anchor># </span>接入 travis-ci</h4></a><p>通过GitHub登录 travis-ci 的官网
+<a href=https://www.travis-ci.org/ rel=noopener>www.travis-ci.org/</a></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/webtest20210410161117.png width=auto alt=img></p><p>找到GitHub上刚才创建的需要测试的项目，并开启测试</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/webtest20210410161111.png width=auto alt=img></p><p>查看测试过程，及时发现问题。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/webtest20210410161127.png width=auto alt=img></p><p>查看测试状态是否通过测试，如果未通过及时排查问题反复修改；如果通过可以在项目文档中添加一个测试通过的标识。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/webtest/20210410161142.png width=auto alt=img></p><a href=#总结><h3 id=总结><span class=hanchor arialabel=Anchor># </span>总结</h3></a><p>但是同时，在我个人观点范畴内，至少目前我还是坚持开发为主测试为辅的流程，对于像TDD这种单元测试指导开发流程，目前并不推崇。个人认为，这是一个很有创新性的方法论，也并不是现在完全不可行，个人认为只是可行的范畴还不够宽，可行的条件要求还很严苛。所以相对于TDD，测试主导开发，对于目前准备进阶的前端开发者，个人更建议，了解某种以后会使用的新趋势和技术是有必要的，但作为技术人应该在学习新的、前卫的技术的同时不可迷失自我一味追求新技术，更重要的是要磨练当下的主流技能。相比于未来的单元测试主导开发流程，倒不如在目前这个时间节点精进基础开发流程，比如让自己的JS代码更专注于模块化和功能化的实现，这样的同时也会让单元测试更有效率，真正发挥目前单元测试对前端工程化的作用。</p><a href=#ab-测试><h2 id=ab-测试><span class=hanchor arialabel=Anchor># </span>A/B 测试</h2></a><p>所谓 A/B 测试，简单来说，就是为同一个目标制定两个方案（比如两个页面），让一部分用户使用 A 方案，另一部分用户使用 B 方案，记录下用户的使用情况，看哪个方案更符合设计目标。</p><a href=#基本概念><h3 id=基本概念><span class=hanchor arialabel=Anchor># </span>基本概念</h3></a><p>网站设计中，我们经常会面临多个设计方案的选择，比如某个按钮是用红色还是用蓝色，是放左边还是放右边。传统的解决方法通常是集体讨论表决，或者由某位专家或领导来拍板。虽然传统解决办法多数情况下也是有效的，但A/B 测试（A/B Testing）可能是解决这类问题的一个更好的方法。</p><p>所谓 A/B 测试，简单来说，就是为同一个目标制定两个方案（比如两个页面），让一部分用户使用 A 方案，另一部分用户使用 B 方案，记录下用户的使用情况，看哪个方案更符合设计目标。当然，在实际操作过程之中还有许多需要注意的细节。</p><p>A/B 测试最核心的思想，即：</p><ol><li><strong>多个方案并行测试；</strong></li><li><strong>每个方案只有一个变量不同；</strong></li><li><strong>以某种规则优胜劣汰。</strong></li></ol><p>需要特别留意的是第 2 点，它暗示了 A/B 测试的应用范围，——必须是单变量。</p><p>另外，虽然 A/B 测试名字中只包含 A、B ，但并不是说它只能用于比较两个方案的好坏，<strong>事实上，你完全可以设计多个方案进行测试，比如ＡＢＣ测试，“A/B 测试”这个名字只是一个习惯的叫法。</strong></p><p>回到网站设计，<strong>一般来说，每个设计方案应该大体上是相同的，只是某一个地方有所不同，比如某处排版、文案、图片、颜色等。然后对不同的用户展示不同的方案。</strong></p><p>要注意，不同的用户在他的一次浏览过程中，看到的应该一直是同一个方案。比如他一开始看到的是 A 方案，则在此次会话中应该一直向他展示 A 方案，而不能一会儿让他看 A 方案，一会儿让他看 B 方案。</p><p>同时，还需要注意控制访问各个版本的人数，大多数情况下我们会希望将访问者平均分配到各个不同的版本上。要做到这些很简单，根据 cookie （比如 cookie 会话ID的最后一位数字）决定展示哪个版本就是一个不错的方法。</p><p><strong>要实现 A/B 测试，我们需要做以下几个工作：</strong></p><p><strong>1、开发两个（或多个）不同的版本并部署；</strong></p><p><strong>2、收集数据；</strong></p><p><strong>3、分析数据，得出结果。</strong></p><a href=#实践方法><h3 id=实践方法><span class=hanchor arialabel=Anchor># </span>实践方法</h3></a><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/webtest/20210410161149.jpg width=auto alt=img></p><p>从左到右，３条较粗的竖线代表了 A/B 测试中的３个关键角色：客户端（Client）、服务器（Server）、数据层（Data）。从上到下代表了３种访问形式：</p><ol><li><strong>无 A/B 测试的普通访问流程</strong>（Non AB test）</li><li><strong>基于后端分流的 A/B 测试访问流程</strong>（Back-end AB test）</li><li><strong>基于前端分流的 A/B 测试访问流程</strong>（Front-end AB test）。</li></ol><p>A/B 测试需要将多个不同的版本展现给不同的用户，即需要一个“分流”的环节。从上图中我们可以看到，分流可以在客户端做，也可以在服务器端做。</p><p><strong>传统的 A/B 测试一般是在服务端分流的</strong>，即基于后端的 A/B 测试（Back-end AB test），当用户的请求到达服务器时，服务器根据一定的规则，给不同的用户返回不同的版本，同时记录数据的工作也在服务端完成。</p><p><strong>基于后端的 A/B 测试技术实现上稍微简单一些</strong>，**不过缺点是收集到的数据通常是比较宏观的PV（Page View）信息。**虽然可以进行比较复杂的宏观行为分析，但要想知道用户在某个版本的页面上的具体行为往往就无能为力了。</p><p>**基于前端的 A/B 测试则可以比较精确地记录下用户在页面上的每一个行为。**它的特点是，利用前端 Java 方法，在客户端进行分流，同时，可以用 Java 记录下用户的鼠标行为（甚至键盘行为，如果需要的话），直接发送到服务器记录。</p><p>下面，我将重点介绍一下我们在基于前端的 A/B 测试上的一些实践。</p><p>首先遇到的问题是如何分流的问题。对于大部分需求来说，我们希望各个版本的访问人数平均分配。可以根据某一个 Cookie ID 来划分用户，<strong>比如“123.180.140.*.1267882109577.3”，可以根据这个 Cookie ID 的最后一位（在本例中是“3”）来划分人群，比如单数的显示 A 版本，偶数的显示 B 版本。</strong></p><p>正确展示对应的版本后，就要开始采集需要的数据了。当前版本有多少 PV （Page Views，访问量），如果需要记录这个数据的话，在正确版本加载完成之时就要发送一个打点信息。不过很多需求中，具体版本的 PV 的精确数值可能不是很重要，而且要收集这个信息需要多一次打点操作，所以一般情况下这个数据是可选的。</p><p>必须的数据是测试区域内用户的点击信息。当用户在测试区域点击了鼠标左键（无论这个点击是点击在链接、文字、图片还是空白处），我们就需要发送一条对应的打点信息到打点服务器。一般来说，这个打点信息至少需要包含以下数据：</p><ul><li>当前 A/B 测试以及版本标识</li><li>点击事件的位置</li><li>点击时间戳（客户端时间）</li><li>当前点中的URL（如果点在非超链接区域，此项为空）</li><li>用户标识（比如 Cookie ID）</li><li>用户浏览器信息</li></ul><a href=#应用例子><h3 id=应用例子><span class=hanchor arialabel=Anchor># </span>应用例子</h3></a><p>用ＡＢ测试的核心思想分析下：</p><ul><li><strong>两个方案并行测试（符合）；</strong></li><li><strong>每个方案只有一个变量不同（按钮的文案不同，符合）；</strong></li><li><strong>以某种规则优胜劣汰（最终转化率的高低，符合）</strong></li></ul><p><strong>注意：有人认为按钮的点击率是最终的衡量指标，其实不是，有时候点击率提高了，但转化率反而会降低，所以这里最终转化率是衡量指标。</strong></p><p>举个例子：你的按钮文案是“点击领一百元红包”，点击率自然会提高，但用户点击后发现并没有一百元，就走了，导致转化率下降。</p><p>言归正传，结果数据显示，A版本的转化率为5.8%，B版本的转化率为８.2%。在没做这个测试之前，你知道“加入学习”好还是“立即参加”好吗？</p><p>这几乎是一个完美的A/B测试案例：有明确的测试目标，清晰的衡量标准（订单转化率），以及完美的结果数字。</p></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>

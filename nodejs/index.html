@@ -1,0 +1,1022 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="child_process 在介绍child_process模块之前，先来看一个例子。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  const http = require('http'); const longComputation = () => { let sum = 0; for (let i = 0; i < 1e10; i++) { sum += i; }; return sum; }; const server = http."><meta property="og:title" content><meta property="og:description" content="child_process 在介绍child_process模块之前，先来看一个例子。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  const http = require('http'); const longComputation = () => { let sum = 0; for (let i = 0; i < 1e10; i++) { sum += i; }; return sum; }; const server = http."><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/nodejs/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content><meta name=twitter:description content="child_process 在介绍child_process模块之前，先来看一个例子。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  const http = require('http'); const longComputation = () => { let sum = 0; for (let i = 0; i < 1e10; i++) { sum += i; }; return sum; }; const server = http."><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>ericx 's 数字花园</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.498f8802e86f71aa2af4d45d6c4096d6.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.5368a39ad15318a851f2d088b43f3a36.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/nodejs.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#child_process>child_process</a><ol><li><a href=#创建子进程的方式>创建子进程的方式</a></li><li><a href=#监听进程事件>监听进程事件</a></li></ol></li><li><a href=#cluster集群>cluster（集群）</a><ol><li><a href=#实现原理>实现原理</a></li></ol></li><li><a href=#process>process</a><ol><li><a href=#processenv>process.env</a></li><li><a href=#资源使用>资源使用</a></li><li><a href=#运行环境>运行环境</a></li><li><a href=#运行状态>运行状态</a></li><li><a href=#监听事件>监听事件</a></li><li><a href=#调度任务-processnexttickfn>调度任务 process.nextTick(fn)</a></li><li><a href=#发出警告>发出警告</a></li></ol></li></ol><ol><li><a href=#同步任务和异步任务>同步任务和异步任务</a></li><li><a href=#本轮循环和次轮循环>本轮循环和次轮循环</a></li><li><a href=#processnexttick>process.nextTick()</a></li><li><a href=#微任务>微任务</a></li><li><a href=#事件循环的概念>事件循环的概念</a></li><li><a href=#事件循环的六个阶段>事件循环的六个阶段</a></li><li><a href=#事件循环的示例>事件循环的示例</a></li><li><a href=#settimeout-和-setimmediate>setTimeout 和 setImmediate</a></li></ol></nav></details></aside><a href=#child_process><h2 id=child_process><span class=hanchor arialabel=Anchor># </span>child_process</h2></a><p>在介绍child_process模块之前，先来看一个例子。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>http</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;http&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>longComputation</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=mf>1e10</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>sum</span> <span class=o>+=</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>sum</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>server</span> <span class=o>=</span> <span class=nx>http</span><span class=p>.</span><span class=nx>createServer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>server</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;request&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>url</span> <span class=o>===</span> <span class=s1>&#39;/compute&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>sum</span> <span class=o>=</span> <span class=nx>longComputation</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=sb>`Sum is </span><span class=si>${</span><span class=nx>sum</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=s1>&#39;Ok&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>server</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>可以试一下使用上面的代码启动Node.js服务，然后打开两个浏览器选项卡分别访问/compute和/，可以发现node服务接收到/compute请求时会进行大量的数值计算，导致无法响应其他的请求（/）。</p><p>在Java语言中可以通过多线程的方式来解决上述的问题，但是Node.js在代码执行的时候是单线程的，那么Node.js应该如何解决上面的问题呢？其实Node.js可以创建一个子进程执行密集的cpu计算任务（例如上面例子中的longComputation）来解决问题，而child_process模块正是用来创建子进程的。</p><a href=#创建子进程的方式><h3 id=创建子进程的方式><span class=hanchor arialabel=Anchor># </span>创建子进程的方式</h3></a><p>child_process提供了几种创建子进程的方式</p><ul><li>异步方式：spawn、exec、execFile、fork</li><li>同步方式：spawnSync、execSync、execFileSync</li></ul><p>首先介绍一下spawn方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>child_process</span><span class=p>.</span><span class=nx>spawn</span><span class=p>(</span><span class=nx>command</span><span class=p>[,</span> <span class=nx>args</span><span class=p>][,</span> <span class=nx>options</span><span class=p>])</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>command</span><span class=err>：</span> <span class=nx>要执行的指令</span>
+</span></span><span class=line><span class=cl><span class=nx>args</span><span class=err>：</span>    <span class=nx>传递参数</span>
+</span></span><span class=line><span class=cl><span class=nx>options</span><span class=err>：</span> <span class=nx>配置项</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;pwd&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>pwd是shell的命令，用于获取当前的目录，上面的代码执行完控制台并没有任何的信息输出，这是为什么呢？</p><p>控制台之所以不能看到输出信息的原因是由于子进程有自己的stdio流（stdin、stdout、stderr），控制台的输出是与当前进程的stdio绑定的，因此如果希望看到输出信息，可以通过在子进程的stdout 与当前进程的stdout之间建立管道实现</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>也可以监听事件的方式（子进程的stdio流都是实现了EventEmitter API的，所以可以添加事件监听）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;data&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>write</span><span class=p>(</span><span class=nx>data</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p><em>在Node.js代码里使用的console.log其实底层依赖的就是process.stdout</em></p><p>除了建立管道之外，还可以通过子进程和当前进程共用stdio的方式来实现</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;pwd&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>stdio</span><span class=o>:</span> <span class=s1>&#39;inherit&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>stdio选项用于配置父进程和子进程之间建立的管道，由于stdio管道有三个(stdin, stdout, stderr）因此stdio的三个可能的值其实是数组的一种简写</p><ul><li>pipe 相当于[&lsquo;pipe&rsquo;, &lsquo;pipe&rsquo;, &lsquo;pipe&rsquo;]（默认值）</li><li>ignore 相当于[&lsquo;ignore&rsquo;, &lsquo;ignore&rsquo;, &lsquo;ignore&rsquo;]</li><li>inherit 相当于[process.stdin, process.stdout, process.stderr]</li></ul><p>由于inherit方式使得子进程直接使用父进程的stdio，因此可以看到输出</p><p>ignore用于忽略子进程的输出（将/dev/null指定为子进程的文件描述符了），因此当ignore时child.stdout是null。</p><p>spawn默认情况下并不会创建子shell来执行命令，因此下面的代码会报错</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;ls -l&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 报错
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>events</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>167</span>
+</span></span><span class=line><span class=cl>      <span class=k>throw</span> <span class=nx>er</span><span class=p>;</span> <span class=c1>// Unhandled &#39;error&#39; event
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=o>^</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>Error</span><span class=o>:</span> <span class=nx>spawn</span> <span class=nx>ls</span> <span class=o>-</span><span class=nx>l</span> <span class=nx>ENOENT</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>Process</span><span class=p>.</span><span class=nx>ChildProcess</span><span class=p>.</span><span class=nx>_handle</span><span class=p>.</span><span class=nx>onexit</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>child_process</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>229</span><span class=o>:</span><span class=mi>19</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>onErrorNT</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>child_process</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>406</span><span class=o>:</span><span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>process</span><span class=p>.</span><span class=nx>_tickCallback</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>process</span><span class=o>/</span><span class=nx>next_tick</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>63</span><span class=o>:</span><span class=mi>19</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nb>Function</span><span class=p>.</span><span class=nx>Module</span><span class=p>.</span><span class=nx>runMain</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>modules</span><span class=o>/</span><span class=nx>cjs</span><span class=o>/</span><span class=nx>loader</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>746</span><span class=o>:</span><span class=mi>11</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>startup</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>bootstrap</span><span class=o>/</span><span class=nx>node</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>238</span><span class=o>:</span><span class=mi>19</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>bootstrapNodeJSCore</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>bootstrap</span><span class=o>/</span><span class=nx>node</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>572</span><span class=o>:</span><span class=mi>3</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nx>Emitted</span> <span class=s1>&#39;error&#39;</span> <span class=nx>event</span> <span class=nx>at</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>Process</span><span class=p>.</span><span class=nx>ChildProcess</span><span class=p>.</span><span class=nx>_handle</span><span class=p>.</span><span class=nx>onexit</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>child_process</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>235</span><span class=o>:</span><span class=mi>12</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>onErrorNT</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>child_process</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>406</span><span class=o>:</span><span class=mi>16</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>[...</span> <span class=nx>lines</span> <span class=nx>matching</span> <span class=nx>original</span> <span class=nx>stack</span> <span class=nx>trace</span> <span class=p>...]</span>
+</span></span><span class=line><span class=cl>    <span class=nx>at</span> <span class=nx>bootstrapNodeJSCore</span> <span class=p>(</span><span class=nx>internal</span><span class=o>/</span><span class=nx>bootstrap</span><span class=o>/</span><span class=nx>node</span><span class=p>.</span><span class=nx>js</span><span class=o>:</span><span class=mi>572</span><span class=o>:</span><span class=mi>3</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果需要传递参数的话，应该采用数组的方式传入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;ls&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;-l&#39;</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果要执行<code>ls -l | wc -l</code>命令的话可以采用创建两个spawn命令的方式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;ls&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;-l&#39;</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child2</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;wc&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;-l&#39;</span><span class=p>]);</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>child2</span><span class=p>.</span><span class=nx>stdin</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>child2</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>也可以使用<code>exec</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>exec</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>exec</span><span class=p>(</span><span class=s1>&#39;ls -l | wc -l&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=nx>stdout</span><span class=p>,</span> <span class=nx>stderr</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>由于exec会创建子shell，所以可以直接执行shell管道命令。spawn采用流的方式来输出命令的执行结果，而exec也是将命令的执行结果缓存起来统一放在回调函数的参数里面，因此exec只适用于命令执行结果数据小的情况。</p><p>其实spawn也可以通过配置shell option的方式来创建子shell进而支持管道命令，如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>execFile</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;ls -l | wc -l&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>shell</span><span class=o>:</span> <span class=kc>true</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>配置项除了stdio、shell之外还有cwd、env、detached等常用的选项</p><p>cwd用于修改命令的执行目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;ls -l | wc -l&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>shell</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>cwd</span><span class=o>:</span> <span class=s1>&#39;/usr&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>env用于指定子进程的环境变量（如果不指定的话，默认获取当前进程的环境变量）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;echo $NODE_ENV&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>shell</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>cwd</span><span class=o>:</span> <span class=s1>&#39;/usr&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>stdout</span><span class=p>.</span><span class=nx>pipe</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>NODE_ENV</span><span class=o>=</span><span class=nx>randal</span> <span class=nx>node</span> <span class=nx>b</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>randal</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果指定env的话就会覆盖掉默认的环境变量，如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;echo $NODE_TEST $NODE_ENV&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>shell</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>stdio</span><span class=o>:</span> <span class=s1>&#39;inherit&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>cwd</span><span class=o>:</span> <span class=s1>&#39;/usr&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>env</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>NODE_TEST</span><span class=o>:</span> <span class=s1>&#39;randal-env&#39;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>NODE_ENV</span><span class=o>=</span><span class=nx>randal</span> <span class=nx>node</span> <span class=nx>b</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>randal</span><span class=o>-</span><span class=nx>env</span>
+</span></span></code></pre></td></tr></table></div></div><p>detached用于将子进程与父进程断开连接</p><p>例如假设存在一个长时间运行的子进程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// timer.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>while</span><span class=p>(</span><span class=kc>true</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>但是主进程并不需要长时间运行的话就可以用detached来断开二者之间的连接</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>spawn</span><span class=p>(</span><span class=s1>&#39;node&#39;</span><span class=p>,</span> <span class=p>[</span><span class=s1>&#39;timer.js&#39;</span><span class=p>],</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>detached</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>stdio</span><span class=o>:</span> <span class=s1>&#39;ignore&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>unref</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p>当调用子进程的unref方法时，同时配置子进程的stdio为ignore时，父进程就可以独立退出了</p><p>execFile与exec不同，execFile通常用于执行文件，而且并不会创建子shell环境</p><p>fork方法是spawn方法的一个特例，fork用于执行js文件创建Node.js子进程。而且fork方式创建的子进程与父进程之间建立了IPC通信管道，因此子进程和父进程之间可以通过send的方式发送消息。</p><p><em>注意：fork方式创建的子进程与父进程是完全独立的，它拥有单独的内存，单独的V8实例，因此并不推荐创建很多的Node.js子进程</em></p><p>fork方式的父子进程之间的通信参照下面的例子</p><p>parent.js</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>forked</span> <span class=o>=</span> <span class=nx>fork</span><span class=p>(</span><span class=s1>&#39;child.js&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>forked</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>msg</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;Message from child&#39;</span><span class=p>,</span> <span class=nx>msg</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>forked</span><span class=p>.</span><span class=nx>send</span><span class=p>({</span> <span class=nx>hello</span><span class=o>:</span> <span class=s1>&#39;world&#39;</span> <span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>child.js</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>msg</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;Message from parent:&#39;</span><span class=p>,</span> <span class=nx>msg</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>counter</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>setInterval</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>process</span><span class=p>.</span><span class=nx>send</span><span class=p>({</span> <span class=nx>counter</span><span class=o>:</span> <span class=nx>counter</span><span class=o>++</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>},</span> <span class=mi>1000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>//------------------
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>node</span> <span class=nx>parent</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>parent</span><span class=o>:</span> <span class=p>{</span> <span class=nx>hello</span><span class=o>:</span> <span class=s1>&#39;world&#39;</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>0</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>1</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>2</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>3</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>4</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>5</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>Message</span> <span class=nx>from</span> <span class=nx>child</span> <span class=p>{</span> <span class=nx>counter</span><span class=o>:</span> <span class=mi>6</span> <span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>回到本文初的那个问题，我们就可以将密集计算的逻辑放到单独的js文件中，然后再通过fork的方式来计算，等计算完成时再通知主进程计算结果，这样避免主进程繁忙的情况了。</p><p>compute.js</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>longComputation</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>sum</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=mf>1e10</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>sum</span> <span class=o>+=</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>sum</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>msg</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>sum</span> <span class=o>=</span> <span class=nx>longComputation</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=nx>process</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=nx>sum</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>index.js</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>http</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;http&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>server</span> <span class=o>=</span> <span class=nx>http</span><span class=p>.</span><span class=nx>createServer</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>server</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;request&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>url</span> <span class=o>===</span> <span class=s1>&#39;/compute&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>compute</span> <span class=o>=</span> <span class=nx>fork</span><span class=p>(</span><span class=s1>&#39;compute.js&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>compute</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=s1>&#39;start&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nx>compute</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>,</span> <span class=nx>sum</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=sb>`Sum is </span><span class=si>${</span><span class=nx>sum</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=s1>&#39;Ok&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>server</span><span class=p>.</span><span class=nx>listen</span><span class=p>(</span><span class=mi>3000</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#监听进程事件><h3 id=监听进程事件><span class=hanchor arialabel=Anchor># </span>监听进程事件</h3></a><p>通过前述几种方式创建的子进程都实现了EventEmitter，因此可以针对进程进行事件监听</p><p>常用的事件包括几种：close、exit、error、message</p><p>close事件当子进程的stdio流关闭的时候才会触发，并不是子进程exit的时候close事件就一定会触发，因为多个子进程可以共用相同的stdio。</p><p>close与exit事件的回调函数有两个参数code和signal，code代码子进程最终的退出码，如果子进程是由于接收到signal信号终止的话，signal会记录子进程接受的signal值。</p><p>先看一个正常退出的例子</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>exec</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>exec</span><span class=p>(</span><span class=s1>&#39;ls -l&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>timeout</span><span class=o>:</span> <span class=mi>300</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>code</span><span class=p>,</span> <span class=nx>signal</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>code</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>signal</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=kc>null</span>
+</span></span></code></pre></td></tr></table></div></div><p>再看一个因为接收到signal而终止的例子，应用之前的timer文件，使用exec执行的时候并指定timeout</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>exec</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>exec</span><span class=p>(</span><span class=s1>&#39;node timer.js&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>timeout</span><span class=o>:</span> <span class=mi>300</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>code</span><span class=p>,</span> <span class=nx>signal</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>code</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>signal</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kc>null</span>
+</span></span><span class=line><span class=cl><span class=nx>SIGTERM</span>
+</span></span></code></pre></td></tr></table></div></div><p><em>注意：由于timeout超时的时候error事件并不会触发，并且当error事件触发时exit事件并不一定会被触发</em></p><p>error事件的触发条件有以下几种：</p><ul><li>无法创建进程</li><li>无法结束进程</li><li>给进程发送消息失败</li></ul><p><em>注意当代码执行出错的时候，error事件并不会触发，exit事件会触发，code为非0的异常退出码</em></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>spawn</span><span class=p>,</span> <span class=nx>exec</span><span class=p>,</span> <span class=nx>execFile</span><span class=p>,</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>child</span> <span class=o>=</span> <span class=nx>exec</span><span class=p>(</span><span class=s1>&#39;ls -l /usrs&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;error&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>code</span><span class=p>,</span> <span class=nx>signal</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>code</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>signal</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>child</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>code</span><span class=p>,</span> <span class=nx>signal</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>code</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>signal</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>exit</span>
+</span></span><span class=line><span class=cl><span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=kc>null</span>
+</span></span></code></pre></td></tr></table></div></div><p>message事件适用于父子进程之间建立IPC通信管道的时候的信息传递，传递的过程中会经历序列化与反序列化的步骤，因此最终接收到的并不一定与发送的数据相一致。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>//sub.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>process</span><span class=p>.</span><span class=nx>send</span><span class=p>({</span> <span class=nx>foo</span><span class=o>:</span> <span class=s1>&#39;bar&#39;</span><span class=p>,</span> <span class=nx>baz</span><span class=o>:</span> <span class=kc>NaN</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=c1>//main.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>cp</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>n</span> <span class=o>=</span> <span class=nx>cp</span><span class=p>.</span><span class=nx>fork</span><span class=p>(</span><span class=sb>`</span><span class=si>${</span><span class=nx>__dirname</span><span class=si>}</span><span class=sb>/sub.js`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>n</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;message&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>m</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;got message:&#39;</span><span class=p>,</span> <span class=nx>m</span><span class=p>);</span>   <span class=c1>// got message: { foo: &#39;bar&#39;, baz: null }
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>关于message有一种特殊情况要注意，下面的message并不会被子进程接收到</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=p>{</span> <span class=nx>fork</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;child_process&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>forked</span> <span class=o>=</span> <span class=nx>fork</span><span class=p>(</span><span class=s1>&#39;child.js&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>forked</span><span class=p>.</span><span class=nx>send</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>cmd</span><span class=o>:</span> <span class=s2>&#34;NODE_foo&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>hello</span><span class=o>:</span> <span class=s1>&#39;world&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>当发送的消息里面包含cmd属性，并且属性的值是以<code>NODE_</code>开头的话，这样的消息是提供给Node.js本身保留使用的，因此并不会发出<code>message</code>事件，而是会发出<code>internalMessage</code>事件，开发者应该避免这种类型的消息，并且应当避免监听<code>internalMessage</code>事件。</p><p>message除了发送字符串、object之外还支持发送server对象和socket对象，正因为支持socket对象才可以做到多个Node.js进程监听相同的端口号。</p><p>未完待续&mldr;&mldr;</p><a href=#cluster集群><h2 id=cluster集群><span class=hanchor arialabel=Anchor># </span>cluster（集群）</h2></a><p>单个 Node.js 实例运行在单个线程中。 为了充分利用多核系统，有时需要启用一组 Node.js 进程去处理负载任务。</p><p>集群有以下两种常见的实现方案，而node自带的cluster模块，<strong>采用了方案二</strong>。</p><ol><li>方案一：多个node实例+多个端口</li></ol><p>集群内的node实例，各自监听不同的端口，再由反向代理实现请求到多个端口的分发。</p><ul><li>优点：实现简单，各实例相对独立，这对服务稳定性有好处。</li><li>缺点：增加端口占用，进程之间通信比较麻烦。</li></ul><ol start=2><li>方案二：主进程向子进程转发请求</li></ol><p>集群内，创建一个主进程(master)，以及若干个子进程(worker)。由master监听客户端连接请求，并根据特定的策略，转发给worker。</p><ul><li>优点：通常只占用一个端口，通信相对简单，转发策略更灵活。</li><li>缺点：实现相对复杂，对主进程的稳定性要求较高。</li></ul><p><code>cluster</code> 模块可以创建共享服务器端口的子进程。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>cluster</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;cluster&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>http</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;http&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>numCPUs</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;os&#39;</span><span class=p>).</span><span class=nx>cpus</span><span class=p>().</span><span class=nx>length</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=nx>cluster</span><span class=p>.</span><span class=nx>isMaster</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`主进程 </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>pid</span><span class=si>}</span><span class=sb> 正在运行`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 衍生工作进程。
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=nx>numCPUs</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>cluster</span><span class=p>.</span><span class=nx>fork</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>cluster</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>worker</span><span class=p>,</span> <span class=nx>code</span><span class=p>,</span> <span class=nx>signal</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`工作进程 </span><span class=si>${</span><span class=nx>worker</span><span class=p>.</span><span class=nx>process</span><span class=p>.</span><span class=nx>pid</span><span class=si>}</span><span class=sb> 已退出`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 工作进程可以共享任何 TCP 连接。
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 在本例子中，共享的是 HTTP 服务器。
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>http</span><span class=p>.</span><span class=nx>createServer</span><span class=p>((</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>res</span><span class=p>.</span><span class=nx>writeHead</span><span class=p>(</span><span class=mi>200</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// res.end(&#39;你好世界\n&#39;);
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>res</span><span class=p>.</span><span class=nx>end</span><span class=p>(</span><span class=sb>`response from worker </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>pid</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}).</span><span class=nx>listen</span><span class=p>(</span><span class=mi>8000</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`工作进程 </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>pid</span><span class=si>}</span><span class=sb> 已启动`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>运行代码，则工作进程会共享 8000 端口：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-console data-lang=console><span class=line><span class=cl><span class=gp>$</span> node server.js
+</span></span><span class=line><span class=cl><span class=go>主进程 3596 正在运行
+</span></span></span><span class=line><span class=cl><span class=go>工作进程 4324 已启动
+</span></span></span><span class=line><span class=cl><span class=go>工作进程 4520 已启动
+</span></span></span><span class=line><span class=cl><span class=go>工作进程 6056 已启动
+</span></span></span><span class=line><span class=cl><span class=go>工作进程 5644 已启动
+</span></span></span></code></pre></td></tr></table></div></div><p>在 Windows 上，尚无法在工作进程中设置命名管道服务器。</p><p>创建批处理脚本：./req.sh。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=cp></span>
+</span></span><span class=line><span class=cl><span class=c1># req.sh</span>
+</span></span><span class=line><span class=cl><span class=k>for</span><span class=o>((</span><span class=nv>i</span><span class=o>=</span>1<span class=p>;</span>i&lt;<span class=o>=</span>4<span class=p>;</span>i++<span class=o>))</span><span class=p>;</span> <span class=k>do</span>   
+</span></span><span class=line><span class=cl>  curl http://127.0.0.1:3000
+</span></span><span class=line><span class=cl>  <span class=nb>echo</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>done</span> 
+</span></span></code></pre></td></tr></table></div></div><p>输出如下。可以看到，响应来自不同的进程。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>response from worker 23735
+</span></span><span class=line><span class=cl>response from worker 23731
+</span></span><span class=line><span class=cl>response from worker 23729
+</span></span><span class=line><span class=cl>response from worker 23730
+</span></span></code></pre></td></tr></table></div></div><a href=#实现原理><h3 id=实现原理><span class=hanchor arialabel=Anchor># </span>实现原理</h3></a><a href=#问题1masterworker如何通信><h4 id=问题1masterworker如何通信><span class=hanchor arialabel=Anchor># </span>问题1：master、worker如何通信</h4></a><p>这个问题比较简单。master进程通过 cluster.fork() 来创建 worker进程。cluster.fork() 内部 是通过 child_process.fork() 来创建子进程。</p><p>也就是说：</p><ol><li>master进程、worker进程是父、子进程的关系。</li><li>master进程、woker进程可以通过<strong>IPC通道</strong>进行通信。（重要）</li></ol><a href=#问题2如何实现端口共享><h4 id=问题2如何实现端口共享><span class=hanchor arialabel=Anchor># </span>问题2：如何实现端口共享</h4></a><p>在前面的例子中，多个woker中创建的server监听了同个端口3000。通常来说，多个进程监听同个端口，系统会报错。</p><p>为什么我们的例子没问题呢？</p><p>秘密在于，net模块中，对 listen() 方法进行了特殊处理。根据当前进程是master进程，还是worker进程：</p><ol><li>master进程：在该端口上正常监听请求。（没做特殊处理）</li><li>worker进程：创建server实例。然后通过IPC通道，向master进程发送消息，让master进程也创建 server 实例，并在该端口上监听请求。当请求进来时，master进程将请求转发给worker进程的server实例。</li></ol><p>归纳起来，就是：master进程监听特定端口，并将客户请求转发给worker进程。</p><p>如下图所示：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171339.png width=auto alt></p><a href=#问题3如何将请求分发到多个worker><h4 id=问题3如何将请求分发到多个worker><span class=hanchor arialabel=Anchor># </span>问题3：如何将请求分发到多个worker</h4></a><p>每当worker进程创建server实例来监听请求，都会通过IPC通道，在master上进行注册。当客户端请求到达，master会负责将请求转发给对应的worker。</p><p>具体转发给哪个worker？这是由转发策略决定的。可以通过环境变量NODE_CLUSTER_SCHED_POLICY设置，也可以在cluster.setupMaster(options)时传入。</p><p>默认的转发策略是轮询（SCHED_RR）。</p><p>当有客户请求到达，master会轮询一遍worker列表，找到第一个空闲的worker，然后将该请求转发给该worker。</p><a href=#process><h2 id=process><span class=hanchor arialabel=Anchor># </span>process</h2></a><p><strong><a href=http://nodejs.cn/api/process.html rel=noopener>文档</a></strong></p><p><code>process</code> 对象是一个全局变量，它提供有关当前 Node.js 进程的信息并对其进行控制。 作为一个全局变量，它始终可供 Node.js 应用程序使用，无需使用 <code>require()</code>。 它也可以使用 <code>require()</code> 显式地访问：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>const</span> <span class=nx>process</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;process&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#processenv><h3 id=processenv><span class=hanchor arialabel=Anchor># </span>process.env</h3></a><p><code>process.env</code> 属性返回包含用户环境的对象。</p><p>此对象的示例如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>TERM</span><span class=o>:</span> <span class=s1>&#39;xterm-256color&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>SHELL</span><span class=o>:</span> <span class=s1>&#39;/usr/local/bin/bash&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>USER</span><span class=o>:</span> <span class=s1>&#39;maciej&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>PATH</span><span class=o>:</span> <span class=s1>&#39;~/.bin/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>PWD</span><span class=o>:</span> <span class=s1>&#39;/Users/maciej&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>EDITOR</span><span class=o>:</span> <span class=s1>&#39;vim&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>SHLVL</span><span class=o>:</span> <span class=s1>&#39;1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>HOME</span><span class=o>:</span> <span class=s1>&#39;/Users/maciej&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>LOGNAME</span><span class=o>:</span> <span class=s1>&#39;maciej&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>_</span><span class=o>:</span> <span class=s1>&#39;/usr/local/bin/node&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>可以修改此对象，但这些修改不会反映到 Node.js 进程之外，或者（除非明确请求）反映到其他
+<a href=http://nodejs.cn/s/S15DqM rel=noopener><code>Worker</code></a> 线程。 换句话说，以下示例不起作用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-console data-lang=console><span class=line><span class=cl><span class=gp>$</span> node -e <span class=s1>&#39;process.env.foo = &#34;bar&#34;&#39;</span> <span class=o>&amp;&amp;</span> <span class=nb>echo</span> <span class=nv>$foo</span>
+</span></span></code></pre></td></tr></table></div></div><p>以下示例则起作用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>foo</span> <span class=o>=</span> <span class=s1>&#39;bar&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>foo</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>在 <code>process.env</code> 上分配属性将<strong>隐式地将值转换为字符串</strong>。 不推荐使用此行为。 当值不是字符串、数字或布尔值时，Node.js 的未来版本可能会抛出错误。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>test</span> <span class=o>=</span> <span class=kc>null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>test</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// =&gt; &#39;null&#39;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>test</span> <span class=o>=</span> <span class=kc>undefined</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>test</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// =&gt; &#39;undefined&#39;
+</span></span></span></code></pre></td></tr></table></div></div><p>使用 <code>delete</code> 可以从 <code>process.env</code> 中删除属性。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>TEST</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>delete</span> <span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>TEST</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>TEST</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// =&gt; undefined
+</span></span></span></code></pre></td></tr></table></div></div><p>在 Windows 操作系统上，环境变量不区分大小写。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>TEST</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>test</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// =&gt; 1
+</span></span></span></code></pre></td></tr></table></div></div><p>除非在创建
+<a href=http://nodejs.cn/s/S15DqM rel=noopener><code>Worker</code></a> 实例时明确指定，否则每个
+<a href=http://nodejs.cn/s/S15DqM rel=noopener><code>Worker</code></a> 线程都有自己的 <code>process.env</code> 副本，基于其父线程的 <code>process.env</code>，或者指定为
+<a href=http://nodejs.cn/s/S15DqM rel=noopener><code>Worker</code></a> 构造函数的 <code>env</code> 选项的任何内容。 对于 <code>process.env</code> 的更改将在
+<a href=http://nodejs.cn/s/S15DqM rel=noopener><code>Worker</code></a> 线程中不可见，并且只有主线程可以进行对操作系统或本机加载项可见的更改。</p><a href=#资源使用><h3 id=资源使用><span class=hanchor arialabel=Anchor># </span>资源使用</h3></a><p>资源使用指运行此进程所消耗的机器资源。例如内存、cpu</p><a href=#内存><h4 id=内存><span class=hanchor arialabel=Anchor># </span>内存</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>process.memoryUsage())
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{ rss: 21848064,
+</span></span><span class=line><span class=cl>  heapTotal: 7159808,
+</span></span><span class=line><span class=cl>  heapUsed: 4431688,
+</span></span><span class=line><span class=cl>  external: 8224 
+</span></span><span class=line><span class=cl> }
+</span></span></code></pre></td></tr></table></div></div><p>rss(常驻内存)的组成见下图</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171340.png width=auto alt></p><p><code>code segment</code> 对应当前运行的代码</p><p><code>external</code> 对应的是C++对象（与V8管理的JS对象绑定）的占用的内存，比如Buffer的使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Buffer.allocUnsafe(1024 * 1024 * 1000);
+</span></span><span class=line><span class=cl>console.log(process.memoryUsage());
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{ rss: 22052864,
+</span></span><span class=line><span class=cl>  heapTotal: 6635520,
+</span></span><span class=line><span class=cl>  heapUsed: 4161376,
+</span></span><span class=line><span class=cl>  external: 1048584224 }
+</span></span><span class=line><span class=cl>复制代码
+</span></span></code></pre></td></tr></table></div></div><a href=#cpu><h4 id=cpu><span class=hanchor arialabel=Anchor># </span>cpu</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>startUsage</span> <span class=o>=</span> <span class=nx>process</span><span class=p>.</span><span class=nx>cpuUsage</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>startUsage</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>now</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=p>(</span><span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>()</span> <span class=o>-</span> <span class=nx>now</span> <span class=o>&lt;</span> <span class=mi>500</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>cpuUsage</span><span class=p>());</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>cpuUsage</span><span class=p>(</span><span class=nx>startUsage</span><span class=p>));</span> <span class=c1>//相对时间
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// { user: 59459, system: 18966 }
+</span></span></span><span class=line><span class=cl><span class=c1>// { user: 558135, system: 22312 }
+</span></span></span><span class=line><span class=cl><span class=c1>// { user: 498432, system: 3333 }
+</span></span></span></code></pre></td></tr></table></div></div><p>user对应用户时间，system代表系统时间</p><a href=#运行环境><h3 id=运行环境><span class=hanchor arialabel=Anchor># </span>运行环境</h3></a><p>运行环境指此进程运行的宿主环境包括运行目录、node环境、CPU架构、用户环境、系统平台</p><a href=#运行目录><h4 id=运行目录><span class=hanchor arialabel=Anchor># </span>运行目录</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`Current directory: </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>cwd</span><span class=p>()</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Current directory: /Users/xxxx/workspace/learn/node-basic/process
+</span></span></span></code></pre></td></tr></table></div></div><a href=#node环境><h4 id=node环境><span class=hanchor arialabel=Anchor># </span>node环境</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>version</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// v9.1.0
+</span></span></span></code></pre></td></tr></table></div></div><p>如果不仅仅希望获得node的版本信息，还希望v8、zlib、libuv版本等信息的话就需要使用process.versions了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>versions</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>http_parser</span><span class=o>:</span> <span class=s1>&#39;2.7.0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>node</span><span class=o>:</span> <span class=s1>&#39;9.1.0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>v8</span><span class=o>:</span> <span class=s1>&#39;6.2.414.32-node.8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>uv</span><span class=o>:</span> <span class=s1>&#39;1.15.0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>zlib</span><span class=o>:</span> <span class=s1>&#39;1.2.11&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>ares</span><span class=o>:</span> <span class=s1>&#39;1.13.0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>modules</span><span class=o>:</span> <span class=s1>&#39;59&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>nghttp2</span><span class=o>:</span> <span class=s1>&#39;1.25.0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>openssl</span><span class=o>:</span> <span class=s1>&#39;1.0.2m&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>icu</span><span class=o>:</span> <span class=s1>&#39;59.1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>unicode</span><span class=o>:</span> <span class=s1>&#39;9.0&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>cldr</span><span class=o>:</span> <span class=s1>&#39;31.0.1&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>tz</span><span class=o>:</span> <span class=s1>&#39;2017b&#39;</span> <span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#cpu架构><h4 id=cpu架构><span class=hanchor arialabel=Anchor># </span>cpu架构</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`This processor architecture is </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>arch</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// This processor architecture is x64
+</span></span></span></code></pre></td></tr></table></div></div><p>支持的值包括：<code>'arm'</code>, <code>'arm64'</code>, <code>'ia32'</code>, <code>'mips'</code>, <code>'mipsel'</code>, <code>'ppc'</code>, <code>'ppc64'</code>, <code>'s390'</code>, <code>'s390x'</code>, <code>'x32'</code> <code>'x64'</code></p><a href=#用户环境><h4 id=用户环境><span class=hanchor arialabel=Anchor># </span>用户环境</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>env</span><span class=p>.</span><span class=nx>NODE_ENV</span><span class=p>);</span> <span class=c1>// dev
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=nx>NODE_ENV</span><span class=o>=</span><span class=nx>dev</span> <span class=nx>node</span> <span class=nx>b</span><span class=p>.</span><span class=nx>js</span>
+</span></span></code></pre></td></tr></table></div></div><p>除了启动时的自定义信息之外，process.env还可以获得其他的用户环境信息（比如PATH、SHELL、HOME等），感兴趣的可以自己打印一下试试</p><a href=#系统平台><h4 id=系统平台><span class=hanchor arialabel=Anchor># </span>系统平台</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`This platform is </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>platform</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>This</span> <span class=nx>platform</span> <span class=nx>is</span> <span class=nx>darwin</span>
+</span></span></code></pre></td></tr></table></div></div><p>支持的系统平台包括：<code>'aix'</code> <code>'darwin'</code> <code>'freebsd'</code> <code>'linux'</code> <code>'openbsd'</code> <code>'sunos'</code> <code>'win32'</code></p><p>android目前还处于试验阶段</p><a href=#运行状态><h3 id=运行状态><span class=hanchor arialabel=Anchor># </span>运行状态</h3></a><p>运行状态指当前进程的运行相关的信息包括启动参数、执行目录、主文件、PID信息、运行时间</p><a href=#启动参数><h4 id=启动参数><span class=hanchor arialabel=Anchor># </span>启动参数</h4></a><p>获取启动参数有三个方法，execArgv获取Node.js的命令行选项（见
+<a href=https://nodejs.org/api/cli.html rel=noopener>官网文档</a>）</p><p>argv获取非命令行选项的信息，argv0则获取argv[0]的值（略有差异)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>argv0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>execArgv</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>node</span> <span class=o>--</span><span class=nx>harmony</span>  <span class=nx>b</span><span class=p>.</span><span class=nx>js</span> <span class=nx>foo</span><span class=o>=</span><span class=nx>bar</span> <span class=o>--</span><span class=nx>version</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 输出结果
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>[</span> <span class=s1>&#39;/Users/xiji/.nvm/versions/node/v9.1.0/bin/node&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s1>&#39;/Users/xiji/workspace/learn/node-basic/process/b.js&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s1>&#39;foo=bar&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s1>&#39;--version&#39;</span> <span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=nx>node</span>
+</span></span><span class=line><span class=cl><span class=p>[</span> <span class=s1>&#39;--harmony&#39;</span> <span class=p>]</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#执行目录><h4 id=执行目录><span class=hanchor arialabel=Anchor># </span>执行目录</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>execPath</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// /Users/xxxx/.nvm/versions/node/v9.1.0/bin/node
+</span></span></span></code></pre></td></tr></table></div></div><a href=#运行时间><h4 id=运行时间><span class=hanchor arialabel=Anchor># </span>运行时间</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>date</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=k>while</span><span class=p>(</span><span class=k>new</span> <span class=nb>Date</span><span class=p>()</span> <span class=o>-</span> <span class=nx>date</span> <span class=o>&lt;</span> <span class=mi>500</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>process</span><span class=p>.</span><span class=nx>uptime</span><span class=p>());</span> <span class=c1>// 0.569
+</span></span></span></code></pre></td></tr></table></div></div><a href=#主文件><h4 id=主文件><span class=hanchor arialabel=Anchor># </span>主文件</h4></a><p>除了require.main之外也可以通过process.mainModule来判断一个模块是否是主文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>//a.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`module A: </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>mainModule</span> <span class=o>===</span> <span class=nx>module</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//b.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./a&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`module B: </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>mainModule</span> <span class=o>===</span> <span class=nx>module</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>node</span> <span class=nx>b</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl><span class=c1>// 输出
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>module</span> <span class=nx>A</span><span class=o>:</span> <span class=kc>false</span>
+</span></span><span class=line><span class=cl><span class=nx>module</span> <span class=nx>B</span><span class=o>:</span> <span class=kc>true</span>
+</span></span></code></pre></td></tr></table></div></div><p>PID信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`This process is pid </span><span class=si>${</span><span class=nx>process</span><span class=p>.</span><span class=nx>pid</span><span class=si>}</span><span class=sb>`</span><span class=p>);</span> <span class=c1>//This process is pid 12554
+</span></span></span></code></pre></td></tr></table></div></div><a href=#监听事件><h3 id=监听事件><span class=hanchor arialabel=Anchor># </span>监听事件</h3></a><p>process是EventEmiiter的实例对象，因此可以使用process.on(&rsquo;eventName&rsquo;, () => {})来监听事件。 常用的事件类型分两种：</p><ul><li>进程状态 比如：beforeExit、exit、uncaughtException、message</li><li>信号事件 比如：SIGTERM、SIGKILL、SIGUSR1</li></ul><p>beforeExit与exit的区别有两方面：</p><ul><li>beforeExit里面可以执行异步代码、exit只能是同步代码</li><li>手动调用process.exit()或者触发uncaptException导致进程退出不会触发beforeExit事件、exit事件会触发。</li></ul><p>因此下面的代码console都不会被执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;beforeExit&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>code</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;before exit: &#39;</span><span class=o>+</span> <span class=nx>code</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;exit&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>code</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>setTimeout</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;exit: &#39;</span> <span class=o>+</span> <span class=nx>code</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>a</span><span class=p>.</span><span class=nx>b</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p>当异常一直没有被捕获处理的话，最后就会触发&rsquo;uncaughtException&rsquo;事件。默认情况下，Node.js会打印堆栈信息到stderr然后退出进程。不要试图阻止uncaughtException退出进程，因此此时程序的状态可能已经不稳定了，建议的方式是及时捕获处理代码中的错误，uncaughtException里面只做一些清理工作。</p><p><strong>注意：node的9.3版本增加了process.setUncaughtExceptionCaptureCallback方法</strong></p><p>当process.setUncaughtExceptionCaptureCallback(fn)指定了监听函数的时候，uncaughtException事件将会不再被触发。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;uncaughtException&#39;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;uncaught listener&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>setUncaughtExceptionCaptureCallback</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;uncaught fn&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>a</span><span class=p>.</span><span class=nx>b</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=c1>// uncaught fn
+</span></span></span></code></pre></td></tr></table></div></div><p>message适用于父子进程之间发送消息，关于如何创建父子进程请参见
+<a href=https://juejin.im/post/5b10a814f265da6e2a08a6f7 rel=noopener>child_process模块解读</a>。</p><p>SIGTERM信号虽然也是用于请求终止Node.js进程，但是它与SIGKILL有所不同，进程可以选择响应还是忽略此信号。 SIGTERM会以一种友好的方式来结束进程，在进程结束之前先释放已分配的资源（比如数据库连接），因此这种方式被称为优雅关闭(graceful shutdown) 具体的执行步骤如下：</p><ul><li>应用程序被通知需要关闭（接收到SIGTERM信号）</li><li>应用程序通知负载均衡不再接收新的请求</li><li>应用程序完成正在进行中的请求</li><li>释放资源（例如数据库连接）</li><li>应用程序正常退出，退出状态码为0</li></ul><p>SIGUSR1 Node.js当接收到SIGUSR1信号时会启动内置的调试器，当执行下列操作时</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=nb>kill</span> -USR1 PID_OF_THE_NODE_JS_PROCESS
+</span></span></code></pre></td></tr></table></div></div><p>可以看到node.js会启动调试器代理，端口是9229</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>server</span> <span class=nx>is</span> <span class=nx>listening</span> <span class=mi>8089</span>
+</span></span><span class=line><span class=cl><span class=nx>Debugger</span> <span class=nx>listening</span> <span class=nx>on</span> <span class=nx>ws</span><span class=o>:</span><span class=c1>//127.0.0.1:9229/7ef98ccb-02fa-451a-8954-4706bd74105f
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>For</span> <span class=nx>help</span><span class=p>,</span> <span class=nx>see</span><span class=o>:</span> <span class=nx>https</span><span class=o>:</span><span class=c1>//nodejs.org/en/docs/inspector
+</span></span></span></code></pre></td></tr></table></div></div><p>也可以在服务启动时使用&ndash;inspect 来启动调试代理</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl>node --inspect index.js
+</span></span></code></pre></td></tr></table></div></div><a href=#调度任务-processnexttickfn><h3 id=调度任务-processnexttickfn><span class=hanchor arialabel=Anchor># </span>调度任务 process.nextTick(fn)</h3></a><p>详见目录 定时器</p><p><code>process.nextTick(fn)</code></p><p>通过process.nextTick调度的任务是异步任务，EventLoop是分阶段的，每个阶段执行特定的任务，而nextTick的任务在阶段切换的时候就会执行，因此nextTick会比setTimeout(fn, 0)更快的执行，关于EventLoop见下。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171341.png width=auto alt></p><p>Node.js是单线程的，除了系统IO之外，在它的事件轮询过程中，同一时间只会处理一个事件。你可以把事件轮询想象成一个大的队列，在每个<strong>时间点</strong>上，系统只会处理一个事件。即使你的电脑有多个CPU核心，你也无法同时并行的处理多个事件。但也就是这种特性使得node.js适合处理I／O型的应用，不适合那种CPU运算型的应用。在每个I／O型的应用中，你只需要给每一个输入输出定义一个回调函数即可，他们会自动加入到事件轮询的处理队列里。当I／O操作完成后，这个回调函数会被触发。然后系统会继续处理其他的请求。</p><p>在这种处理模式下，process.nextTick()的意思就是定义出一个动作，并且让这个动作在下一个事件轮询的时间点上执行。我们来看一个例子。例子中有一个foo()，你想在下一个时间点上调用他，可以这么做：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>foo</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=s1>&#39;foo&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(</span><span class=nx>foo</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>error</span><span class=p>(</span><span class=s1>&#39;bar&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>运行上面的代码，你从下面终端打印的信息会看到，&ldquo;bar"的输出在“foo”的前面。这就验证了上面的说法，foo()是在下一个时间点运行的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>bar</span>
+</span></span><span class=line><span class=cl><span class=nx>foo</span> 
+</span></span></code></pre></td></tr></table></div></div><p>你也可以使用setTimeout()函数来达到貌似同样的执行效果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>setTimeout</span><span class=p>(</span><span class=nx>foo</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;bar&#39;</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p>但在内部的处理机制上，process.nextTick()和setTimeout(fn, 0)是不同的，process.nextTick()不是一个单纯的延时，他有更多的
+<a href=https://gist.github.com/1257394 rel=noopener>特性</a>。</p><p>更精确的说，process.nextTick()定义的调用会创建一个新的子堆栈。在当前的栈里，你可以执行任意多的操作。但一旦调用netxTic k，函数就必须返回到父堆栈。然后事件轮询机制又重新等待处理新的事件，如果发现nextTick的调用，就会创建一个新的栈。</p><a href=#processnexttick-和-setimmediate-的区别><h4 id=processnexttick-和-setimmediate-的区别><span class=hanchor arialabel=Anchor># </span>Process.nextTick 和 setImmediate 的区别</h4></a><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171342.png width=auto alt></p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171343.png width=auto alt></p><a href=#发出警告><h3 id=发出警告><span class=hanchor arialabel=Anchor># </span>发出警告</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>emitWarning</span><span class=p>(</span><span class=s1>&#39;Something warning happened!&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>code</span><span class=o>:</span> <span class=s1>&#39;MY_WARNING&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>type</span><span class=o>:</span> <span class=s1>&#39;XXXX&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// (node:14771) [MY_WARNING] XXXX: Something warning happened!
+</span></span></span></code></pre></td></tr></table></div></div><p>当type为DeprecationWarning时，可以通过命令行选项施加影响</p><ul><li><code>--throw-deprecation</code> 会抛出异常</li><li><code>--no-deprecation</code> 不输出DeprecationWarning</li><li><code>--trace-deprecation</code> 打印详细堆栈信息</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>emitWarning</span><span class=p>(</span><span class=s1>&#39;Something warning happened!&#39;</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>type</span><span class=o>:</span> <span class=s1>&#39;DeprecationWarning&#39;</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>4</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>node</span> <span class=o>--</span><span class=k>throw</span><span class=o>-</span><span class=nx>deprecation</span> <span class=nx>index</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl><span class=nx>node</span> <span class=o>--</span><span class=nx>no</span><span class=o>-</span><span class=nx>deprecation</span> <span class=nx>index</span><span class=p>.</span><span class=nx>js</span>
+</span></span><span class=line><span class=cl><span class=nx>node</span> <span class=o>--</span><span class=nx>trace</span><span class=o>-</span><span class=nx>deprecation</span> <span class=nx>index</span><span class=p>.</span><span class=nx>js</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#node-定时器><h1 id=node-定时器><span class=hanchor arialabel=Anchor># </span>Node 定时器</h1></a><p>JavaScript 是单线程运行，异步操作特别重要。</p><p>只要用到引擎之外的功能，就需要跟外部交互，从而形成异步操作。由于异步操作实在太多，JavaScript 不得不提供很多异步语法。这就好比，有些人老是受打击， 他的抗打击能力必须变得很强，否则他就完蛋了。</p><p>Node 的异步语法比浏览器更复杂，因为它可以跟内核对话，不得不搞了一个专门的库
+<a href=http://thlorenz.com/learnuv/book/history/history_1.html rel=noopener>libuv</a> 做这件事。这个库负责各种回调函数的执行时间，毕竟异步任务最后还是要回到主线程，一个个排队执行。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171344.png width=auto alt></p><p>为了协调异步任务，Node 居然提供了四个定时器，让任务可以在指定的时间运行。</p><blockquote><ul><li>setTimeout()</li><li>setInterval()</li><li>setImmediate()</li><li>process.nextTick()</li></ul></blockquote><p>前两个是语言的标准，后两个是 Node 独有的。它们的写法差不多，作用也差不多，不太容易区别。</p><p>你能说出下面代码的运行结果吗？</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// test.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>3</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nb>Promise</span><span class=p>.</span><span class=nx>resolve</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>4</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>5</span><span class=p>))();</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>运行结果如下。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ node test.js
+</span></span><span class=line><span class=cl><span class=m>5</span>
+</span></span><span class=line><span class=cl><span class=m>3</span>
+</span></span><span class=line><span class=cl><span class=m>4</span>
+</span></span><span class=line><span class=cl><span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=m>2</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>如果你能一口说对，可能就不需要再看下去了。本文详细解释，Node 怎么处理各种定时器，或者更广义地说，libuv 库怎么安排异步任务在主线程上执行。</p><a href=#同步任务和异步任务><h2 id=同步任务和异步任务><span class=hanchor arialabel=Anchor># </span>同步任务和异步任务</h2></a><p>首先，同步任务总是比异步任务更早执行。</p><p>前面的那段代码，只有最后一行是同步任务，因此最早执行。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>5</span><span class=p>))();</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><a href=#本轮循环和次轮循环><h2 id=本轮循环和次轮循环><span class=hanchor arialabel=Anchor># </span>本轮循环和次轮循环</h2></a><p>异步任务可以分成两种。</p><blockquote><ul><li>追加在<strong>本轮循环</strong>的异步任务</li><li>追加在<strong>次轮循环</strong>的异步任务</li></ul></blockquote><p>所谓"循环&rdquo;，指的是事件循环（event loop）。这是 JavaScript 引擎处理异步任务的方式，后文会详细解释。这里只要理解，<strong>本轮循环一定早于次轮循环</strong>执行即可。</p><p>Node 规定，<strong><code>process.nextTick</code>和<code>Promise</code>的回调函数，追加在本轮循环</strong>，即同步任务一旦执行完成，就开始执行它们。而<code>setTimeout</code>、<code>setInterval</code>、<code>setImmediate</code>的回调函数，追加在次轮循环。</p><p>这就是说，文首那段代码的第三行和第四行，一定比第一行和第二行更早执行。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 下面两行，次轮循环执行
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=c1>// 下面两行，本轮循环执行
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>3</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nb>Promise</span><span class=p>.</span><span class=nx>resolve</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>4</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><a href=#processnexttick><h2 id=processnexttick><span class=hanchor arialabel=Anchor># </span>process.nextTick()</h2></a><p><code>process.nextTick</code>这个名字有点误导，它是在本轮循环执行的，而且是所有异步任务里面最快执行的。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171345.png width=auto alt=img></p><p>Node 执行完所有同步任务，接下来就会执行<code>process.nextTick</code>的任务队列。所以，下面这行代码是第二个输出结果。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>3</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>基本上，如果你希望异步任务尽可能快地执行，那就使用<code>process.nextTick</code>。</p><a href=#微任务><h2 id=微任务><span class=hanchor arialabel=Anchor># </span>微任务</h2></a><p>根据语言规格，<code>Promise</code>对象的回调函数，会进入异步任务里面的"微任务"（microtask）队列。</p><p><strong>微任务队列追加在<code>process.nextTick</code>队列的后面，也属于本轮循环</strong>。所以，下面的代码总是先输出<code>3</code>，再输出<code>4</code>。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>3</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nb>Promise</span><span class=p>.</span><span class=nx>resolve</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>4</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=c1>// 3
+</span></span></span><span class=line><span class=cl><span class=c1>// 4
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171346.png width=auto alt=img></p><p>注意，只有前一个队列全部清空以后，才会执行下一个队列。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nb>Promise</span><span class=p>.</span><span class=nx>resolve</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nx>process</span><span class=p>.</span><span class=nx>nextTick</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>3</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nb>Promise</span><span class=p>.</span><span class=nx>resolve</span><span class=p>().</span><span class=nx>then</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>4</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=c1>// 1
+</span></span></span><span class=line><span class=cl><span class=c1>// 3
+</span></span></span><span class=line><span class=cl><span class=c1>// 2
+</span></span></span><span class=line><span class=cl><span class=c1>// 4
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><p>上面代码中，全部<code>process.nextTick</code>的回调函数，执行都会早于<code>Promise</code>的。</p><p>至此，本轮循环的执行顺序就讲完了。</p><blockquote><ol><li>同步任务</li><li>process.nextTick()</li><li>微任务</li></ol></blockquote><a href=#事件循环的概念><h2 id=事件循环的概念><span class=hanchor arialabel=Anchor># </span>事件循环的概念</h2></a><p>下面开始介绍次轮循环的执行顺序，这就必须理解什么是事件循环（event loop）了。</p><p>Node 的
+<a href=https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/ rel=noopener>官方文档</a>是这样介绍的。</p><blockquote><p>&ldquo;When Node.js starts, it initializes the event loop, processes the provided input script which may make async API calls, schedule timers, or call process.nextTick(), then begins processing the event loop.&rdquo;</p></blockquote><p>这段话很重要，需要仔细读。它表达了三层意思。</p><p>首先，有些人以为，除了主线程，还存在一个单独的事件循环线程。不是这样的，只有一个主线程，事件循环是在主线程上完成的。</p><p>其次，Node 开始执行脚本时，会先进行事件循环的初始化，但是这时事件循环还没有开始，会先完成下面的事情。</p><blockquote><ul><li>同步任务</li><li>发出异步请求</li><li>规划定时器生效的时间</li><li>执行<code>process.nextTick()</code>等等</li></ul></blockquote><p>最后，上面这些事情都干完了，事件循环就正式开始了。</p><a href=#事件循环的六个阶段><h2 id=事件循环的六个阶段><span class=hanchor arialabel=Anchor># </span>事件循环的六个阶段</h2></a><p>事件循环会无限次地执行，一轮又一轮。只有异步任务的回调函数队列清空了，才会停止执行。</p><p>每一轮的事件循环，分成六个阶段。这些阶段会依次执行。</p><blockquote><ol><li>timers</li><li>I/O callbacks</li><li>idle, prepare</li><li>poll</li><li>check</li><li>close callbacks</li></ol></blockquote><p>每个阶段都有一个先进先出的回调函数队列。只有一个阶段的回调函数队列清空了，该执行的回调函数都执行了，事件循环才会进入下一个阶段。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171347.png width=auto alt=img></p><p>下面简单介绍一下每个阶段的含义，详细介绍可以看
+<a href=https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/ rel=noopener>官方文档</a>，也可以参考 libuv 的
+<a href=https://jsblog.insiderattack.net/handling-io-nodejs-event-loop-part-4-418062f917d1 rel=noopener>源码解读</a>。</p><p><strong>（1）timers</strong></p><p>这个是定时器阶段，处理<code>setTimeout()</code>和<code>setInterval()</code>的回调函数。进入这个阶段后，主线程会检查一下当前时间，是否满足定时器的条件。如果满足就执行回调函数，否则就离开这个阶段。</p><p><strong>（2）I/O callbacks</strong></p><p>除了以下操作的回调函数，其他的回调函数都在这个阶段执行。</p><blockquote><ul><li><code>setTimeout()</code>和<code>setInterval()</code>的回调函数</li><li><code>setImmediate()</code>的回调函数</li><li>用于关闭请求的回调函数，比如<code>socket.on('close', ...)</code></li></ul></blockquote><p><strong>（3）idle, prepare</strong></p><p>该阶段只供 libuv 内部调用，这里可以忽略。</p><p><strong>（4）Poll</strong></p><p>这个阶段是轮询时间，用于等待还未返回的 I/O 事件，比如服务器的回应、用户移动鼠标等等。</p><p>这个阶段的时间会比较长。如果没有其他异步任务要处理（比如到期的定时器），会一直停留在这个阶段，等待 I/O 请求返回结果。</p><p><strong>（5）check</strong></p><p>该阶段执行<code>setImmediate()</code>的回调函数。</p><p><strong>（6）close callbacks</strong></p><p>该阶段执行关闭请求的回调函数，比如<code>socket.on('close', ...)</code>。</p><a href=#事件循环的示例><h2 id=事件循环的示例><span class=hanchor arialabel=Anchor># </span>事件循环的示例</h2></a><p>下面是来自官方文档的一个示例。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>fs</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;fs&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>timeoutScheduled</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 异步任务一：100ms 后执行的定时器
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>delay</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>()</span> <span class=o>-</span> <span class=nx>timeoutScheduled</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=sb>`</span><span class=si>${</span><span class=nx>delay</span><span class=si>}</span><span class=sb>ms`</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>},</span> <span class=mi>100</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 异步任务二：文件读取后，有一个 200ms 的回调函数
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;test.js&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>startCallback</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=k>while</span> <span class=p>(</span><span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>()</span> <span class=o>-</span> <span class=nx>startCallback</span> <span class=o>&lt;</span> <span class=mi>200</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 什么也不做
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>上面代码有两个异步任务，一个是 100ms 后执行的定时器，一个是文件读取，它的回调函数需要 200ms。请问运行结果是什么？</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/blogs/bigfront/node/20210410171348.jpg width=auto alt=img></p><p>脚本进入第一轮事件循环以后，没有到期的定时器，也没有已经可以执行的 I/O 回调函数，所以会进入 Poll 阶段，等待内核返回文件读取的结果。由于读取小文件一般不会超过 100ms，所以在定时器到期之前，Poll 阶段就会得到结果，因此就会继续往下执行。</p><p>第二轮事件循环，依然没有到期的定时器，但是已经有了可以执行的 I/O 回调函数，所以会进入 I/O callbacks 阶段，执行<code>fs.readFile</code>的回调函数。这个回调函数需要 200ms，也就是说，在它执行到一半的时候，100ms 的定时器就会到期。但是，必须等到这个回调函数执行完，才会离开这个阶段。</p><p>第三轮事件循环，已经有了到期的定时器，所以会在 timers 阶段执行定时器。最后输出结果大概是200多毫秒。</p><a href=#settimeout-和-setimmediate><h2 id=settimeout-和-setimmediate><span class=hanchor arialabel=Anchor># </span>setTimeout 和 setImmediate</h2></a><p>由于<code>setTimeout</code>在 timers 阶段执行，而<code>setImmediate</code>在 check 阶段执行。所以，<code>setTimeout</code>会早于<code>setImmediate</code>完成。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=nx>setImmediate</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>上面代码应该先输出<code>1</code>，再输出<code>2</code>，但是实际执行的时候，结果却是不确定，有时还会先输出<code>2</code>，再输出<code>1</code>。</p><p>这是因为<code>setTimeout</code>的第二个参数默认为<code>0</code>。但是实际上，Node 做不到0毫秒，最少也需要1毫秒，根据
+<a href=https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_args rel=noopener>官方文档</a>，第二个参数的取值范围在1毫秒到2147483647毫秒之间。也就是说，<code>setTimeout(f, 0)</code>等同于<code>setTimeout(f, 1)</code>。</p><p>实际执行的时候，进入事件循环以后，有可能到了1毫秒，也可能还没到1毫秒，取决于系统当时的状况。如果没到1毫秒，那么 timers 阶段就会跳过，进入 check 阶段，先执行<code>setImmediate</code>的回调函数。</p><p>但是，下面的代码一定是先输出2，再输出1。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>fs</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;fs&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>fs</span><span class=p>.</span><span class=nx>readFile</span><span class=p>(</span><span class=s1>&#39;test.js&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>  <span class=nx>setImmediate</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>2</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>上面代码会先进入 I/O callbacks 阶段，然后是 check 阶段，最后才是 timers 阶段。因此，<code>setImmediate</code>才会早于<code>setTimeout</code>执行。</p></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li>No backlinks found</li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>
