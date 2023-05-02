@@ -28,7 +28,7 @@ enableRecentNotes: false
 
 # whether to display an 'edit' button next to the last edited field
 # that links to github
-enableGitHubEdit: true
+enableGitHubEdit: false
 GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
 
 # whether to render mermaid diagrams
@@ -44,11 +44,11 @@ search:
 
 # page description used for SEO
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
+  Host jieye second brain and digital garden for free. Quartz features extremely fast full-text search,
   Wikilink support, backlinks, local graph, tags, and link previews.
 
 # title of the home page (also for SEO)
-page_title: "ericx 's 数字花园"
+page_title: "jieye の 数字花园"
 
 # links to show in the footer
 links:
