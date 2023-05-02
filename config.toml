@@ -3,8 +3,6 @@ languageCode = "zh-cn"
 relativeURLs = false
 disablePathToLower = true
 ignoreFiles = [
-    "/content/templates/*",
-    "/content/private/*",
 ]
 summaryLength = 20
 paginate = 10
@@ -27,7 +25,7 @@ enableGitInfo = true
         lineNumbersInTable = true
         style = "dracula"
     [frontmatter]
-        lastmod = ["lastmod", ":git", "date", "publishDate"]
-        publishDate = ["publishDate", "date"]
+        lastmod = ["date created","lastmod", ":git", "date", "publishDate"]
+        publishDate = ["date created","publishDate", "date"]
     [markup.goldmark.renderer]
         unsafe = true
