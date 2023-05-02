@@ -1,0 +1,1255 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="继承 1、原型链继承 Array.includes Array.indexOf() 构造函数、原型和实例之间的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个原型对象的指针。
+继承的本质就是复制，即重写原型对象，代之以一个新类型的实例。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  function SuperType() { this."><meta property="og:title" content="Javascript基础"><meta property="og:description" content="继承 1、原型链继承 Array.includes Array.indexOf() 构造函数、原型和实例之间的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个原型对象的指针。
+继承的本质就是复制，即重写原型对象，代之以一个新类型的实例。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  function SuperType() { this."><meta property="og:type" content="website"><meta property="og:image" content="https://jieye-ericx.github.io/icon.png"><meta property="og:url" content="https://jieye-ericx.github.io/Javascript%E5%9F%BA%E7%A1%80/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content="Javascript基础"><meta name=twitter:description content="继承 1、原型链继承 Array.includes Array.indexOf() 构造函数、原型和实例之间的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个原型对象的指针。
+继承的本质就是复制，即重写原型对象，代之以一个新类型的实例。
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  function SuperType() { this."><meta name=twitter:image content="https://jieye-ericx.github.io/icon.png"><title>Javascript基础</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://jieye-ericx.github.io//icon.png><link href=https://jieye-ericx.github.io/styles.80333fa2099c0bee674efa435fde378c.min.css rel=stylesheet><link href=https://jieye-ericx.github.io/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://jieye-ericx.github.io/js/darkmode.48459b7116d092b4e98d2cab704cad80.min.js></script>
+<script src=https://jieye-ericx.github.io/js/util.00639692264b21bc3ee219733d38a8be.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/core@1.2.1></script>
+<script src=https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.2.1></script>
+<script defer src=https://jieye-ericx.github.io/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://jieye-ericx.github.io/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://jieye-ericx.github.io/",fetchData=Promise.all([fetch("https://jieye-ericx.github.io/indices/linkIndex.d1ffeb07c444307ac70f84984f3aa0d9.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://jieye-ericx.github.io/indices/contentIndex.2fd0bb3e22e4db8398171e719cba2382.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://jieye-ericx.github.io",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!1;drawGraph("https://jieye-ericx.github.io",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/jieye-ericx.github.io\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=jieye-ericx.github.io src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://jieye-ericx.github.io/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://jieye-ericx.github.io/>ericx 's 数字花园</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Javascript基础</h1><p class=meta>Last updated
+Unknown
+<a href=https://github.com/jackyzha0/quartz/tree/hugo/content/Javascript%e5%9f%ba%e7%a1%80.md rel=noopener>Edit Source</a></p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#继承>继承</a><ol><li><a href=#1原型链继承>1、原型链继承</a></li><li><a href=#2借用构造函数继承>2、借用构造函数继承</a></li><li><a href=#3组合继承>3、组合继承</a></li><li><a href=#4原型式继承>4、原型式继承</a></li></ol></li><li><a href=#proxy>Proxy</a><ol><li></li></ol></li><li><a href=#promise>Promise</a><ol><li><a href=#构造函数语法>构造函数语法</a></li><li><a href=#介绍>介绍</a></li><li><a href=#属性>属性</a></li><li><a href=#方法>方法</a></li><li><a href=#原型>原型</a></li><li><a href=#自己实现剖析>自己实现剖析</a></li><li><a href=#20-行案例>20 行案例</a></li></ol></li><li><a href=#event-loop>Event Loop</a><ol><li><a href=#js-的单线程>JS 的单线程</a></li><li><a href=#浏览器>浏览器</a></li><li><a href=#浏览器端的-event-loop>浏览器端的 Event Loop</a></li><li><a href=#node-中的-event-loop>Node 中的 Event Loop</a></li><li><a href=#settimeout-和-setimmediate>setTimeout 和 setImmediate</a></li><li><a href=#举个栗子-1>举个栗子</a></li><li><a href=#node-11x-的变化>Node 11.x 的变化</a></li><li><a href=#小结>小结</a></li></ol></li><li><a href=#void>void</a><ol><li><a href=#语法>语法</a></li><li><a href=#描述>描述</a></li><li><a href=#立即调用的函数表达式>立即调用的函数表达式</a></li><li><a href=#javascript-uris>JavaScript URIs</a></li><li><a href=#在箭头函数中避免泄漏>在箭头函数中避免泄漏</a></li></ol></li><li><a href=#undefined-与-null-的区别>undefined 与 null 的区别</a><ol><li><a href=#历史原因>历史原因</a></li><li><a href=#最初设计>最初设计</a></li><li><a href=#目前的用法>目前的用法</a></li></ol></li><li><a href=#es6>ES6</a><ol><li><a href=#什么是-es6>什么是 ES6</a></li><li><a href=#为什么使用-es6->为什么使用 ES6 ?</a></li><li><a href=#es6-新增语法>ES6 新增语法</a></li><li><a href=#es6-的内置对象扩展>ES6 的内置对象扩展</a></li></ol></li></ol></nav></details></aside><a href=#继承><h2 id=继承><span class=hanchor arialabel=Anchor># </span>继承</h2></a><a href=#1原型链继承><h3 id=1原型链继承><span class=hanchor arialabel=Anchor># </span>1、原型链继承</h3></a><a href=#arrayincludes-arrayindexof><h4 id=arrayincludes-arrayindexof><span class=hanchor arialabel=Anchor># </span>Array.includes Array.indexOf()</h4></a><p>构造函数、原型和实例之间的关系：每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个原型对象的指针。</p><p>继承的本质就是<strong>复制，即重写原型对象，代之以一个新类型的实例</strong>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SuperType</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>property</span> <span class=o>=</span> <span class=kc>true</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>SuperType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>getSuperValue</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>property</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SubType</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>subproperty</span> <span class=o>=</span> <span class=kc>false</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 这里是关键，创建SuperType的实例，并将该实例赋值给SubType.prototype
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SuperType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>getSubValue</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>subproperty</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>instance</span><span class=p>.</span><span class=nx>getSuperValue</span><span class=p>());</span> <span class=c1>// true
+</span></span></span></code></pre></td></tr></table></div></div><p>原型链方案存在的缺点：多个实例对引用类型的操作会被篡改。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SuperType</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>colors</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;red&#34;</span><span class=p>,</span> <span class=s2>&#34;blue&#34;</span><span class=p>,</span> <span class=s2>&#34;green&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SubType</span><span class=p>()</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SuperType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance1</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>instance1</span><span class=p>.</span><span class=nx>colors</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;black&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>instance1</span><span class=p>.</span><span class=nx>colors</span><span class=p>);</span> <span class=c1>//&#34;red,blue,green,black&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance2</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>instance2</span><span class=p>.</span><span class=nx>colors</span><span class=p>);</span> <span class=c1>//&#34;red,blue,green,black&#34;
+</span></span></span></code></pre></td></tr></table></div></div><a href=#2借用构造函数继承><h3 id=2借用构造函数继承><span class=hanchor arialabel=Anchor># </span>2、借用构造函数继承</h3></a><p>使用父类的构造函数来增强子类<strong>实例</strong>，等同于复制父类的实例给子类（不使用原型）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SuperType</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>color</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;red&#34;</span><span class=p>,</span> <span class=s2>&#34;green&#34;</span><span class=p>,</span> <span class=s2>&#34;blue&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SubType</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>//继承自SuperType
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>SuperType</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance1</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>instance1</span><span class=p>.</span><span class=nx>color</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;black&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>instance1</span><span class=p>.</span><span class=nx>color</span><span class=p>);</span> <span class=c1>//&#34;red,green,blue,black&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance2</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>instance2</span><span class=p>.</span><span class=nx>color</span><span class=p>);</span> <span class=c1>//&#34;red,green,blue&#34;
+</span></span></span></code></pre></td></tr></table></div></div><p>核心代码是<code>SuperType.call(this)</code>，创建子类实例时调用<code>SuperType</code>构造函数，于是<code>SubType</code>的每个实例都会将 SuperType 中的属性复制一份。</p><p>缺点：</p><ul><li>只能继承父类的<strong>实例</strong>属性和方法，不能继承原型属性/方法</li><li>无法实现复用，每个子类都有父类实例函数的副本，影响性能</li></ul><a href=#3组合继承><h3 id=3组合继承><span class=hanchor arialabel=Anchor># </span>3、组合继承</h3></a><p>组合上述两种方法就是组合继承。用原型链实现对<strong>原型</strong>属性和方法的继承，用借用构造函数技术来实现<strong>实例</strong>属性的继承。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SuperType</span><span class=p>(</span><span class=nx>name</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=nx>name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>colors</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;red&#34;</span><span class=p>,</span> <span class=s2>&#34;blue&#34;</span><span class=p>,</span> <span class=s2>&#34;green&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>SuperType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>sayName</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>alert</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>SubType</span><span class=p>(</span><span class=nx>name</span><span class=p>,</span> <span class=nx>age</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 继承属性
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 第二次调用SuperType()
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>SuperType</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=nx>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>age</span> <span class=o>=</span> <span class=nx>age</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 继承方法
+</span></span></span><span class=line><span class=cl><span class=c1>// 构建原型链
+</span></span></span><span class=line><span class=cl><span class=c1>// 第一次调用SuperType()
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SuperType</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=c1>// 重写SubType.prototype的constructor属性，指向自己的构造函数SubType
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>constructor</span> <span class=o>=</span> <span class=nx>SubType</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>sayAge</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>alert</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>age</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance1</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>(</span><span class=s2>&#34;Nicholas&#34;</span><span class=p>,</span> <span class=mi>29</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>instance1</span><span class=p>.</span><span class=nx>colors</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;black&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>instance1</span><span class=p>.</span><span class=nx>colors</span><span class=p>);</span> <span class=c1>//&#34;red,blue,green,black&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>instance1</span><span class=p>.</span><span class=nx>sayName</span><span class=p>();</span> <span class=c1>//&#34;Nicholas&#34;;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>instance1</span><span class=p>.</span><span class=nx>sayAge</span><span class=p>();</span> <span class=c1>//29
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance2</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>(</span><span class=s2>&#34;Greg&#34;</span><span class=p>,</span> <span class=mi>27</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>instance2</span><span class=p>.</span><span class=nx>colors</span><span class=p>);</span> <span class=c1>//&#34;red,blue,green&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>instance2</span><span class=p>.</span><span class=nx>sayName</span><span class=p>();</span> <span class=c1>//&#34;Greg&#34;;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>instance2</span><span class=p>.</span><span class=nx>sayAge</span><span class=p>();</span> <span class=c1>//27
+</span></span></span></code></pre></td></tr></table></div></div><p>缺点：</p><ul><li>第一次调用<code>SuperType()</code>：给<code>SubType.prototype</code>写入两个属性 name，color。</li><li>第二次调用<code>SuperType()</code>：给<code>instance1</code>写入两个属性 name，color。</li></ul><p>实例对象<code>instance1</code>上的两个属性就屏蔽了其原型对象 SubType.prototype 的两个同名属性。所以，组合模式的缺点就是在使用子类创建实例对象时，其原型中会存在两份相同的属性/方法。</p><a href=#4原型式继承><h3 id=4原型式继承><span class=hanchor arialabel=Anchor># </span>4、原型式继承</h3></a><p>利用一个空对象作为中介，将某个对象直接赋值给空对象构造函数的原型。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>object</span><span class=p>(</span><span class=nx>obj</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>function</span> <span class=nx>F</span><span class=p>()</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>  <span class=nx>F</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=nx>obj</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=k>new</span> <span class=nx>F</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>object()对传入其中的对象执行了一次<code>浅复制</code>，将构造函数 F 的原型直接指向传入的对象。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>person</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Nicholas&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>friends</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;Shelby&#34;</span><span class=p>,</span> <span class=s2>&#34;Court&#34;</span><span class=p>,</span> <span class=s2>&#34;Van&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>anotherPerson</span> <span class=o>=</span> <span class=nx>object</span><span class=p>(</span><span class=nx>person</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>anotherPerson</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=s2>&#34;Greg&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>anotherPerson</span><span class=p>.</span><span class=nx>friends</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;Rob&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>yetAnotherPerson</span> <span class=o>=</span> <span class=nx>object</span><span class=p>(</span><span class=nx>person</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>yetAnotherPerson</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=s2>&#34;Linda&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>yetAnotherPerson</span><span class=p>.</span><span class=nx>friends</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;Barbie&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>alert</span><span class=p>(</span><span class=nx>person</span><span class=p>.</span><span class=nx>friends</span><span class=p>);</span> <span class=c1>//&#34;Shelby,Court,Van,Rob,Barbie&#34;
+</span></span></span></code></pre></td></tr></table></div></div><p>缺点：</p><ul><li>原型链继承多个实例的引用类型属性指向相同，存在篡改的可能。</li><li>无法传递参数</li></ul><p>另外，ES5 中存在<code>Object.create()</code>的方法，能够代替上面的 object 方法。</p><a href=#5寄生式继承><h4 id=5寄生式继承><span class=hanchor arialabel=Anchor># </span>5、寄生式继承</h4></a><p>核心：在原型式继承的基础上，增强对象，返回构造函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>createAnother</span><span class=p>(</span><span class=nx>original</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>clone</span> <span class=o>=</span> <span class=nx>object</span><span class=p>(</span><span class=nx>original</span><span class=p>);</span> <span class=c1>// 通过调用 object() 函数创建一个新对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>clone</span><span class=p>.</span><span class=nx>sayHi</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 以某种方式来增强对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>alert</span><span class=p>(</span><span class=s2>&#34;hi&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>clone</span><span class=p>;</span> <span class=c1>// 返回这个对象
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>复制代码</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>函数的主要作用是为构造函数新增属性和方法，以<strong>增强函数</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>person</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Nicholas&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>friends</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;Shelby&#34;</span><span class=p>,</span> <span class=s2>&#34;Court&#34;</span><span class=p>,</span> <span class=s2>&#34;Van&#34;</span><span class=p>],</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>anotherPerson</span> <span class=o>=</span> <span class=nx>createAnother</span><span class=p>(</span><span class=nx>person</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>anotherPerson</span><span class=p>.</span><span class=nx>sayHi</span><span class=p>();</span> <span class=c1>//&#34;hi&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>复制代码</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>缺点（同原型式继承）：</p><ul><li>原型链继承多个实例的引用类型属性指向相同，存在篡改的可能。</li><li>无法传递参数</li></ul><a href=#6寄生组合式继承><h4 id=6寄生组合式继承><span class=hanchor arialabel=Anchor># </span>6、寄生组合式继承</h4></a><p>结合借用构造函数传递参数和寄生模式实现继承</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>inheritPrototype</span><span class=p>(</span><span class=nx>subType</span><span class=p>,</span> <span class=nx>superType</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>prototype</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>create</span><span class=p>(</span><span class=nx>superType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>);</span> <span class=c1>// 创建对象，创建父类原型的一个副本
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>prototype</span><span class=p>.</span><span class=nx>constructor</span> <span class=o>=</span> <span class=nx>subType</span><span class=p>;</span> <span class=c1>// 增强对象，弥补因重写原型而失去的默认的constructor 属性
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>subType</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=nx>prototype</span><span class=p>;</span> <span class=c1>// 指定对象，将新创建的对象赋值给子类的原型
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 父类初始化实例属性和原型属性
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span> <span class=nx>SuperType</span><span class=p>(</span><span class=nx>name</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=nx>name</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>colors</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;red&#34;</span><span class=p>,</span> <span class=s2>&#34;blue&#34;</span><span class=p>,</span> <span class=s2>&#34;green&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>SuperType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>sayName</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>alert</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 借用构造函数传递增强子类实例属性（支持传参和避免篡改）
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>function</span> <span class=nx>SubType</span><span class=p>(</span><span class=nx>name</span><span class=p>,</span> <span class=nx>age</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>SuperType</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>,</span> <span class=nx>name</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=k>this</span><span class=p>.</span><span class=nx>age</span> <span class=o>=</span> <span class=nx>age</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 将父类原型指向子类
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>inheritPrototype</span><span class=p>(</span><span class=nx>SubType</span><span class=p>,</span> <span class=nx>SuperType</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 新增子类原型属性
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>SubType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>sayAge</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>alert</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>age</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance1</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>(</span><span class=s2>&#34;xyc&#34;</span><span class=p>,</span> <span class=mi>23</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>instance2</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>SubType</span><span class=p>(</span><span class=s2>&#34;lxy&#34;</span><span class=p>,</span> <span class=mi>23</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>instance1</span><span class=p>.</span><span class=nx>colors</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;2&#34;</span><span class=p>);</span> <span class=c1>// [&#34;red&#34;, &#34;blue&#34;, &#34;green&#34;, &#34;2&#34;]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>instance1</span><span class=p>.</span><span class=nx>colors</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=s2>&#34;3&#34;</span><span class=p>);</span> <span class=c1>// [&#34;red&#34;, &#34;blue&#34;, &#34;green&#34;, &#34;3&#34;]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>复制代码</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>这个例子的高效率体现在它只调用了一次<code>SuperType</code> 构造函数，并且因此避免了在<code>SubType.prototype</code> 上创建不必要的、多余的属性。于此同时，原型链还能保持不变；因此，还能够正常使用<code>instanceof</code> 和<code>isPrototypeOf()</code></p><p><strong>这是最成熟的方法，也是现在库实现的方法</strong></p><a href=#7混入方式继承多个对象><h4 id=7混入方式继承多个对象><span class=hanchor arialabel=Anchor># </span>7、混入方式继承多个对象</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>MyClass</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>SuperClass</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=nx>OtherSuperClass</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=k>this</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// 继承一个类
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>MyClass</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>create</span><span class=p>(</span><span class=nx>SuperClass</span><span class=p>.</span><span class=nx>prototype</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 混合其它
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nb>Object</span><span class=p>.</span><span class=nx>assign</span><span class=p>(</span><span class=nx>MyClass</span><span class=p>.</span><span class=nx>prototype</span><span class=p>,</span> <span class=nx>OtherSuperClass</span><span class=p>.</span><span class=nx>prototype</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 重新指定constructor
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>MyClass</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>constructor</span> <span class=o>=</span> <span class=nx>MyClass</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>MyClass</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>myMethod</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// do something
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>};</span>
+</span></span></code></pre></td></tr></table></div></div><p><code>Object.assign</code>会把 <code>OtherSuperClass</code>原型上的函数拷贝到 <code>MyClass</code>原型上，使 MyClass 的所有实例都可用 OtherSuperClass 的方法。</p><a href=#8es6-类继承-extends><h4 id=8es6-类继承-extends><span class=hanchor arialabel=Anchor># </span>8、ES6 类继承 extends</h4></a><p><code>extends</code>关键字主要用于类声明或者类表达式中，以创建一个类，该类是另一个类的子类。其中<code>constructor</code>表示构造函数，一个类中只能有一个构造函数，有多个会报出<code>SyntaxError</code>错误,如果没有显式指定构造方法，则会添加默认的 <code>constructor</code>方法，使用例子如下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Rectangle</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// constructor
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>constructor</span><span class=p>(</span><span class=nx>height</span><span class=p>,</span> <span class=nx>width</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=p>.</span><span class=nx>height</span> <span class=o>=</span> <span class=nx>height</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=p>.</span><span class=nx>width</span> <span class=o>=</span> <span class=nx>width</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// Getter
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>get</span> <span class=nx>area</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>calcArea</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// Method
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>calcArea</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>height</span> <span class=o>*</span> <span class=k>this</span><span class=p>.</span><span class=nx>width</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>rectangle</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Rectangle</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=mi>20</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>rectangle</span><span class=p>.</span><span class=nx>area</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 输出 200
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=o>-----------------------------------------------------------------</span>
+</span></span><span class=line><span class=cl><span class=c1>// 继承
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>class</span> <span class=nx>Square</span> <span class=kr>extends</span> <span class=nx>Rectangle</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>constructor</span><span class=p>(</span><span class=nx>length</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kr>super</span><span class=p>(</span><span class=nx>length</span><span class=p>,</span> <span class=nx>length</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=c1>// 如果子类中存在构造函数，则需要在使用“this”之前首先调用 super()。
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=k>this</span><span class=p>.</span><span class=nx>name</span> <span class=o>=</span> <span class=s1>&#39;Square&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>get</span> <span class=nx>area</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=k>this</span><span class=p>.</span><span class=nx>height</span> <span class=o>*</span> <span class=k>this</span><span class=p>.</span><span class=nx>width</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>square</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Square</span><span class=p>(</span><span class=mi>10</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>square</span><span class=p>.</span><span class=nx>area</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 输出 100
+</span></span></span></code></pre></td></tr></table></div></div><p><code>extends</code>继承的核心代码如下，其实现和上述的寄生组合式继承方式一样</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>_inherits</span><span class=p>(</span><span class=nx>subType</span><span class=p>,</span> <span class=nx>superType</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 创建对象，创建父类原型的一个副本
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 增强对象，弥补因重写原型而失去的默认的constructor 属性
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 指定对象，将新创建的对象赋值给子类的原型
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>subType</span><span class=p>.</span><span class=nx>prototype</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>create</span><span class=p>(</span><span class=nx>superType</span> <span class=o>&amp;&amp;</span> <span class=nx>superType</span><span class=p>.</span><span class=nx>prototype</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>constructor</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>value</span><span class=o>:</span> <span class=nx>subType</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>enumerable</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>writable</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>configurable</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nx>superType</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>Object</span><span class=p>.</span><span class=nx>setPrototypeOf</span>
+</span></span><span class=line><span class=cl>      <span class=o>?</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>setPrototypeOf</span><span class=p>(</span><span class=nx>subType</span><span class=p>,</span> <span class=nx>superType</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=o>:</span> <span class=p>(</span><span class=nx>subType</span><span class=p>.</span><span class=nx>__proto__</span> <span class=o>=</span> <span class=nx>superType</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#总结><h4 id=总结><span class=hanchor arialabel=Anchor># </span>总结</h4></a><p>1、函数声明和类声明的区别</p><p>函数声明会提升，类声明不会。首先需要声明你的类，然后访问它，否则像下面的代码会抛出一个 ReferenceError。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>p</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Rectangle</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=c1>// ReferenceError
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kr>class</span> <span class=nx>Rectangle</span> <span class=p>{}</span>
+</span></span></code></pre></td></tr></table></div></div><p>2、ES5 继承和 ES6 继承的区别</p><ul><li>ES5 的继承实质上是先创建子类的实例对象，然后再将父类的方法添加到 this 上（Parent.call(this)）.</li><li>ES6 的继承有所不同，实质上是先创建父类的实例对象 this，然后再用子类的构造函数修改 this。因为子类没有自己的 this 对象，所以必须先调用父类的 super()方法，否则新建实例报错。</li></ul><a href=#proxy><h2 id=proxy><span class=hanchor arialabel=Anchor># </span>Proxy</h2></a><p>使用<code>Proxy</code>，你可以将一只猫伪装成一只老虎。下面大约有 6 个例子，我希望它们能让你相信，Proxy 提供了强大的 Javascript 元编程。</p><p>尽管它不像其他 ES6 功能用的普遍，但<code>Proxy</code>有许多用途，包括运算符重载，对象模拟，简洁而灵活的 API 创建，对象变化事件，甚至 Vue 3 背后的内部响应系统提供动力。</p><p><code>Proxy</code>用于修改某些操作的默认行为，也可以理解为在目标对象之前架设一层<strong>拦截</strong>，外部所有的访问都必须先通过这层拦截，因此提供了一种机制，可以对外部的访问进行过滤和修改。这个词的原理为代理，在这里可以表示由它来“代理”某些操作，译为“代理器”。</p><p><code>var proxy = new Proxy(target, handler);</code></p><p><code>Proxy</code>对象的所有用法，都是上面的这种形式。不同的只是<code>handle</code>参数的写法。其中<code>new Proxy</code>用来生成<code>Proxy</code>实例，<code>target</code>是表示所要拦截的对象，<code>handle</code>是用来定制拦截行为的对象。</p><p>下面是 Proxy 最简单的例子是，这是一个有陷阱的代理，一个<code>get</code>陷阱，总是返回<code>42</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>target</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>x</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span> <span class=nx>y</span><span class=o>:</span> <span class=mi>20</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>hanler</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>get</span><span class=o>:</span> <span class=p>(</span><span class=nx>obj</span><span class=p>,</span> <span class=nx>prop</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=mi>42</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=nx>target</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Proxy</span><span class=p>(</span><span class=nx>target</span><span class=p>,</span> <span class=nx>hanler</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>target</span><span class=p>.</span><span class=nx>x</span><span class=p>;</span> <span class=c1>//42target.y; //42target.x; // 42
+</span></span></span></code></pre></td></tr></table></div></div><p>结果是一个对象将为任何属性访问操作都返回“42”。这包括<code>target.x</code>，<code>target['x']</code>，<code>Reflect.get(target, 'x')</code>等。</p><p>但是，Proxy 陷阱当然不限于属性的读取。它只是十几个不同陷阱中的一个：</p><ul><li>handler.get</li><li>handler.set</li><li>handler.has</li><li>handler.apply</li><li>handler.construct</li><li>handler.ownKeys</li><li>handler.deleteProperty</li><li>handler.defineProperty</li><li>handler.isExtensible</li><li>handler.preventExtensions</li><li>handler.getPrototypeOf</li><li>handler.setPrototypeOf</li><li>handler.getOwnPropertyDescriptor</li></ul><a href=#用途><h4 id=用途><span class=hanchor arialabel=Anchor># </span>用途</h4></a><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182644.png width=auto alt=image-20200309213734606></p><a href=#默认值零值><h5 id=默认值零值><span class=hanchor arialabel=Anchor># </span><strong>默认值/“零值”</strong></h5></a><p>在 Go 语言中，有零值的概念，零值是特定于类型的隐式默认结构值。其思想是提供类型安全的默认基元值，或者用 gopher 的话说，给结构一个有用的零值。</p><p>虽然不同的创建模式支持类似的功能，但 Javascript 无法用隐式初始值包装对象。Javascript 中未设置属性的默认值是<code>undefined</code>。但 Proxy 可以改变这种情况。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>withZeroValue</span> <span class=o>=</span> <span class=p>(</span><span class=nx>target</span><span class=p>,</span> <span class=nx>zeroValue</span><span class=p>)</span> <span class=p>=&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=k>new</span> <span class=nb>Proxy</span><span class=p>(</span><span class=nx>target</span><span class=p>,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>get</span><span class=o>:</span> <span class=p>(</span><span class=nx>obj</span><span class=p>,</span> <span class=nx>prop</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>(</span><span class=nx>prop</span> <span class=k>in</span> <span class=nx>obj</span> <span class=o>?</span> <span class=nx>obj</span><span class=p>[</span><span class=nx>prop</span><span class=p>]</span> <span class=o>:</span> <span class=nx>zeroValue</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span>
+</span></span></code></pre></td></tr></table></div></div><p>函数<code>withZeroValue</code> 用来包装目标对象。如果设置了属性，则返回属性值。否则，它返回一个默认的**“零值”**。</p><p>从技术上讲，这种方法也不是隐含的，但如果我们扩展<code>withZeroValue</code>，以 Boolean (<code>false</code>), Number (<code>0</code>), String (<code>""</code>), Object (<code>{}</code>)，Array (<code>[]</code>)等对应的零值，则可能是隐含的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>pos</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>x</span><span class=o>:</span> <span class=mi>4</span><span class=p>,</span> <span class=nx>y</span><span class=o>:</span> <span class=mi>19</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>pos</span><span class=p>.</span><span class=nx>x</span><span class=p>,</span> <span class=nx>pos</span><span class=p>.</span><span class=nx>y</span><span class=p>,</span> <span class=nx>pos</span><span class=p>.</span><span class=nx>z</span><span class=p>);</span> <span class=c1>// 4, 19, undefined
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>pos</span> <span class=o>=</span> <span class=nx>withZeroValue</span><span class=p>(</span><span class=nx>pos</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>pos</span><span class=p>.</span><span class=nx>z</span><span class=p>,</span> <span class=nx>pos</span><span class=p>.</span><span class=nx>y</span><span class=p>,</span> <span class=nx>pos</span><span class=p>.</span><span class=nx>z</span><span class=p>);</span> <span class=c1>// 4, 19, 0
+</span></span></span></code></pre></td></tr></table></div></div><p>此功能可能有用的一个地方是坐标系。绘图库可以基于数据的形状自动支持 2D 和 3D 渲染。不是创建两个单独的模型，而是始终将<code>z</code>默认为 <code>0</code> 而不是<code>undefined</code>，这可能是有意义的。</p><a href=#promise><h2 id=promise><span class=hanchor arialabel=Anchor># </span>Promise</h2></a><p><strong>Promise</strong> 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>promise1</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Promise</span><span class=p>(</span><span class=kd>function</span> <span class=p>(</span><span class=nx>resolve</span><span class=p>,</span> <span class=nx>reject</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>setTimeout</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>resolve</span><span class=p>(</span><span class=s2>&#34;foo&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span> <span class=mi>300</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>promise1</span><span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span> <span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>value</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=c1>// expected output: &#34;foo&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>});</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>promise1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// expected output: [object Promise]
+</span></span></span></code></pre></td></tr></table></div></div><a href=#构造函数语法><h3 id=构造函数语法><span class=hanchor arialabel=Anchor># </span>构造函数语法</h3></a><p><code>new Promise( function(resolve, reject) {…} /* executor */ );</code></p><p>executor</p><blockquote><p>executor 是带有 <code>resolve</code> 和 <code>reject</code> 两个参数的函数 。Promise 构造函数执行时立即调用<code>executor</code> 函数， <code>resolve</code> 和 <code>reject</code> 两个函数作为参数传递给<code>executor</code>（executor 函数在 Promise 构造函数返回所建 promise 实例对象前被调用）。<code>resolve</code> 和 <code>reject</code> 函数被调用时，分别将 promise 的状态改为<em>fulfilled（<em>完成）或 rejected（失败）。executor 内部通常会执行一些异步操作，一旦异步操作执行完毕(可能成功/失败)，要么调用 resolve 函数来将 promise 状态改成</em>fulfilled</em>，要么调用<code>reject</code> 函数将 promise 的状态改为 rejected。如果在 executor 函数中抛出一个错误，那么该 promise 状态为 rejected。executor 函数的返回值被忽略。</p></blockquote><a href=#介绍><h3 id=介绍><span class=hanchor arialabel=Anchor># </span>介绍</h3></a><p><code>Promise</code> 对象是一个代理对象（代理一个值），被代理的值在 Promise 对象创建时可能是未知的。它允许你为异步操作的成功和失败分别绑定相应的处理方法（handlers）。 这让异步方法可以像同步方法那样返回值，<strong>但并不是立即返回最终执行结果，而是一个能代表未来出现的结果的 promise 对象</strong>。</p><p>一个 <code>Promise</code>有以下几种状态:</p><ul><li><em>pending</em>: 初始状态，既不是成功，也不是失败状态。</li><li><em>fulfilled</em>: 意味着操作成功完成。</li><li><em>rejected</em>: 意味着操作失败。</li></ul><p>pending 状态的 Promise 对象可能会变为 fulfilled 状态并传递一个值给相应的状态处理方法，也可能变为失败状态（rejected）并传递失败信息。<strong>当其中任一种情况出现时，Promise 对象的 <code>then</code> 方法绑定的处理方法（handlers ）就会被调用</strong>（then 方法包含两个参数：onfulfilled 和 onrejected，它们都是 Function 类型。当 Promise 状态为<em>fulfilled</em>时，调用 then 的 onfulfilled 方法，当 Promise 状态为<em>rejected</em>时，调用 then 的 onrejected 方法， 所以在异步操作的完成和绑定处理方法之间不存在竞争）。</p><p>因为 <code>Promise.prototype.then</code> 和 <code>Promise.prototype.catch</code> 方法返回 promise 对象， 所以它们可以被链式调用。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182652.png width=auto alt=img></p><p><strong>不要和惰性求值混淆：</strong> 有一些语言中有惰性求值和延时计算的特性，它们也被称为“promises”，例如 Scheme. Javascript 中的 promise 代表一种已经发生的状态， 而且可以通过回调方法链在一起。 如果你想要的是表达式的延时计算，考虑无参数的"
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions rel=noopener>箭头方法</a>": <code>f = () =></code><em><code>表达式</code></em> 创建惰性求值的表达式*，*使用 <code>f()</code> 求值。</p><p><strong>注意：</strong> 如果一个 promise 对象处在 fulfilled 或 rejected 状态而不是 pending 状态，那么它也可以被称为<em>settled</em>状态。你可能也会听到一个术语<em>resolved</em> ，它表示 promise 对象处于 settled 状态。关于 promise 的术语， Domenic Denicola 的
+<a href=https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md rel=noopener>States and fates</a> 有更多详情可供参考。</p><a href=#属性><h3 id=属性><span class=hanchor arialabel=Anchor># </span>属性</h3></a><p><code>Promise.length</code></p><p>length 属性，其值总是为 1 (构造器参数的数目).</p><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/prototype rel=noopener><code>Promise.prototype</code></a></p><p>表示 <code>Promise</code> 构造器的原型.</p><a href=#方法><h3 id=方法><span class=hanchor arialabel=Anchor># </span>方法</h3></a><ul><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all rel=noopener><code>Promise.all(iterable)</code></a></p><p>这个方法返回一个新的 promise 对象，该 promise 对象在 iterable 参数对象里所有的 promise 对象都成功的时候才会触发成功，一旦有任何一个 iterable 里面的 promise 对象失败则立即触发该 promise 对象的失败。这个新的 promise 对象在触发成功状态以后，会把一个包含 iterable 里所有 promise 返回值的数组作为成功回调的返回值，顺序跟 iterable 的顺序保持一致；如果这个新的 promise 对象触发了失败状态，它会把 iterable 里第一个触发失败的 promise 对象的错误信息作为它的失败错误信息。Promise.all 方法常被用于处理多个 promise 对象的状态集合。（可以参考 jQuery.when 方法&mdash;译者注）</p></li><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race rel=noopener><code>Promise.race(iterable)</code></a></p><p>当 iterable 参数里的任意一个子 promise 被成功或失败后，父 promise 马上也会用子 promise 的成功返回值或失败详情作为参数调用父 promise 绑定的相应句柄，并返回该 promise 对象。</p></li><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject rel=noopener><code>Promise.reject(reason)</code></a></p><p>返回一个状态为失败的 Promise 对象，并将给定的失败信息传递给对应的处理方法</p></li><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve rel=noopener><code>Promise.resolve(value)</code></a></p><p>返回一个状态由给定 value 决定的 Promise 对象。如果该值是 thenable(即，带有 then 方法的对象)，返回的 Promise 对象的最终状态由 then 方法执行决定；否则的话(该 value 为空，基本类型或者不带 then 方法的对象),返回的 Promise 对象状态为 fulfilled，并且将该 value 传递给对应的 then 方法。通常而言，如果你不知道一个值是否是 Promise 对象，使用 Promise.resolve(value) 来返回一个 Promise 对象,这样就能将该 value 以 Promise 对象形式使用。</p></li></ul><a href=#原型><h3 id=原型><span class=hanchor arialabel=Anchor># </span>原型</h3></a><a href=#属性-1><h4 id=属性-1><span class=hanchor arialabel=Anchor># </span>属性</h4></a><ul><li><p><code>Promise.prototype.constructor</code></p><p>返回被创建的实例函数. 默认为
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise rel=noopener><code>Promise</code></a> 函数.</p></li></ul><a href=#方法-1><h4 id=方法-1><span class=hanchor arialabel=Anchor># </span>方法</h4></a><ul><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch rel=noopener><code>Promise.prototype.catch(onRejected)</code></a></p><p>添加一个拒绝(rejection) 回调到当前 promise, 返回一个新的 promise。当这个回调函数被调用，新 promise 将以它的返回值来 resolve，否则如果当前 promise 进入 fulfilled 状态，则以当前 promise 的完成结果作为新 promise 的完成结果.</p></li><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then rel=noopener><code>Promise.prototype.then(onFulfilled, onRejected)</code></a></p><p>添加解决(fulfillment)和拒绝(rejection)回调到当前 promise, 返回一个新的 promise, 将以回调的返回值来 resolve.</p></li><li><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally rel=noopener><code>Promise.prototype.finally(onFinally)</code></a></p><p>添加一个事件处理回调于当前 promise 对象，并且在原 promise 对象解析完毕后，返回一个新的 promise 对象。回调会在当前 promise 运行完毕后被调用，无论当前 promise 的状态是完成(fulfilled)还是失败(rejected)</p></li></ul><a href=#自己实现剖析><h3 id=自己实现剖析><span class=hanchor arialabel=Anchor># </span>自己实现剖析</h3></a><p><a href=https://mp.weixin.qq.com/s/3xfLpQ2h0v8yt2W7opLwGw rel=noopener>https://mp.weixin.qq.com/s/3xfLpQ2h0v8yt2W7opLwGw</a></p><a href=#20-行案例><h3 id=20-行案例><span class=hanchor arialabel=Anchor># </span>20 行案例</h3></a><p><a href=https://mp.weixin.qq.com/s/oHBv7r6x7tVOwm-LsnIbgA rel=noopener>https://mp.weixin.qq.com/s/oHBv7r6x7tVOwm-LsnIbgA</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nb>Promise</span><span class=p>(</span><span class=nx>excutor</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>self</span> <span class=o>=</span> <span class=k>this</span>
+</span></span><span class=line><span class=cl>  <span class=nx>self</span><span class=p>.</span><span class=nx>onResolvedCallback</span> <span class=o>=</span> <span class=p>[]</span>
+</span></span><span class=line><span class=cl>  <span class=kd>function</span> <span class=nx>resolve</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>self</span><span class=p>.</span><span class=nx>data</span> <span class=o>=</span> <span class=nx>value</span>
+</span></span><span class=line><span class=cl>      <span class=nx>self</span><span class=p>.</span><span class=nx>onResolvedCallback</span><span class=p>.</span><span class=nx>forEach</span><span class=p>(</span><span class=nx>callback</span> <span class=p>=&gt;</span> <span class=nx>callback</span><span class=p>(</span><span class=nx>value</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nx>excutor</span><span class=p>(</span><span class=nx>resolve</span><span class=p>.</span><span class=nx>bind</span><span class=p>(</span><span class=nx>self</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nb>Promise</span><span class=p>.</span><span class=nx>prototype</span><span class=p>.</span><span class=nx>then</span> <span class=o>=</span> <span class=kd>function</span><span class=p>(</span><span class=nx>onResolved</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>self</span> <span class=o>=</span> <span class=k>this</span>
+</span></span><span class=line><span class=cl>  <span class=nx>returnnewPromise</span><span class=p>(</span><span class=nx>resolve</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>self</span><span class=p>.</span><span class=nx>onResolvedCallback</span><span class=p>.</span><span class=nx>push</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kd>var</span> <span class=nx>result</span> <span class=o>=</span> <span class=nx>onResolved</span><span class=p>(</span><span class=nx>self</span><span class=p>.</span><span class=nx>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>result</span> <span class=nx>instanceofPromise</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>result</span><span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=nx>resolve</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>resolve</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#实现过程><h4 id=实现过程><span class=hanchor arialabel=Anchor># </span>实现过程</h4></a><ol><li><p>首先来实现 Promise 构造函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nb>Promise</span><span class=p>(</span><span class=nx>excutor</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>self</span> <span class=o>=</span> <span class=k>this</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=nx>self</span><span class=p>.</span><span class=nx>onResolvedCallback</span> <span class=o>=</span> <span class=p>[];</span> <span class=c1>// Promise resolve时的回调函数集
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>  <span class=c1>// 传递给Promise处理函数的resolve
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 这里直接往实例上挂个data
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=c1>// 然后把onResolvedCallback数组里的函数依次执行一遍就可以
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=kd>function</span> <span class=nx>resolve</span><span class=p>(</span><span class=nx>value</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// 注意promise的then函数需要异步执行
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nx>setTimeout</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>self</span><span class=p>.</span><span class=nx>data</span> <span class=o>=</span> <span class=nx>value</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=nx>self</span><span class=p>.</span><span class=nx>onResolvedCallback</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>callback</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>callback</span><span class=p>(</span><span class=nx>value</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>// 执行用户传入的函数
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>excutor</span><span class=p>(</span><span class=nx>resolve</span><span class=p>.</span><span class=nx>bind</span><span class=p>(</span><span class=nx>self</span><span class=p>));</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>好，写到这里先回过头来看案例</p></li></ol><p>&#171;&#171;&#171;&lt; HEAD</p><a href=#event-loop><h2 id=event-loop><span class=hanchor arialabel=Anchor># </span>Event Loop</h2></a><p><code>Event Loop是一个程序结构，用于等待和分派消息和事件</code>，我个人的理解是 JS 中的 Event Loop 是浏览器或 Node 的一种协调 JavaScript 单线程运行时不会阻塞的一种机制。</p><a href=#js-的单线程><h3 id=js-的单线程><span class=hanchor arialabel=Anchor># </span>JS 的单线程</h3></a><p>很多人都知道的是，JavaScript 是一门<strong>动态的解释型的语言</strong>，具有<strong>跨平台性</strong>。在被问到 JavaScript 为什么是一门单线程的语言，有的人可能会这么回答：“语言特性决定了 JavaScript 是一个单线程语言，JavaScript 天生是一个单线程语言”，这只不过是一层糖衣罢了。</p><p>JavaScript 从诞生起就是单线程，原因大概是不想让浏览器变得太复杂，因为多线程需要共享资源、且有可能修改彼此的运行结果，对于一种网页脚本语言来说，这就太复杂了。</p><p>准确的来说，我认为 JavaScript 的单线程是指 <strong>JavaScript 引擎是单线程</strong>的，JavaScript 的引擎并不是独立运行的，跨平台意味着 JavaScript 依赖其运行的宿主环境 &mdash; 浏览器(大部分情况下是浏览器)。</p><p>浏览器需要渲染 DOM，JavaScript 可以修改 DOM 结构，JavaScript 执行时，浏览器 DOM 渲染停止。如果 JavaScript 引擎线程不是单线程的，那么可以同时执行多段 JavaScript，如果这多段 JavaScript 都操作 DOM，那么就会出现 DOM 冲突。</p><p>JavaScript 的单线程，与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。这决定了它只能是单线程，否则会带来很复杂的同步问题。比如，假定 JavaScript 同时有两个线程，一个线程在某个 DOM 节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</p><p>所以，为了避免复杂性，从一诞生，JavaScript 就是单线程，这已经成了这门语言的核心特征，将来也不会改变。</p><p>为了利用多核 CPU 的计算能力，HTML5 提出 Web Worker 标准，允许 JavaScript 脚本创建多个线程，但是子线程完全受主线程控制，且不得操作 DOM。所以，这个新标准并没有改变 JavaScript 单线程的本质。</p><p>举个例子来说，在同一时刻执行两个 script 对同一个 DOM 元素进行操作，一个修改 DOM，一个删除 DOM，那这样话浏览器就会懵逼了，它就不知道到底该听谁的，会有资源竞争，这也是 JavaScript 单线程的原因之一。</p><a href=#浏览器><h3 id=浏览器><span class=hanchor arialabel=Anchor># </span>浏览器</h3></a><a href=#浏览器的多线程><h4 id=浏览器的多线程><span class=hanchor arialabel=Anchor># </span>浏览器的多线程</h4></a><p>之前说过，JavaScript 运行的宿主环境浏览器是多线程的。</p><p>以 Chrome 来说，我们可以通过 Chrome 的任务管理器来看看。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182700.png width=auto alt=img></p><p>当你打开一个 Tab 页面的时候，就创建了一个进程。如果从一个页面打开了另一个页面，打开的页面和当前的页面属于同一站点的话，那么这个页面会复用父页面的渲染进程。</p><a href=#浏览器主线程常驻线程><h4 id=浏览器主线程常驻线程><span class=hanchor arialabel=Anchor># </span>浏览器主线程常驻线程</h4></a><ol><li><p>GUI 渲染线程</p></li><li><ul><li>绘制页面，解析 HTML、CSS，构建 DOM 树，布局和绘制等</li><li>页面重绘和回流</li><li>与 JS 引擎线程互斥，也就是所谓的 JS 执行阻塞页面更新</li></ul></li><li><p>JS 引擎线程</p></li><li><ul><li>负责 JS 脚本代码的执行</li><li>负责准执行准备好待执行的事件，即定时器计数结束，或异步请求成功并正确返回的事件</li><li>与 GUI 渲染线程互斥，执行时间过长将阻塞页面的渲染</li></ul></li><li><p>事件触发线程</p></li><li><ul><li>负责将准备好的事件交给 JS 引擎线程执行</li><li>多个事件加入任务队列的时候需要排队等待(JS 的单线程)</li></ul></li><li><p>定时器触发线程</p></li><li><ul><li>负责执行异步的定时器类的事件，如 setTimeout、setInterval</li><li>定时器到时间之后把注册的回调加到任务队列的队尾</li></ul></li><li><p>HTTP 请求线程</p></li><li><ul><li>负责执行异步请求</li><li>主线程执行代码遇到异步请求的时候会把函数交给该线程处理，当监听到状态变更事件，如果有回调函数，该线程会把回调函数加入到任务队列的队尾等待执行</li></ul></li></ol><p>这里没看懂没关系，后面我会再说。</p><a href=#浏览器端的-event-loop><h3 id=浏览器端的-event-loop><span class=hanchor arialabel=Anchor># </span>浏览器端的 Event Loop</h3></a><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182709.png width=auto alt=img></p><p>上图是一张 JS 的运行机制图，Js 运行时大致会分为几个部分：</p><ol><li>Call Stack：调用栈(执行栈)，所有同步任务在主线程上执行，形成一个执行栈，因为 JS 单线程的原因，所以调用栈中每次只能执行一个任务，当遇到的同步任务执行完之后，由任务队列提供任务给调用栈执行。</li><li>Task Queue：任务队列，存放着异步任务，当异步任务可以执行的时候，任务队列会通知主线程，然后该任务会进入主线程执行。任务队列中的都是已经完成的异步操作，而不是说注册一个异步任务就会被放在这个任务队列中。</li></ol><p>说到这里，Event Loop 也可以理解为：不断地从任务队列中取出任务执行的一个过程。</p><a href=#同步任务和异步任务><h4 id=同步任务和异步任务><span class=hanchor arialabel=Anchor># </span>同步任务和异步任务</h4></a><p>上文已经说过了 JavaScript 是一门单线程的语言，一次只能执行一个任务，如果所有的任务都是同步任务，那么程序可能因为等待会出现假死状态，这对于一个用户体验很强的语言来说是非常不友好的。</p><p>比如说向服务端请求资源，你不可能一直不停的循环判断有没有拿到数据，就好像你点了个外卖，点完之后就开始一直打电话问外卖有没有送到，外卖小哥都会抄着锅铲来打你(狗头)。因此，在 JavaScript 中任务有了同步任务和异步任务，异步任务通过注册回调函数，等到数据来了就通知主程序。</p><ol><li>同步任务：必须等到结果来了之后才能做其他的事情，举例来说就是你烧水的时候一直等在水壶旁边等水烧开，期间不做其他的任何事情。</li><li>异步任务：不需要等到结果来了才能继续往下走，等结果期间可以做其他的事情，结果来了会收到通知。举例来说就是你烧水的时候可以去做自己想做的事情，听到水烧开的声音之后再去处理。</li></ol><p>从概念就可以看出来，异步任务从一定程度上来看比同步任务更高效一些，核心是提高了用户体验。</p><a href=#event-loop-1><h4 id=event-loop-1><span class=hanchor arialabel=Anchor># </span>Event Loop</h4></a><p>Event Loop 很好的调度了任务的运行，宏任务和微任务也知道了，现在我们就来看看它的调度运行机制。</p><p>JavaScript 的代码执行时，主线程会从上到下一步步的执行代码，同步任务会被依次加入执行栈中先执行，异步任务会在拿到结果的时候将注册的回调函数放入任务队列，当执行栈中的没有任务在执行的时候，引擎会从任务队列中读取任务压入执行栈(Call Stack)中处理执行。</p><a href=#宏任务和微任务><h4 id=宏任务和微任务><span class=hanchor arialabel=Anchor># </span>宏任务和微任务</h4></a><p>现在就有一个问题了，任务队列是一个消息队列，先进先出，那就是说，后来的事件都是被加在队尾等到前面的事件执行完了才会被执行。如果在执行的过程中突然有重要的数据需要获取，或是说有事件突然需要处理一下，<strong>按照队列的先进先出顺序这些是无法得到及时处理的。这个时候就催生了宏任务和微任务，微任务使得一些异步任务得到及时的处理</strong>。</p><p>曾经看到的一个例子很好，宏任务和微任务形象的来说就是：你去营业厅办一个业务会有一个排队号码，当叫到你的号码的时候你去窗口办充值业务(宏任务执行)，在你办理充值的时候你又想改个套餐(微任务)，这个时候工作人员会直接帮你办，不可能让你重新排队。</p><p>所以上文说过的异步任务又分为宏任务和微任务，JS 运行时任务队列会分为宏任务队列和微任务队列，分别对应宏任务和微任务。</p><p>先介绍一下(浏览器环境的)宏任务和微任务大致有哪些：</p><ul><li><p>宏任务：</p></li><li><ol><li>script(整体的代码)</li><li>setTimeout</li><li>setInterval</li><li>I/O 操作</li><li>UI 渲染 (对这个笔者持保留意见)</li></ol></li><li><p>微任务：</p></li><li><ol><li>Promise.then</li><li>MutationObserver</li></ol></li></ul><a href=#事件运行顺序><h4 id=事件运行顺序><span class=hanchor arialabel=Anchor># </span>事件运行顺序</h4></a><ol><li>执行同步任务，同步任务不需要做特殊处理，直接执行(下面的步骤中遇到同步任务都是一样处理) &mdash; 第一轮从 script 开始</li><li>从宏任务队列中取出队头任务执行</li><li>如果产生了宏任务，将宏任务放入宏任务队列，下次轮循的时候执行</li><li>如果产生了微任务，将微任务放入微任务队列</li><li>执行完当前宏任务之后，取出微任务队列中的所有任务依次执行</li><li>如果微任务执行过程中产生了新的微任务，则继续执行微任务，直到微任务的队列为空</li><li>轮循，循环以上 2 - 6</li></ol><p>总的来说就是：同步任务/宏任务 -> 执行产生的所有微任务(包括微任务产生的微任务) -> 同步任务/宏任务 -> 执行产生的所有微任务(包括微任务产生的微任务) -> 循环……</p><p>注意：微任务队列</p><a href=#举个栗子><h4 id=举个栗子><span class=hanchor arialabel=Anchor># </span>举个栗子</h4></a><p>光说不练假把式，现在就来看一个例子：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182716.png width=auto alt=img>举个栗子</p><p>放图的原因是为了让大家在看解析之前可以先自己按照运行顺序走一遍，写好答案之后再来看解析。<br>解析：<br>(用绿色的表示同步任务和宏任务，红色表示微任务)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>+  console.log(&#39;script start&#39;)
+</span></span><span class=line><span class=cl>+  setTimeout(function() {
+</span></span><span class=line><span class=cl>+    console.log(&#39;setTimeout&#39;)
+</span></span><span class=line><span class=cl>+  }, 0)
+</span></span><span class=line><span class=cl>+  new Promise((resolve, reject)=&gt;{
+</span></span><span class=line><span class=cl>+    console.log(&#34;promise1&#34;)
+</span></span><span class=line><span class=cl>+    resolve()
+</span></span><span class=line><span class=cl>+  })
+</span></span><span class=line><span class=cl>-  .then(()=&gt;{
+</span></span><span class=line><span class=cl>-    console.log(&#34;then11&#34;)
+</span></span><span class=line><span class=cl>+    new Promise((resolve, reject)=&gt;{
+</span></span><span class=line><span class=cl>+      console.log(&#34;promise2&#34;)
+</span></span><span class=line><span class=cl>+      resolve();
+</span></span><span class=line><span class=cl>+    })
+</span></span><span class=line><span class=cl>-    .then(() =&gt; {
+</span></span><span class=line><span class=cl>-      console.log(&#34;then2-1&#34;)
+</span></span><span class=line><span class=cl>-    })
+</span></span><span class=line><span class=cl>-    .then(() =&gt; {
+</span></span><span class=line><span class=cl>-      console.log(&#34;then2-2&#34;)
+</span></span><span class=line><span class=cl>-    })
+</span></span><span class=line><span class=cl>-  })
+</span></span><span class=line><span class=cl>-  .then(()=&gt;{
+</span></span><span class=line><span class=cl>-    console.log(&#34;then12&#34;)
+</span></span><span class=line><span class=cl>-  })
+</span></span><span class=line><span class=cl>+  console.log(&#39;script end&#39;)
+</span></span></code></pre></td></tr></table></div></div><ol><li>首先遇到 console.log()，输出 <code>script start</code></li><li>遇到 setTimeout 产生宏任务，注册到<strong>宏任务队列[setTimeout]</strong>，下一轮 Event Loop 的时候在执行</li><li>然后遇到 new Promise 构造声明(同步)，log 输出 <code>promise1</code>，然后 resolve</li><li>resolve 匹配到 <strong>promise1 的第一个 then</strong>，把这个 then 注册到<strong>微任务队列[then11]中</strong>，继续当前整体脚本的执行</li><li>遇到最后的一个 log，输出 <code>script end</code>，<strong>当前执行栈清空</strong></li><li><strong>从微任务队列中取出队头任务&rsquo;then11&rsquo;</strong> 进行执行，其中有一个 log，输出 <code>then11</code></li><li>往下遇到 new Promise 构造声明(同步)，log 输出 <code>promise2</code>，然后 resolve</li><li>resolve 匹配到 <strong>promise2 的第一个 then</strong>，把这个 then 注册到<strong>微任务队列[then2-1]</strong>，当前 then11 可执行部分结束，然后产生了 <strong>promise1 的第二个 then</strong>，把这个 then 注册到<strong>微任务队列[then2-1, then12]</strong></li><li><strong>拿出微任务队头任务&rsquo;then2-1&rsquo;</strong> 执行，log 输出 <code>then2-1</code>，触发 <strong>promise2 的第二个 then</strong>，注册到<strong>微任务队列[then12, then2-2]</strong></li><li><strong>拿出微任务队头任务&rsquo;then12&rsquo;</strong>，log 输出 <code>then12</code></li><li><strong>拿出微任务队头任务&rsquo;then2-2&rsquo;</strong>，log 输出 <code>then2-2</code></li><li>微任务队列执行完毕，别忘了宏任务队列中的 setTimeout，log 输出 <code>setTimeout</code></li></ol><p>经过以上一番缜(xia)密(gao)分析，希望没有绕晕你，最后的输出结果就是：<br><code>script start -> promise1 -> script end -> then11 -> promise2 -> then2-1 -> then12 -> then2-2 -> setTimeout</code></p><a href=#宏任务微任务><h4 id=宏任务微任务><span class=hanchor arialabel=Anchor># </span>宏任务？微任务？</h4></a><p>不知道大家看了宏任务和微任务之后会不会有一个疑惑，宏任务和微任务都是异步任务，微任务之前说过了是为了及时解决一些必要事件而产生的。</p><ul><li><p>为什么要有微任务？<br>为什么要有微任务的原因前面已经说了，这里就不再赘述，简单说一下就是为了及时处理一些任务，不然等到最后再执行的时候拿到的数据可能已经是被污染的数据达不到预期目标了。</p></li><li><p>是什么宏任务？什么是微任务？<br>相信大家在学习 Event Loop 查找资料的时候，肯定各种资料里面都会讲到宏任务和微任务，但是不知道你有没有灵魂拷问过你自己：<code>什么是宏任务？什么是微任务？怎么区分宏任务和微任务？</code>不能只是默许接受这个概念，在这里，我根据我的个人理解进行一番说(hu)明(che)</p></li><li><p>宏任务和微任务的真面目<br>其实在 Chrome 的源码中并没有什么宏任务和微任务的代码或是说明，在 <strong>JS 大会</strong>[3]上提到过微任务这个名词，但是也没有说到底什么是微任务。</p><p>宏任务<br>文章最开始的时候说过，在 chrome 里，每个页面都对应一个进程。而该进程又有多个线程，比如 JS 线程、渲染线程、IO 线程、网络线程、定时器线程等等，这些线程之间的通信是通过向对象的任务队列中添加一个任务（postTask）来实现的。<strong>宏任务的本质可以认为是多线程事件循环或消息循环，也就是线程间通信的一个消息队列。</strong></p><p>就拿 setTimeout 举例来说，当遇到它的时候，浏览器就会对 Event Loop 说：嘿，我有一个任务交给你，Event Loop 就会说：好的，我会把它加到我的 todoList 中，之后我会执行它，它是需要调用 API 的。</p><p><strong>宏任务的真面目是浏览器派发，与 JS 引擎无关的，参与了 Event Loop 调度的任务</strong></p><p>微任务<br>微任务是在运行宏任务/同步任务的时候产生的，是属于当前任务的，所以它不需要浏览器的支持，内置在 JS 当中，直接在 JS 的引擎中就被执行掉了。</p></li></ul><a href=#特殊的点><h4 id=特殊的点><span class=hanchor arialabel=Anchor># </span>特殊的点</h4></a><ol><li>async 隐式返回 Promise 作为结果</li><li>执行完 await 之后直接跳出 async 函数，让出执行的所有权</li><li>当前任务的其他代码执行完之后再次获得执行权进行执行</li><li>立即 resolve 的 Promise 对象，是在本轮"事件循环"的结束时执行，而不是在下一轮"事件循环"的开始时</li></ol><a href=#再举个栗子><h4 id=再举个栗子><span class=hanchor arialabel=Anchor># </span>再举个栗子</h4></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;script start&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>asyncfunction</span> <span class=nx>async1</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kr>await</span> <span class=nx>async2</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;async1 end&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nx>asyncfunction</span> <span class=nx>async2</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;async2 end&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=nx>async1</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>setTimeout</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;setTimeout&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span> <span class=mi>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>newPromise</span><span class=p>(</span><span class=nx>resolve</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;Promise&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=nx>resolve</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;promise1&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>then</span><span class=p>(</span><span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;promise2&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;script end&#39;</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>按照之前的分析方法去分析之后就会得出一个结果：<br><code>script start => async2 end => Promise => script end => promise1 => promise2 => async1 end => setTimeout</code></p><p>可以看出 async1 函数获取执行权是作为微任务的队尾，但是，在 Chrome73(金丝雀) 版本之后，async 的执行优化了，它会在 promise1 和 promise2 的输出之前执行。笔者大概了解了一下应该是用 PromiseResolve 对 await 进行了优化，减少了 Promise 的再次创建，有兴趣的小伙伴可以看看 Chrome 的源码。</p><a href=#node-中的-event-loop><h3 id=node-中的-event-loop><span class=hanchor arialabel=Anchor># </span>Node 中的 Event Loop</h3></a><p>Node 中也有宏任务和微任务，与浏览器中的事件循环类似。Node 与浏览器事件循环不同，其中有多个宏任务队列，而浏览器是只有一个宏任务队列。</p><p>Node 的架构底层是有 libuv，它是 Node 自身的动力来源之一，通过它可以去调用一些底层操作，Node 中的 Event Loop 功能就是在 libuv 中封装实现的。</p><a href=#宏任务和微任务-1><h4 id=宏任务和微任务-1><span class=hanchor arialabel=Anchor># </span>宏任务和微任务</h4></a><p>Node 中的宏任务和微任务在浏览器端的 JS 相比增加了一些，这里只列出浏览器端没有的：</p><ul><li>宏任务</li><li><ol><li>setImmediate</li></ol></li><li>微任务</li><li><ol><li>process.nextTick</li></ol></li></ul><a href=#事件循环机制的六个阶段><h4 id=事件循环机制的六个阶段><span class=hanchor arialabel=Anchor># </span><strong>事件循环机制的六个阶段</strong></h4></a><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182725.png width=auto alt=image-20200402223627057></p><p>Node 的事件循环分成了六个阶段，每个阶段对应一个宏任务队列，相当于是宏任务进行了一个分类。</p><ol><li>timers(计时器)<br>执行 setTimeout 以及 setInterval 的回调</li><li>I/O callbacks<br>处理网络、流、TCP 的错误回调</li><li>idel, prepare &mdash; 闲置阶段<br>node 内部使用</li><li>poll(轮循)<br>执行 poll 中的 I/O 队列，检查定时器是否到时间</li><li>check(检查)<br>存放 setImmediate 回调</li><li>close callbacks<br>关闭回调，例如 sockect.on(&lsquo;close&rsquo;)</li></ol><a href=#轮循顺序><h4 id=轮循顺序><span class=hanchor arialabel=Anchor># </span>轮循顺序</h4></a><p>执行的轮循顺序 &mdash; 每个阶段都要等对应的宏任务队列执行完毕才会进入到下一个阶段的宏任务队列</p><ol><li>timers</li><li>I/O callbacks</li><li>poll</li><li>setImmediate</li><li>close events</li></ol><p>每两个阶段之间执行微任务队列</p><a href=#event-loop-过程><h4 id=event-loop-过程><span class=hanchor arialabel=Anchor># </span>Event Loop 过程</h4></a><ol><li>执行全局的 script 同步代码</li><li>执行微任务队列，先执行所有 Next Tick 队列中的所有任务，再执行其他的微任务队列中的所有任务</li><li>开始执行宏任务，共六个阶段，从第一个阶段开始执行自己宏任务队列中的所有任务(浏览器是从宏任务队列中取第一个执行！！)</li><li>每个阶段的宏任务执行完毕之后，开始执行微任务</li><li>TimersQueue -> 步骤 2 -> I/O Queue -> 步骤 2 -> Check Queue -> 步骤 2 -> Close Callback Queue -> 步骤 2 -> TimersQueue …</li></ol><p>这里要注意的是，nextTick 事件是一个单独的队列，它的优先级会高于微任务，所以在当前宏任务/同步任务执行完成之后，会先执行 nextTick 队列中的所有任务，再去执行微任务队列中的所有任务。</p><a href=#settimeout-和-setimmediate><h3 id=settimeout-和-setimmediate><span class=hanchor arialabel=Anchor># </span>setTimeout 和 setImmediate</h3></a><p>在这里要单独说一下 setTimeout 和 setImmediate，setTimeout 定时器很熟悉，那就说说 setImmediate</p><p>setImmediate() 方法用于把一些需要长时间运行的操作放在一个回调函数里，并在浏览器完成其他操作（如事件和显示更新）后立即运行回调函数。从定义来看就是为了防止一些耗时长的操作阻塞后面的操作，这也是为什么 check 阶段运行顺序排的比较后。</p><a href=#举个栗子-1><h3 id=举个栗子-1><span class=hanchor arialabel=Anchor># </span>举个栗子</h3></a><p>我们来看这样的一个例子：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>setTimeout(() =&gt; {
+</span></span><span class=line><span class=cl>  console.log(&#39;setTimeout&#39;)
+</span></span><span class=line><span class=cl>}, 0)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>setImmediate(() =&gt; {
+</span></span><span class=line><span class=cl>  console.log(&#39;setImmediate&#39;)
+</span></span><span class=line><span class=cl>})
+</span></span></code></pre></td></tr></table></div></div><p>这里涉及 timers 阶段和 check 阶段，按照上面的运行顺序来说，timers 阶段是在第一个执行的，会早于 check 阶段。运行这段程序可以看到如下的结果：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182741.png width=auto alt=image-20200402224016596></p><p>可是再多运行几次，你就会看到如下的结果：</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182747.png width=auto alt=image-20200402224028075></p><p>setImmediate 的输出跑到 setTimeout 前面去了，这时候就是：小朋友你是否有很多的问号 ❓</p><a href=#分析><h4 id=分析><span class=hanchor arialabel=Anchor># </span>分析</h4></a><p>我们来分析一下原因，timers 阶段确实是在 check 阶段之前，但是在 timers 阶段时候，这里的 setTimeout 真的到了执行的时间吗？</p><p>这里就要先看看 <code>setTiemout(fn, 0)</code>，这个语句的意思不是指不延迟的执行，而是指在可以执行 setTimeout 的时候就立即执行它的回调，也就是处理完当前事件的时候立即执行回调。</p><p>在 Node 中 setTimeout 第二个时间参数的最小值是 1ms，小于 1ms 会被初始化为 1(浏览器中最小值是 4ms)，所以在这里 <code>setTimeout(fn, 0) === setTimeout(fn, 1)</code></p><p>setTimeout 的回调函数在 timers 阶段执行，setImmediate 的回调函数在 check 阶段执行，Event Loop 的开始会先检查 timers 阶段，但是在代码开始运行之前到 timers 阶段(代码的启动、运行)会消耗一定的时间，所以会出现两种情况：</p><ol><li>timers 前的准备时间超过 1ms，满足 loop -> timers >= 1，setTimeout 的时钟周期到了，则执行 timers 阶段(setTimeout)的回调函数</li><li>timers 前的准备时间小于 1ms，还没到 setTimeout 预设的时间，则先执行 check 阶段(setImmediate)的回调函数，下一次 Event Loop 再进入 timers 阶段执行 timer 阶段(setTimeout)的回调函数</li></ol><p>最开始就说了，一个优秀的程序员要让自己的代码按照自己想要的顺序运行，下面我们就来控制一下 setTimeout 和 setImediate 的运行。</p><ul><li>让 setTimeout 先执行<br>上面代码运行顺序不同无非就是因为 Node 准备时间的不确定性，我们可以直接手动延长准备时间 👇</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>const start = Date.now()
+</span></span><span class=line><span class=cl>  while (Date.now() - start &lt; 10)
+</span></span><span class=line><span class=cl>  setTimeout(() =&gt; {
+</span></span><span class=line><span class=cl>  console.log(&#39;setTimeout&#39;)
+</span></span><span class=line><span class=cl>  }, 0)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  setImmediate(() =&gt; {
+</span></span><span class=line><span class=cl>    console.log(&#39;setImmediate&#39;)
+</span></span><span class=line><span class=cl>  })
+</span></span></code></pre></td></tr></table></div></div><ul><li><p>让 setImmediate 先执行<br>setImmediate 是在 check 阶段执行，相对于 setTimeout 来说是在 timers 阶段之后，只需要想办法把程序的运行环境控制在 timers 阶段之后就可以了。</p><p>让程序至少从 I/O callbacks 阶段开始 &mdash; 可以套一层文件读写把把程序控制在 I/O callbacks 阶段的运行环境中 👇</p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>const fs = require(&#39;fs&#39;)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>fs.readFile(__dirname, () =&gt; {
+</span></span><span class=line><span class=cl>  setTimeout(() =&gt; {
+</span></span><span class=line><span class=cl>    console.log(&#39;setTimeout&#39;)
+</span></span><span class=line><span class=cl>  }, 0)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  setImmediate(() =&gt; {
+</span></span><span class=line><span class=cl>    console.log(&#39;setImmediate&#39;)
+</span></span><span class=line><span class=cl>  })
+</span></span><span class=line><span class=cl>})
+</span></span></code></pre></td></tr></table></div></div><a href=#node-11x-的变化><h3 id=node-11x-的变化><span class=hanchor arialabel=Anchor># </span>Node 11.x 的变化</h3></a><p>timers 阶段的执行有所变化</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>setTimeout(() =&gt;console.log(&#39;timeout1&#39;))
+</span></span><span class=line><span class=cl>setTimeout(() =&gt; {
+</span></span><span class=line><span class=cl> console.log(&#39;timeout2&#39;)
+</span></span><span class=line><span class=cl> Promise.resolve().then(() =&gt;console.log(&#39;promise resolve&#39;))
+</span></span><span class=line><span class=cl>})
+</span></span></code></pre></td></tr></table></div></div><ol><li>node 10 及之前的版本：<br>要考虑上一个定时器执行完成时，下一个定时器是否到时间加入了任务队列中，如果未到时间，先执行其他的代码。<br>比如：<br>timer1 执行完之后 timer2 到了任务队列中，顺序为 <code>timer1 -> timer2 -> promise resolve</code><br>timer2 执行完之后 timer2 还没到任务队列中，顺序为 <code>timer1 -> promise resolve -> timer2</code></li><li>node 11 及其之后的版本：<br><code>timeout1 -> timeout2 -> promise resolve</code><br>一旦执行某个阶段里的一个宏任务之后就立刻执行微任务队列，这和浏览器端运行是一致的。</li></ol><a href=#小结><h3 id=小结><span class=hanchor arialabel=Anchor># </span>小结</h3></a><p>Node 和端浏览器端有什么不同</p><ol><li>浏览器端的 Event Loop 和 Node.js 中的 Event Loop 是不同的，实现机制也不一样</li><li>Node.js 可以理解成有 4 个宏任务队列和 2 个微任务队列，但是执行宏任务时有 6 个阶段</li><li>Node.js 中限制性全局 script 代码，执行完同步代码后，先从微任务队列 Next Tick Queue 中取出所有任务放入调用栈执行，再从其他微任务队列中取出所有任务放入调用栈中执行，然后开始宏任务的 6 个阶段，每个阶段都将其宏任务队列中的所有任务都取出来执行(浏览器是只取第一个执行)，每个宏任务阶段执行完毕之后开始执行微任务，再开始执行下一阶段宏任务，以此构成事件循环</li><li>宏任务包括 ….</li><li>微任务包括 ….</li></ol><p>看到这里，你应该对浏览器端和 Node 端的 Event Loop 有了一定的了解，那就留一个题目。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182756.png width=auto alt=image-20200402224502960></p><p>不直接放代码是想让大家先自己思考然后在敲代码运行一遍~</p><a href=#void><h2 id=void><span class=hanchor arialabel=Anchor># </span>void</h2></a><p><a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void rel=noopener>https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/void</a></p><a href=#语法><h3 id=语法><span class=hanchor arialabel=Anchor># </span>语法</h3></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>void expression
+</span></span></code></pre></td></tr></table></div></div><a href=#描述><h3 id=描述><span class=hanchor arialabel=Anchor># </span>描述</h3></a><p>这个运算符能向期望一个表达式的值是
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined rel=noopener><code>undefined</code></a>的地方插入会产生副作用的表达式。</p><p>void 运算符通常只用于获取 <code>undefined</code>的原始值，一般使用<code>void(0)</code>（等同于<code>void 0</code>）。在上述情况中，也可以使用全局变量
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined rel=noopener><code>undefined</code></a> 来代替（假定其仍是默认值）。</p><a href=#立即调用的函数表达式><h3 id=立即调用的函数表达式><span class=hanchor arialabel=Anchor># </span>立即调用的函数表达式</h3></a><p>在使用
+<a href=https://developer.mozilla.org/zh-CN/docs/Glossary/IIFE rel=noopener>立即执行的函数表达式</a>时，可以利用 <code>void</code> 运算符让 JavaScript 引擎把一个<code>function</code>关键字识别成函数表达式而不是函数声明（语句）。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=k>void</span> <span class=p>(</span><span class=kd>function</span> <span class=nx>iife</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>bar</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>baz</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>foo</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>bar</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=nx>baz</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl>  <span class=kd>var</span> <span class=nx>biz</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=nx>foo</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>  <span class=nx>biz</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=p>})();</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#javascript-uris><h3 id=javascript-uris><span class=hanchor arialabel=Anchor># </span>JavaScript URIs</h3></a><p>当用户点击一个以 <code>javascript:</code> URI 时，它会执行 URI 中的代码，然后用返回的值替换页面内容，除非返回的值是
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined rel=noopener><code>undefined</code></a>。<code>void</code>运算符可用于返回
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined rel=noopener><code>undefined</code></a>。例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;javascript:void(0);&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  这个链接点击之后不会做任何事情，如果去掉 void()，
+</span></span><span class=line><span class=cl>  点击之后整个页面会被替换成一个字符 0。
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>p</span><span class=p>&gt;</span> chrome中即使<span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;javascript:0;&#34;</span><span class=p>&gt;</span>也没变化，firefox中会变成一个字符串0 <span class=p>&lt;/</span><span class=nt>p</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;javascript:void(document.body.style.backgroundColor=&#39;green&#39;);&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  点击这个链接会让页面背景变成绿色。
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>注意，虽然这么做是可行的，但利用 <code>javascript:</code> 伪协议来执行 JavaScript 代码是不推荐的，推荐的做法是为链接元素绑定事件。</p><a href=#在箭头函数中避免泄漏><h3 id=在箭头函数中避免泄漏><span class=hanchor arialabel=Anchor># </span>在箭头函数中避免泄漏</h3></a><p>箭头函数标准中，允许在函数体不使用括号来直接返回值。 如果右侧调用了一个原本没有返回值的函数，其返回值改变后，则会导致非预期的副作用。 安全起见，当函数返回值是一个不会被使用到的时候，应该使用 <code>void</code> 运算符，来确保返回
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined rel=noopener><code>undefined</code></a>（如下方示例），这样，当 API 改变时，并不会影响箭头函数的行为。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>button</span><span class=p>.</span><span class=nx>onclick</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=k>void</span> <span class=nx>doSomething</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p>确保了当 <code>doSomething</code> 的返回值从
+<a href=https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/undefined rel=noopener><code>undefined</code></a> 变为 <code>true</code> 的时候，不会改变函数的行为</p><a href=#undefined-与-null-的区别><h2 id=undefined-与-null-的区别><span class=hanchor arialabel=Anchor># </span>undefined 与 null 的区别</h2></a><p>大多数计算机语言，有且仅有一个表示"无"的值，比如，C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p><p>有点奇怪的是，JavaScript 语言居然有<strong>两个</strong>表示"无"的值：undefined 和 null。这是为什么？</p><p>在 JavaScript 中，将一个变量赋值为 undefined 或 null，老实说，几乎没区别。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>a</span> <span class=o>=</span> <span class=kc>undefined</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>a</span> <span class=o>=</span> <span class=kc>null</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div></blockquote><p>上面代码中，a 变量分别被赋值为 undefined 和 null，这两种写法几乎等价。</p><p>undefined 和 null 在 if 语句中，都会被自动转为 false，相等运算符甚至直接报告两者相等。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=kc>undefined</span><span class=p>)</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;undefined is false&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// undefined is false
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=kc>null</span><span class=p>)</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;null is false&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// null is false
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kc>undefined</span> <span class=o>==</span> <span class=kc>null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// true
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><p>上面代码说明，两者的行为是何等相似！</p><p>既然 undefined 和 null 的含义与用法都差不多，为什么要同时设置两个这样的值，这不是无端增加 JavaScript 的复杂度，令初学者困扰吗？Google 公司开发的 JavaScript 语言的替代品 Dart 语言，就明确规定只有 null，没有 undefined！</p><a href=#历史原因><h3 id=历史原因><span class=hanchor arialabel=Anchor># </span>历史原因</h3></a><p>原来，这与 JavaScript 的历史有关。1995 年
+<a href=http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html rel=noopener>JavaScript 诞生</a>时，最初像 Java 一样，只设置了 null 作为表示"无"的值。</p><p>根据 C 语言的传统，null 被设计成可以自动转为 0。</p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nb>Number</span><span class=p>(</span><span class=kc>null</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// 0
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=mi>5</span> <span class=o>+</span> <span class=kc>null</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// 5
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><p>但是，JavaScript 的设计者 Brendan Eich，觉得这样做还不够，有两个原因。</p><p>首先，null 像在 Java 里一样，被当成一个对象。但是，JavaScript 的数据类型分成原始类型（primitive）和合成类型（complex）两大类，Brendan Eich 觉得表示"无"的值最好不是对象。</p><p>其次，JavaScript 的最初版本没有包括错误处理机制，发生数据类型不匹配时，往往是自动转换类型或者默默地失败。Brendan Eich 觉得，如果 null 自动转为 0，很不容易发现错误。</p><p>因此，Brendan Eich 又设计了一个 undefined。</p><a href=#最初设计><h3 id=最初设计><span class=hanchor arialabel=Anchor># </span>最初设计</h3></a><p>JavaScript 的最初版本是这样区分的：<strong>null 是一个表示"无"的对象，转为数值时为 0；undefined 是一个表示"无"的原始值，转为数值时为 NaN。</strong></p><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nb>Number</span><span class=p>(</span><span class=kc>undefined</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// NaN
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=mi>5</span> <span class=o>+</span> <span class=kc>undefined</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=c1>// NaN
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><a href=#目前的用法><h3 id=目前的用法><span class=hanchor arialabel=Anchor># </span>目前的用法</h3></a><p>但是，上面这样的区分，在实践中很快就被证明不可行。目前，null 和 undefined 基本是同义的，只有一些细微的差别。</p><p>**null 表示"没有对象"，即该处不应该有值。**典型用法是：</p><blockquote><p>（1） 作为函数的参数，表示该函数的参数不是对象。</p><p>（2） 作为对象原型链的终点。</p></blockquote><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nb>Object</span><span class=p>.</span><span class=nx>getPrototypeOf</span><span class=p>(</span><span class=nb>Object</span><span class=p>.</span><span class=nx>prototype</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=c1>// null
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><p>**undefined 表示"缺少值"，就是此处应该有一个值，但是还没有定义。**典型用法是：</p><blockquote><p>（1）变量被声明了，但没有赋值时，就等于 undefined。</p><p>（2) 调用函数时，应该提供的参数没有提供，该参数等于 undefined。</p><p>（3）对象没有赋值的属性，该属性的值为 undefined。</p><p>（4）函数没有返回值时，默认返回 undefined。</p></blockquote><blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>i</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>i</span><span class=p>;</span> <span class=c1>// undefined
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>f</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>x</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>f</span><span class=p>();</span> <span class=c1>// undefined
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>o</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Object</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>o</span><span class=p>.</span><span class=nx>p</span><span class=p>;</span> <span class=c1>// undefined
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>x</span> <span class=o>=</span> <span class=nx>f</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>x</span><span class=p>;</span> <span class=c1>// undefined
+</span></span></span></code></pre></td></tr></table></div></div></blockquote><a href=#es6><h2 id=es6><span class=hanchor arialabel=Anchor># </span>ES6</h2></a><a href=#什么是-es6><h3 id=什么是-es6><span class=hanchor arialabel=Anchor># </span>什么是 ES6</h3></a><p>ES 的全称是 ECMAScript , 它是由 ECMA 国际标准化组织,制定的一项脚本语言的标准化规范。</p><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182846.png width=auto alt></p><a href=#为什么使用-es6-><h3 id=为什么使用-es6-><span class=hanchor arialabel=Anchor># </span>为什么使用 ES6 ?</h3></a><p>每一次标准的诞生都意味着语言的完善，功能的加强。JavaScript 语言本身也有一些令人不满意的地方。</p><ul><li>变量提升特性增加了程序运行时的不可预测性</li><li>语法过于松散，实现相同的功能，不同的人可能会写出不同的代码</li></ul><a href=#es6-新增语法><h3 id=es6-新增语法><span class=hanchor arialabel=Anchor># </span>ES6 新增语法</h3></a><a href=#let><h4 id=let><span class=hanchor arialabel=Anchor># </span>let（★★★）</h4></a><p>ES6 中新增了用于声明变量的关键字</p><a href=#let-声明的变量只在所处于的块级有效><h5 id=let-声明的变量只在所处于的块级有效><span class=hanchor arialabel=Anchor># </span>let 声明的变量只在所处于的块级有效</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=kc>true</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>a</span> <span class=o>=</span> <span class=mi>10</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span> <span class=c1>// a is not defined
+</span></span></span></code></pre></td></tr></table></div></div><p>**注意：**使用 let 关键字声明的变量才具有块级作用域，使用 var 声明的变量不具备块级作用域特性。</p><a href=#不存在变量提升><h5 id=不存在变量提升><span class=hanchor arialabel=Anchor># </span>不存在变量提升</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span> <span class=c1>// a is not defined
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>a</span> <span class=o>=</span> <span class=mi>20</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#暂时性死区><h5 id=暂时性死区><span class=hanchor arialabel=Anchor># </span>暂时性死区</h5></a><p>利用 let 声明的变量会绑定在这个块级作用域，不会受外界的影响</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>tmp</span> <span class=o>=</span> <span class=mi>123</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=kc>true</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>tmp</span> <span class=o>=</span> <span class=s2>&#34;abc&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kd>let</span> <span class=nx>tmp</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#经典面试题><h5 id=经典面试题><span class=hanchor arialabel=Anchor># </span>经典面试题</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>arr</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=p>(</span><span class=kd>var</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>arr</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>]();</span>
+</span></span><span class=line><span class=cl><span class=nx>arr</span><span class=p>[</span><span class=mi>1</span><span class=p>]();</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182851.png width=auto alt></p><p>**经典面试题图解：**此题的关键点在于变量 i 是全局的，函数执行时输出的都是全局作用域下的 i 值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>arr</span> <span class=o>=</span> <span class=p>[];</span>
+</span></span><span class=line><span class=cl><span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>i</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>arr</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>i</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>arr</span><span class=p>[</span><span class=mi>0</span><span class=p>]();</span>
+</span></span><span class=line><span class=cl><span class=nx>arr</span><span class=p>[</span><span class=mi>1</span><span class=p>]();</span>
+</span></span></code></pre></td></tr></table></div></div><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182855.png width=auto alt></p><p>**经典面试题图解：**此题的关键点在于每次循环都会产生一个块级作用域，每个块级作用域中的变量都是不同的，函数执行时输出的是自己上一级（循环产生的块级作用域）作用域下的 i 值.</p><a href=#小结-1><h5 id=小结-1><span class=hanchor arialabel=Anchor># </span>小结</h5></a><ul><li>let 关键字就是用来声明变量的</li><li>使用 let 关键字声明的变量具有块级作用域</li><li>在一个大括号中 使用 let 关键字声明的变量才具有块级作用域 var 关键字是不具备这个特点的</li><li>防止循环变量变成全局变量</li><li>使用 let 关键字声明的变量没有变量提升</li><li>使用 let 关键字声明的变量具有暂时性死区特性</li></ul><a href=#const><h4 id=const><span class=hanchor arialabel=Anchor># </span>const（★★★）</h4></a><p>声明常量，常量就是值（内存地址）不能变化的量</p><a href=#具有块级作用域><h5 id=具有块级作用域><span class=hanchor arialabel=Anchor># </span>具有块级作用域</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=k>if</span> <span class=p>(</span><span class=kc>true</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>a</span> <span class=o>=</span> <span class=mi>10</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span> <span class=c1>// a is not defined
+</span></span></span></code></pre></td></tr></table></div></div><a href=#声明常量时必须赋值><h5 id=声明常量时必须赋值><span class=hanchor arialabel=Anchor># </span>声明常量时必须赋值</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>PI</span><span class=p>;</span> <span class=c1>// Missing initializer in const declaration
+</span></span></span></code></pre></td></tr></table></div></div><a href=#常量赋值后值不能修改><h5 id=常量赋值后值不能修改><span class=hanchor arialabel=Anchor># </span>常量赋值后，值不能修改</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>PI</span> <span class=o>=</span> <span class=mf>3.14</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>PI</span> <span class=o>=</span> <span class=mi>100</span><span class=p>;</span> <span class=c1>// Assignment to constant variable.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>ary</span> <span class=o>=</span> <span class=p>[</span><span class=mi>100</span><span class=p>,</span> <span class=mi>200</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nx>ary</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;a&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>ary</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;b&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>ary</span><span class=p>);</span> <span class=c1>// [&#39;a&#39;, &#39;b&#39;];
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>ary</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;a&#34;</span><span class=p>,</span> <span class=s2>&#34;b&#34;</span><span class=p>];</span> <span class=c1>// Assignment to constant variable.
+</span></span></span></code></pre></td></tr></table></div></div><a href=#小结-2><h5 id=小结-2><span class=hanchor arialabel=Anchor># </span>小结</h5></a><ul><li>const 声明的变量是一个常量</li><li>既然是常量不能重新进行赋值，如果是基本数据类型，不能更改值，如果是复杂数据类型，不能更改地址值</li><li>声明 const 时候必须要给定值</li></ul><a href=#letconstvar-的区别><h4 id=letconstvar-的区别><span class=hanchor arialabel=Anchor># </span>let、const、var 的区别</h4></a><ul><li>使用 var 声明的变量，其作用域为该语句所在的函数内，且存在变量提升现象</li><li>使用 let 声明的变量，其作用域为该语句所在的代码块内，不存在变量提升</li><li>使用 const 声明的是常量，在后面出现的代码中不能再修改该常量的值</li></ul><p><img src=https://cdn.jsdelivr.net/gh/radoapx/rax-picbed/PicGo/notes/frontend/js/20210410182901.png width=auto alt></p><a href=#解构赋值><h4 id=解构赋值><span class=hanchor arialabel=Anchor># </span>解构赋值（★★★）</h4></a><p>ES6 中允许从数组中提取值，按照对应位置，对变量赋值，对象也可以实现解构</p><a href=#数组解构><h5 id=数组解构><span class=hanchor arialabel=Anchor># </span>数组解构</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=p>[</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span><span class=p>,</span> <span class=nx>c</span><span class=p>]</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>a</span><span class=p>);</span> <span class=c1>//1
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>b</span><span class=p>);</span> <span class=c1>//2
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>c</span><span class=p>);</span> <span class=c1>//3
+</span></span></span><span class=line><span class=cl><span class=c1>//如果解构不成功，变量的值为undefined
+</span></span></span></code></pre></td></tr></table></div></div><a href=#对象解构><h5 id=对象解构><span class=hanchor arialabel=Anchor># </span>对象解构</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>person</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;zhangsan&#34;</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=mi>20</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=p>{</span> <span class=nx>name</span><span class=p>,</span> <span class=nx>age</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>person</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>name</span><span class=p>);</span> <span class=c1>// &#39;zhangsan&#39;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>age</span><span class=p>);</span> <span class=c1>// 20
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=nx>myName</span><span class=p>,</span> <span class=nx>age</span><span class=o>:</span> <span class=nx>myAge</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>person</span><span class=p>;</span> <span class=c1>// myName myAge 属于别名
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>myName</span><span class=p>);</span> <span class=c1>// &#39;zhangsan&#39;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>myAge</span><span class=p>);</span> <span class=c1>// 20
+</span></span></span></code></pre></td></tr></table></div></div><a href=#小结-3><h5 id=小结-3><span class=hanchor arialabel=Anchor># </span>小结</h5></a><ul><li>解构赋值就是把数据结构分解，然后给变量进行赋值</li><li>如果结构不成功，变量跟数值个数不匹配的时候，变量的值为 undefined</li><li>数组解构用中括号包裹，多个变量用逗号隔开，对象解构用花括号包裹，多个变量用逗号隔开</li><li>利用解构赋值能够让我们方便的去取对象中的属性跟方法</li></ul><a href=#箭头函数><h4 id=箭头函数><span class=hanchor arialabel=Anchor># </span>箭头函数（★★★）</h4></a><p>ES6 中新增的定义函数的方式。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{};</span> <span class=c1>//()：代表是函数； =&gt;：必须要的符号，指向哪一个代码块；{}：函数体
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>fn</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{};</span> <span class=c1>//代表把一个函数赋值给fn
+</span></span></span></code></pre></td></tr></table></div></div><p>函数体中只有一句代码，且代码的执行结果就是返回值，可以省略大括号</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>sum</span><span class=p>(</span><span class=nx>num1</span><span class=p>,</span> <span class=nx>num2</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>num1</span> <span class=o>+</span> <span class=nx>num2</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>//es6写法
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>sum</span> <span class=o>=</span> <span class=p>(</span><span class=nx>num1</span><span class=p>,</span> <span class=nx>num2</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>num1</span> <span class=o>+</span> <span class=nx>num2</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果形参只有一个，可以省略小括号</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>fn</span><span class=p>(</span><span class=nx>v</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>v</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=c1>//es6写法
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>const</span> <span class=nx>fn</span> <span class=o>=</span> <span class=p>(</span><span class=nx>v</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>v</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p>箭头函数不绑定 this 关键字，箭头函数中的 this，指向的是函数定义位置的上下文 this</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>obj</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;张三&#34;</span> <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>fn</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>//this 指向 是obj对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=k>return</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=k>this</span><span class=p>);</span> <span class=c1>//this 指向 的是箭头函数定义的位置，那么这个箭头函数定义在fn里面，而这个fn指向是的obj对象，所以这个this也指向是obj对象
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>resFn</span> <span class=o>=</span> <span class=nx>fn</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=nx>obj</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>resFn</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#小结-4><h5 id=小结-4><span class=hanchor arialabel=Anchor># </span>小结</h5></a><ul><li>箭头函数中不绑定 this，箭头函数中的 this 指向是它所定义的位置，可以简单理解成，定义箭头函数中的作用域的 this 指向谁，它就指向谁</li><li>箭头函数的优点在于解决了 this 执行环境所造成的一些问题。比如：解决了匿名函数 this 指向的问题（匿名函数的执行环境具有全局性），包括 setTimeout 和 setInterval 中使用 this 所造成的问题</li></ul><a href=#面试题><h5 id=面试题><span class=hanchor arialabel=Anchor># </span>面试题</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>var</span> <span class=nx>age</span> <span class=o>=</span> <span class=mi>100</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>var</span> <span class=nx>obj</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>age</span><span class=o>:</span> <span class=mi>20</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>say</span><span class=o>:</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>alert</span><span class=p>(</span><span class=k>this</span><span class=p>.</span><span class=nx>age</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>obj</span><span class=p>.</span><span class=nx>say</span><span class=p>();</span> <span class=c1>//箭头函数this指向的是被声明的作用域里面，而对象没有作用域的，所以箭头函数虽然在对象中被定义，但是this指向的是全局作用域
+</span></span></span></code></pre></td></tr></table></div></div><a href=#剩余参数><h4 id=剩余参数><span class=hanchor arialabel=Anchor># </span>剩余参数（★★）</h4></a><p>剩余参数语法允许我们将一个不定数量的参数表示为一个数组，不定参数定义方式，这种方式很方便的去声明不知道参数情况下的一个函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>function</span> <span class=nx>sum</span><span class=p>(</span><span class=nx>first</span><span class=p>,</span> <span class=p>...</span><span class=nx>args</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>first</span><span class=p>);</span> <span class=c1>// 10
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>args</span><span class=p>);</span> <span class=c1>// [20, 30]
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=nx>sum</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=mi>20</span><span class=p>,</span> <span class=mi>30</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#剩余参数和解构配合使用><h5 id=剩余参数和解构配合使用><span class=hanchor arialabel=Anchor># </span>剩余参数和解构配合使用</h5></a><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>students</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&#34;wangwu&#34;</span><span class=p>,</span> <span class=s2>&#34;zhangsan&#34;</span><span class=p>,</span> <span class=s2>&#34;lisi&#34;</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=p>[</span><span class=nx>s1</span><span class=p>,</span> <span class=p>...</span><span class=nx>s2</span><span class=p>]</span> <span class=o>=</span> <span class=nx>students</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>s1</span><span class=p>);</span> <span class=c1>// &#39;wangwu&#39;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>s2</span><span class=p>);</span> <span class=c1>// [&#39;zhangsan&#39;, &#39;lisi&#39;]
+</span></span></span></code></pre></td></tr></table></div></div><a href=#es6-的内置对象扩展><h3 id=es6-的内置对象扩展><span class=hanchor arialabel=Anchor># </span>ES6 的内置对象扩展</h3></a><a href=#array-的扩展方法><h4 id=array-的扩展方法><span class=hanchor arialabel=Anchor># </span>Array 的扩展方法（★★）</h4></a><a href=#扩展运算符展开语法><h5 id=扩展运算符展开语法><span class=hanchor arialabel=Anchor># </span>扩展运算符（展开语法）</h5></a><p>扩展运算符可以将数组或者对象转为用逗号分隔的参数序列</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl> <span class=kd>let</span> <span class=nx>ary</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>];</span>
+</span></span><span class=line><span class=cl> <span class=p>...</span><span class=nx>ary</span>  <span class=c1>// 1, 2, 3
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(...</span><span class=nx>ary</span><span class=p>);</span>    <span class=c1>// 1 2 3,相当于下面的代码
+</span></span></span><span class=line><span class=cl><span class=c1></span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>扩展运算符可以应用于合并数组</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// 方法一
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>ary1</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>ary2</span> <span class=o>=</span> <span class=p>[</span><span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>5</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>ary3</span> <span class=o>=</span> <span class=p>[...</span><span class=nx>ary1</span><span class=p>,</span> <span class=p>...</span><span class=nx>ary2</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=c1>// 方法二
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>ary1</span><span class=p>.</span><span class=nx>push</span><span class=p>(...</span><span class=nx>ary2</span><span class=p>);</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>将类数组或可遍历对象转换为真正的数组</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>oDivs</span> <span class=o>=</span> <span class=nb>document</span><span class=p>.</span><span class=nx>getElementsByTagName</span><span class=p>(</span><span class=s2>&#34;div&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>oDivs</span> <span class=o>=</span> <span class=p>[...</span><span class=nx>oDivs</span><span class=p>];</span>
+</span></span></code></pre></td></tr></table></div></div><a href=#构造函数方法arrayfrom><h5 id=构造函数方法arrayfrom><span class=hanchor arialabel=Anchor># </span>构造函数方法：Array.from()</h5></a><p>将伪数组或可遍历对象转换为真正的数组</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>//定义一个集合
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>arrayLike</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=mi>0</span><span class=o>:</span> <span class=s2>&#34;a&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=mi>1</span><span class=o>:</span> <span class=s2>&#34;b&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=mi>2</span><span class=o>:</span> <span class=s2>&#34;c&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>length</span><span class=o>:</span> <span class=mi>3</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=c1>//转成数组
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>let</span> <span class=nx>arr2</span> <span class=o>=</span> <span class=nb>Array</span><span class=p>.</span><span class=nx>from</span><span class=p>(</span><span class=nx>arrayLike</span><span class=p>);</span> <span class=c1>// [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</span></span></span></code></pre></td></tr></table></div></div><p>方法还可以接受第二个参数，作用类似于数组的 map 方法，用来对每个元素进行处理，将处理后的值放入返回的数组</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>arrayLike</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=mi>0</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=mi>1</span><span class=o>:</span> <span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>length</span><span class=o>:</span> <span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>newAry</span> <span class=o>=</span> <span class=nb>Array</span><span class=p>.</span><span class=nx>from</span><span class=p>(</span><span class=nx>arrayLike</span><span class=p>,</span> <span class=p>(</span><span class=nx>item</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>item</span> <span class=o>*</span> <span class=mi>2</span><span class=p>);</span> <span class=c1>//[2,4]
+</span></span></span></code></pre></td></tr></table></div></div><p>注意：如果是对象，那么属性需要写对应的索引</p><a href=#实例方法find><h5 id=实例方法find><span class=hanchor arialabel=Anchor># </span>实例方法：find()</h5></a><p>用于找出第一个符合条件的数组成员，如果没有找到返回 undefined</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>ary</span> <span class=o>=</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>id</span><span class=o>:</span> <span class=mi>1</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;张三&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>id</span><span class=o>:</span> <span class=mi>2</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;李四&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>target</span> <span class=o>=</span> <span class=nx>ary</span><span class=p>.</span><span class=nx>find</span><span class=p>((</span><span class=nx>item</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>item</span><span class=p>.</span><span class=nx>id</span> <span class=o>==</span> <span class=mi>2</span><span class=p>);</span> <span class=c1>//找数组里面符合条件的值，当数组中元素id等于2的查找出来，注意，只会匹配第一个
+</span></span></span></code></pre></td></tr></table></div></div><a href=#实例方法findindex><h5 id=实例方法findindex><span class=hanchor arialabel=Anchor># </span>实例方法：findIndex()</h5></a><p>用于找出第一个符合条件的数组成员的位置，如果没有找到返回-1</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>ary</span> <span class=o>=</span> <span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=mi>15</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>index</span> <span class=o>=</span> <span class=nx>ary</span><span class=p>.</span><span class=nx>findIndex</span><span class=p>((</span><span class=nx>value</span><span class=p>,</span> <span class=nx>index</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>value</span> <span class=o>&gt;</span> <span class=mi>9</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>index</span><span class=p>);</span> <span class=c1>// 2
+</span></span></span></code></pre></td></tr></table></div></div><a href=#实例方法includes><h5 id=实例方法includes><span class=hanchor arialabel=Anchor># </span>实例方法：includes()</h5></a><p>判断某个数组是否包含给定的值，返回布尔值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=p>[</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>includes</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span> <span class=c1>// true
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=p>[(</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>)].</span><span class=nx>includes</span><span class=p>(</span><span class=mi>4</span><span class=p>);</span> <span class=c1>// false
+</span></span></span></code></pre></td></tr></table></div></div><a href=#string-的扩展方法><h4 id=string-的扩展方法><span class=hanchor arialabel=Anchor># </span>String 的扩展方法</h4></a><a href=#模板字符串><h5 id=模板字符串><span class=hanchor arialabel=Anchor># </span>模板字符串（★★★）</h5></a><p>ES6 新增的创建字符串的方式，使用反引号定义</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>name</span> <span class=o>=</span> <span class=sb>`zhangsan`</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>模板字符串中可以解析变量</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>name</span> <span class=o>=</span> <span class=s2>&#34;张三&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>sayHello</span> <span class=o>=</span> <span class=sb>`hello,my name is </span><span class=si>${</span><span class=nx>name</span><span class=si>}</span><span class=sb>`</span><span class=p>;</span> <span class=c1>// hello, my name is zhangsan
+</span></span></span></code></pre></td></tr></table></div></div><p><strong>模板字符串中可以换行</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>result</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;zhangsan&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>age</span><span class=o>:</span> <span class=mi>20</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>sex</span><span class=o>:</span> <span class=s2>&#34;男&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>html</span> <span class=o>=</span> <span class=sb>` &lt;div&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>     &lt;span&gt;</span><span class=si>${</span><span class=nx>result</span><span class=p>.</span><span class=nx>name</span><span class=si>}</span><span class=sb>&lt;/span&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>     &lt;span&gt;</span><span class=si>${</span><span class=nx>result</span><span class=p>.</span><span class=nx>age</span><span class=si>}</span><span class=sb>&lt;/span&gt;
+</span></span></span><span class=line><span class=cl><span class=sb>     &lt;span&gt;</span><span class=si>${</span><span class=nx>result</span><span class=p>.</span><span class=nx>sex</span><span class=si>}</span><span class=sb>&lt;/span&gt;
+</span></span></span><span class=line><span class=cl><span class=sb> &lt;/div&gt; `</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>在模板字符串中可以调用函数</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>sayHello</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=s2>&#34;哈哈哈哈 追不到我吧 我就是这么强大&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>};</span>
+</span></span><span class=line><span class=cl><span class=kd>let</span> <span class=nx>greet</span> <span class=o>=</span> <span class=sb>`</span><span class=si>${</span><span class=nx>sayHello</span><span class=p>()</span><span class=si>}</span><span class=sb> 哈哈哈哈`</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>greet</span><span class=p>);</span> <span class=c1>// 哈哈哈哈 追不到我吧 我就是这么强大 哈哈哈哈
+</span></span></span></code></pre></td></tr></table></div></div><a href=#实例方法startswith-和-endswith><h5 id=实例方法startswith-和-endswith><span class=hanchor arialabel=Anchor># </span>实例方法：startsWith() 和 endsWith()</h5></a><ul><li>startsWith()：表示参数字符串是否在原字符串的头部，返回布尔值</li><li>endsWith()：表示参数字符串是否在原字符串的尾部，返回布尔值</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kd>let</span> <span class=nx>str</span> <span class=o>=</span> <span class=s2>&#34;Hello world!&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=nx>str</span><span class=p>.</span><span class=nx>startsWith</span><span class=p>(</span><span class=s2>&#34;Hello&#34;</span><span class=p>);</span> <span class=c1>// true
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>str</span><span class=p>.</span><span class=nx>endsWith</span><span class=p>(</span><span class=s2>&#34;!&#34;</span><span class=p>);</span> <span class=c1>// true
+</span></span></span></code></pre></td></tr></table></div></div><a href=#实例方法repeat><h5 id=实例方法repeat><span class=hanchor arialabel=Anchor># </span>实例方法：repeat()</h5></a><p>repeat 方法表示将原字符串重复 n 次，返回一个新字符串</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=s2>&#34;x&#34;</span><span class=p>.</span><span class=nx>repeat</span><span class=p>(</span><span class=mi>3</span><span class=p>);</span> <span class=c1>// &#34;xxx&#34;
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=s2>&#34;hello&#34;</span><span class=p>.</span><span class=nx>repeat</span><span class=p>(</span><span class=mi>2</span><span class=p>);</span> <span class=c1>// &#34;hellohello&#34;
+</span></span></span></code></pre></td></tr></table></div></div><a href=#set-数据结构><h4 id=set-数据结构><span class=hanchor arialabel=Anchor># </span>Set 数据结构（★★）</h4></a><p>ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。</p><p>Set 本身是一个构造函数，用来生成 Set 数据结构</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>s</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Set</span><span class=p>();</span>
+</span></span></code></pre></td></tr></table></div></div><p>Set 函数可以接受一个数组作为参数，用来初始化。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>set</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Set</span><span class=p>([</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=mi>4</span><span class=p>]);</span> <span class=c1>//{1, 2, 3, 4}
+</span></span></span></code></pre></td></tr></table></div></div><a href=#实例方法><h5 id=实例方法><span class=hanchor arialabel=Anchor># </span>实例方法</h5></a><ul><li>add(value)：添加某个值，返回 Set 结构本身</li><li>delete(value)：删除某个值，返回一个布尔值，表示删除是否成功</li><li>has(value)：返回一个布尔值，表示该值是否为 Set 的成员</li><li>clear()：清除所有成员，没有返回值</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=kr>const</span> <span class=nx>s</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Set</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=nx>s</span><span class=p>.</span><span class=nx>add</span><span class=p>(</span><span class=mi>1</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mi>2</span><span class=p>).</span><span class=nx>add</span><span class=p>(</span><span class=mi>3</span><span class=p>);</span> <span class=c1>// 向 set 结构中添加值
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>s</span><span class=p>.</span><span class=k>delete</span><span class=p>(</span><span class=mi>2</span><span class=p>);</span> <span class=c1>// 删除 set 结构中的2值
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>s</span><span class=p>.</span><span class=nx>has</span><span class=p>(</span><span class=mi>1</span><span class=p>);</span> <span class=c1>// 表示 set 结构中是否有1这个值 返回布尔值
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>s</span><span class=p>.</span><span class=nx>clear</span><span class=p>();</span> <span class=c1>// 清除 set 结构中的所有值
+</span></span></span><span class=line><span class=cl><span class=c1>//注意：删除的是元素的值，不是代表的索引
+</span></span></span></code></pre></td></tr></table></div></div><a href=#遍历><h5 id=遍历><span class=hanchor arialabel=Anchor># </span>遍历</h5></a><p>Set 结构的实例与数组一样，也拥有 forEach 方法，用于对每个成员执行某种操作，没有返回值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=nx>s</span><span class=p>.</span><span class=nx>forEach</span><span class=p>((</span><span class=nx>value</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>value</span><span class=p>));</span>
+</span></span></code></pre></td></tr></table></div></div></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/%E5%89%8D%E7%AB%AF/ data-ctx=Javascript基础 data-src=/%E5%89%8D%E7%AB%AF class=internal-link>前端</a></li></ul></div><div><script src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://jieye-ericx.github.io/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Jieye ericx using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://jieye-ericx.github.io/>Home</a></li><li><a href=https://github.com/jieye-ericx>Github</a></li></ul></footer></div></div></body></html>
