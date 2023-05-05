@@ -202,13 +202,14 @@ Context 在许多编程语言/框架中都出现，曾几何时，我难以理�
 如果在将 redo log 刷入到磁盘之后， MySQL 突然宕机了，而 binlog 还没有来得及写入 如果在将 binlog 刷入到磁盘之后， MySQL 突然宕机了，而 redo log 还没有来得及写入 MySQL 为了避免出现两份日志之间的逻辑不一致的问题，使用了「两阶段提交」来解决，两阶段提交其实是分布式事务一致性协议，它可以保证多个逻辑操作要不全部成功，要不全部失败，不会出现半成功的状态。</description></item><item><title>分布式</title><link>https://jieye-ericx.github.io/%E5%88%86%E5%B8%83%E5%BC%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%88%86%E5%B8%83%E5%BC%8F/</guid><description>关于分布式 20230314 也看过不少面试题和博客了，但感觉一直无法完全理解，所以有了这篇总结[[分布式系统]]
 [[分布式系统]] 是直接由 xmind 导出，格式有些混乱，所以还是看这张图吧
 通过极客时间专栏、pdai、javaguide 等渠道学习制作了此xmind
+不定期更新图片
 分布式数据库</description></item><item><title>分布式数据库</title><link>https://jieye-ericx.github.io/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93/</guid><description>https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/24%E8%AE%B2%E5%90%83%E9%80%8F%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93-%E5%AE%8C/01%20%20%E5%AF%BC%E8%AE%BA%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9F%E8%81%8A%E8%81%8A%E5%AE%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F.md
 分布式数据库的核心——数据分片、数据同步
 数据分片
 该特性是分布式数据库的技术创新。它可以突破中心化数据库单机的容量限制，从而将数据分散到多节点，以更灵活、高效的方式来处理数据。这是分布式理论带给数据库的一份礼物。
 分片方式包括两种。 水平分片：按行进行数据分割，数据被切割为一个个数据组，分散到不同节点上。 垂直分片：按列进行数据切割，一个数据表的模式（Schema）被切割为多个小的模式。 数据同步
 它是分布式数据库的底线。由于数据库理论传统上是建立在单机数据库基础上，而引入分布式理论后，一致性原则被打破。因此需要引入数据库同步技术来帮助数据库恢复一致性。
-简而言之，就是使分布式数据库用起来像“正常的数据库”。所以数据同步背后的推动力，就是人们对数据“一致性”的追求。这两个概念相辅相成，互相作用。 sql 与 nosql #sql与nosql</description></item><item><title>利用Element实现响应式导航栏</title><link>https://jieye-ericx.github.io/%E5%88%A9%E7%94%A8Element%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%AF%BC%E8%88%AA%E6%A0%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%88%A9%E7%94%A8Element%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%AF%BC%E8%88%AA%E6%A0%8F/</guid><description>开始之前 按照计划，前端使用Vue.js+Element UI，但在设计导航栏时，发现element没有提供传统意义上的页面顶部导航栏组件，只有一个可以用在很多需要选择tab场景的导航菜单，便决定在其基础上改造，由于我认为实现移动端良好的体验是必须的，所以便萌生了给其增加响应式功能的想法。
+简而言之，就是使分布式数据库用起来像“正常的数据库”。所以数据同步背后的推动力，就是人们对数据“一致性”的追求。这两个概念相辅相成，互相作用。 sql 与 nosql 1 数据分片 -提高数据容量和性能 水平分片：在不同的数据库节点中存储同一表的不同行。 垂直分片：在不同的数据库节点中存储表不同的表列。 分片算法 分片算法一般指代水平分片所需要的算法。经过多年的演化，其已经在大型系统中得到了广泛的实践。下面我将介绍两种最常见的水平分片算法，并简要介绍一些其他的分片算法优化思路。</description></item><item><title>利用Element实现响应式导航栏</title><link>https://jieye-ericx.github.io/%E5%88%A9%E7%94%A8Element%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%AF%BC%E8%88%AA%E6%A0%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%88%A9%E7%94%A8Element%E5%AE%9E%E7%8E%B0%E5%93%8D%E5%BA%94%E5%BC%8F%E5%AF%BC%E8%88%AA%E6%A0%8F/</guid><description>开始之前 按照计划，前端使用Vue.js+Element UI，但在设计导航栏时，发现element没有提供传统意义上的页面顶部导航栏组件，只有一个可以用在很多需要选择tab场景的导航菜单，便决定在其基础上改造，由于我认为实现移动端良好的体验是必须的，所以便萌生了给其增加响应式功能的想法。
 需求分析与拆解 假设我们的导航栏有logo和四个el-menu-item。
 给window绑定监听事件，当宽度小于a时，四个链接全部放入右侧el-submenu的子菜单：
 当宽度大于a时，右侧el-submenu不显示，左侧el-menu-item正常显示：
