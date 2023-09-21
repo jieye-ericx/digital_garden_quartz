@@ -252,10 +252,10 @@ Context 在许多编程语言/框架中都出现，曾几何时，我难以理�
 给window绑定监听事件，当宽度小于a时，四个链接全部放入右侧el-submenu的子菜单：
 当宽度大于a时，右侧el-submenu不显示，左侧el-menu-item正常显示：
 所以，先创建一个数组，存储所有所需的item：
-1 2 3 4 5 6 navItems: [ { name: &amp;#34;Home&amp;#34;, indexPath: &amp;#34;/home&amp;#34;, index: &amp;#34;1&amp;#34; }, { name: &amp;#34;Subscribe&amp;#34;, indexPath: &amp;#34;/subscribe&amp;#34;, index: &amp;#34;2&amp;#34;}, { name: &amp;#34;About&amp;#34;, indexPath: &amp;#34;/about&amp;#34;, index: &amp;#34;3&amp;#34; }, { name: &amp;#34;More&amp;#34;, indexPath: &amp;#34;/more&amp;#34;, index: &amp;#34;4&amp;#34; } ] 监听宽度 很明显功能实现的关键是随时监听窗口的变化，根据对应的宽度做出响应，在data中，我使用screenWidth变量来存储窗口大小,保存初始打开页面时的宽度:</description></item><item><title>前端</title><link>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF/</guid><description>前端是学的最久最多的了，bilibili的实习也是前端居多，在转后端面前，这些好像又失去了作用
+1 2 3 4 5 6 navItems: [ { name: &amp;#34;Home&amp;#34;, indexPath: &amp;#34;/home&amp;#34;, index: &amp;#34;1&amp;#34; }, { name: &amp;#34;Subscribe&amp;#34;, indexPath: &amp;#34;/subscribe&amp;#34;, index: &amp;#34;2&amp;#34;}, { name: &amp;#34;About&amp;#34;, indexPath: &amp;#34;/about&amp;#34;, index: &amp;#34;3&amp;#34; }, { name: &amp;#34;More&amp;#34;, indexPath: &amp;#34;/more&amp;#34;, index: &amp;#34;4&amp;#34; } ] 监听宽度 很明显功能实现的关键是随时监听窗口的变化，根据对应的宽度做出响应，在data中，我使用screenWidth变量来存储窗口大小,保存初始打开页面时的宽度:</description></item><item><title>前端</title><link>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF/</guid><description>前端是学的最久最多的了，bilibili 的实习也是前端居多，在转后端面前，这些好像又失去了作用
 浏览器相关
 [[browser]]
-Web安全
+Web 安全
 [[同源策略]]
 [[CSRFXSS]]
 [[包管理工具]]
@@ -268,9 +268,7 @@ Web安全
 [[Diff]]
 构建工具
 [[webpack4]]
-webpack5相关在notion中，等待搬运
-基础知识
-[[CSS3 no]]</description></item><item><title>前端工程化</title><link>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</guid><description>前端工程本质上是软件工程的一种。软件工程化关注的是性能、稳定性、可用性、可维护性等方面，注重基本的开发效率、运行效率的同时，思考维护效率。一切以这些为目标的工作都是&amp;quot;前端工程化&amp;quot;。工程化是一种思想而不是某种技术。
+webpack5 相关在 notion 中，等待搬运</description></item><item><title>前端工程化</title><link>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</guid><description>前端工程本质上是软件工程的一种。软件工程化关注的是性能、稳定性、可用性、可维护性等方面，注重基本的开发效率、运行效率的同时，思考维护效率。一切以这些为目标的工作都是&amp;quot;前端工程化&amp;quot;。工程化是一种思想而不是某种技术。
 模块化 简单来说，模块化就是将一个大文件拆分成相互依赖的小文件，再进行统一的拼装和加载。（方便了多人协作）。
 分而治之是软件工程中的重要思想，是复杂系统开发和维护的基石，这点放在前端开发中同样适用。模块化是目前前端最流行的分治手段。
 模块化开发的最大价值应该是分治！
