@@ -117,7 +117,7 @@ iframe能够原封不动的把嵌入的网页展现出来。 如果有多个网�
 图中的小方块被称为像素，这些小方块都有一个明确的位置和被分配的色彩数值，小方格颜色和位置就决定该图像所呈现出来的样子。
 可以将像素视为整个图像中不可分割的单位或者是元素。「不可分割的意思是它不能够再切割成更小单位抑或是元素，它是以一个单一颜色的小格存在。」 每一个点阵图像包含了一定量的像素，这些像素决定图像在屏幕上所呈现的大小。
 1.2 矢量图 所谓矢量图，就是使用直线和曲线来描述的图形，构成这些图形的元素是一些点、线、矩形、多边形、圆和弧线等，**「***它们都是通过数学公式计算获得的，具有编辑后不失真的特点。*」****例如一幅画的矢量图形实际上是由线段形成外框轮廓，由外框的颜色以及外框所封闭的颜色决定画显示出的颜色。
-「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。</description></item><item><title>Java</title><link>https://jieye-ericx.github.io/Java/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/Java/</guid><description>Java Java Java Java 这里记录着 Java 的学习记录
+「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。</description></item><item><title>Java</title><link>https://jieye-ericx.github.io/Java/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/Java/</guid><description>Java 这里记录着 Java 的学习记录
 作为 hc 最多、资料最多的后端语言，却是我最后学习的、但应该也是学习最多的
 Java 基础学起来确实比 Golang 方便得多，看完 | Java 全栈知识体系 和 JavaGuide（Java学习&amp;amp;&amp;amp;面试指南） | JavaGuide(Java面试 + 学习指南) 感觉基础讲的非常全面了，有问题直接查找便是，这里就不再记录了</description></item><item><title>javascript</title><link>https://jieye-ericx.github.io/javascript/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/javascript/</guid><description>1. mouseenter和mouseover的区别 mouseover事件：不论鼠标指针穿过被选元素或其子元素，都会触发 mouseover 事件。
 mouseenter事件：只有在鼠标指针穿过被选元素时，才会触发 mouseenter 事件。
@@ -376,7 +376,7 @@ em和百分比类似，它是相对于当前元素的字体大小来计算的
 [[操作系统]]
 [[网络]]
 ![[前端面试题]]
-[[海量数据面试题]]</description></item><item><title>💻技术学习笔记</title><link>https://jieye-ericx.github.io/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid><description>从 18 年大二开始整理技术笔记至今，看了看文件目录，记录了太多从未看过的内容，借这次重新发布[[数字花园]]的机会，在这里梳理下需要继续学习维护的部分
+[[海量数据面试题]]</description></item><item><title>💻技术学习笔记</title><link>https://jieye-ericx.github.io/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid><description>从 18 年大二开始整理技术笔记至今，看了看文件目录，记录了太多从未看过的内容，借这次重新发布 [[数字花园]] 的机会，在这里梳理下需要继续学习维护的部分
 想想从大二到研二，好像什么都做过，但又好像什么都做不精
 ![[Java]]
 ![[分布式]]
