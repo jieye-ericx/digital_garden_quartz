@@ -119,14 +119,11 @@ iframe能够原封不动的把嵌入的网页展现出来。 如果有多个网�
 1.2 矢量图 所谓矢量图，就是使用直线和曲线来描述的图形，构成这些图形的元素是一些点、线、矩形、多边形、圆和弧线等，**「***它们都是通过数学公式计算获得的，具有编辑后不失真的特点。*」****例如一幅画的矢量图形实际上是由线段形成外框轮廓，由外框的颜色以及外框所封闭的颜色决定画显示出的颜色。
 「矢量图以几何图形居多，图形可以无限放大，不变色、不模糊。」 常用于图案、标志、VI、文字等设计。常用软件有：CorelDraw、Illustrator、Freehand、XARA、CAD 等。</description></item><item><title>Java</title><link>https://jieye-ericx.github.io/Java/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/Java/</guid><description>Java 这里记录着 Java 的学习记录
 作为 hc 最多、资料最多的后端语言，却是我最后学习的、但应该也是学习最多的
-Java 基础学起来确实比 Golang 方便得多，看完 | Java 全栈知识体系 和 JavaGuide（Java学习&amp;amp;&amp;amp;面试指南） | JavaGuide(Java面试 + 学习指南) 感觉基础讲的非常全面了，有问题直接查找便是，这里就不再记录了</description></item><item><title>javascript</title><link>https://jieye-ericx.github.io/javascript/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/javascript/</guid><description>1. mouseenter和mouseover的区别 mouseover事件：不论鼠标指针穿过被选元素或其子元素，都会触发 mouseover 事件。
-mouseenter事件：只有在鼠标指针穿过被选元素时，才会触发 mouseenter 事件。
+Java 基础学起来确实比 Golang 方便得多，看完 | Java 全栈知识体系 和 JavaGuide（Java学习&amp;amp;&amp;amp;面试指南） | JavaGuide(Java面试 + 学习指南) 感觉基础讲的非常全面了，有问题直接查找便是，这里就不再记录了</description></item><item><title>javascript</title><link>https://jieye-ericx.github.io/javascript/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/javascript/</guid><description>1. Mouseenter 和 Mouseover 的区别 mouseover 事件：不论鼠标指针穿过被选元素或其子元素，都会触发 mouseover 事件。
+mouseenter 事件：只有在鼠标指针穿过被选元素时，才会触发 mouseenter 事件。
 以及
-mouseout事件：不论鼠标指针离开被选元素还是任何子元素，都会触发 mouseout 事件。
-mouseleave事件：只有在鼠标指针离开被选元素时，才会触发 mouseleave 事件。
-2. alert（1&amp;amp;&amp;amp;2），alert（1||0） &amp;amp;&amp;amp;运算符，前面的true，返回后面的。前面的为false，返回前面的。
-||运算符，前面的为true，返回前面的。前面的为false，返回后面的。
-3. 为什么TCP连接需要三次握手，两次不可以吗，为什么 感觉自己还没懂，先占坑，可看知乎</description></item><item><title>JavaScript 之混淆的“类”</title><link>https://jieye-ericx.github.io/JavaScript-%E4%B9%8B%E6%B7%B7%E6%B7%86%E7%9A%84%E7%B1%BB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/JavaScript-%E4%B9%8B%E6%B7%B7%E6%B7%86%E7%9A%84%E7%B1%BB/</guid><description>JavaScript之混淆的类 序言 学习JavaScript时，如果你已经对C++、Java等传统面向对象编程语言有一定了解，或者老师教导过你使用类(类是面向对象编程的实现核心)把过程化风格的代码转换成结构清晰的代码，那么你很自然地会想在js中使用类。如在万物皆为类的Java中，严格区分类和对象，对象由类实例化而成，继承实际上是类的扩展。但JavaScript中只有对象，没有类，这是本质上的区别，可在JavaScript中有许多模拟类的语法糖在试图掩盖这个事实，很多教程中并未对此作详细解释，而是直接教初学者使用这些语法糖，导致初学者会在无形中出现困惑。
+mouseout 事件：不论鼠标指针离开被选元素还是任何子元素，都会触发 mouseout 事件。
+mouseleave 事件：只有在鼠标指针离开被选元素时，才会触发 mouseleave 事件。</description></item><item><title>JavaScript 之混淆的“类”</title><link>https://jieye-ericx.github.io/JavaScript-%E4%B9%8B%E6%B7%B7%E6%B7%86%E7%9A%84%E7%B1%BB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jieye-ericx.github.io/JavaScript-%E4%B9%8B%E6%B7%B7%E6%B7%86%E7%9A%84%E7%B1%BB/</guid><description>JavaScript之混淆的类 序言 学习JavaScript时，如果你已经对C++、Java等传统面向对象编程语言有一定了解，或者老师教导过你使用类(类是面向对象编程的实现核心)把过程化风格的代码转换成结构清晰的代码，那么你很自然地会想在js中使用类。如在万物皆为类的Java中，严格区分类和对象，对象由类实例化而成，继承实际上是类的扩展。但JavaScript中只有对象，没有类，这是本质上的区别，可在JavaScript中有许多模拟类的语法糖在试图掩盖这个事实，很多教程中并未对此作详细解释，而是直接教初学者使用这些语法糖，导致初学者会在无形中出现困惑。
 虽然JavaScript中没有类，但俗话说“没有的才是最好的”，开发者们通过不断探索总结，成功地模拟出了“类”。由于大家定义类的方法五花八门，风格不一。对于模拟面向对象的封装、继承、多态，更有许多研究，实现办法更加晦涩，不利于JavaScript新手使用。
 这就引出了本文的话题：JavaScript中类的机制。
 类的封装、继承与多态 说到面向对象编程，不得不先了解类。
